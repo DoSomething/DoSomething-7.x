@@ -615,19 +615,12 @@ function dosomething_school_api_autocomplete_callback($state, $string = '') {
 function dosomething_school_get_formatted_options($schools = array()) {
   $options = array();
   foreach ($schools as $school) {
-    $gsid = '';
-    if (is_array($school)) {
-      $name = $school['name'];
-      $gsid = $school['gsid'];
-      $city = $school['city'];
-      $state = $school['state'];
-    }
-    elseif (is_object($school)) {
-      $name = $school->name;
-      $gsid = $school->gsid;
-      $city = $school->city;
-      $state = $school->state;
-    }
+    // $school may be an array or object, so explicitly cast it:
+    $school = (array) $school;
+    $name = $school['name'];
+    $gsid = $school['gsid'];
+    $city = $school['city'];
+    $state = $school['state'];
     if (!empty($gsid)) {
       $key = $name . ' [' . $gsid . ']';
       $options[$key] = check_plain($name) . ', ' . check_plain($city) . ' ' . check_plain($state);
