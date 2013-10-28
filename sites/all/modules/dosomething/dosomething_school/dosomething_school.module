@@ -592,24 +592,42 @@ function dosomething_school_make_label($entity) {
 function dosomething_school_api_autocomplete_callback($state, $string = '') {
   $matches = array();
   if ($string) {
-    $url = 'http://lofischools.herokuapp.com/search';
-    $data = array(
-      'query' => $string,
-      'state' => $state,
-    );
-    $query_url = url($url, array('query' => $data));
-    $response = drupal_http_request($query_url);
-    $results = drupal_json_decode($response->data);
-    foreach ($results['results'] as $school) {
-      $gsid = $school['gsid'];
-      $key = $school['name'] . ' [' . $gsid . ']';
-      $matches[$key] = check_plain($school['name']) . ', ' . check_plain($school['city']) . ' ' . check_plain($school['state']);
-    }
+    $results = dosomething_school_api_schools_query($state, $string);
+    $matches = dosomething_school_get_formatted_options($results);
   }
   // Add an element to the end of the array for school not found.
   $matches[DOSOMETHING_SCHOOL_NOT_FOUND_KEY] = DOSOMETHING_SCHOOL_NOT_FOUND_KEY;
   drupal_json_output($matches);
 }
+
+/**
+ * Returns an array of school data into expected format for the api autocomplete:
+ */
+function dosomething_school_get_formatted_options($schools = array()) {
+  $options = array();
+  foreach ($schools as $school) {
+    $gsid = $school['gsid'];
+    $key = $school['name'] . ' [' . $gsid . ']';
+    $options[$key] = check_plain($school['name']) . ', ' . check_plain($school['city']) . ' ' . check_plain($school['state']);
+  }
+  return $options;
+}
+
+/**
+ * Return schools by querying the Great Schools API by School Name and State.
+ */
+function dosomething_school_api_schools_query($state, $string = '') {
+  $url = 'http://lofischools.herokuapp.com/search';
+  $data = array(
+    'query' => $string,
+    'state' => $state,
+  );
+  $query_url = url($url, array('query' => $data));
+  $response = drupal_http_request($query_url);
+  $results = drupal_json_decode($response->data);
+  return $results['results'];
+}
+
 
 /**
  * School query callback. Formats results in manner expected by school field autocomplete in webforms.
