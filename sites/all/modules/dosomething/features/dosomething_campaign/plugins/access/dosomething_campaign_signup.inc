@@ -31,9 +31,9 @@ function dosomething_campaign_signup_access_settings($form, &$form_state, $conf)
 /**
  * Check for access.
  *
- * @context object
+ * @param object $context
  *  The loaded node.
- * @conf array
+ * @param array $conf
  *  The configuration settings for this instance of the access plugin.
  */
 function dosomething_campaign_signup_ctools_access_check($conf, $context) {
