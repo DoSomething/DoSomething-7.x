@@ -112,6 +112,20 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Then /^I fill out the report back form$/
+     */
+     public function iFillOutTheReportBackForm() {
+       $mocks_dir = getcwd() . '/tests/mocks';
+       return array(
+         new Step\When('I fill in "edit-submitted-field-webform-pictures-und-0-upload" with "' . $mocks_dir . '/test.jpg"'),
+         new Step\When('I fill in "edit-submitted-how-many-cans-were-collected" with "50"'),
+         new Step\When('I fill in "edit-submitted-how-many-people-helped-out" with "1"'),
+         new Step\When('I fill in "edit-submitted-in-50-words-or-fewer-why-is-recycling-important-to-you" with "Because"'),
+         new Step\Then('I press "Submit"'),
+       );
+     }
+
+    /**
      * @Then /^remember the current SID$/
      */
     public function RememberTheCurrentSid()

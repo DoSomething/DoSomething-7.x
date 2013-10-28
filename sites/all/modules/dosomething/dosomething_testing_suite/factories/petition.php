@@ -21,11 +21,11 @@ class Petition extends Factory {
     $this->construct($overrides);
   }
 
-  public function create() {
+  public function get_new() {
     return $this->build_factory();
   }
 
-  public function build() {
+  public function get_struct() {
     return $this->default;
   }
 
