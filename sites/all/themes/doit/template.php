@@ -220,8 +220,10 @@ function doit_preprocess_page(&$variables) {
       if ($dest_path_parts[0] == 'node' && is_numeric($dest_path_parts[1]) && !isset($dest_path_parts[2])) {
         // Load the node:
         $node = node_load($dest_path_parts[1]);
-        // If the destination node is a gated signup:
-        if (module_exists('dosomething_login') && dosomething_login_is_gated_node($node)) {
+        // Check for TFJ nid.
+        $tfj_nid = variable_get('tfj_campaign_nid', 731115);
+        // If the destination node is the TFJ campaign, or its a regular gated node:
+        if ( $node->nid == $tfj_nid || (module_exists('dosomething_login') && dosomething_login_is_gated_node($node)) ) {
           // Load node values for gate copy and image.
           $default_gate = FALSE;
           $variables['page'] = array_merge($variables['page'], dosomething_login_get_gate_vars($node));
