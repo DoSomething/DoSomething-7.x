@@ -593,10 +593,14 @@ function dosomething_school_api_autocomplete_callback($state, $string = '') {
   $matches = array();
   $results = FALSE;
   if ($string) {
-    $results = dosomething_school_api_schools_query($state, $string);
-    if ($results) {
-      $matches = dosomething_school_get_formatted_options($results);
+    // Query API for matching schools:
+    $results = dosomething_school_get_schools_from_api($state, $string);
+    // If no results from API:
+    if (!$results) {
+      // Fetch results from the ds_schools table:
+      $results = dosomething_school_get_schools_from_db($state, $string);
     }
+    $matches = dosomething_school_get_formatted_options($results);
   }
   // Add an element to the end of the array for school not found.
   $matches[DOSOMETHING_SCHOOL_NOT_FOUND_KEY] = DOSOMETHING_SCHOOL_NOT_FOUND_KEY;
@@ -609,9 +613,12 @@ function dosomething_school_api_autocomplete_callback($state, $string = '') {
 function dosomething_school_get_formatted_options($schools = array()) {
   $options = array();
   foreach ($schools as $school) {
+    $name = $school['name'];
     $gsid = $school['gsid'];
-    $key = $school['name'] . ' [' . $gsid . ']';
-    $options[$key] = check_plain($school['name']) . ', ' . check_plain($school['city']) . ' ' . check_plain($school['state']);
+    $city = $school['city'];
+    $state = $school['state'];
+    $key = $name . ' [' . $gsid . ']';
+    $options[$key] = check_plain($name) . ', ' . check_plain($city) . ' ' . check_plain($state);
   }
   return $options;
 }
@@ -619,7 +626,7 @@ function dosomething_school_get_formatted_options($schools = array()) {
 /**
  * Return schools by querying the Great Schools API by School Name and State.
  */
-function dosomething_school_api_schools_query($state, $string = '') {
+function dosomething_school_get_schools_from_api($state, $string = '') {
   $url = 'http://lofischools.herokuapp.com/search';
   $data = array(
     'query' => $string,
@@ -634,6 +641,22 @@ function dosomething_school_api_schools_query($state, $string = '') {
   return $results['results'];
 }
 
+/**
+ * Return ds_schools that have a gsid by querying the ds_school table by School Name and State.
+ */
+function dosomething_school_get_schools_from_db($state, $string = '') {
+  $name_query = str_replace(array('%20',' ','+'), '%', $string);
+  $name_query = '%' . $name_query . '%';
+  $result = db_query("SELECT sid, name, gsid, city, state 
+    FROM ds_school 
+    WHERE state = '" . $state . "'
+    AND name LIKE '" . $name_query . "' 
+    AND gsid IS NOT NULL
+    ORDER BY name
+    LIMIT 0,10", array('target' => 'slave')
+  );
+  return $result->fetchAllAssoc('sid');
+}
 
 /**
  * School query callback. Formats results in manner expected by school field autocomplete in webforms.
