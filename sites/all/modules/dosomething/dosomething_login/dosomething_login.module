@@ -2241,7 +2241,8 @@ function dosomething_login_is_signup_gate_url($url) {
   $destination = '?destination=node/';
   $user_registration_url = 'user/registration' . $destination;
   $user_login_url = 'user/login' . $destination;
-  if (strpos($url, $user_registration_url) !== FALSE || strpos($url, $user_login_url) !== FALSE) {
+  $user_url = 'user' . $destination;
+  if (strpos($url, $user_registration_url) !== FALSE || strpos($url, $user_login_url) !== FALSE ||  strpos($url, $user_url) !== FALSE ) {
     $nid = basename($url);
     $node = node_load($nid);
     // If this is a node with gated signup, return the node.
