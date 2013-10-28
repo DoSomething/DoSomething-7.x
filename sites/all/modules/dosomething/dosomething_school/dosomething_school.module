@@ -648,6 +648,7 @@ function dosomething_school_get_schools_from_api($state, $string = '') {
   $query_url = url($url, array('query' => $data));
   $response = drupal_http_request($query_url);
   if ($response->code != 200) {
+    watchdog('dosomething_school', 'Great Schools API response code ' . $response->code . ' : ' . print_r($response, TRUE));
     return FALSE;
   }
   $results = drupal_json_decode($response->data);
