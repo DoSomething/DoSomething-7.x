@@ -653,16 +653,13 @@ function dosomething_school_get_schools_from_api($state, $string = '') {
  */
 function dosomething_school_get_schools_from_db($state, $string = '') {
   $name_query = str_replace(array('%20',' ','+'), '%', $string);
-  $name_query = '%' . $name_query . '%';
-  $result = db_query("SELECT sid, name, gsid, city, state 
-    FROM ds_school 
-    WHERE state = '" . $state . "'
-    AND name LIKE '" . $name_query . "' 
-    AND gsid IS NOT NULL
-    ORDER BY name
-    LIMIT 0,10", array('target' => 'slave')
-  );
-  return $result->fetchAll();
+  $result = db_select('ds_school', 's')
+    ->fields('s', array('sid', 'name', 'gsid', 'city', 'state'))
+    ->condition('state', $state)
+    ->condition('name', '%' . $name_query . '%', 'LIKE')
+    ->isNotNull('gsid')
+    ->range(0, 10);
+  return $result->execute()->fetchAll();
 }
 
 /**
