@@ -597,8 +597,8 @@ function dosomething_school_api_autocomplete_callback($state, $string = '') {
       // Query API for matching schools:
       $results = dosomething_school_get_schools_from_api($state, $string);
     }
-    // If no results from API:
-    if (!$results) {
+    // If the boolean value FALSE is returned from the API:
+    if ($results === FALSE) {
       // Fetch results from the ds_schools table:
       $results = dosomething_school_get_schools_from_db($state, $string);
     }
