@@ -6,7 +6,7 @@
  */
 
 $plugin = array(
-  'title' => t('Node: User is signed up'),
+  'title' => t('Node campaign: User is signed up'),
   'description' => t('Controls access based on if a user is signed up for the campaign node.'),
   'callback' => 'dosomething_campaign_signup_ctools_access_check',
   'settings form' => 'dosomething_campaign_signup_access_settings',
