@@ -53,6 +53,9 @@ function dosomething_campaign_block_info() {
   $blocks['kiva_confirmation'] = array(
     'info' => t('Kiva Campaign Signup Confirmation'),
   );
+  $blocks['tfj_signup_button'] = array(
+    'info' => t('TFJ Signup Button (for Testing)'),
+  );
   return $blocks;
 }
 
@@ -68,6 +71,9 @@ function dosomething_campaign_block_view($delta = '') {
       break;
     case 'kiva_confirmation':
       $block['content'] = theme('kiva_confirmation');
+      break;
+    case 'tfj_signup_button':
+      $block['content'] = dosomething_campaign_tfj_get_signup_button();
       break;
   }
   return $block;
