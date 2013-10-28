@@ -593,8 +593,10 @@ function dosomething_school_api_autocomplete_callback($state, $string = '') {
   $matches = array();
   $results = FALSE;
   if ($string) {
-    // Query API for matching schools:
-    $results = dosomething_school_get_schools_from_api($state, $string);
+    if (variable_get('dosomething_school_use_api_for_autocomplete', TRUE)) {
+      // Query API for matching schools:
+      $results = dosomething_school_get_schools_from_api($state, $string);
+    }
     // If no results from API:
     if (!$results) {
       // Fetch results from the ds_schools table:
@@ -613,12 +615,23 @@ function dosomething_school_api_autocomplete_callback($state, $string = '') {
 function dosomething_school_get_formatted_options($schools = array()) {
   $options = array();
   foreach ($schools as $school) {
-    $name = $school['name'];
-    $gsid = $school['gsid'];
-    $city = $school['city'];
-    $state = $school['state'];
-    $key = $name . ' [' . $gsid . ']';
-    $options[$key] = check_plain($name) . ', ' . check_plain($city) . ' ' . check_plain($state);
+    $gsid = '';
+    if (is_array($school)) {
+      $name = $school['name'];
+      $gsid = $school['gsid'];
+      $city = $school['city'];
+      $state = $school['state'];
+    }
+    elseif (is_object($school)) {
+      $name = $school->name;
+      $gsid = $school->gsid;
+      $city = $school->city;
+      $state = $school->state;
+    }
+    if (!empty($gsid)) {
+      $key = $name . ' [' . $gsid . ']';
+      $options[$key] = check_plain($name) . ', ' . check_plain($city) . ' ' . check_plain($state);
+    }
   }
   return $options;
 }
@@ -655,7 +668,7 @@ function dosomething_school_get_schools_from_db($state, $string = '') {
     ORDER BY name
     LIMIT 0,10", array('target' => 'slave')
   );
-  return $result->fetchAllAssoc('sid');
+  return $result->fetchAll();
 }
 
 /**
