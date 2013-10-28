@@ -150,13 +150,13 @@ function doit_preprocess_page(&$variables) {
   $obj = menu_get_object();
 
   if(drupal_is_front_page() && theme_get_setting('doit_homepage_neue')) {
-    _doit_load_menu_templates(&$variables);
+    _doit_load_menu_templates($variables);
     array_push( $variables['theme_hook_suggestions'], 'page__neue__front' );
     drupal_add_library('ds_neue', 'ds-neue');
   }
 
   if((menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')) {
-    _doit_load_menu_templates(&$variables);
+    _doit_load_menu_templates($variables);
     array_push( $variables['theme_hook_suggestions'], 'page__neue' );
     drupal_add_library('ds_neue', 'ds-neue');
   }
@@ -176,7 +176,7 @@ function doit_preprocess_page(&$variables) {
     }
     elseif ($obj->type == 'project') {
 
-      _doit_load_menu_templates(&$variables);
+      _doit_load_menu_templates($variables);
 
       // Add campaigns type specific page type
       array_push( $variables['theme_hook_suggestions'], 'page__neue' );
