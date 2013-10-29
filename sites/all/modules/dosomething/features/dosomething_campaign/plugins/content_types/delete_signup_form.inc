@@ -39,10 +39,14 @@ function delete_signup_form_admin_info($subtype, $conf, $contexts) {
  */
 function delete_signup_form_render($subtype, $conf, $panel_args, $context) {
   global $user;
+  // Only display for staff.
+  if (!in_array('staff'), $user->roles) {
+    return;
+  }
   $nid = $context->data->nid;
   $form = drupal_get_form('dosomething_signups_delete_signup_form', $nid, $conf['submit_label']);
   $block = new stdClass();
-  $block->content = '<p>' . $conf['help_text'] . '</p>' . $form;
+  $block->content = '<p>' . $conf['help_text'] . '</p>' . render($form);
   return $block;
 }
 
