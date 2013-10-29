@@ -46,6 +46,16 @@ function dosomething_signups_insert_signup($uid, $nid) {
 }
 
 /**
+ * Deletes a record for given user UID and campaign node NID in signups table.
+ */
+function dosomething_signups_delete_signup($uid, $nid) {
+  $signup = db_delete('dosomething_campaign_signups')
+    ->condition('uid', $uid)
+    ->condition('nid', $nid)
+    ->execute();
+}
+
+/**
  * Returns data array if signup data exists for given $uid and $nid.
  */
 function dosomething_signups_get_signup_data($uid, $nid) {
