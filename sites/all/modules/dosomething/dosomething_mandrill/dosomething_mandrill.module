@@ -17,9 +17,9 @@ function dosomething_mandrill_menu() {
   
   $items = array();
 	
-	$items['dosomething_mandrill/dispatch_events/%/%'] = array(
+	$items['dosomething_mandrill/dispatch_events/%/%/%'] = array(
     'page callback' => 'dosomething_mandrill_dispatch_events',
-		'page arguments' => array(2, 3),
+		'page arguments' => array(2, 3, 4),
     'access callback' => TRUE,
 	);
 	
@@ -28,8 +28,6 @@ function dosomething_mandrill_menu() {
 		'page arguments' => array(2, 3, 4, 5),
     'access callback' => TRUE,
 	);
-  
-  return $items;
   
   return $items;
 
@@ -171,11 +169,6 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * 
  */
 function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test=FALSE) {
-  
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
-  }
 
   $language = language_default();
   $from = NULL;
@@ -185,7 +178,7 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test
     list($message, $to) = dosomething_mandrill_test_data($key);
   }
 
-  $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
+    $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
 
   // Log results
   if ($message_status['result'] == FALSE) {
@@ -245,11 +238,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test
  *   specific to the group / batch of messages.
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
-  
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
-  }
   
   // Common merge tags
   // isset($params['FNAME']) ? $message['params']['FNAME'] = $params['FNAME'] : $message['params']['FNAME'] = 'Doer';
@@ -352,12 +340,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  */
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
-  }
-  
-  
   // Pass parameters passed via dosomething_mandrill_dispach call
   $mandrill_params['params'] = $message['params'];
 
@@ -393,16 +375,22 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     }
   }
 
-/*
-  // Preserve passed in merge_vars
-  if ($mandrill_params['message']['merge_vars']) {
-    $merge_vars = $mandrill_params['message']['merge_vars'];
+  // Format $to to meet Mandrill API, must be in array format
+  if (gettype($message['to']) == 'string') {
+    $target_email = $message['to'];
+    $message['to'] = array(
+      0 => array(
+        'email' => $target_email,
+        'name' => $message['params']['FNAME'],
+        'merge_var_name' => 'FNAME',
+        'merge_var_content' => $message['params']['FNAME']
+      ) 
+    );
+    $mandrill_params['message']['to'] = $message['to'];
   }
-  else {
-    $merge_vars = array();
-  }
-*/
-/*
+  
+  $merge_vars = $mandrill_params['params']['message']['merge_vars'];
+
   if(!empty($mandrill_params['message']['to'])) {
     foreach($mandrill_params['message']['to'] as $i => $rcpt) {
       $vars = array();
@@ -416,22 +404,6 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
       );
     }
   }
-
-  if(!empty($merge_vars)) {
-    $mandrill_params['message']['merge_vars'] = $merge_vars;
-  }
-  
-*/
-
-  $bla = FALSE;
- if ($bla) {
-    $bla = TRUE;
-  }
-
-  $merge_vars = $mandrill_params['params']['message']['merge_vars'];
-  
-  // $mandrill_params['message']['to'] = empty($content['to'][0]) ? $mandrill_params['message']['to'] : array_merge($content['to'], $mandrill_params['message']['to']);
-  $mandrill_params['message']['to'] = $message['to'];
   
   // $mandrill_params['message']['tags'] = empty($mandrill_params['message']['tags'][0]) ? $message['tags'] : array_merge($mandrill_params['message']['tags'], $message['tags']);
   $mandrill_params['message']['tags'] = $mandrill_params['message']['tags'];
@@ -484,10 +456,10 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
           fdfufn.field_user_first_name_value,
           fdfub.field_user_birthday_value
         FROM
-          users u,
-          profile p,
-          field_data_field_user_first_name fdfufn,
-          field_data_field_user_birthday fdfub
+          {users} u,
+          {profile} p,
+          {field_data_field_user_first_name} fdfufn,
+          {field_data_field_user_birthday} fdfub
         WHERE
           fdfub.field_user_birthday_value LIKE :target_date
           AND
@@ -499,11 +471,6 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
           array(
             ':target_date' => '%-' . $target_date . '%'
           ));
-  
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
-  }
 
       foreach($results as $user) {
 
@@ -547,33 +514,43 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
       // SELECT users who registered on the site 90 days from target_date.
       // Assume target_date is current date if not defined
       if ($target_date == NULL) {
-        $target_date = date('Y-m-d', time() - 60*60*24*90);
+        $target_date_stamp = strtotime('-90 days');
       }
       else {
-        $target_date = date('Y-m-d', strtotime($target_date) - 60*60*24*90);
+        $target_date_stamp = strtotime($target_date) - 60*60*24*90;
       }
+      
+      $results = db_query("
+        SELECT
+          u.uid,
+          u.created,
+          u.mail,
+          fdfufn.field_user_first_name_value
+        FROM
+          {users} u,
+          {profile} p,
+          {field_data_field_user_first_name} fdfufn
+        WHERE
+          u.created >= :target_date_stamp
+          AND
+          u.created <= :target_date_stamp_end
+          AND
+          u.uid = p.pid
+          AND
+          p.uid = fdfufn.entity_id",
+          array(
+            ':target_date_stamp' => $target_date_stamp,
+            ':target_date_stamp_end' => $target_date_stamp + + 60*60*24
+          ));
 
-      $query = db_select(users, 'u');
-
-      $query->join('profile', 'p', 'p.uid = u.uid');
-      $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
-
-      $query->fields('u', array('uid', 'created', 'mail', 'name'))
-            ->fields('fdfufn', array('field_user_first_name_value'))
-
-            ->condition('u.created', '%-' . db_like($target_date) . '%', 'LIKE');
-
-      $result = $query->execute()
-                      ->fetchAll();
-
-      foreach($result as $user) {
+      foreach($results as $user) {
 
         // Skip if missing user email address
         if ($user->mail != NULL) {
 
           $to[] = array(
             'email' => $user->mail,
-            'name' => $user->name == NULL ? 'DoSomethng Doer' : $user->name,
+            'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
           );
 
           $merge_vars[] = array(
@@ -581,7 +558,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
             'vars' => array(
               array(
                 'name' => 'FNAME',
-                'content' => $user->field_user_first_name_value == NULL ? 'Shawty' : $user->field_user_first_name_value,
+                'content' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
               ),
             ),
           );
@@ -614,20 +591,30 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
 
       // Oldest entry: 1210614999 - query signups for the same day each year
       for ($year_stamp = $start_stamp; $year_stamp >= 1210614999; $year_stamp = $year_stamp - (60*60*24*365)) {
-
-        $query = db_select(users, 'u');
-
-        $query->join('profile', 'p', 'p.uid = u.uid');
-        $query->join('field_data_field_user_first_name', 'fdfufn', 'fdfufn.entity_id = p.pid');
- 
-        $query->fields('u', array('uid', 'created', 'mail', 'name'))
-              ->fields('fdfufn', array('field_user_first_name_value'))
-  
-              ->condition('u.created', $year_stamp - 43200, '>=')
-              ->condition('u.created', $year_stamp + 43200, '<=');
-
-        $result = $query->execute()
-                        ->fetchAll();
+        
+        
+      $results = db_query("
+        SELECT
+          u.uid,
+          u.created,
+          u.mail,
+          fdfufn.field_user_first_name_value
+        FROM
+          {users} u,
+          {profile} p,
+          {field_data_field_user_first_name} fdfufn
+        WHERE
+          u.created >= :target_timestamp
+          AND
+          u.created <= :target_timestamp_end
+          AND
+          u.uid = p.pid
+          AND
+          p.uid = fdfufn.entity_id",
+          array(
+            ':target_timestamp' => $year_stamp,
+            ':target_timestamp_end' => $year_stamp + 60*60*24,
+          ));
 
         // Calculate suffex of the membership year
         $created_year = floor((time() - $year_stamp) / (60*60*24*365)); // 31536000
@@ -641,14 +628,14 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
             )
           );
 
-        foreach($result as $user) {
+        foreach($results as $user) {
 
           // Skip if missing user email address
           if ($user->mail != NULL) {
 
             $to[] = array(
               'email' => $user->mail,
-              'name' => $user->name == NULL ? 'DoSomethng Doer' : $user->name,
+              'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
             );
 
             $merge_vars[] = array(
@@ -690,47 +677,38 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
 
   endswitch;
   
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
+  if (count($to) > 0) {
+  
+    // Format merge details based on Mandrill API
+    // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+    $message['message']['to'] = $to;
+    $message['message']['merge_vars'] = $merge_vars;
+    $message['message']['global_merge_vars'] = $global_merge_vars;
+    
+    // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
+    $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test);
+    
+    // Report to Drush results
+    $dispatch_result['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
+    $dispatch_result['sent'] = $dispatch_results ? count($to) : 'Error';
+    
+    // Record the number of messages sent
+    if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
+      stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $dispatch_result['sent']);
+      stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $dispatch_result['sent']);
+    }
+  
   }
-  
-  
-  // Format merge details based on Mandrill API
-  // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
-  $message['message']['to'] = $to;
-  $message['message']['merge_vars'] = $merge_vars;
-  $message['message']['global_merge_vars'] = $global_merge_vars;
-  
-  // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-  $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test);
-  
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
-  }
-  
-  
-  // Report to Drush results
-  $dispatch_result['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
-  $dispatch_result['sent'] = $dispatch_results ? count($to) : 'Error';
-  
-  // Record the number of messages sent
-  if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
-    stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $dispatch_result['sent']);
-    stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $dispatch_result['sent']);
+  else {
+    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and taget drop: ' . $target_drop;
+    $dispatch_result['sent'] = 0;
   }
 
   return $dispatch_result;
   
 }
 
-function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop) {
-  
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
-  }
+function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop, $test) {
   
   $to = array();
   $merge_vars = array();
@@ -740,13 +718,13 @@ function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop) {
   // Assume target_date is current date if not defined
   
   if ($target_date == NULL) {
-    $taget_stamp = strtotime('today', time()) - (WEEK * 1);
+    $taget_stamp = strtotime('today') - (WEEK * 1);
   }
   else {
     $target_stamp = strtotime($target_date) - (WEEK * $target_drop);
   }
-  $offset = ($taget_stamp % 86400);
-  $taget_stamp = $taget_stamp - $offset;
+  $offset = $target_stamp % 86400;
+  $target_stamp = $target_stamp - $offset;
   
   switch ($op):
   
@@ -757,10 +735,10 @@ function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop) {
           u.mail,
           fdfufn.field_user_first_name_value
         FROM
-          {dosomething_campaign_signups} dcs,
-          {users} u,
-          {profile} p,
-          {field_data_field_user_first_name} fdfufn
+          dosomething_campaign_signups dcs,
+          users u,
+          profile p,
+          field_data_field_user_first_name fdfufn
         WHERE
           dcs.nid = 731098
           AND
@@ -774,8 +752,8 @@ function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop) {
           AND
           p.pid = fdfufn.entity_id",
           array(
-            ':timestamp' => $taget_stamp,
-            ':timestamp_end' => $taget_stamp + 86400
+            ':timestamp' => $target_stamp,
+            ':timestamp_end' => $target_stamp + 86400
           ));
 
       foreach($results as $user) {
@@ -802,58 +780,47 @@ function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop) {
 
       }
       
-      $key = 'dsdrip-momm-' . $target_drop;
+      $key = 'dsdrip-momm13-' . $target_drop;
       
     break;
   
     default:
       
-      
+      // Report to Drush the error results
+      $results['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsdrip-momm" currently supported.';
+      $results['sent'] = '0';
       
       
   endswitch;
   
-  $bla = FALSE;
-  if ($bla) {
-    $bla = TRUE;
-  }
+  // Skip if no results found
+  if (count($to) > 0) {
   
-  // TEST
-  
-            $to[] = array(
-            'email' => 'dlee+dsdrip-momm@dosomething.org',
-            'name' => 'Test Dee',
-          );
-
-          $merge_vars[] = array(
-            'rcpt' => 'dlee+dsdrip-momm@dosomething.org',
-            'vars' => array(
-              array(
-                'name' => 'FNAME',
-                'content' => 'Test',
-              ),
-            ),
-          );
-  
-  // Format merge details based on Mandrill API
-  // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
-  $message['message']['to'] = $to;
-  $message['message']['merge_vars'] = $merge_vars;
-  
-  // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-  $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test);
-  
-  // Report to Drush results
-  $results['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
-  $results['sent'] = count($to);
-  
-  // Record the number of messages sent
-  if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
-    stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $results['sent']);
-    stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $results['sent']);
-  }
+    // Format merge details based on Mandrill API
+    // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+    $message['message']['to'] = $to;
+    $message['message']['merge_vars'] = $merge_vars;
     
-  return $results;
+    // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
+    $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test);
+    
+    // Report to Drush results
+    $dispatch_result['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
+    $dispatch_result['sent'] = count($to);
+    
+    // Record the number of messages sent
+    if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
+      stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $dispatch_result['sent']);
+      stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $dispatch_result['sent']);
+    }
+  
+  }
+  else {
+    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and taget drop: ' . $target_drop;
+    $dispatch_result['sent'] = 0;
+  }
+  
+  return $dispatch_result;
   
 }
 
@@ -927,14 +894,14 @@ function dosomething_mandrill_blacklist($target_mails) {
 function dosomething_mandrill_test_data($op) {
   
   switch ($op):
-  
-    case 'dsdrip-momm':
     
+    case 'dsevent-birthday':
+      
       $message_test = array(
         'message' => array(
           'global_merge_vars' => array(
             0 => array(
-              'content' => 'Some table',
+              'content' => 'TEST TABLE MARKUP',
               'name' => 'CAMPAIGNS'
             ),
           ),
@@ -986,6 +953,176 @@ function dosomething_mandrill_test_data($op) {
         ),
         1 => array(
           'email' => 'dlee+dsevent-birthday-02@dosomething.org',
+          'name' => 'TheDeeThree'
+        )
+      );
+      
+      break;
+    
+    case 'dsevent-reg-90':
+      
+      $message_test = array(
+        'message' => array(
+          'global_merge_vars' => array(
+            0 => array(
+              'content' => 'TEST TABLE MARKUP',
+              'name' => 'CAMPAIGNS'
+            ),
+          ),
+          'merge_vars' => array(
+            0 => array(
+              'rcpt' => 'dlee+dsevent-90days-01@dosomething.org',
+              'vars' => array(
+                0 => array(
+                  'content' => 'Dee',
+                  'name' => 'FNAME'
+                )
+              )
+            ),
+            1 => array(
+              'rcpt' => 'dlee+dsevent-90days-02@dosomething.org',
+              'vars' => array(
+                0 => array(
+                  'content' => 'DeeThree',
+                  'name' => 'FNAME'
+                )
+              )
+            )
+          ),
+          'to' => array(
+            0 => array(
+              'email' => 'dlee+dsevent-90days-01@dosomething.org',
+              'name' => 'TheDee',
+            ),
+            1 => array(
+              'email' => 'dlee+dsevent-90days-02@dosomething.org',
+              'name' => 'TheDeeThree',
+            )
+          )
+        )
+      );
+      
+      $to_test = array(
+        0 => array(
+          'email' => 'dlee+dsevent-90days-01@dosomething.org',
+          'name' => 'TheDee'
+        ),
+        1 => array(
+          'email' => 'dlee+dsevent-90days-02@dosomething.org',
+          'name' => 'TheDeeThree'
+        )
+      );
+      
+      break;
+
+    case 'dsevent-reg-365':
+      
+      $message_test = array(
+        'message' => array(
+          'global_merge_vars' => array(
+            0 => array(
+              'content' => 'TEST TABLE MARKUP',
+              'name' => 'CAMPAIGNS'
+            ),
+          ),
+          'merge_vars' => array(
+            0 => array(
+              'rcpt' => 'dlee+dsevent-365days-01@dosomething.org',
+              'vars' => array(
+                0 => array(
+                  'content' => 'Dee',
+                  'name' => 'FNAME'
+                ),
+                1 => array(
+                  'content' => '2nd',
+                  'name' => 'MEMBERSHIP_YEAR'
+                )
+              )
+            ),
+            1 => array(
+              'rcpt' => 'dlee+dsevent-365days-02@dosomething.org',
+              'vars' => array(
+                0 => array(
+                  'content' => 'DeeThree',
+                  'name' => 'FNAME'
+                ),
+                1 => array(
+                  'content' => '1st',
+                  'name' => 'MEMBERSHIP_YEAR'
+                )
+              )
+            )
+          ),
+          'to' => array(
+            0 => array(
+              'email' => 'dlee+dsevent-365days-01@dosomething.org',
+              'name' => 'TheDee',
+            ),
+            1 => array(
+              'email' => 'dlee+dsevent-365days-02@dosomething.org',
+              'name' => 'TheDeeThree',
+            )
+          )
+        )
+      );
+      
+      $to_test = array(
+        0 => array(
+          'email' => 'dlee+dsevent-365days-01@dosomething.org',
+          'name' => 'TheDee'
+        ),
+        1 => array(
+          'email' => 'dlee+dsevent-365days-02@dosomething.org',
+          'name' => 'TheDeeThree'
+        )
+      );
+      
+      break;
+    
+    case 'dsdrip-momm13-1':
+      
+      $message_test = array(
+        'message' => array(
+          'merge_vars' => array(
+            0 => array(
+              'rcpt' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+              'vars' => array(
+                0 => array(
+                  'content' => 'Dee',
+                  'name' => 'FNAME'
+                )
+              )
+            ),
+            1 => array(
+              'rcpt' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
+              'vars' => array(
+                0 => array(
+                  'content' => 'DeeThree',
+                  'name' => 'FNAME'
+                )
+              )
+            )
+          ),
+          'to' => array(
+            0 => array(
+              'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+              'name' => 'TheDee',
+            ),
+            1 => array(
+              'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
+              'name' => 'TheDeeThree',
+            )
+          )
+        )
+      );
+      
+      $to_test = array(
+        0 => array(
+          'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+          'name' => 'TheDee'
+        ),
+        1 => array(
+          'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
           'name' => 'TheDeeThree'
         )
       );
