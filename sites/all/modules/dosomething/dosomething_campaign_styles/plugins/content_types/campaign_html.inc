@@ -24,21 +24,9 @@ function dosomething_campaign_styles_campaign_html_content_type_render($subtype,
 
   $block = new stdClass();
   $block->title = 'Static campaign HTML';
-  $block-> content = get_include_contents($file);
+  $block->content = dosomething_campaign_styles_get_include_contents($file);
 
   return $block;
-}
-
-/** Helper: Parses PHP in template files. */
-function get_include_contents($filename) {
-    if (is_file($filename)) {
-        ob_start();
-        include $filename;
-        $contents = ob_get_contents();
-        ob_end_clean();
-        return $contents;
-    }
-    return false;
 }
 
 /**
