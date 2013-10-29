@@ -1,0 +1,536 @@
+// DO IT THEME RESETS
+// ------------------
+img
+  +noBorder
+  +noShadow
+
+
+// SNEAKY NEUE
+// ---------------------
+
+.full-width-img
+  width: 100%
+
+.column
+  position: relative
+  display: block
+  float: left
+  width: 100%
+  @include box-sizing(border-box)
+
+  img
+    max-width: 100%
+
+  &:first-child
+    margin-left: 0
+
+.always_span_1 
+  width: 7.41666666667%
+  margin-left: 1%
+.always_span_2 
+  width: 15.8333333333%
+  margin-left: 1%
+.always_span_3 
+  width: 24.25%
+  margin-left: 1%
+.always_span_4 
+  width: 32.6666666667%
+  margin-left: 1%
+.always_span_5 
+  width: 41.0833333333
+  margin-left: 1%
+.always_span_6 
+  width: 49.5%
+  margin-left: 1%
+.always_span_7 
+  width: 57.9166666667%
+  margin-left: 1%
+.always_span_8 
+  width: 66.3333333333%
+  margin-left: 1%
+.always_span_9 
+  width: 74.75%
+  margin-left: 1%
+.always_span_10
+  width: 83.166666667%
+  margin-left: 1%
+.always_span_11
+  width: 91.583333333%
+  margin-left: 1%
+.always_span_12
+  width: 100%
+  margin-left: 1%
+
+// on tablet/desktop, apply column widths based on grid
+@include respond-to(widescreens_and_tablets)
+  .column
+    margin-left: 1%
+
+    &:first-child 
+      margin-left: 0
+
+  .row 
+
+    &:first-child
+      margin-top: 1%
+
+  .span_1 
+    width: 7.41666666667%
+  .span_2 
+    width: 15.8333333333%
+  .span_3 
+    width: 24.25%
+  .span_4 
+    width: 32.6666666667%
+  .span_5 
+    width: 41.0833333333
+  .span_6 
+    width: 49.5%
+  .span_7 
+    width: 57.9166666667%
+  .span_8 
+    width: 66.3333333333%
+  .span_9 
+    width: 74.75%
+  .span_10
+    width: 83.166666667%
+  .span_11
+    width: 91.583333333%
+  .span_12
+    width: 100%
+
+// Rows for grid layout.
+//
+// .section - applies a larger margin for visual distinction between sections
+//
+// Styleguide 3.2.2 - Rows
+.row
+  clear: both
+  display: block
+  overflow: hidden
+
+  &.section
+    margin-bottom: 1rem
+    @include respond-to(widescreens_and_tablets)
+      margin-bottom: 3rem
+    
+
+    &:first-child
+      margin-top: 2rem
+      @include respond-to(widescreens_and_tablets)
+        margin-top: 4rem
+
+// An aside is used for content that floats outside the normal flow, such as a pullquote
+// or sidebar. Use in conjunction with `.span-X` to set width.
+//
+// .right - Floats the pullquote to the right (on wider screens).
+// .left - Floats the pullquote to the left (on wider screens).
+//
+// Styleguide 3.3.1 - Aside
+.aside
+  font-weight: 400
+  margin: 1em auto
+  padding: 2%
+
+  @include respond-to(widescreens_and_tablets)
+    &.right
+      float: right
+      text-align: right
+      margin: 1.6rem 0 1.6rem 1rem
+
+    &.left
+      float: left
+      margin: 1.6rem 1rem 1.6rem 0
+
+// JEANS STYLE OVERRIDES
+// ---------------------
+
+.teens-bullets
+  list-style-type: disc
+  padding-left: 3em
+  margin-bottom: 2rem
+
+
+.cta-leftcol
+  display: block
+  width: 70%
+  float: left
+  padding-right: 2em
+  
+  p
+    text-align: right
+    font-weight: bold
+
+  +respond-to(phones)
+    float: none
+    clear: both
+    width: 100%
+    padding-right: 0
+    
+    p
+      text-align: center
+
+.cta-rightcol
+  display: block
+  width: 30%
+  float: left
+  text-align: left
+
+  +respond-to(phones)
+    float: none
+    clear: both
+    width: 100%
+    text-align: center
+
+// CANS STYLES
+// -----------
+
+.guide-instructions
+  max-width: 550px
+  text-align: center
+  margin: 2em auto 3em
+
+.location-list li
+  padding: 0 0.5em 1em
+  margin: 1em
+  border-bottom: 1px solid #eee
+  &:last-of-type
+    border-bottom: none
+
+.js-location-finder-form
+  padding-bottom: 1em
+
+.js-location-finder-form input[type="text"]
+  @include box-sizing(content-box)
+
+.js-location-finder-button
+  position: relative !important
+  top: 1px
+  padding: 0.35em 1.5em 0.25em !important
+
+.spit-divider
+  background: #00aced
+  color: #fff
+  font-size: 1.5em
+  font-style: italic
+  text-align: center
+  padding: 2em
+
+
+.video-player
+  text-align: center
+
+
+.section-unit-half
+  padding: 2em 4em !important
+
+  p 
+    padding: 1em
+
+.center
+  text-align: center !important
+
+.padded
+  padding: 2em
+
+.colored
+  color: #00aced
+
+.section-unit-full
+  border-bottom: 0 !important
+
+a 
+  color: #00aced 
+
+.fb-like
+  z-index: 100
+
+
+.hide-mobile
+  @include respond-to(phones)
+    display: none !important
+
+.only-mobile
+  display: none
+  @include respond-to(phones)
+    display: block !important
+
+.back-to-top
+  color: #ccc
+  margin-top: 2em
+
+.no-bottom-border
+  border-bottom: 0 !important
+
+.node-campaign-report-back
+  background: #eee
+  max-width: 600px
+  padding: 25px 50px 50px
+  margin: 24px auto
+  border-radius: 2px
+
+  #edit-submit
+    padding: 10px 20px 50px
+
+
+  .content
+    margin: 0 auto
+
+.webform-component
+  margin: 2em 0
+
+.field-name-field-mandrill-key
+  display: none
+
+.field-name-field-campain-date
+  display: none
+
+.node-webform
+  background: #eee
+  padding: 2em
+  @include respond-to(widescreens)
+    width: 50%
+    margin: 0 auto
+
+.first-action
+  border-right: 1px solid #ddd
+  @include respond-to(phones)
+    border-right: none
+
+
+.or-divider
+  color: #666
+  text-align: center
+  text-transform: uppercase
+  margin-bottom: 1em
+
+.no-capitalize
+  text-transform: none !important
+
+
+// SECTION STYLES
+// --------------
+
+.section
+  margin: 0 auto
+  padding: $base-padding
+  background: $bg-light
+  overflow: hidden
+  +border-bottom-subtle
+  @media only screen and (max-width: 825px)
+    padding: 3% 2%
+
+.section-container
+  width: 100%
+  margin: 0 auto
+  @media only screen and (max-width: 825px)
+    width: 100%
+
+.section-unit-single,
+.section-unit-double,
+.section-unit-full,
+.section-unit-half
+  padding: 0 1% 0
+  width: $section-unit-width
+  float: left
+  text-align: center
+
+  @include respond-to(phones)
+    float: none
+    max-width: 360px
+    width: 100%
+    margin: 0 auto
+    margin-bottom: 2em
+
+  img
+    max-width: 100%
+    margin: 0 auto 1em
+    display: block
+
+.section-unit-double
+  width: 2 * $section-unit-width
+  margin-bottom: 2em
+  +border-bottom-subtle
+
+.section-unit-full
+  width: 100%
+  padding: 0 0 0 0
+  margin-bottom: 2em
+  +border-bottom-subtle
+
+.section-unit-half
+  width: 50%
+  margin-bottom: 2em
+  @include respond-to(phones)
+    width: 100%
+
+  h1
+    line-height: 1.3em
+
+.section-header
+  font-weight: 500
+  text-align: center
+  text-transform: capitalize
+  padding: 0 1em
+  margin: 0 auto 1em auto
+  letter-spacing: 0.1em
+  line-height: 2.5
+  color: #888
+  
+  span
+    border-bottom: 6px solid #000
+
+// GENERAL-USE CLASSES
+// -------------------
+
+.left
+  float: left
+
+.right
+  float: right
+
+.center
+  margin: 0 auto
+  display: block
+  float: none
+
+.row
+  width: 100%
+  clear: both
+
+h1.headline-callout
+  padding: 0
+
+.headline
+  .headline-callout
+    background: #000
+
+.headline-callout
+  font-weight: 600
+  text-align: center
+  span
+    text-align: center
+    display: inline-block
+    padding: 0.2em 0.5em 0px
+    text-transform: uppercase
+    background: #000
+    color: #fff
+
+    @include respond-to(phones)
+      font-size: 0.9em
+    
+    
+
+.headline-instructions
+  padding: 1em 0
+
+  @include respond-to(phones)
+    padding: 0 0 1em
+
+.section-instructions
+  padding: 0 0 1em 0 !important
+
+.bg-header
+  margin: 0 0 0.5em 0
+
+.log-out
+  float: right
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+.official-rules
+  color: #ccc !important
+
+.error
+  background: none
+
+.legal
+  color: darken($bg-alt, 20)
+  font-size: em-calc(12)
+
+// TYPOGRAPHY
+// ----------
+
+h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
+  font-weight: 400
+  font-family: $din
+  text-align: left
+  color: $off_black
+  line-height: em-calc(28)
+
+h1, h2, h3, p, img
+  text-align: center
+
+p
+  color: $off-black
+  font-weight: 400
+  line-height: 1.5em
+  font-size: 18px
+
+h1
+  font-size: em-calc(32)
+  font-weight: 500
+
+h2
+  font-size: em-calc(24)
+  font-weight: 500
+
+h3
+  font-size: em-calc(18)
+
+h4
+  font-size: em-calc(16)
+
+strong
+  font-weight: 800
+
+.section a /* increase specificity */
+  text-decoration: underline
+  &:link, &:visited, &:active
+    color: $campaign-main
+  &:hover
+    text-decoration: underline
+
+// BUTTON STYLES
+// -------------
+
+.form-submit, .btn
+  display: inline-block
+  background: $btn-color
+  margin: 0 auto
+  padding: 0.5em 1.5em 0.3em
+  clear: both
+  position: static
+  border: 1px solid $btn-border
+  cursor: pointer
+  color: $off-black !important
+  font-family: din-web-reg
+  font-weight: 600
+  text-align: center
+  text-decoration: none !important
+  text-transform: uppercase
+  -webkit-appearance: none !important
+  +border-radius(5px)
+  &:hover /* While mouse hovers */
+    background: $btn-hover
+    +background-image(linear-gradient($btn-color, $btn-hover))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:active /* While mouse clicks */
+    color: lighten($off-black, 10) !important
+    background: $btn-color
+    +background-image(linear-gradient($btn-hover, $btn-color))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:link, &:active, &:hover
+    color: $off-black
+    text-decoration: none !important
+
+.btn-cta-small
+  font-size: em-calc(14)
+
+.btn-cta-medium
+  font-size: em-calc(18)
+
+.btn-cta-large
+  font-size: em-calc(24)
+
