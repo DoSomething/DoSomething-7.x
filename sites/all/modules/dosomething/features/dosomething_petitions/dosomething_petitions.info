@@ -48,6 +48,7 @@ features[field_group][] = group_petition_updates|node|petition|default
 features[field_group][] = group_petition|node|petition|default
 features[node][] = petition
 features[page_manager_handlers][] = node_view_petitions
+features[page_manager_pages][] = petitions_landing
 features[user_permission][] = create petition content
 features[user_permission][] = delete any petition content
 features[user_permission][] = delete own petition content
