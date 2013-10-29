@@ -44,7 +44,6 @@ features[field_group][] = group_petition_contact|node|petition|form
 features[field_group][] = group_petition_letter|node|petition|default
 features[field_group][] = group_petition_updates|node|petition|default
 features[field_group][] = group_petition|node|petition|default
-features[js_injector_rule][] = Petitions landing button
 features[node][] = petition
 features[page_manager_handlers][] = node_view_petitions
 features[user_permission][] = create petition content
