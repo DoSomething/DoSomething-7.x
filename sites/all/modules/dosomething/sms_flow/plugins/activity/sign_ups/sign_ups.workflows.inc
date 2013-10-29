@@ -36,7 +36,7 @@ $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_state';
 $activity->inputs = array('check_user_school', 'school_found');
 $activity->outputs = array('ask_school_name');
-$activity->question = "TODO: What state is the school in? (ex: NY)";
+$activity->question = "To enter to win the $4K scholarship + be eligible for school prizes, you'll need to sign up your school. What state is your school in? (ex: NY)";
 
 $activity = $workflow->newActivity('sms_prompt');
 $activity->name = 'ask_school_name';
