@@ -40,7 +40,7 @@ function delete_signup_form_admin_info($subtype, $conf, $contexts) {
 function delete_signup_form_render($subtype, $conf, $panel_args, $context) {
   global $user;
   // Only display for staff.
-  if (!in_array('staff'), $user->roles) {
+  if (!in_array('staff', $user->roles)) {
     return;
   }
   $nid = $context->data->nid;
