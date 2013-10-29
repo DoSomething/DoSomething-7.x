@@ -150,6 +150,24 @@ function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state
       }
     }
   }
+  // If an address field has been populated, make sure they all have values:
+  if (!empty($form_state['values']['address_name']) || !empty($form_state['values']['address1']) || !empty($form_state['values']['address_city']) || !empty($form_state['values']['address_state']) || !empty($form_state['values']['address_zip'])) {
+    if (empty($form_state['values']['address_name'])) {
+      form_set_error('address_name', 'Please enter your name.');
+    }
+    if (empty($form_state['values']['address1'])) {
+      form_set_error('address1', 'Please enter your address.');
+    }
+    if (empty($form_state['values']['address_city'])) {
+      form_set_error('address_city', 'Please enter your city.');
+    }
+    if (empty($form_state['values']['address_state'])) {
+      form_set_error('address_state', 'Please select your state.');
+    }
+    if (empty($form_state['values']['address_zip'])) {
+      form_set_error('address_zip', 'Please enter your zipcode.');
+    }
+  }
 }
 
 /**
