@@ -46,7 +46,7 @@ function delete_signup_form_render($subtype, $conf, $panel_args, $context) {
   $nid = $context->data->nid;
   $form = drupal_get_form('dosomething_signups_delete_signup_form', $nid, $conf['submit_label']);
   $block = new stdClass();
-  $block->content = '<p>' . $conf['help_text'] . '</p>' . render($form);
+  $block->content = '<div class="section"><p>' . $conf['help_text'] . '</p>' . render($form) . '</div>';
   return $block;
 }
 
