@@ -276,46 +276,6 @@ petition/kickstarter',
     $display->panels['top-left'][2] = 'new-7';
     $pane = new stdClass();
     $pane->pid = 'new-8';
-    $pane->panel = 'top-left';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'current_webform_submitted',
-          'settings' => NULL,
-          'context' => array(
-            0 => 'logged-in-user',
-            1 => 'argument_entity_id:node_1',
-          ),
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Submit Your Own Petition Idea',
-      'title' => '',
-      'body' => '<a href="/petitions/ideas" class="go-button" style="float: right; margin-top: 25px; padding-top: 6px; font-size: 13pt;">Submit Your Own Petition Ideas</a>',
-      'format' => '3',
-      'substitute' => 1,
-    );
-    $pane->cache = array(
-      'method' => 'simple',
-      'settings' => array(
-        'lifetime' => '604800',
-        'granularity' => 'context',
-      ),
-    );
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['top-left'][3] = 'new-8';
-    $pane = new stdClass();
-    $pane->pid = 'new-9';
     $pane->panel = 'top-right';
     $pane->type = 'petition_progress';
     $pane->subtype = 'petition_progress';
@@ -333,10 +293,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['top-right'][0] = 'new-9';
+    $display->content['new-8'] = $pane;
+    $display->panels['top-right'][0] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-9';
     $pane->panel = 'top-right';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_petition_picture';
@@ -367,10 +327,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['top-right'][1] = 'new-10';
+    $display->content['new-9'] = $pane;
+    $display->panels['top-right'][1] = 'new-9';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-10';
     $pane->panel = 'top-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -397,10 +357,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-11'] = $pane;
-    $display->panels['top-right'][2] = 'new-11';
+    $display->content['new-10'] = $pane;
+    $display->panels['top-right'][2] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-11';
     $pane->panel = 'top-right';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_petition_target';
@@ -429,10 +389,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-12'] = $pane;
-    $display->panels['top-right'][3] = 'new-12';
+    $display->content['new-11'] = $pane;
+    $display->panels['top-right'][3] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-12';
     $pane->panel = 'top-right';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_petition_about';
@@ -460,8 +420,8 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = array();
-    $display->content['new-13'] = $pane;
-    $display->panels['top-right'][4] = 'new-13';
+    $display->content['new-12'] = $pane;
+    $display->panels['top-right'][4] = 'new-12';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-6';
   $handler->conf['display'] = $display;
