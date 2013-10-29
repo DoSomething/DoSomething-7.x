@@ -6,9 +6,8 @@
  *
  */
 $plugin = array(
-  'single' => TRUE,
+ // 'single' => TRUE,
   'title' => t('User Delete Signup Form'),
-  'content_types' => 'delete_signup_form',
   'description' => t('Allows user to delete signup for the current campaign.'),
   'category' => t('DoSomething Campaign'),
   'edit form' => 'delete_signup_form_edit_form',
@@ -27,7 +26,7 @@ $plugin = array(
 function delete_signup_form_admin_info($subtype, $conf, $contexts) {
   if (!empty($conf)) {
     $block = new stdClass;
-    $block->title = t('Delete Signup Form: <em>@modal_form_id</em>', array(
+    $block->title = t('Delete Signup Form: <em>@submit_label</em>', array(
       '@submit_label' => $conf['submit_label'],
     ));
     $block->content = 'Help Text: ' . $conf['help_text'];
