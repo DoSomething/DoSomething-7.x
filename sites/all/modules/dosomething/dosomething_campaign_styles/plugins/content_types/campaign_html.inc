@@ -24,7 +24,8 @@ function dosomething_campaign_styles_campaign_html_content_type_render($subtype,
 
   $block = new stdClass();
   $block->title = 'Static campaign HTML';
-  $block-> content = file_get_contents($file);
+  $block->content = dosomething_campaign_styles_get_include_contents($file);
+
   return $block;
 }
 
