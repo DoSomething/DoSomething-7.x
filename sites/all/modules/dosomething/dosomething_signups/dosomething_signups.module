@@ -46,6 +46,16 @@ function dosomething_signups_insert_signup($uid, $nid) {
 }
 
 /**
+ * Deletes a record for given user UID and campaign node NID in signups table.
+ */
+function dosomething_signups_delete_signup($uid, $nid) {
+  $signup = db_delete('dosomething_campaign_signups')
+    ->condition('uid', $uid)
+    ->condition('nid', $nid)
+    ->execute();
+}
+
+/**
  * Returns data array if signup data exists for given $uid and $nid.
  */
 function dosomething_signups_get_signup_data($uid, $nid) {
@@ -130,4 +140,42 @@ function dosomething_signups_get_signup_success_msg($node) {
     $msg = variable_get('dosomething_signups_default_signup_success_msg', t('Thanks for signing up!'));
   }
   return $msg;
+}
+
+/**
+ * Form used for staff users to delete a signup from a campaign. 
+ *
+ * @param int $nid
+ *    Node nid of campaign to delete signup for logged in user.
+ *
+ * @ingroup forms
+ */
+function dosomething_signups_delete_signup_form($form, &$form_state, $nid, $label) {
+  $form = array();
+  $form['nid'] = array(
+    '#type' => 'hidden',
+    '#value' => $nid,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => $label,
+    '#attributes' => array(
+      'class' => array('btn'),
+    ),
+  );
+  return $form;
+}
+
+/**
+ * Form submission handler for dosomething_signups_delete_signup_form().
+ *
+ * @see dosomething_signups_delete_signup_form()
+ */
+function dosomething_signups_delete_signup_form_submit(&$form, &$form_state) {
+  global $user;
+  $nid = $form_state['values']['nid'];
+  // Sanity check to only allow staff access to delete signup:
+  if (is_numeric($nid) && in_array('staff', $user->roles)) {
+    dosomething_signups_delete_signup($user->uid, $nid);
+  }
 }
