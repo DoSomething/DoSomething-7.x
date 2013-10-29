@@ -86,3 +86,4 @@ features[variable][] = node_submitted_campaign_content_page
 features[views_view][] = campaign_gallery
 features[views_view][] = current_campaigns
 files[] = dosomething_campaign.unit.test
+files[] = dosomething_campaign.tfj.test
