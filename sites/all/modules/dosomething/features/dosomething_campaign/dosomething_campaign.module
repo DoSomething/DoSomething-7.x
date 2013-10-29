@@ -12,24 +12,14 @@ include_once('includes/momm.inc');
 include_once('includes/tfj.inc');
 
 /**
- * Implements hook_ctools_plugin_type().
- */
-function dosomething_campaign_ctools_plugin_type() {
-  return array(
-    'signup_data_modal' => array(
-      'cache' => FALSE,
-    ),
-  );
-}
-
-/**
  * Implements hook_ctools_plugin_directory().
  */
 function dosomething_campaign_ctools_plugin_directory($module, $plugin) {
-  if ($module == 'ctools') {
+  if ($module == 'ctools' && !empty($plugin)) {
     return 'plugins/' . $plugin;
   }
 }
+
 /**
  * Implements hook_theme().
  */
