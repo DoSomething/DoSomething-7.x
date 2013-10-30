@@ -165,16 +165,15 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * $merge_vars = NULL : Variables within the custom message text or within the template that will be dynamically
  * replace with custom content specific to each message. Variables are denoted with *|<some name|*
  * 
- * $user = NULL - The user object, future use to generate custom merge_var values.
- * 
  */
-function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test=FALSE) {
+function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test_flag=FALSE) {
 
   $language = language_default();
   $from = NULL;
   
   // Test
-  if ($test) {
+  if ($test_flag) {
+    module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.test_data');
     list($message, $to) = dosomething_mandrill_test_data($key);
   }
 
@@ -309,15 +308,19 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       // count($message['to'] > 1) ? 
 
   }
+  
+  $message['to'] = $params['message']['to'];
 
 }
 
 /*
  * Impliments hook_mail_alter()
  *
- * From Mandill module readme.txt
- * 
- * &$message: An array containing the message data. Keys in this array include:
+ * @param $mandrill_params
+ *  An array that maps to the Mandrill API 
+ *
+ * @param $message
+ * From Mandill module readme.txt. An array containing the message data. Keys in this array include:
  *
  * 'id': The drupal_mail() id of the message. Look at module source code or drupal_mail() for possible id values.
  * 'to': The address or addresses the message will be sent to. The formatting of this string will be validated with the PHP e-mail validation filter.
@@ -386,9 +389,9 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
         'merge_var_content' => $message['params']['FNAME']
       ) 
     );
-    $mandrill_params['message']['to'] = $message['to'];
   }
   
+  $mandrill_params['message']['to'] = $message['to'];
   $merge_vars = $mandrill_params['params']['message']['merge_vars'];
 
   if(!empty($mandrill_params['message']['to'])) {
@@ -424,12 +427,16 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
  *  Operation to perform - various types of event to collect users and send
  *  messages.
  *
-  * @param string $target_date
+ * @param string $target_date
  *  The target date in international format - YYYY-MM-DD
  *
- * @return boolean
+ * @return $test_flag
+ *  A flag for debugging to use test data rather than values found in the database.
+ *
+ * @return $dispatch_result
+ *  Array of status of sending event messages.
  */
-function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE) {
+function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag=TRUE) {
 
   $to = array();
   $merge_vars = array();
@@ -686,7 +693,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
     $message['message']['global_merge_vars'] = $global_merge_vars;
     
     // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-    $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test);
+    $dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
     
     // Report to Drush results
     $dispatch_result['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
@@ -708,7 +715,24 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test=TRUE
   
 }
 
-function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop, $test) {
+/*
+ * Dispatches messages to campaign members. Triggered through cron based
+ * tasks (Jenkins).
+ * 
+ * @param string $op
+ *  Operation to perform - various types of event to collect users and send
+ *  messages.
+ *
+ * @param string $target_date
+ *  The target date in international format - YYYY-MM-DD
+ *
+ * @param string $target_drop
+ *  The drop message to send in the message drip series.
+ *
+ * @return $test_flag
+ *  A flag for debugging to use test data rather than values found in the database.
+ */
+function dosomething_mandrill_dispatch_drip($op, $target_date=NULL, $target_drop=1, $test_flag=TRUE) {
   
   $to = array();
   $merge_vars = array();
@@ -802,7 +826,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop, $te
     $message['message']['merge_vars'] = $merge_vars;
     
     // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-    $dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test);
+    $dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
     
     // Report to Drush results
     $dispatch_result['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
@@ -886,256 +910,4 @@ function dosomething_mandrill_blacklist($target_mails) {
   
   return $whitelist;
 
-}
-
-/*
- * Generate test data
- */
-function dosomething_mandrill_test_data($op) {
-  
-  switch ($op):
-    
-    case 'dsevent-birthday':
-      
-      $message_test = array(
-        'message' => array(
-          'global_merge_vars' => array(
-            0 => array(
-              'content' => 'TEST TABLE MARKUP',
-              'name' => 'CAMPAIGNS'
-            ),
-          ),
-          'merge_vars' => array(
-            0 => array(
-              'rcpt' => 'dlee+dsevent-birthday-01@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => '43',
-                  'name' => 'AGE'
-                ),
-                1 => array(
-                  'content' => 'Dee',
-                  'name' => 'FNAME'
-                )
-              )
-            ),
-            1 => array(
-              'rcpt' => 'dlee+dsevent-birthday-02@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => '3',
-                  'name' => 'AGE'
-                ),
-                1 => array(
-                  'content' => 'DeeThree',
-                  'name' => 'FNAME'
-                )
-              )
-            )
-          ),
-          'to' => array(
-            0 => array(
-              'email' => 'dlee+dsevent-birthday-01@dosomething.org',
-              'name' => 'TheDee',
-            ),
-            1 => array(
-              'email' => 'dlee+dsevent-birthday-02@dosomething.org',
-              'name' => 'TheDeeThree',
-            )
-          )
-        )
-      );
-      
-      $to_test = array(
-        0 => array(
-          'email' => 'dlee+dsevent-birthday-01@dosomething.org',
-          'name' => 'TheDee'
-        ),
-        1 => array(
-          'email' => 'dlee+dsevent-birthday-02@dosomething.org',
-          'name' => 'TheDeeThree'
-        )
-      );
-      
-      break;
-    
-    case 'dsevent-reg-90':
-      
-      $message_test = array(
-        'message' => array(
-          'global_merge_vars' => array(
-            0 => array(
-              'content' => 'TEST TABLE MARKUP',
-              'name' => 'CAMPAIGNS'
-            ),
-          ),
-          'merge_vars' => array(
-            0 => array(
-              'rcpt' => 'dlee+dsevent-90days-01@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => 'Dee',
-                  'name' => 'FNAME'
-                )
-              )
-            ),
-            1 => array(
-              'rcpt' => 'dlee+dsevent-90days-02@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => 'DeeThree',
-                  'name' => 'FNAME'
-                )
-              )
-            )
-          ),
-          'to' => array(
-            0 => array(
-              'email' => 'dlee+dsevent-90days-01@dosomething.org',
-              'name' => 'TheDee',
-            ),
-            1 => array(
-              'email' => 'dlee+dsevent-90days-02@dosomething.org',
-              'name' => 'TheDeeThree',
-            )
-          )
-        )
-      );
-      
-      $to_test = array(
-        0 => array(
-          'email' => 'dlee+dsevent-90days-01@dosomething.org',
-          'name' => 'TheDee'
-        ),
-        1 => array(
-          'email' => 'dlee+dsevent-90days-02@dosomething.org',
-          'name' => 'TheDeeThree'
-        )
-      );
-      
-      break;
-
-    case 'dsevent-reg-365':
-      
-      $message_test = array(
-        'message' => array(
-          'global_merge_vars' => array(
-            0 => array(
-              'content' => 'TEST TABLE MARKUP',
-              'name' => 'CAMPAIGNS'
-            ),
-          ),
-          'merge_vars' => array(
-            0 => array(
-              'rcpt' => 'dlee+dsevent-365days-01@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => 'Dee',
-                  'name' => 'FNAME'
-                ),
-                1 => array(
-                  'content' => '2nd',
-                  'name' => 'MEMBERSHIP_YEAR'
-                )
-              )
-            ),
-            1 => array(
-              'rcpt' => 'dlee+dsevent-365days-02@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => 'DeeThree',
-                  'name' => 'FNAME'
-                ),
-                1 => array(
-                  'content' => '1st',
-                  'name' => 'MEMBERSHIP_YEAR'
-                )
-              )
-            )
-          ),
-          'to' => array(
-            0 => array(
-              'email' => 'dlee+dsevent-365days-01@dosomething.org',
-              'name' => 'TheDee',
-            ),
-            1 => array(
-              'email' => 'dlee+dsevent-365days-02@dosomething.org',
-              'name' => 'TheDeeThree',
-            )
-          )
-        )
-      );
-      
-      $to_test = array(
-        0 => array(
-          'email' => 'dlee+dsevent-365days-01@dosomething.org',
-          'name' => 'TheDee'
-        ),
-        1 => array(
-          'email' => 'dlee+dsevent-365days-02@dosomething.org',
-          'name' => 'TheDeeThree'
-        )
-      );
-      
-      break;
-    
-    case 'dsdrip-momm13-1':
-      
-      $message_test = array(
-        'message' => array(
-          'merge_vars' => array(
-            0 => array(
-              'rcpt' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => 'Dee',
-                  'name' => 'FNAME'
-                )
-              )
-            ),
-            1 => array(
-              'rcpt' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
-              'vars' => array(
-                0 => array(
-                  'content' => 'DeeThree',
-                  'name' => 'FNAME'
-                )
-              )
-            )
-          ),
-          'to' => array(
-            0 => array(
-              'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
-              'name' => 'TheDee',
-            ),
-            1 => array(
-              'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
-              'name' => 'TheDeeThree',
-            )
-          )
-        )
-      );
-      
-      $to_test = array(
-        0 => array(
-          'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
-          'name' => 'TheDee'
-        ),
-        1 => array(
-          'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
-          'name' => 'TheDeeThree'
-        )
-      );
-      
-      break;
-  
-    default:
-      
-      $message_test = 'Error - invalid operation (op)';
-      $to_test = 'Error - invalid operation (op)';
-      
-  endswitch;
-  
-  return array($message_test, $to_test);
-      
 }
