@@ -21,11 +21,16 @@ class DoSomethingCampaignTFJTestCase extends WebTestSuite {
     }
     node_save($node);
     $this->node = $node;
+    // Link for anonymous users:
+    $this->join_link_html = '<a href="/user/login?destination=node/731115" class="btn btn-cta-large">Do This</a>';
+    // Form for auth users who haven't signed up:
+    $this->join_form_html = '<form action="/' . drupal_lookup_path('alias', "node/" . $this->node->nid) . '" method="post" id="dosomething-campaign-tfj-join-form" accept-charset="UTF-8">';
   }
 
   public function testAnonPitchPage() {
     $this->drupalGet('node/' . $this->nid);
-    $this->assertText(t('Do This'), 'The text "Do This" appears on page as anonymous user.');
+    $this->assertRaw($this->join_link_html, 'The "Do This" link to the gate appears on page as anonymous user.');
+    $this->assertNoRaw($this->join_form_html, 'The "Do This" join form does not appear on the page.');
     $this->clickLink('Do This');
     $this->assertText('Email, Username or Cell Number', 'The text "email, username or cell number" appears on the page.');
     $this->assertText('Forgot your password?', 'The text "Forgot your password?" appears on the page.');
@@ -35,11 +40,13 @@ class DoSomethingCampaignTFJTestCase extends WebTestSuite {
     // Test logged in pitch page:
     $this->drupalLogin($this->auth_user);
     $this->drupalGet('node/' . $this->nid);
+    $this->assertNoRaw($this->join_link_html, 'The "Do This" link to the gate does not appear on page as anonymous user.');
+    $this->assertRaw($this->join_form_html, 'The "Do This" join form appears on the page.');
     $edit = array();
     // Click on the "Do This" form submit button.
     $this->drupalPost('node/' . $this->nid, $edit, 'Do This');
-    // There should be no "Do This" link:
-    $this->assertNoText(t('Do This'), 'The text "Do This" does not appear for the user after joining.');
+    // There should be no "Do This" form:
+    $this->assertNoRaw($this->join_form_html, 'The "Do This" join form no longer appears on the page after submit.');
     $signup = dosomething_signups_is_user_signed_up($this->auth_user->uid, $this->nid);
     $this->assertTrue($signup, 'The user is signed up for the campaign.');
   }
