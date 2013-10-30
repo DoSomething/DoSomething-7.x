@@ -1,6 +1,0 @@
-name = Mandrill Tags
-description = "Provides Mandrill tag related functionality."
-core = 7.x
-package = MailChimp
-
-dependencies[] = mandrill
