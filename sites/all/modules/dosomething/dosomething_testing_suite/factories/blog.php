@@ -37,9 +37,12 @@ class Blog extends Factory {
 
   /**
    * The get_new() method allows for pre- and post- callbacks around object creation.
-   * $this->build_factory() should be called within this method.
+   * $this->build_factory() should be called within this method.  This is called from
+   * the parent Factory class's create() method.
    *
    * Required.
+   *
+   * @see factory.inc:118
    */
   public function get_new() {
     return $this->build_factory();
