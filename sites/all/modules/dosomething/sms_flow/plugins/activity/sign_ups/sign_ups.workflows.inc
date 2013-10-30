@@ -5,8 +5,8 @@
  */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
-$workflow->name = 'sms_flow_tfj2013_sign_up';
-$workflow->title = 'Teens for Jeans 2013 Sign Up';
+$workflow->name = 'sms_flow_tfj2014_sign_up';
+$workflow->title = 'Teens for Jeans 2014 Sign Up';
 $workflow->description = 'Submits a sign up for the Teens for Jeans 2013 campaign.';
 $workflow->api_version = '1.0';
 
@@ -61,7 +61,7 @@ $activity = $workflow->newActivity('mobile_commons_opt_in');
 $activity->name = 'end_message';
 $activity->inputs = array('school_found', 'school_search');
 $activity->outputs = array('end');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162835;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
@@ -74,8 +74,8 @@ $workflows[$workflow->name] = $workflow;
  */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
-$workflow->name = 'sms_flow_tfj2013_banner_address';
-$workflow->title = 'Teens for Jeans 2013 Banner Address';
+$workflow->name = 'sms_flow_tfj2014_banner_address';
+$workflow->title = 'Teens for Jeans 2014 Banner Address';
 $workflow->description = 'Ask for and submit address to ship banner to for Teens for Jeans 2013.';
 $workflow->api_version = '1.0';
 
@@ -86,59 +86,53 @@ $activity->outputs = array('yesno_gate');
 $activity = $workflow->newActivity('sms_flow_yesno_gate');
 $activity->name = 'yesno_gate';
 $activity->inputs = array('start');
-$activity->outputs = array('no_banner', 'yes_banner');
+$activity->outputs = array('no_banner', 'ask_street');
 $activity->onNoActivity = 'no_banner';
-$activity->onYesActivity = 'yes_banner';
+$activity->onYesActivity = 'ask_street';
 
 // Activity if user selects to not receive a banner
 $activity = $workflow->newActivity('mobile_commons_opt_in');
 $activity->name = 'no_banner';
 $activity->inputs = array('yesno_gate');
 $activity->outputs = array('end');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162843;
 
 // Activity if user does select to receive a banner
 $activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
-$activity->name = 'yes_banner';
-$activity->inputs = array('yesno_gate');
-$activity->outputs = array('ask_street');
-$activity->opt_in_path_id = 0; // TODO
-
-$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
 $activity->name = 'ask_street';
-$activity->inputs = array('yes_banner');
+$activity->inputs = array('yesno_gate');
 $activity->outputs = array('ask_city');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162847;
 
 $activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
 $activity->name = 'ask_city';
 $activity->inputs = array('ask_street');
 $activity->outputs = array('ask_state');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162849;
 
 $activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
 $activity->name = 'ask_state';
 $activity->inputs = array('ask_city');
 $activity->outputs = array('ask_zip');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162851;
 
 $activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
 $activity->name = 'ask_zip';
 $activity->inputs = array('ask_state');
 $activity->outputs = array('ask_name');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162853;
 
 $activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
 $activity->name = 'ask_name';
 $activity->inputs = array('ask_zip');
 $activity->outputs = array('address_submit');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162855;
 
-$activity = $workflow->newActivity('tfj2013_banner_address_submit');
+$activity = $workflow->newActivity('sms_flow_signup_address_submit');
 $activity->name = 'address_submit';
 $activity->inputs = array('ask_name');
 $activity->outputs = array('end_message');
-$activity->campaignNid = 0; // TODO
+$activity->campaignNid = 731115;
 $activity->addr1Context = 'ask_street:message';
 $activity->cityContext = 'ask_city:message';
 $activity->stateContext = 'ask_state:message';
@@ -149,7 +143,7 @@ $activity = $workflow->newActivity('mobile_commons_opt_in');
 $activity->name = 'end_message';
 $activity->inputs = array('ask_zip');
 $activity->outputs = array('end');
-$activity->opt_in_path_id = 0; // TODO
+$activity->opt_in_path_id = 162857;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
