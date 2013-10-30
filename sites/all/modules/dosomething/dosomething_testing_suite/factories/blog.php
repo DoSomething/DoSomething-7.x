@@ -21,7 +21,9 @@ class Blog extends Factory {
   );
 
   /**
-   * Required.
+   * Required.  This is called every time you run create() or build() on the
+   * parent Factory class.  Accepts overrides and sets up the array structure
+   * to remember those overrides.
    *
    * @param array $overrides
    *   An optional array of overrides for the $default array.
