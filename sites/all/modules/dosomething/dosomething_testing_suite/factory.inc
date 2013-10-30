@@ -138,7 +138,7 @@ class Factory extends WebTestSuite {
    *   factory.  Anything that is not overridden will remain default.
    *
    * @return array
-   *   The output of the factory's build() method -- generally ONLY the
+   *   The output of the factory's get_struct() method -- generally ONLY the
    *   populated array.
    */
   public function build($factory, $overrides = array()) {
@@ -183,7 +183,7 @@ class Factory extends WebTestSuite {
    *
    * @param bool $use_existing
    *   If true, will return the defaults for a factory as they currently
-   *   stand, even with overrides from a get_new() or get_struct() method call.
+   *   stand, even with overrides from a create() or build() method call.
    *   If false, will reinstate the class, thereby returning the true default
    *   values.
    *
