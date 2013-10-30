@@ -55,11 +55,13 @@ function signup_data_modal_render($subtype, $conf, $panel_args, $context) {
   // Check if staff user:
   if (in_array('staff', $user->roles)) {
     // Check in query string if auto-display is set:
-    $form_check = $_GET['form'];
-    // If set to 1, display the modal form regardless of whether or not signup_data was stored.
-    // Used for internal testing.
-    if ($form_check && is_numeric($form_check) && $form_check == 1) {
-      $auto_display_modal = TRUE;
+    if (isset($_GET['form'])) {
+      $form_check = $_GET['form'];
+      // If set to 1, display the modal form regardless of whether or not signup_data was stored.
+      // Used for internal testing.
+      if (is_numeric($form_check) && $form_check == 1) {
+        $auto_display_modal = TRUE;
+      }
     }
   }
 
