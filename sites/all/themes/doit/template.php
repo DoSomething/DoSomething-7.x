@@ -155,7 +155,7 @@ function doit_preprocess_page(&$variables) {
     drupal_add_library('ds_neue', 'ds-neue');
   }
 
-  if((menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')) {
+  if(is_object(menu_get_object()) && (menu_get_object()->type == 'page') && theme_get_setting('doit_pages_neue')) {
     _doit_load_menu_templates($variables);
     array_push( $variables['theme_hook_suggestions'], 'page__neue' );
     drupal_add_library('ds_neue', 'ds-neue');
