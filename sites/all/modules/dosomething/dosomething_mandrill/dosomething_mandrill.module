@@ -238,11 +238,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
   
-  $bla = TRUE;
-  if ($bla) {
-    $bla = TRUE;
-  }
-  
   // Common merge tags
   empty($params['FNAME']) ?: $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
   
@@ -358,11 +353,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  *
  */
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
-  
-  $bla = TRUE;
-  if ($bla) {
-    $bla = TRUE;
-  }
   
   // Pass parameters passed via dosomething_mandrill_dispach call
   $mandrill_params['params'] = $message['params'];
