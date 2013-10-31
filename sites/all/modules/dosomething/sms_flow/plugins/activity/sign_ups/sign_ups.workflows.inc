@@ -29,7 +29,7 @@ $activity->outputs = array('ask_state', 'end_message', 'end');
 $activity->output_school_correct = 'end_message';
 $activity->output_school_incorrect = 'ask_state';
 $activity->question = t('First, let\'s confirm the school we got from you previously: @school_name. If this is correct, reply Y. If not, reply N.');
-$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text SCHOOL to try again.');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text DRIVE to try again.');
 
 // If user does not have a school set or she wants to reset it, start the school search
 $activity = $workflow->newActivity('sms_prompt');
@@ -52,10 +52,10 @@ $activity->outputs = array('end_message', 'end');
 $activity->state_activity_name = 'ask_state';
 $activity->school_activity_name = 'ask_school_name';
 $activity->max_results = 5;
-$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text SCHOOL to try again.');
-$activity->one_school_found_msg = t('We found @school_name in @school_city, @school_state. Reply Y if this is your school. Text SCHOOL to try again.');
-$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. Or text SCHOOL to try again.');
-$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text SCHOOL to try again.');
+$activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text DRIVE to try again.');
+$activity->one_school_found_msg = t('We found @school_name in @school_city, @school_state. Reply Y if this is your school. Text DRIVE to try again.');
+$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. Or text DRIVE to try again.');
+$activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text DRIVE to try again.');
 
 $activity = $workflow->newActivity('mobile_commons_opt_in');
 $activity->name = 'end_message';
