@@ -238,8 +238,16 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
   
+  $bla = TRUE;
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
   // Common merge tags
-  // isset($params['FNAME']) ? $message['params']['FNAME'] = $params['FNAME'] : $message['params']['FNAME'] = 'Doer';
+  empty($params['FNAME']) ?: $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
+  
+  // Mass mailout, populate "to" as an array
+  empty($params['message']['to']) ?: $message['to'] = $params['message']['to'];
 
   switch ($key) {
 
@@ -285,6 +293,16 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
       
       break;
+    
+    case 'dsdrip-momm13-1':
+    case 'dsdrip-momm13-2':
+    case 'dsdrip-momm13-3':
+    case 'dsdrip-momm13-4':
+    case 'dsdrip-momm13-5':
+      
+      $message['params']['message']['from_name'] = 'Farah at DoSomething.org';
+      
+      break;
 
     case 'dsplain':
     case 'dssignup':
@@ -308,8 +326,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
       // count($message['to'] > 1) ? 
 
   }
-  
-  $message['to'] = $params['message']['to'];
 
 }
 
@@ -342,6 +358,11 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  *
  */
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
+  
+  $bla = TRUE;
+  if ($bla) {
+    $bla = TRUE;
+  }
   
   // Pass parameters passed via dosomething_mandrill_dispach call
   $mandrill_params['params'] = $message['params'];
@@ -394,7 +415,7 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   $mandrill_params['message']['to'] = $message['to'];
   $merge_vars = $mandrill_params['params']['message']['merge_vars'];
 
-  if(!empty($mandrill_params['message']['to'])) {
+  if(!empty($mandrill_params['message']['to']) && empty($merge_vars)) {
     foreach($mandrill_params['message']['to'] as $i => $rcpt) {
       $vars = array();
       $vars[] = array(
@@ -408,7 +429,10 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     }
   }
   
-  // $mandrill_params['message']['tags'] = empty($mandrill_params['message']['tags'][0]) ? $message['tags'] : array_merge($mandrill_params['message']['tags'], $message['tags']);
+  // Adjust the From Name value
+  !isset($mandrill_params['params']['message']['from_name']) ?: $mandrill_params['message']['from_name'] = $mandrill_params['params']['message']['from_name'];
+
+  // Tags
   $mandrill_params['message']['tags'] = $mandrill_params['message']['tags'];
   
   // Combine all merge_var values - these values are used to send multipul messages
@@ -486,7 +510,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
 
           $to[] = array(
             'email' => $user->mail,
-            'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
+            'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user->field_user_first_name_value)),
           );
 
           $merge_vars[] = array(
@@ -498,7 +522,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
               ),
               array(
                 'name' => 'FNAME',
-                'content' => $user->field_user_first_name_value,
+                'content' => $user->field_user_first_name_value != '' ? ucfirst(strtolower($user->field_user_first_name_value)) : 'Doer',
               )
             ),
           );
@@ -565,7 +589,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
             'vars' => array(
               array(
                 'name' => 'FNAME',
-                'content' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
+                'content' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user->field_user_first_name_value)),
               ),
             ),
           );
@@ -650,7 +674,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
               'vars' => array(
                 array(
                   'name' => 'FNAME',
-                  'content' => $user->field_user_first_name_value,
+                  'content' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user->field_user_first_name_value)),
                 ),
                 array(
                   'name' => 'MEMBERSHIP_YEAR',
@@ -795,7 +819,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_date=NULL, $target_drop
             'vars' => array(
               array(
                 'name' => 'FNAME',
-                'content' => $user->field_user_first_name_value == NULL ? 'Doer' : $user->field_user_first_name_value,
+                'content' => $user->field_user_first_name_value == NULL ? 'DoSomething Doer' : ucfirst(strtolower($user->field_user_first_name_value)),
               ),
             ),
           );
