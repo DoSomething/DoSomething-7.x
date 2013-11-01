@@ -222,6 +222,8 @@ function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) 
   // Tell the browser to close the modal.
   // @see dosomething_modal_form_builder() for where this is executed.
   $form_state['ajax_commands'][] = ctools_modal_command_dismiss();
+  // Manually create a Drupal message div for confirmation:
+  $form_state['ajax_commands'][] = ajax_command_after('#breadcrumb', '<div class="messages status">Got it. Thanks for the info!</div>');
 }
 
 /**
