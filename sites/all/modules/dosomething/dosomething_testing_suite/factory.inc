@@ -101,7 +101,7 @@ class Factory extends WebTestSuite {
   }
 
   /**
-   * Runs the create() method on a particular factory.  This will
+   * Runs the get_new() method on a particular factory.  This will
    * populate the data and actually create the object in the database.
    *
    * @param string $factory
@@ -112,7 +112,7 @@ class Factory extends WebTestSuite {
    *   factory.  Anything that is not overridden will remain default.
    *
    * @return mixed
-   *   The output of the factory's create() method -- generally the newly
+   *   The output of the factory's get_new() method -- generally the newly
    *   created object.
    */
   public function create($factory, $overrides = array()) {
@@ -122,12 +122,12 @@ class Factory extends WebTestSuite {
       $this->factories[$factory] = new $factory($overrides);
 
       // Run the create method.
-      return $this->factories[$factory]->create();
+      return $this->factories[$factory]->get_new();
     }
   }
 
   /**
-   * Runs the build() method on a particular factory.  This populate
+   * Runs the get_struct() method on a particular factory.  This populate
    * the data, but NOT create the object in the database.
    *
    * @param string $factory
@@ -148,7 +148,7 @@ class Factory extends WebTestSuite {
       $this->factories[$factory] = new $factory($overrides);
 
       // Run the build method.
-      return $this->factories[$factory]->build();
+      return $this->factories[$factory]->get_struct();
     }
   }
 
@@ -183,7 +183,7 @@ class Factory extends WebTestSuite {
    *
    * @param bool $use_existing
    *   If true, will return the defaults for a factory as they currently
-   *   stand, even with overrides from a create() or build() method call.
+   *   stand, even with overrides from a get_new() or get_struct() method call.
    *   If false, will reinstate the class, thereby returning the true default
    *   values.
    *
@@ -228,7 +228,7 @@ class Factory extends WebTestSuite {
     elseif ($field_name == 'body') {
       // Store value with super weird required LANGUAGE_NONE array structure:
       $this->default['body'] = array(LANGUAGE_NONE => array(array(
-        'value' => $value, 
+        'value' => $value,
       )));
     }
     // Else, just write the value if we are overriding:

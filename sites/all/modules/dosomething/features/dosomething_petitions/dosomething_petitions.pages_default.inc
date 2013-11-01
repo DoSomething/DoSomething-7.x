@@ -276,46 +276,6 @@ petition/kickstarter',
     $display->panels['top-left'][2] = 'new-7';
     $pane = new stdClass();
     $pane->pid = 'new-8';
-    $pane->panel = 'top-left';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'current_webform_submitted',
-          'settings' => NULL,
-          'context' => array(
-            0 => 'logged-in-user',
-            1 => 'argument_entity_id:node_1',
-          ),
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Submit Your Own Petition Idea',
-      'title' => '',
-      'body' => '<a href="/petitions/ideas" class="go-button" style="float: right; margin-top: 25px; padding-top: 6px; font-size: 13pt;">Submit Your Own Petition Ideas</a>',
-      'format' => '3',
-      'substitute' => 1,
-    );
-    $pane->cache = array(
-      'method' => 'simple',
-      'settings' => array(
-        'lifetime' => '604800',
-        'granularity' => 'context',
-      ),
-    );
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['top-left'][3] = 'new-8';
-    $pane = new stdClass();
-    $pane->pid = 'new-9';
     $pane->panel = 'top-right';
     $pane->type = 'petition_progress';
     $pane->subtype = 'petition_progress';
@@ -333,10 +293,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['top-right'][0] = 'new-9';
+    $display->content['new-8'] = $pane;
+    $display->panels['top-right'][0] = 'new-8';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-9';
     $pane->panel = 'top-right';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_petition_picture';
@@ -367,10 +327,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['top-right'][1] = 'new-10';
+    $display->content['new-9'] = $pane;
+    $display->panels['top-right'][1] = 'new-9';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-10';
     $pane->panel = 'top-right';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -397,10 +357,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $display->content['new-11'] = $pane;
-    $display->panels['top-right'][2] = 'new-11';
+    $display->content['new-10'] = $pane;
+    $display->panels['top-right'][2] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-11';
     $pane->panel = 'top-right';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_petition_target';
@@ -429,10 +389,10 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $display->content['new-12'] = $pane;
-    $display->panels['top-right'][3] = 'new-12';
+    $display->content['new-11'] = $pane;
+    $display->panels['top-right'][3] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-12';
     $pane->panel = 'top-right';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_petition_about';
@@ -460,12 +420,93 @@ petition/kickstarter',
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = array();
-    $display->content['new-13'] = $pane;
-    $display->panels['top-right'][4] = 'new-13';
+    $display->content['new-12'] = $pane;
+    $display->panels['top-right'][4] = 'new-12';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-6';
   $handler->conf['display'] = $display;
   $export['node_view_petitions'] = $handler;
 
   return $export;
+}
+
+/**
+ * Implements hook_default_page_manager_pages().
+ */
+function dosomething_petitions_default_page_manager_pages() {
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'petitions_landing';
+  $page->task = 'page';
+  $page->admin_title = 'Petitions Landing';
+  $page->admin_description = '';
+  $page->path = 'petitions';
+  $page->access = array();
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_petitions_landing_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'petitions_landing';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => 'ds-wide-thin',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+  );
+  $display = new panels_display();
+  $display->layout = 'one_two_one';
+  $display->layout_settings = array();
+  $display->panel_settings = array();
+  $display->cache = array();
+  $display->title = '';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-1';
+    $pane->panel = 'top';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'petitions-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array(
+      'method' => '0',
+      'settings' => array(),
+    );
+    $pane->style = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'action-finder-list',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-1'] = $pane;
+    $display->panels['top'][0] = 'new-1';
+  $display->hide_title = PANELS_TITLE_PANE;
+  $display->title_pane = 'new-1';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['petitions_landing'] = $page;
+
+  return $pages;
+
 }

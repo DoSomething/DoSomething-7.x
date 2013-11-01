@@ -40,4 +40,7 @@ class SmsFlowGameConstants {
   const GGW_VIDCHAT_TIPS        = 33;
   const GGW_INSTA_TIPS          = 34;
   const GGW_TABLET_TIPS         = 35;
+  const TFJ_MARKET_TIPS         = 36;
+  const TFJ_RUN_TIPS            = 37;
+  const TFJ_PRIZE_GUIDE         = 38;
 }

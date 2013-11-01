@@ -37,6 +37,7 @@ class DoSomethingSignupsWebTestCase extends WebTestSuite {
     $this->anon_user = user_load(0);
     $this->auth_user = $this->factory->create('User');
     $this->admin_user = $this->factory->create('User', array('roles' => array('administrator')));
+    $this->campaign = $this->factory->create('Campaign');
   }
 
   /**
@@ -62,6 +63,35 @@ class DoSomethingSignupsWebTestCase extends WebTestSuite {
     $this->assertTrue(is_null($signup));
     $after = db_query('select count(*) from dosomething_campaign_signups')->execute();
     $this->assertIdentical(++$before, $after);
+  }
+
+  /**
+   * @see dosomething_signups_delete_signup()
+   */
+  public function testDeleteSignup() {
+    // Insert a record to delete.
+    $insert = db_insert('dosomething_campaign_signups')
+      ->fields(array(
+        'nid' => $this->campaign->nid,
+        'uid' => $this->auth_user->uid,
+      ))
+      ->execute();
+    // Store total records before delete signup:
+    $before = (int) db_query('SELECT COUNT(uid) FROM dosomething_campaign_signups')->fetchField();
+    // Delete the record:
+    dosomething_signups_delete_signup($this->auth_user->uid, $this->campaign->nid);
+    // Find total records after delete signup:
+    $after = (int) db_query('SELECT COUNT(uid) FROM dosomething_campaign_signups')->fetchField();
+    // Make sure counts are correct:
+    $this->assertIdentical($before - 1, $after, "The total number of signups has decreased by 1.");
+    // Make sure no record exists for nid and uid:
+    $result = db_select('dosomething_campaign_signups', 's')
+      ->fields('s')
+      ->condition('nid', $this->campaign->nid)
+      ->condition('uid', $this->auth_user->uid)
+      ->execute()
+      ->fetchAssoc();
+    $this->assertTrue(empty($result), "There is no DB row for the deleted signup.");
   }
 
   /**
