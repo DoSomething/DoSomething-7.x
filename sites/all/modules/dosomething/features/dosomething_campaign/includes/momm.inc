@@ -125,23 +125,23 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
   global $user;
   // Initalize array to store data into signups table:
   $signup_data = array();
-  // If a school has been found:
-  if (isset($form_state['values']['school_id'])) {
+
+  // Check for "Not affiliated" value first:
+  if ($form_state['values']['not_affiliated'] == 1) {
+    $signup_data['no_school'] = 'not affiliated';
+  }
+  // Else if a school has been found:
+  elseif (isset($form_state['values']['school_id'])) {
     // Save school id to user profile.
     dosomething_user_update_school($user, $form_state['values']['school_id']);  
     // Write gsid to signups table:
     $signup_data['gsid'] = $form_state['values']['gsid'];
   }
-  // Else if no school has been entered:
-  else {
-    // Store "school not listed" if that option was selected:
-    if ($form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY) {
-      $signup_data['no_school'] = 'school not listed';
-    }
-    elseif ($form_state['values']['not_affiliated'] == 1) {
-      $signup_data['no_school'] = 'not affiliated';
-    }
+  // Else if "school not listed" if that option was selected:
+  elseif ($form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY) {
+    $signup_data['no_school'] = 'school not listed';
   }
+
   // Update signups record with signup_data.
   if (module_exists('dosomething_signups')) {
     $nid = variable_get('momm_campaign_nid', 731098);
