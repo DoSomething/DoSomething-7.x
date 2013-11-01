@@ -6,6 +6,7 @@
  */
 
 define('WEEK', 604800); // 60*60*24*7
+define('STATHAT_ACCOUNT', 'dlee@dosomething.org');
 
 /*
  * Impliments hook_menu()
@@ -441,16 +442,16 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
  *  Operation to perform - various types of event to collect users and send
  *  messages.
  *
+ * @param int $test_flag
+ *  A flag for debugging to use test data rather than values found in the database.
+ *
  * @param string $target_date
  *  The target date in international format - YYYY-MM-DD
- *
- * @return $test_flag
- *  A flag for debugging to use test data rather than values found in the database.
  *
  * @return $dispatch_result
  *  Array of status of sending event messages.
  */
-function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag=TRUE) {
+function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date=NULL) {
 
   $to = array();
   $merge_vars = array();
@@ -493,26 +494,26 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
             ':target_date' => '%-' . $target_date . '%'
           ));
 
-      foreach($results as $user) {
+      foreach($results as $user_details) {
 
         // Skip if missing user email address
-        if ($user->mail != NULL) {
+        if ($user_details->mail != NULL) {
 
           $to[] = array(
-            'email' => $user->mail,
-            'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user->field_user_first_name_value)),
+            'email' => $user_details->mail,
+            'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
           );
 
           $merge_vars[] = array(
-            'rcpt' => $user->mail,
+            'rcpt' => $user_details->mail,
             'vars' => array(
               array(
                 'name' => 'AGE',
-                'content' => floor((time() - strtotime($user->field_user_birthday_value)) / (60*60*24*365)),
+                'content' => floor((time() - strtotime($user_details->field_user_birthday_value)) / (60*60*24*365)),
               ),
               array(
                 'name' => 'FNAME',
-                'content' => $user->field_user_first_name_value != '' ? ucfirst(strtolower($user->field_user_first_name_value)) : 'Doer',
+                'content' => $user_details->field_user_first_name_value != '' ? ucfirst(strtolower($user_details->field_user_first_name_value)) : 'Doer',
               )
             ),
           );
@@ -564,22 +565,22 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
             ':target_date_stamp_end' => $target_date_stamp + + 60*60*24
           ));
 
-      foreach($results as $user) {
+      foreach($results as $user_details) {
 
         // Skip if missing user email address
-        if ($user->mail != NULL) {
+        if ($user_details->mail != NULL) {
 
           $to[] = array(
-            'email' => $user->mail,
-            'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
+            'email' => $user_details->mail,
+            'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user_details->field_user_first_name_value,
           );
 
           $merge_vars[] = array(
-            'rcpt' => $user->mail,
+            'rcpt' => $user_details->mail,
             'vars' => array(
               array(
                 'name' => 'FNAME',
-                'content' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user->field_user_first_name_value)),
+                'content' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
               ),
             ),
           );
@@ -649,14 +650,14 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
             )
           );
 
-        foreach($results as $user) {
+        foreach($results as $user_details) {
 
           // Skip if missing user email address
-          if ($user->mail != NULL) {
+          if ($user_details->mail != NULL) {
 
             $to[] = array(
-              'email' => $user->mail,
-              'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
+              'email' => $user_details->mail,
+              'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user_details->field_user_first_name_value,
             );
 
             $merge_vars[] = array(
@@ -664,7 +665,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
               'vars' => array(
                 array(
                   'name' => 'FNAME',
-                  'content' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user->field_user_first_name_value)),
+                  'content' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
                 ),
                 array(
                   'name' => 'MEMBERSHIP_YEAR',
@@ -690,7 +691,7 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
     
     default:
 
-      // Report to Drush results
+      // Report results to Drush
       $results['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsevent-birthday", "dsevent-reg-365" and "dsevent-reg-90" are currently supported.';
       $results['sent'] = '0';
 
@@ -715,8 +716,8 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
     
     // Record the number of messages sent
     if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
-      stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $dispatch_result['sent']);
-      stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $dispatch_result['sent']);
+      stathat_ez_count(STATHAT_ACCOUNT, $op . ' messages sent - count.', $dispatch_result['sent']);
+      stathat_ez_value(STATHAT_ACCOUNT, $op . ' messages sent - value.', $dispatch_result['sent']);
     }
   
   }
@@ -737,16 +738,19 @@ function dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag
  *  Operation to perform - various types of event to collect users and send
  *  messages.
  *
- * @param string $target_date
+ * @param int $target_drop
+ *  The drop message to send in the message drip series.
+ *
+ * @param int $test_flag
  *  The target date in international format - YYYY-MM-DD
  *
- * @param string $target_drop
- *  The drop message to send in the message drip series.
+ * @param string $target_date
+ *  The target date in international format - YYYY-MM-DD
  *
  * @return $test_flag
  *  A flag for debugging to use test data rather than values found in the database.
  */
-function dosomething_mandrill_dispatch_drip($op, $target_date=NULL, $target_drop=1, $test_flag=TRUE) {
+function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE, $target_date=NULL) {
   
   $to = array();
   $merge_vars = array();
@@ -848,8 +852,8 @@ function dosomething_mandrill_dispatch_drip($op, $target_date=NULL, $target_drop
     
     // Record the number of messages sent
     if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
-      stathat_ez_count('dlee@dosomething.org', $op . ' messages sent - count.', $dispatch_result['sent']);
-      stathat_ez_value('dlee@dosomething.org', $op . ' messages sent - value.', $dispatch_result['sent']);
+      stathat_ez_count(STATHAT_ACCOUNT, $op . ' messages sent - count.', $dispatch_result['sent']);
+      stathat_ez_value(STATHAT_ACCOUNT, $op . ' messages sent - value.', $dispatch_result['sent']);
     }
   
   }

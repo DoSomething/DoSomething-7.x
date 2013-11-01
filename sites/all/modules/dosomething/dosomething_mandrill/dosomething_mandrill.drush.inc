@@ -27,10 +27,10 @@ function dosomething_mandrill_drush_command() {
  * - Registration aniverasry - dsevent-reg-365
  *     Every year up to the first user registration (2008)
  */
-function drush_dosomething_mandrill_dispatch_events($op, $target_date=NULL, $test_flag=TRUE) {
+function drush_dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date=NULL) {
   try {
     
-    $results = dosomething_mandrill_dispatch_events($op, $target_date, $test_flag);
+    $results = dosomething_mandrill_dispatch_events($op, $test_flag, $target_date);
     
     drush_print(dt($results['send_status']));
     drush_print(dt($results['sent'] . " messages sent..."));
@@ -45,12 +45,12 @@ function drush_dosomething_mandrill_dispatch_events($op, $target_date=NULL, $tes
  * Drush command to trigger sending Mandrill based messages to Drupal user
  * accounts for:
  *
- * - 
+ * - Mind on Your Money campaign - dsdrip-momm
  */
-function drush_dosomething_mandrill_dispatch_drips($op, $target_date=NULL, $target_drop=1, $test_flag=TRUE) {
+function drush_dosomething_mandrill_dispatch_drips($op, $target_drop=1, $test_flag=TRUE, $target_date=NULL) {
   try {
     
-    $results = dosomething_mandrill_dispatch_drip($op, $target_date, $target_drop, $test_flag);
+    $results = dosomething_mandrill_dispatch_drip($op, $target_drop, $test_flag, $target_date);
     
     drush_print(dt($results['send_status']));
     drush_print(dt($results['sent'] . " messages sent..."));
