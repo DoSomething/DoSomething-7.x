@@ -23,6 +23,12 @@ function dosomething_mandrill_menu() {
 		'page arguments' => array(2, 3, 4),
     'access callback' => TRUE,
 	);
+  
+	$items['dosomething_mandrill/dispatch_events/%/%'] = array(
+    'page callback' => 'dosomething_mandrill_dispatch_events',
+		'page arguments' => array(2, 3),
+    'access callback' => TRUE,
+	);
 	
   $items['dosomething_mandrill/dispatch_drip_events/%/%/%/%'] = array(
     'page callback' => 'dosomething_mandrill_dispatch_drip',
@@ -147,24 +153,27 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
 }
 
 /**
- * dosomething_mandrill_dispatch
+ * Triggeres the sending of a Mandrill transactional email message using a target Mandrill template.
+ * If a specific template is not provided then default to a general DoSomething themed template
  *
  * NOTE: See http://drupalcode.org/project/examples.git/blob_plain/refs/heads/7.x-1.x:/email_example/email_example.module
  * for fully functional example.
  *
- * Triggeres the sending of a Mandrill transactional email message using a target Mandrill template.
- * If a specific template is not provided then default to a general DoSomething themed template
+ * @param string $to
+ *   Send to email address (required)
  *
- * $to - send to email address (required)
+ * @param string $key = 'dsplain'
+ *   The mail system key value as defined in /admin/config/system/mailsystem. The key is assigned
+ *   to a Mandrill template in the Mandrill Template module: /admin/config/services/mandrill/templates The key setting
+ *   determines what mail system and Mandrill template to use when sending a message.
  *
- * $key = 'dsplain' - The mail system key value as defined in /admin/config/system/mailsystem. The key is assigned
- * to a Mandrill template in the Mandrill Template module: /admin/config/services/mandrill/templates The key setting
- * determines what mail system and Mandrill template to use when sending a message.
+ *   Note that *|merge vars|* should be within the message body.
  *
- * Note that *|merge vars|* should be within the message body.
- * 
- * $merge_vars = NULL : Variables within the custom message text or within the template that will be dynamically
- * replace with custom content specific to each message. Variables are denoted with *|<some name|*
+ * @param string $merge_vars = NULL
+ *   Variables within the custom message text or within the template that will be dynamically
+ *   replace with custom content specific to each message. Variables are denoted with *|<some name|*
+ *
+ * @retun array $message_status
  * 
  */
 function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test_flag=FALSE) {
@@ -190,16 +199,18 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test
               array('%to' => $to, '%key' => $key), WATCHDOG_INFO);
 	}
   
-  return $message_status['result'];
+  return $message_status;
 
 }
 
 /**
  * Implements hook_mail().
  *
- * $key: An identifier of the mail.
+ * @param string $key
+ *   An identifier of the mail.
  *
- * &$message: An array to be filled in. Elements in this array include:
+ * @param array &$message
+ * An array to be filled in. Elements in this array include:
  *
  *   id:      An ID to identify the mail sent. Look at module source code or
  *            drupal_mail() for possible id values.
@@ -225,7 +236,8 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test
  *            MIME-Version, Content-Type, etc. drupal_mail() pre-fills several
  *            headers in this array.
  *
- * $params: An array of parameters supplied by the caller of drupal_mail().
+ * @param array $params
+ * An array of parameters supplied by the caller of drupal_mail().
  *
  *
  * Example use:
@@ -359,10 +371,12 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   $mandrill_params['params'] = $message['params'];
 
   $global_merge_vars = array();
-  $global_merge_vars[] = array(
-    'name' => 'subject',
-    'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
-  );
+  if ($message['subject'] != '' || $mandrill_params['subject'] != '') {
+    $global_merge_vars[] = array(
+      'name' => 'subject',
+      'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
+    );
+  }
   $global_merge_vars[] = array(
     'name' => 'from',
     'content' => isset($message['from']) ? $message['from'] : $mandrill_params['from'],
@@ -661,7 +675,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
             );
 
             $merge_vars[] = array(
-              'rcpt' => $user->mail,
+              'rcpt' => $user_details->mail,
               'vars' => array(
                 array(
                   'name' => 'FNAME',
@@ -711,8 +725,8 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
     $dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
     
     // Report to Drush results
-    $dispatch_result['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
-    $dispatch_result['sent'] = $dispatch_results ? count($to) : 'Error';
+    $dispatch_result['send_status'] = $dispatch_results['result'] ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
+    $dispatch_result['sent'] = $dispatch_results['result'] ? count($to) : 'Error';
     
     // Record the number of messages sent
     if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
@@ -847,7 +861,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
     $dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
     
     // Report to Drush results
-    $dispatch_result['send_status'] = $dispatch_results ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
+    $dispatch_result['send_status'] = $dispatch_results['result'] ? 'Success sending ' . $op . ' Mandrill messages.' : 'Error sending ' . $op . ' Mandrill messages.';
     $dispatch_result['sent'] = count($to);
     
     // Record the number of messages sent
