@@ -66,13 +66,12 @@ class MandrillMailSystem implements MailSystemInterface {
     $mailer = mandrill_get_api_object();
 
     // Apply input format to body.
-    $html = $message['body'];
     $format = variable_get('mandrill_filter_format', '');
     if (!empty($format)) {
-      $html = check_markup($message['body'], $format);
+      $message['body'] = check_markup($message['body'], $format);
     }
 
-    // Extract an arry of recipients.
+    // Extract an array of recipients.
     $to = mandrill_get_to($message['to']);
 
     // Prepare headers, defaulting the reply-to to the from address since
@@ -103,10 +102,16 @@ class MandrillMailSystem implements MailSystemInterface {
       }
     }
 
+    // Account for the plaintext parameter provided by the mimemail module.
+    $plain_text = empty($message['params']['plaintext']) ? drupal_html_to_text($message['body']) : $message['params']['plaintext'];
+
+    // Get metadata.
+    $metadata = isset($message['metadata']) ? $message['metadata'] : array();
+
     $from = mandrill_from();
     $mandrill_message = array(
-      'html' => $html,
-      'text' => drupal_html_to_text($message['body']),
+      'html' => $message['body'],
+      'text' => $plain_text,
       'subject' => $message['subject'],
       'from_email' => $from['email'],
       'from_name' => $from['name'],
@@ -123,6 +128,7 @@ class MandrillMailSystem implements MailSystemInterface {
       'google_analytics_campaign' => variable_get('mandrill_analytics_campaign', ''),
       'attachments' => $attachments,
       'view_content_link' => $view_content,
+      'metadata' => $metadata,
     );
 
     // Allow other modules to alter the Mandrill message, and sender/args.
@@ -131,7 +137,6 @@ class MandrillMailSystem implements MailSystemInterface {
       'function' => 'mandrill_sender_plain',
       'args' => array(),
     );
-    
     drupal_alter('mandrill_mail', $mandrill_params, $message);
 
     // Queue for processing during cron or send immediately.
@@ -139,12 +144,13 @@ class MandrillMailSystem implements MailSystemInterface {
     if (mandrill_process_async()) {
       $queue = DrupalQueue::get(MANDRILL_QUEUE, TRUE);
       $queue->createItem($mandrill_params);
-      watchdog('mandrill', 'Message from %from to %to queued for delivery.',
-        array(
-          '%from' => $from['email'],
-          '%to' => $to[0]['email'],
-          WATCHDOG_NOTICE
-        ));
+      if (variable_get('mandrill_batch_log_queued', TRUE)) {
+        watchdog('mandrill', 'Message from %from to %to queued for delivery.',
+          array(
+            '%from' => $from['email'],
+            '%to' => $to[0]['email'],
+          ), WATCHDOG_NOTICE);
+      }
       return TRUE;
     }
     else {

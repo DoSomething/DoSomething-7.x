@@ -77,7 +77,19 @@ $activity->sets = array(
     'mdata_id'     => 10959,
     'game_id'      => SmsFlowGameConstants::RUN_50CANS_TIPS,
     'opt_in_paths' => array(161819, 161821, 161823, 161825, 161827, 161829, 161831, 161833, 161835, 161837, 161839, 161841),
-  )
+  ),
+  // Teens for Jeans 2013 - MARKET tips
+  array(
+    'mdata_id'     => 11007,
+    'game_id'      => SmsFlowGameConstants::TFJ_MARKET_TIPS,
+    'opt_in_paths' => array(162875, 162877, 162879),
+  ),
+  // Teens for Jeans 2013 - RUN tips
+  array(
+    'mdata_id'     => 11009,
+    'game_id'      => SmsFlowGameConstants::TFJ_RUN_TIPS,
+    'opt_in_paths' => array(162881, 162883, 162885, 162887),
+  ),
 );
 
 $activity = $workflow->newActivity('end');
@@ -185,6 +197,13 @@ $activity->sets = array(
     'game_id' => SmsFlowGameConstants::GGW_TABLET_TIPS,
     'opt_in_paths' => array(162553, 162555, 162557, 162559, 162561, 162563, 162565, 162567, 162569, 162571),
     'should_loop' => TRUE,
+  ),
+  // Teens for Jeans 2013 - PRIZE guide
+  array(
+    'mdata_id' => 11001,
+    'game_id' => SmsFlowGameConstants::TFJ_PRIZE_GUIDE,
+    'opt_in_paths' => array(162865, 162867),
+    'should_loop' => TRUE
   ),
 );
 

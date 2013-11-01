@@ -77,6 +77,8 @@ can make Mandrill the default mail system and make that Template Map the
 default template, or you can clone the Template Map for each module/key pair
 and assign them individually.
 
+You should also consider enabling the css-inline feature in your Mandrill account under Settings -> Sending Options. For more info, see "http://help.mandrill.com/entries/24460141-Does-Mandrill-inline-CSS-automatically-".
+
 ## REPORTS
 The mandrill_reports sub-module provides reports on various metrics. It may
 take a long time to load. This module is due for some attention.
@@ -87,6 +89,11 @@ URL interactions for the past 30 days.
 
 ### Account Summary
 Shows account information, quotas, and all-time usage stats.
+
+## Activity
+The Mandrill Activity sub-modules allows users to view email activity for any
+Drupal entity with a valid email address. Configuration and usage details are in
+sub-module's README file.
 
 ## SEND TEST EMAIL
 

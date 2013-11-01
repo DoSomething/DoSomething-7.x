@@ -283,3 +283,18 @@ function dosomething_campaign_styles_theme() {
 
   return $theme;
 }
+
+/**
+ * Gets template file and parses any PHP in it.
+ */
+function dosomething_campaign_styles_get_include_contents($filename) {
+  if (is_file($filename)) {
+    ob_start();
+    include $filename;
+    $contents = ob_get_contents();
+    ob_end_clean();
+    return $contents;
+  }
+
+  return FALSE;
+}

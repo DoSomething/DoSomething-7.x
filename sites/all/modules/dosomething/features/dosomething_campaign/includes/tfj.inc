@@ -6,7 +6,7 @@
  */
 
 /**
- * Form constructor for the user profile school field form.
+ * Form constructor for the TFJ signup data form.
  *
  * @see dosomething_campaign_tfj_signup_data_form_submit()
  *
@@ -150,6 +150,24 @@ function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state
       }
     }
   }
+  // If an address field has been populated, make sure they all have values:
+  if (!empty($form_state['values']['address_name']) || !empty($form_state['values']['address1']) || !empty($form_state['values']['address_city']) || !empty($form_state['values']['address_state']) || !empty($form_state['values']['address_zip'])) {
+    if (empty($form_state['values']['address_name'])) {
+      form_set_error('address_name', 'Please enter your name.');
+    }
+    if (empty($form_state['values']['address1'])) {
+      form_set_error('address1', 'Please enter your address.');
+    }
+    if (empty($form_state['values']['address_city'])) {
+      form_set_error('address_city', 'Please enter your city.');
+    }
+    if (empty($form_state['values']['address_state'])) {
+      form_set_error('address_state', 'Please select your state.');
+    }
+    if (empty($form_state['values']['address_zip'])) {
+      form_set_error('address_zip', 'Please enter your zipcode.');
+    }
+  }
 }
 
 /**
@@ -205,4 +223,62 @@ function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) 
   // Tell the browser to close the modal.
   // @see dosomething_modal_form_builder() for where this is executed.
   $form_state['ajax_commands'][] = ctools_modal_command_dismiss();
+}
+
+/**
+ * Returns either a link to the TFJ gate, or a form to signup an auth user.
+ *
+ * @param string $label 
+ *  Label to display on the signup button.
+ * @param array $classes 
+ *  Array of css classes to apply to the signup button.
+ *
+ * @return string
+ *  HTML of either the link, or the rendered form to print.
+ */
+function dosomething_campaign_tfj_get_signup_button($label = 'Do This', $classes = array('btn', 'btn-cta-large')) {
+  global $user;
+  $tfj_nid = variable_get('tfj_campaign_nid', 731115);
+  // If anonymous user, return link to the TFJ gate page:
+  if ($user->uid == 0) {
+    return l($label, 'user/login', array(
+      'attributes' => array('class' => $classes),
+      'query' => array('destination' => 'node/' . $tfj_nid),
+    ));
+  }
+  // Otherwise, return the rendered Campaign Join form:
+  return render(drupal_get_form('dosomething_campaign_tfj_join_form', $label, $classes));
+}
+
+/**
+ * Form constructor for the join form for logged-in user who hasn't signed up yet.
+ *
+ * @see dosomething_campaign_tfj_signup_data_form_submit()
+ *
+ * @param string $label
+ *  Label to display on the submit button.
+ *
+ * @ingroup forms
+ */
+function dosomething_campaign_tfj_join_form($form, &$form_state, $label, $classes) {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => $label,
+    '#attributes' => array(
+      'class' => $classes,
+    ),
+  );
+  return $form;
+}
+
+/**
+ * Form submission handler for dosomething_campaign_tfj_join_form().
+ *
+ * @see dosomething_campaign_tfj_join_form()
+ */
+function dosomething_campaign_tfj_join_form_submit(&$form, &$form_state) {
+  global $user;
+  $node = node_load(variable_get('tfj_campaign_nid', 731115));
+  dosomething_campaign_signup($user, $node);
 }
