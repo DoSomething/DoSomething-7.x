@@ -149,7 +149,9 @@ img
   list-style-type: disc
   padding-left: 3em
   margin-bottom: 2rem
-
+  //color: $campaign-accent
+  //li span
+    //color: black
 
 .cta-leftcol
   display: block
@@ -416,7 +418,7 @@ h1.headline-callout
     display: inline-block
     padding: 0.2em 0.5em 0px
     text-transform: uppercase
-    background: #000
+    background: $campaign-accent
     color: #fff
 
     @include respond-to(phones)
@@ -444,6 +446,7 @@ h1.headline-callout
 
 .official-rules
   color: #ccc !important
+  font-weight: 500
 
 .error
   background: none
@@ -536,4 +539,10 @@ strong
 
 .btn-cta-large
   font-size: em-calc(24)
+
+
+// CAMPAIGN MODS
+// -------------
+.nocaps
+  text-transform: none !important
 
