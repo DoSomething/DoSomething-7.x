@@ -33,6 +33,8 @@ function dosomething_mandrill_theme($existing, $type, $theme, $path) {
  * 
  */
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
+  
+  $message = array();
 
   // Campaign Report Back submissions
   if ($node->type == 'campaign_report_back') {
@@ -297,9 +299,6 @@ function dosomething_mandrill_mail($key, &$message, $params) {
 
       $message['subject'] = isset($params['subject']) ? $params['subject'] : '';
       $message['body'] = isset($params['body']) ? $params['body'] : '';
-      
-      // Mass mailout to address
-      // count($message['to'] > 1) ? 
 
   }
 
@@ -438,6 +437,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
   $to = array();
   $merge_vars = array();
   $global_merge_vars = array();
+  $message = array();
   $dispatch_result = array();
   $results = array();
   
@@ -729,6 +729,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
   
   $to = array();
   $merge_vars = array();
+  $message = array();
   $global_merge_vars = array();
   $dispatch_result = array();
   $tagret_stamp = 0;
