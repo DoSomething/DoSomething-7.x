@@ -70,6 +70,19 @@ function dosomething_campaign_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function dosomething_campaign_menu() {
+  $items = array();
+  $items['admin/reports/teensforjeans'] = array(
+    'title' => 'Teens For Jeans Report',
+    'page callback' => 'dosomething_campaign_tfj_report_page',
+    'access arguments' => array('access administration menu'),
+  );
+  return $items;
+}
+
+/**
  * Handles a campaign signup via login through campaign gate.
  *
  * @param $account
