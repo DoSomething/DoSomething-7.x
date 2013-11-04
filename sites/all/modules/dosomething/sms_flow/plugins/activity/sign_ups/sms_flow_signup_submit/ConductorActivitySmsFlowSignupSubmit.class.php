@@ -12,12 +12,10 @@ class ConductorActivitySmsFlowSignupSubmit extends ConductorActivity {
   public $nid;
 
   /**
-   * Key/Value pair defining where data retrieved through the workflow should get 
-   * submitted. Key is a field name in the sign up form, and Value is a context
-   * name to get the corresponding data from.
-   * @var array
+   * Context value to get the GSID from.
+   * @var String
    */
-  public $submission_fields;
+  public $schoolContext;
 
   public function run() {
     $state = $this->getState();
@@ -26,14 +24,16 @@ class ConductorActivitySmsFlowSignupSubmit extends ConductorActivity {
     $user = sms_flow_get_or_create_user_by_cell($mobile);
     if ($user && isset($this->nid)) {
 
-      // Build the array of data to submit with this sign up
-      $signup_data = array();
-      foreach ($this->submission_fields as $fieldName => $contextKey) {
-        $signup_data[$fieldName] = $state->getContext($contextKey);
+      // Get the school GSID if given a context to get the data from
+      $schoolGsid = NULL;
+      if (isset($this->schoolContext)) {
+        $schoolGsid = intval($state->getContext($this->schoolContext));
       }
 
-      // Submit the sign up
-      dosomething_signups_insert_signup($user->uid, $this->nid, $signup_data);
+      // Submit the sign up as long as the user hasn't already signed up before
+      if (!dosomething_signups_is_user_signed_up($user->uid, $this->nid)) {
+        dosomething_signups_insert_signup($user->uid, $this->nid, $schoolGsid);
+      }
     }
 
     $state->markCompleted();

@@ -62,9 +62,7 @@ $activity->name = 'submit_sign_up';
 $activity->inputs = array('school_found', 'school_search');
 $activity->outputs = array('end_message');
 $activity->nid = 731115;
-$activity->submission_fields = array(
-  'gsid' => 'school_gsid',
-);
+$activity->schoolContext = 'school_gsid';
 
 $activity = $workflow->newActivity('mobile_commons_opt_in');
 $activity->name = 'end_message';
