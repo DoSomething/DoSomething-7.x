@@ -67,7 +67,12 @@ function dosomething_signups_get_signup_data($uid, $nid) {
     ->execute()
     ->fetchAssoc();
   if ($result && $result['data']) {
-    return unserialize($result['data']);
+    if ($nid != 731115) {
+      return unserialize($result['data']);
+    }
+    else {
+      return $result['data'];
+    }
   }
   return FALSE;
 }
@@ -85,10 +90,14 @@ function dosomething_signups_get_signup_data($uid, $nid) {
 function dosomething_signups_update_signup_data($uid, $nid, $data) {
   // Sanity check to avoid errors if signup record doesn't exist:
   if (dosomething_signups_is_user_signed_up($uid, $nid)) {
+    // If not TFJ, serialize:
+    if ($nid != 731115) {
+      $data = serialize($data);
+    }
     // Update the data field:
     $update = db_update('dosomething_campaign_signups')
     ->fields(array(
-      'data' => serialize($data),
+      'data' => $data,
       ))
     ->condition('uid', $uid)
     ->condition('nid', $nid)  

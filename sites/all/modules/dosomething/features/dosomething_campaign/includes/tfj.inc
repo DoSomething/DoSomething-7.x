@@ -184,18 +184,18 @@ function dosomething_campaign_tfj_signup_data_form_submit(&$form, &$form_state) 
 
   // Check for "Not affiliated" value first:
   if ($form_state['values']['not_affiliated'] == 1) {
-    $signup_data['no_school'] = 'not affiliated';
+    $signup_data = -1;
   }
   // Else if a school has been found:
   elseif (isset($form_state['values']['school_id'])) {
     // Save school id to user profile.
     dosomething_user_update_school($user, $form_state['values']['school_id']);  
     // Write gsid to signups table:
-    $signup_data['gsid'] = $form_state['values']['gsid'];
+    $signup_data = $form_state['values']['gsid'];
   }
   // Else if "school not listed" if that option was selected:
   elseif ($form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY) {
-    $signup_data['no_school'] = 'school not listed';
+    $signup_data = 0;
   }
   
   // If we have enough address values to actually mail something to someone:
