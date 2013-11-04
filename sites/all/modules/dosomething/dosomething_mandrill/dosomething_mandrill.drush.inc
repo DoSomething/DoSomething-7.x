@@ -26,6 +26,8 @@ function dosomething_mandrill_drush_command() {
  * - 90 Days since registration - dsevent-reg-90
  * - Registration aniverasry - dsevent-reg-365
  *     Every year up to the first user registration (2008)
+ *
+ * ex: drush mandrill-dispatch-event dsevent-birthday 0 2013-11-04
  */
 function drush_dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date=NULL) {
   try {
@@ -46,6 +48,8 @@ function drush_dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $targe
  * accounts for:
  *
  * - Mind on Your Money campaign - dsdrip-momm
+ *
+ * ex: drush mandrill-dispatch-drip dsdrip-momm 1 0 2013-11-04
  */
 function drush_dosomething_mandrill_dispatch_drips($op, $target_drop=1, $test_flag=TRUE, $target_date=NULL) {
   try {

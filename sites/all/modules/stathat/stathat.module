@@ -11,7 +11,7 @@
 /*
  * Impliments hook_libraries_info() - Support for stathat.com graphing / report service
  */
-function dosomething_mandrill_libraries_info() {
+function stathat_libraries_info() {
   
   $libraries['stathat'] = array(
     'name' => 'Stathat library',
@@ -25,4 +25,11 @@ function dosomething_mandrill_libraries_info() {
   
   return $libraries;
   
+}
+
+function stathat_library_loaded() {
+  if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
+    return TRUE;
+  }
+  return FALSE;
 }

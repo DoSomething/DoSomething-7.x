@@ -9,38 +9,6 @@ define('WEEK', 604800); // 60*60*24*7
 define('STATHAT_ACCOUNT', 'dlee@dosomething.org');
 
 /*
- * Impliments hook_menu()
- *
- * Used for development / testing. Remove to force Drush access to the same
- * functionality.
- */
-function dosomething_mandrill_menu() {
-  
-  $items = array();
-	
-	$items['dosomething_mandrill/dispatch_events/%/%/%'] = array(
-    'page callback' => 'dosomething_mandrill_dispatch_events',
-		'page arguments' => array(2, 3, 4),
-    'access callback' => TRUE,
-	);
-  
-	$items['dosomething_mandrill/dispatch_events/%/%'] = array(
-    'page callback' => 'dosomething_mandrill_dispatch_events',
-		'page arguments' => array(2, 3),
-    'access callback' => TRUE,
-	);
-	
-  $items['dosomething_mandrill/dispatch_drip_events/%/%/%/%'] = array(
-    'page callback' => 'dosomething_mandrill_dispatch_drip',
-		'page arguments' => array(2, 3, 4, 5),
-    'access callback' => TRUE,
-	);
-  
-  return $items;
-
-}
-
-/*
  * Impliments hook_theme()
  */
 function dosomething_mandrill_theme($existing, $type, $theme, $path) {
@@ -470,6 +438,8 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
   $to = array();
   $merge_vars = array();
   $global_merge_vars = array();
+  $dispatch_result = array();
+  $results = array();
   
   switch ($op):
 
@@ -484,28 +454,24 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
       else {
         $target_date = date('m-d', strtotime($target_date));
       }
-      
+
       $results = db_query("
         SELECT
-          u.uid,
-          u.mail,
+          fdfub.field_user_birthday_value,
           fdfufn.field_user_first_name_value,
-          fdfub.field_user_birthday_value
+          u.mail
         FROM
-          {users} u,
-          {profile} p,
-          {field_data_field_user_first_name} fdfufn,
           {field_data_field_user_birthday} fdfub
+          LEFT JOIN {profile} p ON p.pid = fdfub.entity_id
+          LEFT JOIN {field_data_field_user_birthday} fdfub ON fdfub.entity_id = p.pid
+          LEFT JOIN {field_data_field_user_first_name} fdfufn ON fdfufn.entity_id = p.pid
+          LEFT JOIN {users} u ON u.uid = p.uid
         WHERE
-          fdfub.field_user_birthday_value LIKE :target_date
+          SUBSTRING(fdfub.field_user_birthday_value, 6, 5) = :target_date
           AND
-          fdfub.entity_id = p.pid
-          AND
-          p.pid = u.uid
-          AND
-          p.uid = fdfufn.entity_id",
+          u.mail != '@mobile'",
           array(
-            ':target_date' => '%-' . $target_date . '%'
+            ':target_date' => $target_date
           ));
 
       foreach($results as $user_details) {
@@ -515,7 +481,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
 
           $to[] = array(
             'email' => $user_details->mail,
-            'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
+            'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomething Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
           );
 
           $merge_vars[] = array(
@@ -553,32 +519,31 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
         $target_date_stamp = strtotime('-90 days');
       }
       else {
-        $target_date_stamp = strtotime($target_date) - 60*60*24*90;
+        $target_date_stamp = strtotime($target_date) - 60*60*24*90;  // 699840000
       }
+      // Round to nearest day
+      $offset = $target_date_stamp % 86400;
+      $target_date_stamp = $target_date_stamp - $offset;
       
       $results = db_query("
         SELECT
-          u.uid,
-          u.created,
-          u.mail,
-          fdfufn.field_user_first_name_value
+          fdfufn.field_user_first_name_value,
+          u.mail
         FROM
-          {users} u,
-          {profile} p,
-          {field_data_field_user_first_name} fdfufn
+          {users} u
+          LEFT JOIN {profile} p ON p.uid = u.uid
+          LEFT JOIN {field_data_field_user_first_name} fdfufn ON fdfufn.entity_id = p.pid
         WHERE
           u.created >= :target_date_stamp
           AND
           u.created <= :target_date_stamp_end
           AND
-          u.uid = p.pid
-          AND
-          p.uid = fdfufn.entity_id",
+          u.mail != '@mobile'",
           array(
             ':target_date_stamp' => $target_date_stamp,
-            ':target_date_stamp_end' => $target_date_stamp + + 60*60*24
+            ':target_date_stamp_end' => $target_date_stamp + 60*60*24
           ));
-
+      
       foreach($results as $user_details) {
 
         // Skip if missing user email address
@@ -586,7 +551,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
 
           $to[] = array(
             'email' => $user_details->mail,
-            'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user_details->field_user_first_name_value,
+            'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomething Doer' : $user_details->field_user_first_name_value,
           );
 
           $merge_vars[] = array(
@@ -594,7 +559,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
             'vars' => array(
               array(
                 'name' => 'FNAME',
-                'content' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
+                'content' => $user_details->field_user_first_name_value == NULL ? 'DoSomething Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
               ),
             ),
           );
@@ -624,33 +589,31 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
       else {
         $start_stamp = strtotime($target_date) - 60*60*24*365;
       }
+      // Round to nearest day
+      $offset = $start_stamp % 86400;
+      $start_stamp = $start_stamp - $offset;
 
       // Oldest entry: 1210614999 - query signups for the same day each year
       for ($year_stamp = $start_stamp; $year_stamp >= 1210614999; $year_stamp = $year_stamp - (60*60*24*365)) {
         
-        
-      $results = db_query("
-        SELECT
-          u.uid,
-          u.created,
-          u.mail,
-          fdfufn.field_user_first_name_value
-        FROM
-          {users} u,
-          {profile} p,
-          {field_data_field_user_first_name} fdfufn
-        WHERE
-          u.created >= :target_timestamp
-          AND
-          u.created <= :target_timestamp_end
-          AND
-          u.uid = p.pid
-          AND
-          p.uid = fdfufn.entity_id",
-          array(
-            ':target_timestamp' => $year_stamp,
-            ':target_timestamp_end' => $year_stamp + 60*60*24,
-          ));
+        $results = db_query("
+          SELECT
+            fdfufn.field_user_first_name_value,
+            u.mail
+          FROM
+            {users} u
+            LEFT JOIN {profile} p ON p.uid = u.uid
+            LEFT JOIN {field_data_field_user_first_name} fdfufn ON fdfufn.entity_id = p.pid
+          WHERE
+            u.created >= :target_timestamp
+            AND
+            u.created <= :target_timestamp_end
+            AND
+            u.mail != '@mobile'",
+            array(
+              ':target_timestamp' => $year_stamp,
+              ':target_timestamp_end' => $year_stamp + 60*60*24,
+            ));
 
         // Calculate suffex of the membership year
         $created_year = floor((time() - $year_stamp) / (60*60*24*365)); // 31536000
@@ -671,7 +634,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
 
             $to[] = array(
               'email' => $user_details->mail,
-              'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user_details->field_user_first_name_value,
+              'name' => $user_details->field_user_first_name_value == NULL ? 'DoSomething Doer' : $user_details->field_user_first_name_value,
             );
 
             $merge_vars[] = array(
@@ -679,7 +642,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
               'vars' => array(
                 array(
                   'name' => 'FNAME',
-                  'content' => $user_details->field_user_first_name_value == NULL ? 'DoSomethng Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
+                  'content' => $user_details->field_user_first_name_value == NULL ? 'DoSomething Doer' : ucfirst(strtolower($user_details->field_user_first_name_value)),
                 ),
                 array(
                   'name' => 'MEMBERSHIP_YEAR',
@@ -689,7 +652,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
             );
 
           }
-
+          
         }
 
       }
@@ -706,13 +669,12 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
     default:
 
       // Report results to Drush
-      $results['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsevent-birthday", "dsevent-reg-365" and "dsevent-reg-90" are currently supported.';
-      $results['sent'] = '0';
-
-      return $results;
+      $dispatch_result['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsevent-birthday", "dsevent-reg-365" and "dsevent-reg-90" are currently supported.';
+      $dispatch_result['sent'] = '0';
 
   endswitch;
   
+  // Respond to list of target email addresses
   if (count($to) > 0) {
   
     // Format merge details based on Mandrill API
@@ -729,14 +691,14 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
     $dispatch_result['sent'] = $dispatch_results['result'] ? count($to) : 'Error';
     
     // Record the number of messages sent
-    if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
+    if (module_exsists('stathat') && stathat_library_loaded()) {
       stathat_ez_count(STATHAT_ACCOUNT, $op . ' messages sent - count.', $dispatch_result['sent']);
       stathat_ez_value(STATHAT_ACCOUNT, $op . ' messages sent - value.', $dispatch_result['sent']);
     }
   
   }
   else {
-    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and taget drop: ' . $target_drop;
+    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and target drop: ' . $target_drop;
     $dispatch_result['sent'] = 0;
   }
 
@@ -769,12 +731,13 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
   $to = array();
   $merge_vars = array();
   $global_merge_vars = array();
-  $taget_stamp = 0;
+  $dispatch_result = array();
+  $tagret_stamp = 0;
   
   // Assume target_date is current date if not defined
   
   if ($target_date == NULL) {
-    $taget_stamp = strtotime('today') - (WEEK * 1);
+    $target_stamp = strtotime('today') - (WEEK * 1);
   }
   else {
     $target_stamp = strtotime($target_date) - (WEEK * $target_drop);
@@ -791,25 +754,19 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
           u.mail,
           fdfufn.field_user_first_name_value
         FROM
-          dosomething_campaign_signups dcs,
-          users u,
-          profile p,
-          field_data_field_user_first_name fdfufn
+          dosomething_campaign_signups dcs
+          LEFT JOIN users u ON u.uid = dcs.uid
+          LEFT JOIN profile p ON p.uid = u.uid
+          LEFT JOIN field_data_field_user_first_name fdfufn ON fdfufn.entity_id = p.pid
         WHERE
           dcs.nid = 731098
           AND
           dcs.timestamp >= :timestamp
           AND
-          dcs.timestamp <= :timestamp_end
-          AND
-          dcs.uid = u.uid
-          AND
-          dcs.uid = p.uid
-          AND
-          p.pid = fdfufn.entity_id",
+          dcs.timestamp <= :timestamp_end",
           array(
             ':timestamp' => $target_stamp,
-            ':timestamp_end' => $target_stamp + 86400
+            ':timestamp_end' => $target_stamp + (60*60*24) // One day: 86400
           ));
 
       foreach($results as $user) {
@@ -819,7 +776,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
 
           $to[] = array(
             'email' => $user->mail,
-            'name' => $user->field_user_first_name_value == NULL ? 'DoSomethng Doer' : $user->field_user_first_name_value,
+            'name' => $user->field_user_first_name_value == NULL ? 'DoSomething Doer' : $user->field_user_first_name_value,
           );
 
           $merge_vars[] = array(
@@ -843,13 +800,13 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
     default:
       
       // Report to Drush the error results
-      $results['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsdrip-momm" currently supported.';
-      $results['sent'] = '0';
+      $dispatch_result['send_status'] = 'Invalid target operation - ' . $op . '. Only "dsdrip-momm" currently supported.';
+      $dispatch_result['sent'] = '0';
       
       
   endswitch;
   
-  // Skip if no results found
+  // Respond to list of target email addresses
   if (count($to) > 0) {
   
     // Format merge details based on Mandrill API
@@ -865,14 +822,14 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
     $dispatch_result['sent'] = count($to);
     
     // Record the number of messages sent
-    if (($stathat_library = libraries_load('stathat')) && !empty($stathat_library['loaded'])) {
+    if (module_exsists('stathat') && stathat_library_loaded()) {
       stathat_ez_count(STATHAT_ACCOUNT, $op . ' messages sent - count.', $dispatch_result['sent']);
       stathat_ez_value(STATHAT_ACCOUNT, $op . ' messages sent - value.', $dispatch_result['sent']);
     }
   
   }
   else {
-    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and taget drop: ' . $target_drop;
+    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and target drop: ' . $target_drop;
     $dispatch_result['sent'] = 0;
   }
   
@@ -888,6 +845,9 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
  * @return string
  */
 function dosomething_mandrill_campaign_listing() {
+  
+  $results = array();
+  $campaigns = array();
   
   // Exclude 96240 - Make Art. Save Art., not sure why this is an entry as it's
   // not in the site Campaign navigaion output
@@ -927,6 +887,9 @@ function dosomething_mandrill_campaign_listing() {
  */
 function dosomething_mandrill_blacklist($target_mails) {
   
+  $blacklisted = array();
+  $white_list = array();
+  
   // First unsubscribe email address based on https://trello.com/c/D9SBXg3n
   $blacklisted[] = 'berrylynn222@yahoo.com';
   
@@ -940,6 +903,6 @@ function dosomething_mandrill_blacklist($target_mails) {
     }
   }
   
-  return $whitelist;
+  return $white_list;
 
 }

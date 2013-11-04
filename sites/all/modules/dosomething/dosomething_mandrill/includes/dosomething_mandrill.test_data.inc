@@ -243,8 +243,8 @@ function dosomething_mandrill_test_data($op) {
   
     default:
       
-      $message_test = 'Error - invalid operation (op)';
-      $to_test = 'Error - invalid operation (op)';
+      $message_test = 'Error - invalid operation (op: ' . $op . ')';
+      $to_test = 'Error - invalid operation (op: ' . $op . ')';
       
   endswitch;
   

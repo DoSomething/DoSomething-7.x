@@ -17,6 +17,8 @@ class DosomethingMandrillMailAlterUnitTestCase extends DrupalUnitTestCase {
    * @see dosomething_mandrill_mandrill_mail_alter(()
    */
   public function testMandrillMailAlter() {
+    
+    $message = array();
 
     // Send basic test message
     $message['FNAME'] = 'TestFirst';
