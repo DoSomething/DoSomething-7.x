@@ -1,0 +1,108 @@
+<?php
+
+class DosomethingMandrillMailAlterUnitTestCase extends DrupalUnitTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Mandrill Test',
+      'description' => 'DoSomething Mandrill mail tests.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * @see dosomething_mandrill_mandrill_mail_alter(()
+   */
+  public function testMandrillMailAlter() {
+    
+    $message = array();
+
+    // Send basic test message
+    $message['FNAME'] = 'TestFirst';
+    
+    // Unit test funcitons
+    // dosomething_mandrill_mail($key, &$message, $params)
+    // dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message)
+    
+    
+    // Test sending message that generates an email via Mandrill
+    $send_status = dosomething_mandrill_dispatch($to, $key, $message, $test=FALSE);
+
+
+    
+    $this->assertEqual($mandrill_params['message']['to'], $mandrill_params_output['message']['to'],
+      "\$mandrill_params['message']['to'] equals expected output.");
+    $this->assertEqual($mandrill_params['message']['global_merge_vars'], $mandrill_params_output['message']['global_merge_vars'],
+      "\$mandrill_params['message']['global_merge_vars'] equals expected output.");
+    $this->assertEqual($mandrill_params['message']['merge_vars'], $mandrill_params_output['message']['merge_vars'],
+      "\$mandrill_params['message']['merge_vars'] equals expected output.");
+  }
+
+}
+
+function mandrilMailData() {
+
+  $message = array(
+    'body' => '',
+    'mandrill_merge_vars' => array(
+      'dlee+dsmandrill-momm-test01.dosomething.org' => array(
+        'unsub' => 'Unsubscribe URL'
+      ),
+    ),
+    'params' => array(
+      'FNAME' => 'Test'
+    ),
+    'to' => 'dlee+dsmandrill-momm-test01.dosomething.org'
+  );
+
+  $mandrill_params = array(
+    'message' => array(
+      'tags' => array(
+        0 => 'dosomething_mandrill_momm13'
+      ),
+      'to' => array(
+        0 => array(
+          'email' => 'dlee+dsmandrill-momm-test01.dosomething.org',
+        ),
+      )
+    )
+  );
+
+ $mandrill_params_output = array(
+   'message' => array(
+      'global_merge_vars' => array(
+        0 => array(
+          'content' => '',
+          'name' => 'subject'
+        ),
+        1 => array (
+          'content' => 'dlee+dsmandrill-momm-test01.dosomething.org',
+          'name' => 'from'
+        ),
+        2 => array(
+          'content' => 'http://www.dosomething.org',
+          'name' => 'domain'
+        )
+      ),
+      'merge_vars' => array(
+        0 => array(
+          'content' => 'Test',
+          'name' => 'FNAME'
+        ),
+      ),
+      'tags' => array(
+        0 => '',
+      ),
+      'to' => array(
+        0 => 'dlee+dsmandrill-momm-test01.dosomething.org'
+     ),
+    ),
+    'params' => array(
+      'FNAME' => 'Test'
+    )
+ );
+ 
+}
