@@ -95,9 +95,19 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
       'placeholder' => t('Zip'),
     ),
   );
+  $form['poster_footer'] = array(
+    '#markup' => '<p><em>Banners will arrive in 3-4 weeks.</em></p>',
+  );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Update My Information'),
+    '#value' => t('Submit'),
+    '#attributes' => array(
+      'class' => array(
+        'btn',
+        'primary',
+        'large'
+      )
+    )
   );
   return $form;
 }
@@ -131,7 +141,7 @@ function dosomething_campaign_tfj_signup_data_form_validate(&$form, &$form_state
   // If no school value and no checkbox, they didn't select anything.
   if (empty($school_name) && !$form_state['values']['not_affiliated']) {
     // Set error to prevent submit.
-    form_set_error('gsid', "Please select a school from the list, or check 'unaffiliated' if you're not in a school.");
+    form_set_error('gsid', "Please select a school from the list, or check \"I won't be participating with a school\" if you're not in a school.");
     return;
   }
   // If a school name has been selected:
