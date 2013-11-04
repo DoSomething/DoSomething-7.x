@@ -35,12 +35,13 @@ function dosomething_signups_can_user_override_join($user) {
 /**
  * Inserts a record for given user UID and campaign node NID in signups table.
  */
-function dosomething_signups_insert_signup($uid, $nid) {
+function dosomething_signups_insert_signup($uid, $nid, $data = NULL) {
   $signup = db_insert('dosomething_campaign_signups')
   ->fields(array(
     'uid' => $uid,
     'nid' => $nid,
     'timestamp' => REQUEST_TIME,
+    'data' => $data,
     ))
   ->execute();
 }
