@@ -283,3 +283,32 @@ function dosomething_campaign_tfj_join_form_submit(&$form, &$form_state) {
   $node = node_load(variable_get('tfj_campaign_nid', 731115));
   dosomething_campaign_signup($user, $node);
 }
+
+/**
+ * Page callback for TFJ Report page.
+ *
+ * @see dosomething_campaign_menu()
+ */
+function dosomething_campaign_tfj_report_page() {
+  return 'There are currently <strong>' . dosomething_campaign_get_distinct_schools_from_signups() . '</strong> schools signed up for Teens for Jeans.';
+}
+
+/*
+ * Selects the count of distinct schools from dosomething_campaign_signups for TFJ.
+ *
+ * @return int
+ */
+function dosomething_campaign_get_distinct_schools_from_signups() {
+  $nid = variable_get('tfj_campaign_nid', 731115);
+  $table = 'dosomething_campaign_signups';
+  $result = db_select($table)
+    ->fields($table, array('data'))
+    ->condition('nid', $nid)
+    // Filter out non-gsid values:
+    ->condition('data', 0, '>')
+    ->distinct()
+    ->countQuery()
+    ->execute()
+    ->fetchField();
+  return $result;
+}
