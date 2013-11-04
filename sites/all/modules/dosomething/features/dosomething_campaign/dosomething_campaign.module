@@ -137,9 +137,20 @@ function dosomething_campaign_signup($account, $node) {
  *
  */
 function dosomething_campaign_submit_signup_address($data) {
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
   // Just hardcodin' some webform nid's over here.
   $node = node_load(variable_get('campaign_signup_address_list_nid', 731111));
-  $submission = new stdClass;
+  // Check if we have already have a submission for the User uid:
+  $sid = dosomething_campaign_get_signup_address_submission($data['uid']);
+
+  // If no submission is found, initalize new submission object:
+  if ($sid === FALSE) {
+    $submission = new stdClass;
+  }
+  else {
+    $submission = webform_get_submission($node->nid, $sid);
+  }
+
   $submission->uid = $data['uid'];
   $submission->submitted = REQUEST_TIME;
   $submission->remote_addr = ip_address();
@@ -156,8 +167,13 @@ function dosomething_campaign_submit_signup_address($data) {
     // Not a typo, component 8 was deleted from the webform.
     9 => array('value' => array($data['email'])),
   );
-  module_load_include('inc', 'webform', 'includes/webform.submissions');
-  return webform_submission_insert($node, $submission);
+  // If new submission:
+  if ($sid === FALSE) {
+    // Insert:
+    return webform_submission_insert($node, $submission);
+  }
+  // Update existing submission:
+  return webform_submission_update($node, $submission);
 }
 
 /**
@@ -172,6 +188,8 @@ function dosomething_campaign_submit_signup_address($data) {
  */
 function dosomething_campaign_get_signup_address_submission($uid) {
   $nid = variable_get('campaign_signup_address_list_nid', 731111);
+  // Potentially we could additionally query by the NID component field, if we use this webform for other campaigns.
+  // For now, just querying to see if the user has any submissions, as we only use this webform for TFJ.
   return db_select("webform_submissions", "s")
     ->fields("s", array("sid"))
     ->condition('uid', $uid)
