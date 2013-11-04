@@ -25,8 +25,8 @@ $activity->no_school_found_activity = 'ask_state';
 $activity = $workflow->newActivity('verify_school_in_profile');
 $activity->name = 'school_found';
 $activity->inputs = array('check_user_school');
-$activity->outputs = array('ask_state', 'end_message', 'end');
-$activity->output_school_correct = 'end_message';
+$activity->outputs = array('ask_state', 'submit_sign_up', 'end');
+$activity->output_school_correct = 'submit_sign_up';
 $activity->output_school_incorrect = 'ask_state';
 $activity->question = t('First, let\'s confirm the school we got from you previously: @school_name. If this is correct, reply Y. If not, reply N.');
 $activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text DRIVE to try again.');
@@ -48,7 +48,7 @@ $activity->question = t('Thanks! And what\'s the name of the school in @context_
 $activity = $workflow->newActivity('gs_school_search');
 $activity->name = 'school_search';
 $activity->inputs = array('ask_school_name');
-$activity->outputs = array('end_message', 'end');
+$activity->outputs = array('submit_sign_up', 'end');
 $activity->state_activity_name = 'ask_state';
 $activity->school_activity_name = 'ask_school_name';
 $activity->max_results = 5;
@@ -57,9 +57,18 @@ $activity->one_school_found_msg = t('We found @school_name in @school_city, @sch
 $activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. Or text DRIVE to try again.');
 $activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text DRIVE to try again.');
 
+$activity = $workflow->newActivity('sms_flow_signup_submit');
+$activity->name = 'submit_sign_up';
+$activity->inputs = array('school_found', 'school_search');
+$activity->outputs = array('end_message');
+$activity->nid = 731115;
+$activity->submission_fields = array(
+  'gsid' => 'school_gsid',
+);
+
 $activity = $workflow->newActivity('mobile_commons_opt_in');
 $activity->name = 'end_message';
-$activity->inputs = array('school_found', 'school_search');
+$activity->inputs = array('submit_sign_up');
 $activity->outputs = array('end');
 $activity->opt_in_path_id = 162835;
 
