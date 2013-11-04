@@ -11,6 +11,9 @@
   width: 13em
   text-align: center
 
+a
+  color: $campaign-accent
+
 // THEME SWITCH
 .sms // Hide "mobile" template on load
   display: none
@@ -134,6 +137,11 @@
 
     @include respond-to(tablets_and_phones)
       width: auto
+.poster
+  p
+    font-size: 1.5em
+  a
+    font-weight: 500
 
 
 // HOW IT WORKS
@@ -172,6 +180,9 @@
 .prizing
   p
     padding: 1em 0
+
+  .section-unit-half
+    margin-bottom: 0
 
   .prizing-container
     width: ( $section-unit-width * 2 )
@@ -349,6 +360,17 @@
     +border-radius(3px)
     +box-shadow(0 10px 10px -10px #bbb !important)
 
+#gallery
+  #pitch
+    padding: 0 1em
+    border-bottom: none
+    .section
+      padding: 0 1em 1.5em
+    @media only screen and (max-width: 600px)
+      .always_span_6, .always_span_4
+        width: 96%
+        padding: 2%
+
 // MAP
 // ---
 .map
@@ -368,6 +390,12 @@
     font-weight: 600
     color: $campaign-accent
 
+// STORE
+// ------
+#store
+  .btn
+    margin: 1em auto
+
 // FAQ
 // ---
 .faq
@@ -380,7 +408,7 @@
   h3
     cursor: pointer
     font-weight: bold
-    color: #999
+    color: $off-black
     &:hover
       text-decoration: underline
 
