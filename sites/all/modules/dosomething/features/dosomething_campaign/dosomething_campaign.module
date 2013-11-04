@@ -159,3 +159,23 @@ function dosomething_campaign_submit_signup_address($data) {
   module_load_include('inc', 'webform', 'includes/webform.submissions');
   return webform_submission_insert($node, $submission);
 }
+
+/**
+ * Returns the submission sid from the Signup Address List webform for a given $uid.
+ *
+ * @param int $uid
+ *   The user uid to find the submission for.
+ *
+ * @return mixed
+ *   Returns integer submission id (sid) if submission exists, FALSE if not.
+ *
+ */
+function dosomething_campaign_get_signup_address_submission($uid) {
+  $nid = variable_get('campaign_signup_address_list_nid', 731111);
+  return db_select("webform_submissions", "s")
+    ->fields("s", array("sid"))
+    ->condition('uid', $uid)
+    ->condition('nid', $nid)
+    ->execute()
+    ->fetchField();
+}
