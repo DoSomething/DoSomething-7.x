@@ -179,10 +179,10 @@ function dosomething_modal_get_default_js_settings() {
     // Defines the size of the modal window.
     'modalSize' => array(
       // Can set to "fixed" or "scale".
-      'type' => 'fixed',
+      'type' => 'scale',
       // Pixel values for "fixed", should be a percentage if "scale".
-      'width' => 400,
-      'height' => 250,
+      'width' => 0.7,
+      'height' => 0.8,
     ),
     // Defines the overlay.
     'modalOptions' => array(
@@ -193,7 +193,7 @@ function dosomething_modal_get_default_js_settings() {
     // modalTheme value corresponds to the prototype.name in the JS file.
     // @see js/dosomething-modal.js
     'modalTheme' => 'DosomethingModalBase',
-    'closeText' => 'Close',
+    'closeText' => 'X',
     // Throbber image for when modal is loading.
     'throbber' => theme('image', array('path' => ctools_image_path('ajax-loader.gif', 'ctools_ajax_sample'), 'alt' => t('Loading...'), 'title' => t('Loading'))),
   );
