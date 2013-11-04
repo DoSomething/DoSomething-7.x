@@ -463,7 +463,6 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
         FROM
           {field_data_field_user_birthday} fdfub
           LEFT JOIN {profile} p ON p.pid = fdfub.entity_id
-          LEFT JOIN {field_data_field_user_birthday} fdfub ON fdfub.entity_id = p.pid
           LEFT JOIN {field_data_field_user_first_name} fdfufn ON fdfufn.entity_id = p.pid
           LEFT JOIN {users} u ON u.uid = p.uid
         WHERE
@@ -691,7 +690,7 @@ function dosomething_mandrill_dispatch_events($op, $test_flag=TRUE, $target_date
     $dispatch_result['sent'] = $dispatch_results['result'] ? count($to) : 'Error';
     
     // Record the number of messages sent
-    if (module_exsists('stathat') && stathat_library_loaded()) {
+    if (module_exists('stathat') && stathat_library_loaded()) {
       stathat_ez_count(STATHAT_ACCOUNT, $op . ' messages sent - count.', $dispatch_result['sent']);
       stathat_ez_value(STATHAT_ACCOUNT, $op . ' messages sent - value.', $dispatch_result['sent']);
     }
@@ -822,7 +821,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
     $dispatch_result['sent'] = count($to);
     
     // Record the number of messages sent
-    if (module_exsists('stathat') && stathat_library_loaded()) {
+    if (module_exists('stathat') && stathat_library_loaded()) {
       stathat_ez_count(STATHAT_ACCOUNT, $op . ' messages sent - count.', $dispatch_result['sent']);
       stathat_ez_value(STATHAT_ACCOUNT, $op . ' messages sent - value.', $dispatch_result['sent']);
     }
