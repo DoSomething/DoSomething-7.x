@@ -1,20 +1,16 @@
 <?php
+
 /**
  * @file
- * Enable use of the StatHat service in Drupal - http://www.stathat.com.
- *
- * StatHat came about from our desire to track all our numbers from all the
- * languages we use as easily, accurately, and quickly as possible.
- *
+ * Stathat module.
  */
 
 /*
- * Impliments hook_libraries_info() - Support for stathat.com graphing / report service
+ * Implements hook_libraries_info().
  */
-function dosomething_mandrill_libraries_info() {
-  
+function stathat_libraries_info() {
   $libraries['stathat'] = array(
-    'name' => 'Stathat library',
+    'name' => 'StatHat',
     'vendor url' => 'https://www.stathat.com',
     'download url' => 'https://www.stathat.com/downloads/stathat.php',
     'version' => '1.0',
@@ -22,7 +18,5 @@ function dosomething_mandrill_libraries_info() {
       'php' => array('stathat.php'),
     ),
   );
-  
   return $libraries;
-  
 }
