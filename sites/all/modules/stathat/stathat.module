@@ -48,3 +48,44 @@ function stathat_menu() {
   ); 
   return $items;
 }
+
+/**
+ * Loads StatHat library.
+ *
+ * @return
+ *   TRUE if library is successfully loaded, FALSE if not.
+ */
+function stathat_load() {
+  $stathat = libraries_load('stathat');
+  return !empty($stathat['loaded']);
+}
+
+/**
+ * Sends StatHat API request to stathat_ez_count().
+ *
+ * @param string $stat
+ *   The stat name identifier.
+ * @param int $increment
+ *   The value to increment the stat by.
+ */
+function stathat_send_ez_count($stat, $increment) {
+  $ez_key = variable_get('stathat_ezkey', '');
+  if (!empty($ez_key) && stathat_load()) {
+    stathat_ez_count($ez_key, $stat, $increment);
+  }
+}
+
+/**
+ * Sends StatHat API request to stathat_ez_value().
+ *
+ * @param string $stat
+ *   The stat name identifier.
+ * @param int|float|string $value
+ *   The value to set the stat to.
+ */
+function stathat_send_ez_value($stat, $value) {
+  $ez_key = variable_get('stathat_ezkey', '');
+  if (!empty($ez_key) && stathat_load()) {
+    stathat_ez_value($ez_key, $stat, $value);
+  }
+}
