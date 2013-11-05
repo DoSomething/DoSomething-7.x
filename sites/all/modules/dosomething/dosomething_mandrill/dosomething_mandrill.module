@@ -5,32 +5,6 @@
  *
  */
 
-/*
- * Impliments hook_menu()
- *
- * Used for development / testing. Remove to force Drush access to the same
- * functionality.
- */
-function dosomething_mandrill_menu() {
-  
-  $items = array();
-  
-  return $items;
-
-}
-
-/*
- * Impliments hook_theme()
- */
-function dosomething_mandrill_theme($existing, $type, $theme, $path) {
-  return array(
-    'dosomething_mandrill_campaign_listing' => array(
-      'variables' => array('campaigns' => NULL),
-      'template' => 'dosomething-mandrill-campaign-listing',
-    ),
-  );
-}
-
 /**
  * Impliments hook_webform_submission_insert($node, $submission)
  *
@@ -389,44 +363,4 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   $mandrill_params['message']['merge_vars'] = empty($content['merge_vars']) ? $mandrill_params['message']['merge_vars'] : array_merge($content['merge_vars'], $mandrill_params['message']['merge_vars']);
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
-}
-
-/*
- * Creates listing of current active campaigns based on current entries in the
- * menu system. Yep, hacky! Perhaps someday there will be an API call to pull
- * this from.
- *
- * @return string
- */
-function dosomething_mandrill_campaign_listing() {
-  
-  // Exclude 96240 - Make Art. Save Art., not sure why this is an entry as it's
-  // not in the site Campaign navigaion output
-  $results = db_query("
-    SELECT
-      link_title,
-      link_path
-    FROM
-      menu_links
-    WHERE
-      plid = 93591
-      AND
-      mlid != 96240
-      AND
-      hidden = 0
-      AND
-      link_path != 'past-campaigns'
-    ORDER BY
-      weight              
-    ");
-  
-  foreach ($results as $campaign) {
-    $campaigns[] = array(
-      'link_title' => $campaign->link_title,
-      'link_path' => $campaign->link_path,
-    );
-  }
-  
-  return theme('dosomething_mandrill_campaign_listing', array('campaigns' => $campaigns));
-  
 }
