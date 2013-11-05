@@ -20,3 +20,15 @@ function stathat_libraries_info() {
   );
   return $libraries;
 }
+
+/*
+ * Implements hook_permission().
+ */
+function stathat_permission() {
+  return array(
+    'administer stathat' => array(
+      'title' => t('Administer StatHat'),
+      'description' => t('Perform administration tasks for StatHat.'),
+    ),
+  );
+}
