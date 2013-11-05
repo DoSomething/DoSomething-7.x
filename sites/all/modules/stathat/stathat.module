@@ -5,7 +5,7 @@
  * Stathat module.
  */
 
-/*
+/**
  * Implements hook_libraries_info().
  */
 function stathat_libraries_info() {
@@ -21,7 +21,7 @@ function stathat_libraries_info() {
   return $libraries;
 }
 
-/*
+/**
  * Implements hook_permission().
  */
 function stathat_permission() {
@@ -31,4 +31,20 @@ function stathat_permission() {
       'description' => t('Perform administration tasks for StatHat.'),
     ),
   );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function stathat_menu() {
+  $items['admin/config/system/stathat'] = array(
+    'title' => 'StatHat',
+    'description' => 'Configure StatHat ezkey and settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('stathat_admin_settings_form'),
+    'access arguments' => array('administer stathat'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'stathat.admin.inc',
+  ); 
+  return $items;
 }
