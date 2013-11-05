@@ -6,6 +6,7 @@
 class OutputType {
   const END = 0;
   const CONT = 1;
+  const NOT_FOUND = 2;
 }
 
 /**
@@ -19,6 +20,9 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
 
   // Activity name where school name was asked for
   public $school_activity_name = '';
+
+  // Activity name to go to when user indicates the search results didn't return his/her school
+  public $schoolNotFound_activity_name;
 
   // Max results to return from the search
   public $max_results = 6;
@@ -154,6 +158,15 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         }
       }
     }
+    elseif ($nextOutput == OutputType::NOT_FOUND) {
+      // Remove any outputs that are not schoolNotFound_activity_name
+      $numOutputs = count($this->outputs);
+      foreach ($this->outputs as $key => $activityName) {
+        if ($activityName != $this->schoolNotFound_activity_name) {
+          $this->removeOutput($activityName);
+        }
+      }
+    }
     else {
       // Save school to user's profile before moving on to next activity
       $mobile = $state->getContext('sms_number');
@@ -175,7 +188,9 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         }
       }
 
+      // Remove end and schoolNotFound outputs
       $this->removeOutput('end');
+      $this->removeOutput($this->schoolNotFound_activity_name);
     }
 
     // Next activity's selected, so this one is now complete
@@ -197,6 +212,10 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
       $state->setContext('school_gsid', $results[0]->gsid);
 
       self::selectNextOutput(OutputType::CONT);
+    }
+    // If N, found schools don't match what the user was looking for
+    elseif (self::isNoResponse($userResponse)) {
+      self::selectNextOutput(OutputType::NOT_FOUND);
     }
     // If #, check if valid, then save school gsid to context 'school_gsid'
     elseif (self::isValidSchoolIndex($userResponse)) {
@@ -226,6 +245,18 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
         self::selectNextOutput(OutputType::END);
       }
     }
+  }
+
+  /**
+   * Determine whether or not user response qualifies as a 'No'
+   *
+   * @return TRUE if qualified as a 'No'. Otherwise, FALSE.
+   */
+  private function isNoResponse($userResponse) {
+    $words = explode(' ', $userResponse);
+    $firstWord = $words[0];
+
+    return in_array($firstWord, array('N', 'NO'));
   }
 
   /**
