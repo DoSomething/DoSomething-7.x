@@ -12,29 +12,28 @@ img
   background: #333131
   color: #fff
   padding: 0.75rem
-  @media only screen and (min-width: 731px)
-    .t4j--location-switcher
-      padding-left: 225px
 
-.t4j--location-switcher p, a
-  color: #fff
-  font-size: 0.9rem
-  margin-bottom: 0
+  p, a
+    color: #fff
+    font-size: 0.9rem
+    margin-bottom: 0
+
+  a
+    text-decoration: underline
 
 .t4j--canada-link
   position: relative
   padding-right: 32px
-
-.t4j--canada-link:after
-  position: absolute
-  top: 6px
-  right: 6px
-  content: ''
-  display: block
-  width: 18px
-  height: 13px
-  background-image: url("assets/t4j-canada.png")
-  background-size: 18px 13px
+  &:after
+    position: absolute
+    top: 6px
+    right: 6px
+    content: ''
+    display: block
+    width: 18px
+    height: 13px
+    background-image: url("assets/t4j-canada.png")
+    background-size: 18px 13px
 
 
 // SNEAKY NEUE
