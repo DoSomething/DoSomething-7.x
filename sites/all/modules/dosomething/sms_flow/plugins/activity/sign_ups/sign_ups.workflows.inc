@@ -160,7 +160,7 @@ $activity->nameContext = 'ask_name:message';
 
 $activity = $workflow->newActivity('mobile_commons_opt_in');
 $activity->name = 'end_message';
-$activity->inputs = array('ask_zip');
+$activity->inputs = array('address_submit');
 $activity->outputs = array('end');
 $activity->opt_in_path_id = 162857;
 
