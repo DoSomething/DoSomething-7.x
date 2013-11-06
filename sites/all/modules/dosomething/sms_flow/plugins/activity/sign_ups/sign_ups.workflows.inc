@@ -48,13 +48,14 @@ $activity->question = t('Thanks! And what\'s the name of the school in @context_
 $activity = $workflow->newActivity('gs_school_search');
 $activity->name = 'school_search';
 $activity->inputs = array('ask_school_name');
-$activity->outputs = array('submit_sign_up', 'end');
+$activity->outputs = array('submit_sign_up', 'school_not_found_message', 'end');
 $activity->state_activity_name = 'ask_state';
 $activity->school_activity_name = 'ask_school_name';
+$activity->schoolNotFound_activity_name = 'school_not_found_message';
 $activity->max_results = 5;
 $activity->no_school_found_msg = t('We couldn\'t find your school @school_name in @school_state. Text DRIVE to try again.');
-$activity->one_school_found_msg = t('We found @school_name in @school_city, @school_state. Reply Y if this is your school. Text DRIVE to try again.');
-$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. Or text DRIVE to try again.');
+$activity->one_school_found_msg = t('We found @school_name in @school_city, @school_state. Reply Y if this is your school. Text N to try again.');
+$activity->schools_found_msg = t('We found @num_results matches. Text back the # for your school. Or text N to try again.');
 $activity->invalid_response_msg = t('Sorry, we didn\'t understand that. Text DRIVE to try again.');
 
 $activity = $workflow->newActivity('sms_flow_signup_submit');
@@ -70,9 +71,20 @@ $activity->inputs = array('submit_sign_up');
 $activity->outputs = array('end');
 $activity->opt_in_path_id = 162835;
 
+$activity = $workflow->newActivity('mobile_commons_opt_in');
+$activity->name = 'school_not_found_message';
+$activity->inputs = array('school_search');
+$activity->outputs = array('end');
+$activity->opt_in_path_id = 162993;
+
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
-$activity->inputs = array('school_found', 'school_search', 'end_message');
+// HACK: Placing 'school_found' before 'school_search' breaks the no_school and
+// invalid_response messages. We might be using the multiple inputs/outputs in a
+// matter that wasn't originally intended by Conductor. Either way, the sms_response
+// context gets lost in between the school_search and the end activity, and swapping
+// those two inputs seemed to fix it.
+$activity->inputs = array('school_search', 'school_found', 'end_message', 'school_not_found_message');
 
 $workflows[$workflow->name] = $workflow;
 

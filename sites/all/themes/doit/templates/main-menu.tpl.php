@@ -13,6 +13,7 @@
     <li>
         <a class="menu-link" href="/campaigns">Campaigns</a>
         <ul class="dropdown">
+            <li><a href="/teensforjeans">Teens For Jeans</a></li>
             <li><a href="/grandparents">Grandparents Gone Wired</a></li>
             <li><a href="/money">Mind on my Money</a></li>
             <li><a href="/50cans">50 Cans</a></li>
