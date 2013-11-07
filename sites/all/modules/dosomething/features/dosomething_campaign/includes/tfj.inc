@@ -15,7 +15,7 @@
 function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
   $form = array();
   $form['header'] = array(
-    '#markup' => '<h1>Almost there!</h1><h2>Sign up your school and enter to win a $4,000 scholarship!</h2>',
+    '#markup' => '<h1>Almost there!</h1><h2>Sign up your school to get a free banner and enter to win a $4,000 scholarship.</h2>',
   );
   $form['school_state'] = array(
     '#type' => 'select',
@@ -59,7 +59,7 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
     '#title' => t("I won't be participating with a school."),
   );
   $form['address_header'] = array(
-    '#markup' => '<h2>Want to receive a banner to promote your drive?</h2><h3>Enter your shipping address below:</h3>',
+    '#markup' => '<h3>Enter your shipping address below:</h3>',
   );
   $form['address_name'] = array(
     '#type' => 'textfield',
