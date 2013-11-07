@@ -91,11 +91,6 @@ class DoSomethingMandrillUnitTestCase extends  DrupalUnitTestCase {
     foreach ($this->keys as $key) {
       
       $mandrill_params = dosomething_mandrill_unit_test_data_hook_mandrill_mail_alter($key);
-      
-    $bla = TRUE;
-    if ($bla) {
-      $bla = TRUE;
-    }
 
       $mandrill_params_pre = $mandrill_params;
       dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $this->message);
@@ -155,11 +150,6 @@ class DoSomethingMandrillUnitTestCase extends  DrupalUnitTestCase {
       }
       
     }
-
-
-    // $this->assertTrue(isset($user->uid), 'User is returned');
-    
-    
 
   }  
 
