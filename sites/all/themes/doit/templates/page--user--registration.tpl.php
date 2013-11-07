@@ -46,7 +46,7 @@
     <?php if ($page['gate_go_back_link']): ?><div class="go-back"><?php print $page['gate_go_back_link']; ?></div><?php endif; ?>
   </section>
 
-  <div class="disclaimer">
+  <div class="disclaimer no-show-signin">
     Clicking "Finish" won't sell your soul, but it means you agree to our <a href="/about/terms-of-service">terms of service</a> &amp; <a href="/about/privacy">privacy policy</a> &amp; to receive our weekly update.
   </div>
 
