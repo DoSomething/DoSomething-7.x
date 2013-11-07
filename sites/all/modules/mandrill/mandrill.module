@@ -329,23 +329,33 @@ function mandrill_mail_key_blacklist() {
  *   a comma delimited list of email addresses in 1 of 2 forms:
  *   user@domain.com
  *   any number of names <user@domain.com>
+ *
+ *   OR
+ *
+ *   an array of email addresses that is already formatted based on
+ *   the Mandrill API specification
  * 
  * @return array
  *   array of email addresses
  */
 function mandrill_get_to($to) {
   $recipients = array();
-  $to_array = explode(',', $to);
-  foreach ($to_array as $email) {
-    if (preg_match(MANDRILL_EMAIL_REGEX, $email, $matches)) {
-      $recipients[] = array(
-        'email' => $matches[2],
-        'name' => $matches[1],
-      );
+  if (is_string($to)) {
+    $to_array = explode(',', $to);
+    foreach ($to_array as $email) {
+      if (preg_match(MANDRILL_EMAIL_REGEX, $email, $matches)) {
+        $recipients[] = array(
+          'email' => $matches[2],
+          'name' => $matches[1],
+        );
+      }
+      else {
+        $recipients[] = array('email' => $email);
+      }
     }
-    else {
-      $recipients[] = array('email' => $email);
-    }
+  }
+  else {
+    $recipients = $to;
   }
   return $recipients;
 }
