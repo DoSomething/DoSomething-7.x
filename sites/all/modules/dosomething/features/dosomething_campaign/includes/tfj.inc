@@ -14,6 +14,7 @@
  */
 function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
   $form = array();
+  $form['#attributes'] = array('onKeyPress'=>"return window.suppressEnter(event);");
   $form['header'] = array(
     '#markup' => '<h1>Almost there!</h1><h2>Sign up your school to get a free banner and enter to win a $4,000 scholarship.</h2>',
   );
@@ -104,11 +105,11 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
     '#attributes' => array(
       'class' => array(
         'btn',
-        'primary',
-        'large'
+        'btn-cta-medium'
       )
     )
   );
+
   return $form;
 }
 

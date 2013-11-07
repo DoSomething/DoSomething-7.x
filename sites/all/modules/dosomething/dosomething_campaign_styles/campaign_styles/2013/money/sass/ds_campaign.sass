@@ -14,6 +14,38 @@
   @import "sections"
   @import "forms"
 
+// sneaky override for modal button style
+#modalContent
+  input[type="submit"]
+    display: inline-block
+    background: $btn-color
+    margin: 0 auto
+    padding: 0.5em 1.5em 0.3em
+    clear: both
+    position: static
+    border: 1px solid $btn-border
+    cursor: pointer
+    color: $off-black !important
+    font-family: din-web-reg
+    font-weight: 600
+    text-align: center
+    text-decoration: none !important
+    text-transform: uppercase
+    -webkit-appearance: none !important
+    +border-radius(5px)
+    &:hover /* While mouse hovers */
+      background: $btn-hover
+      +background-image(linear-gradient($btn-color, $btn-hover))
+      +box-shadow(0 10px 10px -10px #bbb)
+    &:active /* While mouse clicks */
+      color: lighten($off-black, 10) !important
+      background: $btn-color
+      +background-image(linear-gradient($btn-hover, $btn-color))
+      +box-shadow(0 10px 10px -10px #bbb)
+    &:link, &:active, &:hover
+      color: $off-black
+      text-decoration: none !important
+
 // "reset"    = Eric Meyer CSS reset
 // "general"  = generic HTML element styling, typography and global classes
 // "sections" = specific styles that pertain to individual sections of the page (e.g. .header)
