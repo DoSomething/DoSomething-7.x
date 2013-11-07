@@ -47,7 +47,8 @@
   </section>
 
   <div class="disclaimer no-show-signin">
-    Clicking "Finish" won't sell your soul, but it means you agree to our <a href="/about/terms-of-service">terms of service</a> &amp; <a href="/about/privacy">privacy policy</a> &amp; to receive our weekly update.
+    Clicking "Finish" won't sell your soul, but it means you agree to our <a href="/about/terms-of-service">terms of service</a> &amp; <a href="/about/privacy">privacy policy</a> &amp; to receive our weekly update. 
+    <br />Message & data rates may apply. You can always text STOP to opt-out, HELP for help.
   </div>
 
 </div> <!-- /.container -->
