@@ -1,4 +1,16 @@
 (function ($) {
+
+
+  window.suppressEnter = function(e) {
+    console.log("MMMM");
+
+    if (e.which === 13) { // if is enter
+        console.log("OH NO YOU DUNT");
+        e.preventDefault(); // don't submit form
+        return false;
+    }
+  };
+
   Drupal.behaviors.campaignName = {
     attach: function (context, settings) {
       Drupal.settings.login = {
@@ -54,7 +66,6 @@
         });
 
       }
-
     } // end attach: function
   }; // end Drupal.behaviors
 })(jQuery); // end function ($)
