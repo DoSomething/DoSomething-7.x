@@ -17,7 +17,6 @@
             <li><a href="/grandparents">Grandparents Gone Wired</a></li>
             <li><a href="/money">Mind on my Money</a></li>
             <li><a href="/50cans">50 Cans</a></li>
-            <li><a href="/women">25,000 Women</a></li>
             <li><a href="/bullytext">Bully Text</a></li>
             <li><a href="/spit">Give A Spit</a></li>
             <li><a href="/survivors">Cellphones for Survivors</a></li>
