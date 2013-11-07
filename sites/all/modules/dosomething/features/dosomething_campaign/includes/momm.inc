@@ -61,7 +61,7 @@ function dosomething_campaign_momm_signup_data_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Update My Information'),
+    '#value' => t('Register')
   );
   return $form;
 }
