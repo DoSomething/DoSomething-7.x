@@ -6,3 +6,4 @@ package = Dosomething
 dependencies[] = mandrill
 files[] = dosomething_mandrill_hook_mail.test
 files[] = dosomething_mandrill_hook_mail_alter.test
+files[] = dosomething_mandrill_dispatch.test
