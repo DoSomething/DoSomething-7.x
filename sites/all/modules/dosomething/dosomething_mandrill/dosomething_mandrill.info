@@ -4,5 +4,4 @@ core = 7.x
 version = "7.x-1.0"
 package = Dosomething
 dependencies[] = mandrill
-files[] = dosomething_mandrill_hook_mail.test
-files[] = dosomething_mandrill_hook_mail_alter.test
+files[] = dosomething_mandrill.test
