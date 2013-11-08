@@ -1,0 +1,73 @@
+<?php
+/*
+ * @file
+ * Unit Tests for DoSomething.org Mandrill transaction message system
+ */
+class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite {
+  
+  protected $tests;
+  protected $message;
+  
+  public static function getInfo() {
+    return array(
+      'name' => 'DoSomething Mandrill Dispatch Tests',
+      'description' => 'DoSomething Mandrill mail dispatch tests that monitor the response from the Mandrill API.',
+      'group' => 'DoSomething',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    
+    module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.tests');
+    $this->tests = dosomething_mandrill_tests();
+    module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.dispatch_test_data');
+
+  }
+    
+  /**
+   * @see dosomething_mandrill_dispatch()
+   *
+   * Run a series of data sets through the dosomething_mandrill_dispatch()
+   * function to monitor the response from the Mandrill API.
+   */
+  public function testMandrillDispatch() {
+    
+    foreach ($this->tests as $test) {
+      
+      list($to, $key, $this->message) = dosomething_mandrill_dispatch_test_data($test);
+      $dispatch_results = dosomething_mandrill_dispatch($to, $key, $this->message);
+
+      if ($key == 'petition') {
+        $this->subtestMandrillDispatchForPetition($dispatch_results);
+      }
+
+    }
+
+  }
+  
+  /*
+   * Unit tests for petition data sent to the dosomething_mandrill_mandrill_mail_alter() function
+   */
+  public function subtestMandrillDispatchForPetition($dispatch_results) {
+  
+    // Response from Mandrill API
+    $this->assertTrue($dispatch_results['result'] == TRUE, "Transactional message sent successfully to key: " . $dispatch_results['key']);
+    
+    // params
+    $this->assertEqual($dispatch_results['params']['FNAME'], $this->message['FNAME'],
+      "<strong>Petition Dispatch FNAME:</strong> -  equals expected value -> " . $this->message['FNAME']);
+    $this->assertEqual($dispatch_results['params']['LNAME'], $this->message['LNAME'],
+      "<strong>Petition Dispatch LNAME:</strong> -  equals expected value -> " . $this->message['LNAME']);
+    $this->assertEqual($dispatch_results['params']['PETITION'], $this->message['TITLE'],
+      "<strong>Petition Dispatch PETITION:</strong> -  equals expected value -> " . $this->message['TITLE']);
+    $this->assertEqual($dispatch_results['params']['PETITIONURL'], 'http://www.dosomething.org' . $this->message['URL'],
+      "<strong>Petition Dispatch PETITIONURL:</strong> -  equals expected value -> " . $this->message['URL']);
+    
+    // tags
+    $this->assertTrue($dispatch_results['tags'][0] == 'petition', "Tag 'petition' assigned successfully.");
+    $this->assertTrue($dispatch_results['tags'][1] == $this->message['TITLE'], "Tag TITLE assigned successfully as: " . $dispatch_results['tags'][1]);
+     
+  } 
+
+}

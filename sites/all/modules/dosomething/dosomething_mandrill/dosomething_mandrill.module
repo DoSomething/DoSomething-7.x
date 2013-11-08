@@ -106,32 +106,39 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
 }
 
 /**
- * dosomething_mandrill_dispatch
+ * Triggeres the sending of a Mandrill transactional email message using a target Mandrill template.
+ * If a specific template is not provided then default to a general DoSomething themed template
  *
  * NOTE: See http://drupalcode.org/project/examples.git/blob_plain/refs/heads/7.x-1.x:/email_example/email_example.module
  * for fully functional example.
  *
- * Triggeres the sending of a Mandrill transactional email message using a target Mandrill template.
- * If a specific template is not provided then default to a general DoSomething themed template
+ * @param string $to
+ *   Send to email address (required)
  *
- * $to - send to email address (required)
+ * @param string $key = 'dsplain'
+ *   The mail system key value as defined in /admin/config/system/mailsystem. The key is assigned
+ *   to a Mandrill template in the Mandrill Template module: /admin/config/services/mandrill/templates The key setting
+ *   determines what mail system and Mandrill template to use when sending a message.
  *
- * $key = 'dsplain' - The mail system key value as defined in /admin/config/system/mailsystem. The key is assigned
- * to a Mandrill template in the Mandrill Template module: /admin/config/services/mandrill/templates The key setting
- * determines what mail system and Mandrill template to use when sending a message.
+ *   Note that *|merge vars|* should be within the message body.
  *
- * Note that *|merge vars|* should be within the message body.
- * 
- * $merge_vars = NULL : Variables within the custom message text or within the template that will be dynamically
- * replace with custom content specific to each message. Variables are denoted with *|<some name|*
- * 
- * $user = NULL - The user object, future use to generate custom merge_var values.
+ * @param string $merge_vars = NULL
+ *   Variables within the custom message text or within the template that will be dynamically
+ *   replace with custom content specific to each message. Variables are denoted with *|<some name|*
+ *
+ * @retun array $message_status
  * 
  */
-function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
+function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test_flag=FALSE) {
 
   $language = language_default();
   $from = NULL;
+  
+  // Test
+  if ($test_flag) {
+    module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.test_data');
+    list($message, $to) = dosomething_mandrill_test_data($key);
+  }
 
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
 
@@ -145,7 +152,7 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
               array('%to' => $to, '%key' => $key), WATCHDOG_INFO);
 	}
   
-  return $message_status['result'];
+  return $message_status;
 
 }
 

@@ -1,9 +1,12 @@
 <?php
+
+
+
 /*
  * @file
  * Unit Tests for DoSomething.org Mandrill transaction message system
  */
-class DoSomethingMandrillMailAlterUnitTestCase extends DrupalUnitTestCase {
+class DoSomethingMandrillUnitMailAlterUnitTestCase extends DrupalUnitTestCase {
   
   protected $tests;
   protected $message;
@@ -26,12 +29,9 @@ class DoSomethingMandrillMailAlterUnitTestCase extends DrupalUnitTestCase {
     module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.unit_test_data.hook_mail_alter');
 
   }
-    
+  
   /**
    * @see dosomething_mandrill_mandrill_mail_alter()
-   *
-   * Run a series of data sets through the dosomething_mandrill_mandrill_mail_alter()
-   * function to conduct unit tests specific to the data.
    */
   public function testMandrillMandrillMailAlter() {
     
@@ -74,7 +74,6 @@ class DoSomethingMandrillMailAlterUnitTestCase extends DrupalUnitTestCase {
       "<strong>Petition Tag:</strong> - hook_mailsystem_mail_alter ['message']['tags'][1] equals expected tag value -> petition");
     $this->assertEqual($mandrill_params_post['message']['tags'][2], substr($mandrill_params_post['params']['PETITION'], 0, 50),
       "<strong>Petition Tag:</strong> - hook_mailsystem_mail_alter ['message']['tags'][2] equals expected tag value -> " . substr($mandrill_params_post['params']['PETITION'], 0, 50));
-    
     
     // params & message - merge_vars
     $this->assertEqual($this->message['params']['FNAME'], $mandrill_params_post['params']['FNAME'],
