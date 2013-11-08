@@ -68,19 +68,13 @@ class DoSomethingMandrillTestCase extends WebTestSuite {
         $mandrill_params_post = $mandrill_params;
 
         $this->subtestMandrillMandrillMailAlterForPetition($mandrill_params_pre, $mandrill_params_post);
-        
+
         // TRANSACTION TEST - dosomething_mandrill_dispatch()
-        
-        $bla = TRUE;
-        if ($bla) {
-          $bla = TRUE;
-        }
-      
         list($to, $key, $this->message) = dosomething_mandrill_dispatch_test_data($test);
         $dispatch_results = dosomething_mandrill_dispatch($to, $key, $this->message);
 
         $this->subtestMandrillDispatchForPetition($dispatch_results);
-        
+
       }
 
     }
@@ -165,22 +159,17 @@ class DoSomethingMandrillTestCase extends WebTestSuite {
     $this->assertTrue($mandrill_params_post['message']['global_merge_vars'][6]['name'] == 'PETITIONURL', "Found PETITIONURL in ['message']['global_merge_vars'][6]['name']");
     $this->assertEqual($this->message['params']['PETITIONURL'], $mandrill_params_post['message']['global_merge_vars'][6]['content'],
       "<strong>Petition global_merge_var PETITIONURL:</strong> - hook_mailsystem_mail_alter ['message']['global_merge_vars'][6]['content'] equals expected value -> " . $this->message['params']['PETITIONURL']);
-     
+
   } 
   
   /*
    * Unit tests for petition data sent to the dosomething_mandrill_mandrill_mail_alter() function
    */
   public function subtestMandrillDispatchForPetition($dispatch_results) {
-    
-            $bla = TRUE;
-        if ($bla) {
-          $bla = TRUE;
-        }
   
     // Response from Mandrill API
     $this->assertTrue($dispatch_results['result'] == TRUE, "Transactional message sent successfully to key: " . $dispatch_results['key']);
-    
+
     // params
     $this->assertEqual($dispatch_results['params']['FNAME'], $this->message['FNAME'],
       "<strong>Petition Dispatch FNAME:</strong> -  equals expected value -> " . $this->message['FNAME']);
