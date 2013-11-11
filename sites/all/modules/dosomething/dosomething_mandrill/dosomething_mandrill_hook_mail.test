@@ -56,21 +56,29 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   }
 
   /**
-   * @see dosomething_mandrill_mail()
+   * @see dosomething_mandrill_mail_firstname()
    */
   public function testMandrillMailFirstName() {
-    
-    // Load test data
-    $test_names = dosomething_mandrill_unit_test_data_hook_mail_firstnam();
-    
-    foreach ($test_names as $test_name) {
       
-      $params['FNAME'] = $test_name['start'];
+      $params['FNAME'] = 'First';
       dosomething_mandrill_mail_firstname($message, $params);
-      $this->assertEqual($test_name['end'], $message['params']['FNAME'],
-         'First Name: ' . $test_name['start'] . ' => ' . $message['params']['FNAME']);
-
-    }
+      $this->assertEqual('First', $message['params']['FNAME'],
+         'First Name: First => ' . $message['params']['FNAME']);
+      
+      $params['FNAME'] = 'first';
+      dosomething_mandrill_mail_firstname($message, $params);
+      $this->assertEqual('First', $message['params']['FNAME'],
+         'First Name: first => ' . $message['params']['FNAME']);
+      
+      $params['FNAME'] = 'fiRSt';
+      dosomething_mandrill_mail_firstname($message, $params);
+      $this->assertEqual('First', $message['params']['FNAME'],
+         'First Name: fiRStt => ' . $message['params']['FNAME']);
+      
+      $params['FNAME'] = 'FIRST';
+      dosomething_mandrill_mail_firstname($message, $params);
+      $this->assertEqual('First', $message['params']['FNAME'],
+         'First Name: FIRST => ' . $message['params']['FNAME']);
     
   }
   
