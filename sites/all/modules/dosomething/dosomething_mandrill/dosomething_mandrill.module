@@ -207,6 +207,7 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
 function dosomething_mandrill_mail($key, &$message, $params) {
   
   // Common merge tags
+  // FNAME
   dosomething_mandrill_mail_common($message, $params);
 
   switch ($key) {
@@ -239,14 +240,10 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  */
 function dosomething_mandrill_mail_common(&$message, &$params) {
   
-  // Common merge tags
-  if (!empty($params['FNAME'])) {
-    $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
-  }
+  // FNAME
+  dosomething_mandrill_mail_firstname($message, $params);
   
-  // @todo: Deal with multi part names, ex: "Emma Jane" or "Emma-Jane". Current
-  // results in cap of first character only
-  
+  // CAMPAIGNS
   $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
   
 }
@@ -260,8 +257,9 @@ function dosomething_mandrill_mail_petition(&$message, &$params) {
   $message['from'] = 'dosomething@dosomething.org';
   $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
 
-  $petition_tag = dosomething_mandrill_mail_tag_assignment($message, $params);
-  $message['tags'] = array('petition', $petition_tag);
+  // Possible tag values
+  $tags = array('petition', $params['TITLE']);
+  $message['tags'] = dosomething_mandrill_mail_tag_assignment($tags);
 
   // Rename merge vars to match Mandrill template
   // @todo: Adjust template to use TITLE and URL making the adjustment in code
@@ -315,22 +313,44 @@ function dosomething_mandrill_mail_plain(&$message, &$params) {
 }
 
 /*
- * Build tag values for assignment to messages
- *
- * Tags are used for segmentation in MailChimp on future mass mailouts. 
+ * First Name logic for hook_mail()
+ * See dosomething_mandrill_mail()
  */
-function dosomething_mandrill_mail_tag_assignment($message, $params) {
+function dosomething_mandrill_mail_firstname(&$message, &$params) {
   
-  // Tag value must not start with "_". Any tags starting with an underscore are
-  // reserved for internal Mandrill use and will cause errors in API.
-  if ($params['TITLE'][0] == '_') {
-    $params['TITLE'][0] = '-';
+  // Common merge tags
+  if (!empty($params['FNAME'])) {
+    $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
   }
   
-  // Limit tag length to 50 characters based on API tag length requirement
-  $tag = substr($params['TITLE'], 0, 50);
+  // @todo: Deal with multi part names, ex: "Emma Jane" or "Emma-Jane". Current
+  // results in cap of first character only
+  
+}
 
-  return $tag;
+/*
+ * Build tag values for assignment to messages
+ *
+ * Tags are used for segmentation in MailChimp on mass mailouts. 
+ */
+function dosomething_mandrill_mail_tag_assignment($tags) {
+  
+  $tag_assignments = array();
+  
+  foreach ($tags as $tag) {
+  
+    // Tag value must not start with "_". Any tags starting with an underscore are
+    // reserved for internal Mandrill use and will cause errors in API.
+    if ($tag[0] == '_') {
+      $tag[0] = '-';
+    }
+    
+    // Limit tag length to 50 characters based on API tag length requirement
+    $tag_assignments[] = substr($tag, 0, 50);
+    
+  }
+
+  return $tag_assignments;
 
 }
 

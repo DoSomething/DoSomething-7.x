@@ -3,6 +3,10 @@
  * @file
  * Test data for hook_mail()
  */
+
+ /*
+  * Test data that returns $message, $params, $to
+  */
 function dosomething_mandrill_unit_test_data_hook_mail($op) {
   
   switch ($op):
@@ -40,14 +44,47 @@ function dosomething_mandrill_unit_test_data_hook_mail($op) {
       );
       
       break;
-  
-    default:
-      
-      $message = 'Error - invalid operation (op: ' . $op . ')';
-      $to = 'Error - invalid operation (op: ' . $op . ')';
       
   endswitch;
   
   return array($message, $params, $to);
 
+}
+
+/*
+ * Test data for dosomething_mandrill_mail_firstname()
+ */
+function dosomething_mandrill_unit_test_data_hook_mail_firstnam() {
+
+  $test_names[] = array(
+    'start' => 'First',
+    'end'   => 'First'
+  );
+  $test_names[] = array(
+    'start' => 'first',
+    'end'   => 'First'
+  );
+  $test_names[] = array(
+    'start' => 'FIRST',
+    'end'   => 'First'
+  );
+  $test_names[] = array(
+    'start' => 'fIrSt',
+    'end'   => 'First'
+  );
+  
+  // @todo: multi first name support
+  /*
+  $test_names[] = array(
+    'start' => 'first name',
+    'end'   => 'First Name'
+  );
+  $test_names[] = array(
+    'start' => 'first-name',
+    'end'   => 'First-Name'
+  );
+  */
+  
+  return $test_names;
+    
 }
