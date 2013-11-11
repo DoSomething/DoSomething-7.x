@@ -195,75 +195,114 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
 function dosomething_mandrill_mail($key, &$message, $params) {
   
   // Common merge tags
-  if (!empty($params['FNAME'])) {
-    $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
-  }
+  dosomething_mandrill_common_mail($message, $params);
 
   switch ($key) {
 
     case 'petition':      
-
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
-
-      // Tag message and related email address for segmentation use in MailChimp
-      // for future mass mailouts related to the petition. Tag value must not
-      // start with "_". Any tags starting with an underscore are reserved for
-      // internal Mandrill use and will cause errors in API.
-      ($params['TITLE'][0] != '_') ?: $params['TITLE'][0] = '-';
-      $petition_tag = substr($params['TITLE'], 0, 50);
-
-      $message['tags'] = array('petition', $petition_tag);
-
-      // Rename merge vars to match Mandrill template
-      $params['PETITION'] = $params['TITLE'];
-      $params['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
-      $message['params']['PETITION'] = $params['TITLE'];
-      $message['params']['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
-
-      unset($params['TITLE']);
-      unset($params['URL']);
-      unset($message['params']['TITLE']);
-      unset($message['params']['URL']);
-
+      dosomething_mandrill_petition_mail($message, $params);
       break;
 
     case 'password_reset':
-
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = 'DoSomething.org - Password Reset';
-      $message['body'] = variable_get('user_mail_password_reset_notify', NULL);
-      
-      $message['params']['PASS'] = $params['URL'];
-
-      break;
-    
-    case 'GGWired13rb':
-      
-      $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
-      
+      dosomething_mandrill_password_reset_mail($message, $params);
       break;
 
     case 'dsplain':
     case 'dssignup':
     case 'dsrp':
-    case 'dsreg':      
-
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = $params['subject'];
-      $message['body'] = $params['body'];
-
+    case 'dsreg':
+      dosomething_mandrill_plain_mail($message, $params);
       break;
 
-    default:      
-
-      $message['from'] = 'dosomething@dosomething.org';
-
-      $message['subject'] = isset($params['subject']) ? $params['subject'] : '';
-      $message['body'] = isset($params['body']) ? $params['body'] : '';
+    default:
+      dosomething_mandrill_default_mail($message, $params);
 
   }
 
+}
+
+/*
+ * Common logic for hooh_mail()
+ * See dosomething_mandrill_mail()
+ */
+function dosomething_mandrill_common_mail(&$message, &$params) {
+  
+  // Common merge tags
+  if (!empty($params['FNAME'])) {
+    $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
+  }
+  
+  // Next pull request will add this functionality back in
+  // $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
+  
+}
+
+/*
+ * Petition for hooh_mail()
+ * See dosomething_mandrill_mail()
+ */
+function dosomething_mandrill_petition_mail(&$message, &$params) {
+
+  $message['from'] = 'dosomething@dosomething.org';
+  $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
+
+  // Tag message and related email address for segmentation use in MailChimp
+  // for future mass mailouts related to the petition. Tag value must not
+  // start with "_". Any tags starting with an underscore are reserved for
+  // internal Mandrill use and will cause errors in API.
+  ($params['TITLE'][0] != '_') ?: $params['TITLE'][0] = '-';
+  $petition_tag = substr($params['TITLE'], 0, 50);
+
+  $message['tags'] = array('petition', $petition_tag);
+
+  // Rename merge vars to match Mandrill template
+  $params['PETITION'] = $params['TITLE'];
+  $params['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
+  $message['params']['PETITION'] = $params['TITLE'];
+  $message['params']['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
+
+  unset($params['TITLE']);
+  unset($params['URL']);
+  unset($message['params']['TITLE']);
+  unset($message['params']['URL']);
+      
+}
+
+/*
+ * Password Reset for hooh_mail()
+ * See dosomething_mandrill_mail()
+ */
+function dosomething_mandrill_password_reset_mail(&$message, &$params) {
+  
+  $message['from'] = 'dosomething@dosomething.org';
+  $message['subject'] = 'DoSomething.org - Password Reset';
+  $message['body'] = variable_get('user_mail_password_reset_notify', NULL);
+  $message['params']['PASS'] = $params['URL'];
+  
+}
+
+/*
+ * Plain for hooh_mail()
+ * See dosomething_mandrill_mail()
+ */
+function dosomething_mandrill_plain_mail(&$message, &$params) {
+  
+  $message['from'] = 'dosomething@dosomething.org';
+  $message['subject'] = $params['subject'];
+  $message['body'] = $params['body'];
+  
+}
+
+/*
+ * Default for hooh_mail()
+ * See dosomething_mandrill_mail()
+ */
+function dosomething_mandrill_default_mail(&$message, &$params) {
+  
+  $message['from'] = 'dosomething@dosomething.org';
+  $message['subject'] = isset($params['subject']) ? $params['subject'] : '';
+  $message['body'] = isset($params['body']) ? $params['body'] : '';
+  
 }
 
 /*
