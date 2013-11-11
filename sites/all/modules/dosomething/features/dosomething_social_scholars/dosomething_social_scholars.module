@@ -282,7 +282,6 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
  *  Validates share-a-stat forms
  */
 function dosomething_social_scholars_validate_form($form, &$form_state) {
-  $error = 0;
   $s = $form_state['input']['submitted'];
 
   $you = $s['referall_your_info'];
