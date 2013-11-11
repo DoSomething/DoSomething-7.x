@@ -54,7 +54,7 @@ function dosomething_mandrill_unit_test_data_hook_mail($op) {
 /*
  * Test data for dosomething_mandrill_mail_firstname()
  */
-function dosomething_mandrill_unit_test_data_hook_mail_firstnam() {
+function dosomething_mandrill_unit_test_data_hook_mail_firstname() {
 
   $test_names[] = array(
     'start' => 'First',
