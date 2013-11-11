@@ -27,9 +27,14 @@ class ConductorActivitySignupAddressSubmit extends ConductorActivity {
 
   public function run() {
     $state = $this->getState();
+    $mobile = $state->getContext('sms_number');
 
     // Compile data from other contexts
     $data = array();
+
+    $user = sms_flow_get_or_create_user_by_cell($mobile);
+    $data['uid'] = $user->uid;
+
     $data['nid'] = $this->campaignNid;
     $data['address1'] = $state->getContext($this->addr1Context);
     $data['address2'] = '';
