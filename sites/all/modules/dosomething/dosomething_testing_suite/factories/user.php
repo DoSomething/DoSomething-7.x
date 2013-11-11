@@ -32,10 +32,10 @@ class User extends Factory {
 
   private function build_factory() {
     $user = dosomething_api_user_create(array(
-      'name' => $this->default['name'], 
-      'password' => $this->default['pass'], 
-      'email' => $this->default['mail'], 
-      'mobile' => $this->default['mobile'], 
+      'name' => $this->default['name'],
+      'password' => $this->default['pass'],
+      'email' => $this->default['mail'],
+      'mobile' => $this->default['mobile'],
       'roles' => $this->default['roles'])
     );
     $this->throwOut($user->uid, 'user');
