@@ -126,7 +126,7 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * Triggers the sending of a Mandrill transactional email message using a target Mandrill template.
  * If a specific template is not provided then default to a general DoSomething themed template
  *
- * @param string/array $to
+ * @param string|array $to
  *   Email address(es) to send to (required)
  *
  * @param string $key = 'dsplain'
@@ -212,7 +212,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL) {
 function dosomething_mandrill_mail($key, &$message, $params) {
   
   // Common merge tags
-  // FNAME
   dosomething_mandrill_mail_common($message, $params);
 
   switch ($key) {
@@ -242,11 +241,20 @@ function dosomething_mandrill_mail($key, &$message, $params) {
 /*
  * Common logic for hook_mail()
  * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultamly be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
  */
 function dosomething_mandrill_mail_common(&$message, &$params) {
   
   // FNAME
-  dosomething_mandrill_mail_firstname($message, $params);
+  if (isset($params['FNAME'])) {
+    $message['params'] = dosomething_mandrill_mail_firstname($params['FNAME']);
+  }
   
   // CAMPAIGNS
   $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
@@ -256,6 +264,13 @@ function dosomething_mandrill_mail_common(&$message, &$params) {
 /*
  * Petition for hook_mail()
  * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultamly be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
  */
 function dosomething_mandrill_mail_petition(&$message, &$params) {
 
@@ -288,6 +303,13 @@ function dosomething_mandrill_mail_petition(&$message, &$params) {
 /*
  * Password Reset for hook_mail()
  * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultamly be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
  */
 function dosomething_mandrill_mail_password_reset(&$message, &$params) {
   
@@ -301,6 +323,13 @@ function dosomething_mandrill_mail_password_reset(&$message, &$params) {
 /*
  * Plain / default values for hook_mail()
  * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultamly be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
  */
 function dosomething_mandrill_mail_plain(&$message, &$params) {
   

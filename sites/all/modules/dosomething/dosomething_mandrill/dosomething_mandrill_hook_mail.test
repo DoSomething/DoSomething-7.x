@@ -79,6 +79,8 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
       dosomething_mandrill_mail_firstname($message, $params);
       $this->assertEqual('First', $message['params']['FNAME'],
          'First Name: FIRST => ' . $message['params']['FNAME']);
+      
+      // @todo: "First Name", "First-Name"
     
   }
   
