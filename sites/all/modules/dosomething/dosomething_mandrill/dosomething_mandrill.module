@@ -236,10 +236,8 @@ function dosomething_mandrill_mail($key, &$message, $params) {
 function dosomething_mandrill_mail_common(&$message, &$params) {
   
   // FNAME
-  if (isset($params['FNAME'])) {
-    dosomething_mandrill_mail_firstname($message, $params);
-  }
-  
+  dosomething_mandrill_mail_firstname($message, $params);
+
   // CAMPAIGNS
   $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
   
