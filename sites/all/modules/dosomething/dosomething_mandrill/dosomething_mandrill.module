@@ -56,51 +56,35 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
       // Register the $global $user object
       global $user;
 
-      // Check for anonymous user
-      if ($user->uid == 0) {
-        if (!empty($submission->field_webform_email)) {
-          $to = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
-        }
-        else {
-          $to = '';
-        }
-      }
-      else {
+      // Check for authenticated user making a report back, anonymous submissions
+      // are not allowed
+      if ($user->uid != 0) {
+        
         $to = $user->mail;
-      }
+        // merge var support for user first name
+        $profile = profile2_load_by_user($user, 'main');
+        $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
-      // User the site default, perhaps someday we'll deal in other languages other than
-      $language = language_default();
+        // User the site default, perhaps someday we'll deal in other languages other than
+        $language = language_default();
 
-      // Empty as current campaign signup messages do not contain merge_vars.
-      // @todo: Add support specific list of merge_var values, *|FNAME|* for example
-      $params = array();
+        // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
+        // users responding to these messages result in anyone reading the message.
+        $from = NULL;
 
-      // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
-      // users responding to these messages result in anyone reading the message.
-      $from = NULL;
+        // Check for missing Email, ex: mobile submission / user
+        if (valid_email_address($to)) {
+          
+          $message_status = dosomething_mandrill_dispatch($to, $key, $message);
 
-      // Email missing, mobile submission
-      if (valid_email_address($to)) {
-
-        // Send transactional message
-        $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $params, $from, TRUE);
-
-      }
-
-      /**
-       * $send: If TRUE, drupal_mail() will call drupal_mail_system()->mail() to deliver the message, and store
-       * the result in $message['result']. Modules implementing hook_mail_alter() may cancel sending by setting
-       * $message['send'] to FALSE.
-       */
-
-      // Log results
-      if ($message['result'] == FALSE) {
-
-        // watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
-        watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to via %source (%nid).',
-                  array('%to' => $to, '%source' => $node->type, '%nid' => $node->nid), WATCHDOG_ERROR);
-
+          // Log results
+          if ($message_status['result'] == FALSE) {
+            watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to via %source (%nid).',
+              array('%to' => $to, '%source' => $node->type, '%nid' => $node->nid), WATCHDOG_ERROR);
+          }
+          
+        }
+        
       }
 
     }
