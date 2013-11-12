@@ -9,11 +9,6 @@
   */
 function dosomething_mandrill_unit_test_data_hook_mail($op) {
   
-    $bla = TRUE;
-    if ($bla) {
-      $bla = TRUE;
-    }
-  
   switch ($op):
     
     // Note: 'to' is a string not an array. The Mandrill module will take care of

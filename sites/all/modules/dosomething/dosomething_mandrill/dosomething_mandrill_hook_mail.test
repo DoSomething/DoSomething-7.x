@@ -36,11 +36,6 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   public function testMandrillMail() {
     
     foreach ($this->tests as $test) {
-    
-    $bla = TRUE;
-    if ($bla) {
-      $bla = TRUE;
-    }
       
       list($this->message, $this->params, $this->to) = dosomething_mandrill_unit_test_data_hook_mail($test);
       
@@ -67,9 +62,9 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     
       $message = array();
       
-      $params['FNAME'] = 'Second';
+      $params['FNAME'] = 'First';
       dosomething_mandrill_mail_firstname($message, $params);
-      $this->assertEqual('Second', $message['params']['FNAME'],
+      $this->assertEqual('First', $message['params']['FNAME'],
          'First Name: First => ' . $message['params']['FNAME']);
       
       $params['FNAME'] = 'first';

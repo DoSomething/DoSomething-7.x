@@ -195,11 +195,6 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL) {
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
   
-  $bla = TRUE;
-  if ($bla) {
-    $bla = TRUE;
-  }
-  
   // Common merge tags
   dosomething_mandrill_mail_common($message, $params);
 
