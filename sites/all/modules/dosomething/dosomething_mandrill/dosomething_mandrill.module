@@ -18,7 +18,7 @@ function dosomething_mandrill_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * Implements hook_webform_submission_insert($node, $submission)
+ * Implements hook_webform_submission_insert()
  *
  * Respond to webform submission from the content type: Campaign Contact Form
  * /admin/structure/types/manage/campaign_contact_form to trigger a Mandrill
