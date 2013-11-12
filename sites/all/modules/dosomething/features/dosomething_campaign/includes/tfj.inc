@@ -53,7 +53,7 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
   if (!empty($form_state['values']['gsid']) && $form_state['values']['gsid'] == DOSOMETHING_SCHOOL_NOT_FOUND_KEY ) {
     // Display help text:
     $form['school_not_found']['#type'] = 'item';
-    $form['school_not_found']['#markup'] = 'Please email <a href="mailto://teensforjeans@dosomething.org" target="_blank">teensforjeans@dosomething.org</a> to add your school.';
+    $form['school_not_found']['#markup'] = 'Sorry about that! Please email <a href="mailto://teensforjeans@dosomething.org" target="_blank">teensforjeans@dosomething.org</a> with your state and the name of your school.';
   }
   $form['not_affiliated'] = array(
     '#type' => 'checkbox',
