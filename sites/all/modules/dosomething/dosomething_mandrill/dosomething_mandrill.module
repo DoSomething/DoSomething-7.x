@@ -6,7 +6,7 @@
  */
 
 /*
- * Impliments hook_theme()
+ * Implements hook_theme()
  */
 function dosomething_mandrill_theme($existing, $type, $theme, $path) {
   return array(
@@ -243,7 +243,7 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  * See dosomething_mandrill_mail()
  *
  * @param array $message
- *   Current state of the message array that will ultamly be sent to the
+ *   Current state of the message array that will ultimately be sent to the
  *   Mandrill API.
  *
  * @param array $params
@@ -266,7 +266,7 @@ function dosomething_mandrill_mail_common(&$message, &$params) {
  * See dosomething_mandrill_mail()
  *
  * @param array $message
- *   Current state of the message array that will ultamly be sent to the
+ *   Current state of the message array that will ultimately be sent to the
  *   Mandrill API.
  *
  * @param array $params
@@ -305,7 +305,7 @@ function dosomething_mandrill_mail_petition(&$message, &$params) {
  * See dosomething_mandrill_mail()
  *
  * @param array $message
- *   Current state of the message array that will ultamly be sent to the
+ *   Current state of the message array that will ultimately be sent to the
  *   Mandrill API.
  *
  * @param array $params
@@ -325,7 +325,7 @@ function dosomething_mandrill_mail_password_reset(&$message, &$params) {
  * See dosomething_mandrill_mail()
  *
  * @param array $message
- *   Current state of the message array that will ultamly be sent to the
+ *   Current state of the message array that will ultimately be sent to the
  *   Mandrill API.
  *
  * @param array $params
@@ -350,7 +350,7 @@ function dosomething_mandrill_mail_plain(&$message, &$params) {
  * First Name logic
  *
  * @param array $message
- *   Current state of the message array that will ultamly be sent to the
+ *   Current state of the message array that will ultimately be sent to the
  *   Mandrill API.
  *
  * @param array $params
@@ -548,7 +548,7 @@ function dosomething_mandrill_campaign_listing() {
   $campaigns = array();
   
   // Exclude 96240 - Make Art. Save Art., not sure why this is an entry as it's
-  // not in the site Campaign navigaion output
+  // not in the site Campaign navigation output
   $results = db_query("
     SELECT
       link_title,
