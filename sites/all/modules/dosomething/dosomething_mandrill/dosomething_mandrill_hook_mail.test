@@ -36,6 +36,11 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   public function testMandrillMail() {
     
     foreach ($this->tests as $test) {
+    
+    $bla = TRUE;
+    if ($bla) {
+      $bla = TRUE;
+    }
       
       list($this->message, $this->params, $this->to) = dosomething_mandrill_unit_test_data_hook_mail($test);
       
@@ -59,10 +64,12 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
    * @see dosomething_mandrill_mail_firstname()
    */
   public function testMandrillMailFirstName() {
+    
+      $message = array();
       
-      $params['FNAME'] = 'First';
+      $params['FNAME'] = 'Second';
       dosomething_mandrill_mail_firstname($message, $params);
-      $this->assertEqual('First', $message['params']['FNAME'],
+      $this->assertEqual('Second', $message['params']['FNAME'],
          'First Name: First => ' . $message['params']['FNAME']);
       
       $params['FNAME'] = 'first';
@@ -99,16 +106,16 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
       "Petition: \$message]['params']['FNAME'] == " . $message_post['params']['FNAME']);
     $this->assertEqual($message_pre['params']['LNAME'], $message_post['params']['LNAME'],
       "Petition: \$message]['params']['LNAME'] == " . $message_post['params']['LNAME']);
-    $this->assertEqual($message_pre['params']['TITLE'], $message_post['params']['PETITION'],
-      "Petition: \$message]['params']['TITLE'] / ['PETITION'] == " . $message_post['params']['PETITION']);
-    $this->assertEqual('http://www.dosomething.org' . $message_pre['params']['URL'], $message_post['params']['PETITIONURL'],
-      "Petition: \$message]['params']['URL'] / ['PETITIONURL'] == " . $message_post['params']['PETITIONURL']);
+    $this->assertEqual($message_pre['params']['TITLE'], $message_post['params']['TITLE'],
+      "Petition: \$message]['params']['TITLE'] / ['TITLE'] == " . $message_post['params']['TITLE']);
+    $this->assertEqual('http://www.dosomething.org' . $message_pre['params']['URL'], $message_post['params']['URL'],
+      "Petition: \$message]['params']['URL'] / ['URL'] == " . $message_post['params']['URL']);
     
     // params merge_vars - dosomething_mandrill_mail
-    $this->assertEqual($this->params['TITLE'], $message_post['params']['PETITION'],
-      "Petition: \$this->params['TITLE'] == " . $message_post['params']['PETITION']);
-    $this->assertEqual($this->params['URL'], substr($message_post['params']['PETITIONURL'], 26),
-      "Petition: \$this-> == " . $message_post['params']['PETITIONURL']);
+    $this->assertEqual($this->params['TITLE'], $message_post['params']['TITLE'],
+      "Petition: \$this->params['TITLE'] == " . $message_post['params']['TITLE']);
+    $this->assertEqual($this->params['URL'], substr($message_post['params']['URL'], 26),
+      "Petition: \$this-> == " . $message_post['params']['URL']);
     
     // tags - dosomething_mandrill_mail
     $this->assertEqual('petition', $message_post['tags'][0],
@@ -117,7 +124,5 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
       "Petition: \$message]['tags'][1] == " . $message_post['tags'][1]);
     
   }
-  
-  
   
 }

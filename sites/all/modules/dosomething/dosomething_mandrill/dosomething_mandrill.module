@@ -195,6 +195,11 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL) {
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
   
+  $bla = TRUE;
+  if ($bla) {
+    $bla = TRUE;
+  }
+  
   // Common merge tags
   dosomething_mandrill_mail_common($message, $params);
 
@@ -237,7 +242,7 @@ function dosomething_mandrill_mail_common(&$message, &$params) {
   
   // FNAME
   if (isset($params['FNAME'])) {
-    $message['params'] = dosomething_mandrill_mail_firstname($params['FNAME']);
+    dosomething_mandrill_mail_firstname($message, $params);
   }
   
   // CAMPAIGNS
@@ -265,22 +270,8 @@ function dosomething_mandrill_mail_petition(&$message, &$params) {
   $tags = array('petition', $params['TITLE']);
   $message['tags'] = dosomething_mandrill_mail_tag_assignment($tags);
 
-  // Rename merge vars to match Mandrill template
-  // @todo: Adjust template to use TITLE and URL making the adjustment in code
-  //   below unnecessary
-  $params['PETITION'] = $params['TITLE'];
-  $params['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
-  $message['params']['PETITION'] = $params['TITLE'];
-  $message['params']['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
-
-  unset($params['TITLE']);
-  unset($params['URL']);
-  unset($message['params']['TITLE']);
-  unset($message['params']['URL']);
-  
-  // Replace with:
-  // $message['params']['TITLE'] = $params['TITLE'];
-  // $message['params']['URL'] = 'http://www.dosomething.org' . $params['URL'];
+  $message['params']['TITLE'] = $params['TITLE'];
+  $message['params']['URL'] = 'http://www.dosomething.org' . $params['URL'];
       
 }
 
