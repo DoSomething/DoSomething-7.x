@@ -56,7 +56,10 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   }
   
   /*
-   * Unit tests for petition data sent to the dosomething_mandrill_mail() function
+   * Unit tests for petition data sent through the dosomething_mandrill_mail() function
+   * via the call to dosomething_mandrill_dispatch() (drupal_mail)
+   * 
+   * @see dosomething_mandrill_mail_petition()
    */
   public function subtestMandrillMailForPetition($message_pre, $message_post) {
 
@@ -114,10 +117,10 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     
   }
   
-    /**
-   * @see dosomething_mandrill_mail_firstname()
+  /**
+   * @see dosomething_mandrill_mail_tag_assignment()
    */
-  public function testMandrillMailTags() {
+  public function testMailTagAssignment() {
     
     $tags = array(
       'test tag one',
