@@ -54,7 +54,38 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     }
     
   }
+  
+  /*
+   * Unit tests for petition data sent through the dosomething_mandrill_mail() function
+   * via the call to dosomething_mandrill_dispatch() (drupal_mail)
+   * 
+   * @see dosomething_mandrill_mail_petition()
+   */
+  public function subtestMandrillMailForPetition($message_pre, $message_post) {
 
+    // Test returned $message values
+    // to
+    $this->assertEqual($message_pre['to'], $message_post['to'],
+      "Petition: \$message]['to'] == " . $message_post['to']);
+        
+    // message merge_vars - dosomething_mandrill_mail
+    $this->assertEqual($message_pre['params']['FNAME'], $message_post['params']['FNAME'],
+      "Petition: \$message]['params']['FNAME'] == " . $message_post['params']['FNAME']);
+    $this->assertEqual($message_pre['params']['LNAME'], $message_post['params']['LNAME'],
+      "Petition: \$message]['params']['LNAME'] == " . $message_post['params']['LNAME']);
+    $this->assertEqual($message_pre['params']['TITLE'], $message_post['params']['TITLE'],
+      "Petition: \$message]['params']['TITLE'] / ['TITLE'] == " . $message_post['params']['TITLE']);
+    $this->assertEqual('http://www.dosomething.org' . $message_pre['params']['URL'], $message_post['params']['URL'],
+      "Petition: \$message]['params']['URL'] / ['URL'] == " . $message_post['params']['URL']);
+    
+    // tags - dosomething_mandrill_mail
+    $this->assertEqual('petition', $message_post['tags'][0],
+      "Petition: \$message]['tags'][0] == 'petition'.");
+    $this->assertEqual(substr($message_pre['params']['TITLE'], 0, 50), $message_post['tags'][1],
+      "Petition: \$message]['tags'][1] == " . $message_post['tags'][1]);
+    
+  }
+  
   /**
    * @see dosomething_mandrill_mail_firstname()
    */
@@ -86,31 +117,23 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     
   }
   
-  /*
-   * Unit tests for petition data sent to the dosomething_mandrill_mail() function
+  /**
+   * @see dosomething_mandrill_mail_tag_assignment()
    */
-  public function subtestMandrillMailForPetition($message_pre, $message_post) {
-
-    // Test returned $message values
-    // to
-    $this->assertEqual($message_pre['to'], $message_post['to'],
-      "Petition: \$message]['to'] == " . $message_post['to']);
-        
-    // message merge_vars - dosomething_mandrill_mail
-    $this->assertEqual($message_pre['params']['FNAME'], $message_post['params']['FNAME'],
-      "Petition: \$message]['params']['FNAME'] == " . $message_post['params']['FNAME']);
-    $this->assertEqual($message_pre['params']['LNAME'], $message_post['params']['LNAME'],
-      "Petition: \$message]['params']['LNAME'] == " . $message_post['params']['LNAME']);
-    $this->assertEqual($message_pre['params']['TITLE'], $message_post['params']['TITLE'],
-      "Petition: \$message]['params']['TITLE'] / ['TITLE'] == " . $message_post['params']['TITLE']);
-    $this->assertEqual('http://www.dosomething.org' . $message_pre['params']['URL'], $message_post['params']['URL'],
-      "Petition: \$message]['params']['URL'] / ['URL'] == " . $message_post['params']['URL']);
+  public function testMailTagAssignment() {
     
-    // tags - dosomething_mandrill_mail
-    $this->assertEqual('petition', $message_post['tags'][0],
-      "Petition: \$message]['tags'][0] == 'petition'.");
-    $this->assertEqual(substr($message_pre['params']['TITLE'], 0, 50), $message_post['tags'][1],
-      "Petition: \$message]['tags'][1] == " . $message_post['tags'][1]);
+    $tags = array(
+      'test tag one',
+      'test tag two 4567890123456789012345678901234567890xxxxxxx', // tag that exceeds 50 characters
+      '_test_tag_three',
+      );
+    
+    $tag_assignments = dosomething_mandrill_mail_tag_assignment($tags);
+    
+    $this->assertTrue($tags[0] == $tag_assignments[0], 'Tag: ' . $tag_assignments[0] . ' OK');
+    $this->assertTrue(strlen($tag_assignments[1]) <= 50 , 'Tag: ' . $tags[1] . ' => ' .$tag_assignments[1] . ' less than 50 characters.');
+    $this->assertTrue($tag_assignments[2] == "-test_tag_three", 'Tag: ' . $tag_assignments[2] . ', leading \'_\' changed to \'-\'');
+    $this->assertTrue(count($tag_assignments) == 3, 'Three tags returned.');
     
   }
   
