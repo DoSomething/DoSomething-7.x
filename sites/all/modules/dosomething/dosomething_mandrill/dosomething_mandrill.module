@@ -5,8 +5,20 @@
  *
  */
 
+/*
+ * Implements hook_theme()
+ */
+function dosomething_mandrill_theme($existing, $type, $theme, $path) {
+  return array(
+    'dosomething_mandrill_campaign_listing' => array(
+      'variables' => array('campaigns' => NULL),
+      'template' => 'dosomething-mandrill-campaign-listing',
+    ),
+  );
+}
+
 /**
- * Impliments hook_webform_submission_insert($node, $submission)
+ * Implements hook_webform_submission_insert()
  *
  * Respond to webform submission from the content type: Campaign Contact Form
  * /admin/structure/types/manage/campaign_contact_form to trigger a Mandrill
@@ -44,51 +56,35 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
       // Register the $global $user object
       global $user;
 
-      // Check for anonymous user
-      if ($user->uid == 0) {
-        if (!empty($submission->field_webform_email)) {
-          $to = $submission->field_webform_email[LANGUAGE_NONE][0]['email'];
-        }
-        else {
-          $to = '';
-        }
-      }
-      else {
+      // Check for authenticated user making a report back, anonymous submissions
+      // are not allowed
+      if ($user->uid != 0) {
+        
         $to = $user->mail;
-      }
+        // merge var support for user first name
+        $profile = profile2_load_by_user($user, 'main');
+        $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
-      // User the site default, perhaps someday we'll deal in other languages other than
-      $language = language_default();
+        // User the site default, perhaps someday we'll deal in other languages other than
+        $language = language_default();
 
-      // Empty as current campaign signup messages do not contain merge_vars.
-      // @todo: Add support specific list of merge_var values, *|FNAME|* for example
-      $params = array();
+        // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
+        // users responding to these messages result in anyone reading the message.
+        $from = NULL;
 
-      // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
-      // users responding to these messages result in anyone reading the message.
-      $from = NULL;
+        // Check for missing Email, ex: mobile submission / user
+        if (valid_email_address($to)) {
+          
+          $message_status = dosomething_mandrill_dispatch($to, $key, $message);
 
-      // Email missing, mobile submission
-      if (valid_email_address($to)) {
-
-        // Send transactional message
-        $message = drupal_mail('dosomething_mandrill', $key, $to, $language, $params, $from, TRUE);
-
-      }
-
-      /**
-       * $send: If TRUE, drupal_mail() will call drupal_mail_system()->mail() to deliver the message, and store
-       * the result in $message['result']. Modules implementing hook_mail_alter() may cancel sending by setting
-       * $message['send'] to FALSE.
-       */
-
-      // Log results
-      if ($message['result'] == FALSE) {
-
-        // watchdog($type, $message, $variables = array(), $severity = WATCHDOG_NOTICE, $link = NULL)
-        watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to via %source (%nid).',
-                  array('%to' => $to, '%source' => $node->type, '%nid' => $node->nid), WATCHDOG_ERROR);
-
+          // Log results
+          if ($message_status['result'] == FALSE) {
+            watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to via %source (%nid).',
+              array('%to' => $to, '%source' => $node->type, '%nid' => $node->nid), WATCHDOG_ERROR);
+          }
+          
+        }
+        
       }
 
     }
@@ -111,24 +107,30 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * NOTE: See http://drupalcode.org/project/examples.git/blob_plain/refs/heads/7.x-1.x:/email_example/email_example.module
  * for fully functional example.
  *
- * Triggeres the sending of a Mandrill transactional email message using a target Mandrill template.
+ * Triggers the sending of a Mandrill transactional email message using a target Mandrill template.
  * If a specific template is not provided then default to a general DoSomething themed template
  *
- * $to - send to email address (required)
+ * @param string|array $to
+ *   Email address(es) to send to (required)
  *
- * $key = 'dsplain' - The mail system key value as defined in /admin/config/system/mailsystem. The key is assigned
- * to a Mandrill template in the Mandrill Template module: /admin/config/services/mandrill/templates The key setting
- * determines what mail system and Mandrill template to use when sending a message.
+ * @param string $key = 'dsplain'
+ *   The mail system key value as defined in /admin/config/system/mailsystem.
+ *   The key is assigned to a Mandrill template in the Mandrill Template module:
+ *   /admin/config/services/mandrill/templates The key setting determines what
+ *   mail system and Mandrill template to use when sending a message.
+ * 
+ * @param array $message
+ * Custom message content to be merged into the Mandrill template. The values can
+ * be any item listed in the Mandrill API:
+ * https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ * Variables within the custom message text or within the template that will be
+ * dynamically replace with custom content specific to each message. Variables
+ * are denoted in the Mandrill template with *|<some name>|*
  *
- * Note that *|merge vars|* should be within the message body.
- * 
- * $merge_vars = NULL : Variables within the custom message text or within the template that will be dynamically
- * replace with custom content specific to each message. Variables are denoted with *|<some name|*
- * 
- * $user = NULL - The user object, future use to generate custom merge_var values.
- * 
+ * @return array $message_status
+ *   Response from Mandrill API
  */
-function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user=NULL) {
+function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL) {
 
   $language = language_default();
   $from = NULL;
@@ -152,9 +154,11 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
 /**
  * Implements hook_mail().
  *
- * $key: An identifier of the mail.
+ * @param string $key
+ *   An identifier of the mail.
  *
- * &$message: An array to be filled in. Elements in this array include:
+ * @param array &$message
+ * An array to be filled in. Elements in this array include:
  *
  *   id:      An ID to identify the mail sent. Look at module source code or
  *            drupal_mail() for possible id values.
@@ -180,89 +184,191 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $user
  *            MIME-Version, Content-Type, etc. drupal_mail() pre-fills several
  *            headers in this array.
  *
- * $params: An array of parameters supplied by the caller of drupal_mail().
+ * @param array $params
+ * An array of parameters supplied by the caller of drupal_mail().
  *
  *
  * Example use:
  *
  * drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
  * $result = drupal_mail('dosomething_mandrill', 'dosomething-plain', $to, $language, $params,  $from, TRUE);
- *
- * $params: Contans merge var values for the individual transactional message or global merge var values when sending to more than one email address,
- *   for example to club members or a group in a school where the message can be customized on both the individual email address as weell as values
- *   specific to the group / batch of messages.
  */
 function dosomething_mandrill_mail($key, &$message, $params) {
   
   // Common merge tags
-  if (!empty($params['FNAME'])) {
-    $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
-  }
+  dosomething_mandrill_mail_common($message, $params);
 
   switch ($key) {
 
     case 'petition':      
-
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
-
-      // Tag message and related email address for segmentation use in MailChimp
-      // for future mass mailouts related to the petition. Tag value must not
-      // start with "_". Any tags starting with an underscore are reserved for
-      // internal Mandrill use and will cause errors in API.
-      ($params['TITLE'][0] != '_') ?: $params['TITLE'][0] = '-';
-      $petition_tag = substr($params['TITLE'], 0, 50);
-
-      $message['tags'] = array('petition', $petition_tag);
-
-      // Rename merge vars to match Mandrill template
-      $params['PETITION'] = $params['TITLE'];
-      $params['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
-      $message['params']['PETITION'] = $params['TITLE'];
-      $message['params']['PETITIONURL'] = 'http://www.dosomething.org' . $params['URL'];
-
-      unset($params['TITLE']);
-      unset($params['URL']);
-      unset($message['params']['TITLE']);
-      unset($message['params']['URL']);
-
+      dosomething_mandrill_mail_petition($message, $params);
       break;
 
     case 'password_reset':
-
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = 'DoSomething.org - Password Reset';
-      $message['body'] = variable_get('user_mail_password_reset_notify', NULL);
-      
-      $message['params']['PASS'] = $params['URL'];
-
-      break;
-    
-    case 'GGWired13rb':
-      
-      $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
-      
+      dosomething_mandrill_mail_password_reset($message, $params);
       break;
 
     case 'dsplain':
     case 'dssignup':
     case 'dsrp':
-    case 'dsreg':      
-
-      $message['from'] = 'dosomething@dosomething.org';
-      $message['subject'] = $params['subject'];
-      $message['body'] = $params['body'];
-
+    case 'dsreg':
+      dosomething_mandrill_mail_plain($message, $params);
       break;
 
-    default:      
-
-      $message['from'] = 'dosomething@dosomething.org';
-
-      $message['subject'] = isset($params['subject']) ? $params['subject'] : '';
-      $message['body'] = isset($params['body']) ? $params['body'] : '';
+    default:
+      dosomething_mandrill_mail_plain($message, $params);
 
   }
+
+}
+
+/*
+ * Common logic for hook_mail()
+ * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultimately be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
+ */
+function dosomething_mandrill_mail_common(&$message, &$params) {
+  
+  // FNAME
+  dosomething_mandrill_mail_firstname($message, $params);
+
+  // CAMPAIGNS
+  $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
+  
+}
+
+/*
+ * Petition for hook_mail()
+ * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultimately be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
+ */
+function dosomething_mandrill_mail_petition(&$message, &$params) {
+
+  $message['from'] = 'dosomething@dosomething.org';
+  $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
+
+  // Possible tag values
+  $tags = array('petition', $params['TITLE']);
+  $message['tags'] = dosomething_mandrill_mail_tag_assignment($tags);
+
+  $message['params']['TITLE'] = $params['TITLE'];
+  $message['params']['URL'] = 'http://www.dosomething.org' . $params['URL'];
+      
+}
+
+/*
+ * Password Reset for hook_mail()
+ * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultimately be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
+ */
+function dosomething_mandrill_mail_password_reset(&$message, &$params) {
+  
+  $message['from'] = 'dosomething@dosomething.org';
+  $message['subject'] = 'DoSomething.org - Password Reset';
+  $message['body'] = variable_get('user_mail_password_reset_notify', NULL);
+  $message['params']['PASS'] = $params['URL'];
+  
+}
+
+/*
+ * Plain / default values for hook_mail()
+ * See dosomething_mandrill_mail()
+ *
+ * @param array $message
+ *   Current state of the message array that will ultimately be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
+ */
+function dosomething_mandrill_mail_plain(&$message, &$params) {
+  
+  $message['from'] = 'dosomething@dosomething.org';
+  
+  // Subject or body content supplied, set message to pass on to Mandrill API
+  // otherwise leave unset
+  if (isset($params['subject'])) {
+    $message['subject'] = $params['subject'];
+  }
+  if (isset($params['body'])) {
+    $message['body'] = $params['body'];
+  }
+  
+}
+
+/*
+ * First Name logic
+ *
+ * @param array $message
+ *   Current state of the message array that will ultimately be sent to the
+ *   Mandrill API.
+ *
+ * @param array $params
+ *   Values to be applied to $message
+ */
+function dosomething_mandrill_mail_firstname(&$message, &$params) {
+  
+  // Common merge tag used in most Mandrill templates
+  if (!empty($params['FNAME'])) {
+    $message['params']['FNAME'] = ucfirst(strtolower($params['FNAME']));
+  }
+  else {
+    $message['params']['FNAME'] = 'Doer';
+  }
+  
+  // @todo: Deal with multi part names, ex: "Emma Jane" or "Emma-Jane". Current
+  // results in cap of first character only
+  
+}
+
+/*
+ * Build tag values for assignment to messages. Tags are used for segmentation
+ * in MailChimp on mass mailouts.
+ *
+ * @param array $tags
+ *   An array of all the tags to be assigned to a message. The tag names will be
+ *   formatted to the limitations outlined in the Mandrill API:
+ *   https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *
+ *   Tags should be 50 characters or less. Any tags starting with an underscore
+ *   are reserved for internal use and will cause errors.
+ */
+function dosomething_mandrill_mail_tag_assignment($tags) {
+  
+  $tag_assignments = array();
+  
+  foreach ($tags as $tag) {
+  
+    // Tag value must not start with "_". Any tags starting with an underscore are
+    // reserved for internal Mandrill use and will cause errors in API.
+    if ($tag[0] == '_') {
+      $tag[0] = '-';
+    }
+    
+    // Limit tag length to 50 characters based on API tag length requirement
+    $tag_assignments[] = substr($tag, 0, 50);
+    
+  }
+
+  return $tag_assignments;
 
 }
 
@@ -273,7 +379,7 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  *  An array that maps to the Mandrill API 
  *
  * @param $message
- * From Mandill module readme.txt. An array containing the message data. Keys in this array include:
+ * From Mandrill module readme.txt. An array containing the message data. Keys in this array include:
  *
  * 'id': The drupal_mail() id of the message. Look at module source code or drupal_mail() for possible id values.
  * 'to': The address or addresses the message will be sent to. The formatting of this string will be validated with the PHP e-mail validation filter.
@@ -389,10 +495,53 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     $mandrill_params['message']['tags'] = $message['tags'];
   }
   
-  // Combine all merge_var values - these values are used to send multipul messages
-  // with customizations to the Mandrill templace based on the merge_var values and
+  // Combine all merge_var values - these values are used to send multiple messages
+  // with customizations to the Mandrill template based on the merge_var values and
   // the matching *|TAGS|*  
   $mandrill_params['message']['merge_vars'] = $merge_vars;
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
+}
+
+/*
+ * Creates listing of current active campaigns based on current entries in the
+ * menu system. Yep, hacky! Perhaps someday there will be an API call to pull
+ * this from.
+ *
+ * @return string
+ */
+function dosomething_mandrill_campaign_listing() {
+  
+  $results = array();
+  $campaigns = array();
+  
+  // Exclude 96240 - Make Art. Save Art., not sure why this is an entry as it's
+  // not in the site Campaign navigation output
+  $results = db_query("
+    SELECT
+      link_title,
+      link_path
+    FROM
+      menu_links
+    WHERE
+      plid = 93591
+      AND
+      mlid != 96240
+      AND
+      hidden = 0
+      AND
+      link_path != 'past-campaigns'
+    ORDER BY
+      weight              
+    ");
+  
+  foreach ($results as $campaign) {
+    $campaigns[] = array(
+      'link_title' => $campaign->link_title,
+      'link_path' => $campaign->link_path,
+    );
+  }
+  
+  return theme('dosomething_mandrill_campaign_listing', array('campaigns' => $campaigns));
+  
 }

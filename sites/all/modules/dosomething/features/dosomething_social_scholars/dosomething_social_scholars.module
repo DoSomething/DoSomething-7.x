@@ -282,7 +282,6 @@ function dosomething_social_scholars_form_alter(&$form, &$form_state, $form_id) 
  *  Validates share-a-stat forms
  */
 function dosomething_social_scholars_validate_form($form, &$form_state) {
-  $error = 0;
   $s = $form_state['input']['submitted'];
 
   $you = $s['referall_your_info'];
@@ -291,21 +290,19 @@ function dosomething_social_scholars_validate_form($form, &$form_state) {
 
   if (trim($you['referral_first_name']) == '' && trim($you['field_referral_your_name'][LANGUAGE_NONE][0]['value']) == '') {
     form_set_error('submitted[referall_your_info][referral_first_name]', t("You must provide a valid name."));
-    $error++;
   }
 
   if (!dosomething_general_valid_cell($you['referral_phone_number']) && !dosomething_general_valid_cell($you['field_referral_your_cell'][LANGUAGE_NONE][0]['value'])) {
     form_set_error('submitted[referall_your_info][referral_phone_number', t("Your phone number must be a valid phone number."));
-    $error++;
   }
 
   if (!dosomething_general_valid_cell($them['referral_friend_cell_1']) && !dosomething_general_valid_cell($them['field_cell_friend1'][LANGUAGE_NONE][0]['value'])) {
     form_set_error('submitted[referral_friend_info][referral_friend_cell_1', t("You must provide at least one valid cell phone number."));
-    $error++;
   }
 
-  if ($error > 0 && SAS_AJAX_STATE) {
-    drupal_goto($_SERVER['HTTP_REFERER']);
+  $total_errors = form_get_errors();
+  if (count($total_errors) > 0) {
+    drupal_goto('node/' . $s['sas_nid']);
   }
 }
 

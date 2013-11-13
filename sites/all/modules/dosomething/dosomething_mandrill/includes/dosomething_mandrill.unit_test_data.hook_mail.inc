@@ -3,6 +3,10 @@
  * @file
  * Test data for hook_mail()
  */
+
+ /*
+  * Test data that returns $message, $params, $to
+  */
 function dosomething_mandrill_unit_test_data_hook_mail($op) {
   
   switch ($op):
@@ -40,11 +44,6 @@ function dosomething_mandrill_unit_test_data_hook_mail($op) {
       );
       
       break;
-  
-    default:
-      
-      $message = 'Error - invalid operation (op: ' . $op . ')';
-      $to = 'Error - invalid operation (op: ' . $op . ')';
       
   endswitch;
   

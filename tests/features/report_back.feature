@@ -22,6 +22,6 @@ Feature: Campaign Report Backs
    Then I should see "Thanks for reporting back for 50 Cans!"
    And I should see "Return to 50 Cans"
 
-   When I go to "/50cans"
-   #Then the response should contain "test.jpg"
+   When I follow "Return to 50 Cans"
+   Then I should see "Your challenge is simple"
 

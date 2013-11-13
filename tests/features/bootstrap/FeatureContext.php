@@ -90,15 +90,17 @@ class FeatureContext extends MinkContext
         $role = self::$factory->create('User', array('roles' => array('staff', 'product team')));
       }
 
+      // Store a copy of the role for "I fill in X with my logged in email", below.
       self::$roles[$type] = $role;
 
       // Return the required steps to log in our logged in user.
       return array(
-        new Step\Given('I am on "/user/login"'),
-        new Step\When('I fill in "edit-name" with "' . self::$factory->getDefault('User', 'name') . '"'),
+        new Step\Given('I am on "/"'),
+        new Step\When('I go to "/user/login"'),
+        new Step\When('I fill in "edit-name" with "' . $role->mail . '"'),
         new Step\When('I fill in "edit-pass" with "' . self::$factory->getDefault('User', 'pass') . '"'),
         new Step\When('I press "Log in"'),
-        // new Step\Then('I should see "Log out"'),
+        new Step\Then('I should see "Log out"'),
       );
     }
 
