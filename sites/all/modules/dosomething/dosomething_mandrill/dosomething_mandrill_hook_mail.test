@@ -20,70 +20,30 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   public function setUp() {
     parent::setUp();
-    
-    // Load list of test scenarios
-    module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.tests');
-    $this->tests = dosomething_mandrill_tests();
-    
-    // Load test data related to each scenario
-    module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.unit_test_data.hook_mail');
-
   }
   
-    /**
-   * @see dosomething_mandrill_mail()
+  /**
+   * @see dosomething_mandrill_mail_common()
    */
-  public function testMandrillMail() {
+  public function testMailCommon() {
     
-    foreach ($this->tests as $test) {
-      
-      list($this->message, $this->params, $this->to) = dosomething_mandrill_unit_test_data_hook_mail($test);
-      
-      // $message is passed by reference to dosomething_mandrill_mail(), keep
-      // track of the $message value before and after to test the input vs
-      // output of the dosomething_mandrill_mail() function.
-      $message_pre = $this->message;
-      $message = $message_pre;
-      dosomething_mandrill_mail($test, $message, $this->params);
-      $message_post = $message;
-      
-      if ($test == 'petition') {
-        $this->subtestMandrillMailForPetition($message_pre, $message_post);
-      }
-      
-    }
+    $message = array();
+    $params['FNAME'] = 'First';
     
-  }
-  
-  /*
-   * Unit tests for petition data sent through the dosomething_mandrill_mail() function
-   * via the call to dosomething_mandrill_dispatch() (drupal_mail)
-   * 
-   * @see dosomething_mandrill_mail_petition()
-   */
-  public function subtestMandrillMailForPetition($message_pre, $message_post) {
+    dosomething_mandrill_mail_common($message, $params);
+    
+    // Expected default "common" values
+    $this->assertTrue(is_string($message['from_name']), 'Default \'from_name\' set to: ' . $message['from_name']);
+    
+    $this->assertEqual($params['FNAME'], $message['params']['FNAME'],
+         '$params[\'FNAME\']: ' . $params['FNAME'] . ' assigned to $message[\'params\'][\'FNAME\']');
+    $this->assertTrue(strlen($message['params']['CAMPAIGNS']) > 0, 'CAMPAIGNS value returned.');
+    $this->assertTrue(
+      strpos($message['params']['CAMPAIGNS'], '<ul>') !== FALSE &&
+      strpos($message['params']['CAMPAIGNS'], '</ul>') !== FALSE &&
+      strpos($message['params']['CAMPAIGNS'], '<li>') !== FALSE,
+      'CAMPAIGNS markup found.');
 
-    // Test returned $message values
-    // to
-    $this->assertEqual($message_pre['to'], $message_post['to'],
-      "Petition: \$message]['to'] == " . $message_post['to']);
-        
-    // message merge_vars - dosomething_mandrill_mail
-    $this->assertEqual($message_pre['params']['FNAME'], $message_post['params']['FNAME'],
-      "Petition: \$message]['params']['FNAME'] == " . $message_post['params']['FNAME']);
-    $this->assertEqual($message_pre['params']['LNAME'], $message_post['params']['LNAME'],
-      "Petition: \$message]['params']['LNAME'] == " . $message_post['params']['LNAME']);
-    $this->assertEqual($message_pre['params']['TITLE'], $message_post['params']['TITLE'],
-      "Petition: \$message]['params']['TITLE'] / ['TITLE'] == " . $message_post['params']['TITLE']);
-    $this->assertEqual('http://www.dosomething.org' . $message_pre['params']['URL'], $message_post['params']['URL'],
-      "Petition: \$message]['params']['URL'] / ['URL'] == " . $message_post['params']['URL']);
-    
-    // tags - dosomething_mandrill_mail
-    $this->assertEqual('petition', $message_post['tags'][0],
-      "Petition: \$message]['tags'][0] == 'petition'.");
-    $this->assertEqual(substr($message_pre['params']['TITLE'], 0, 50), $message_post['tags'][1],
-      "Petition: \$message]['tags'][1] == " . $message_post['tags'][1]);
-    
   }
   
   /**
@@ -91,30 +51,23 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
    */
   public function testMandrillMailFirstName() {
     
-      $message = array();
-      
-      $params['FNAME'] = 'First';
-      dosomething_mandrill_mail_firstname($message, $params);
-      $this->assertEqual('First', $message['params']['FNAME'],
-         'First Name: First => ' . $message['params']['FNAME']);
-      
-      $params['FNAME'] = 'first';
-      dosomething_mandrill_mail_firstname($message, $params);
-      $this->assertEqual('First', $message['params']['FNAME'],
-         'First Name: first => ' . $message['params']['FNAME']);
-      
-      $params['FNAME'] = 'fiRSt';
-      dosomething_mandrill_mail_firstname($message, $params);
-      $this->assertEqual('First', $message['params']['FNAME'],
-         'First Name: fiRStt => ' . $message['params']['FNAME']);
-      
-      $params['FNAME'] = 'FIRST';
-      dosomething_mandrill_mail_firstname($message, $params);
-      $this->assertEqual('First', $message['params']['FNAME'],
-         'First Name: FIRST => ' . $message['params']['FNAME']);
-      
       // @todo: "First Name", "First-Name"
-    
+      $fnames = array(
+        'First',
+        'first',
+        'fiRSt',
+        'FIRST'
+      );
+      
+      foreach($fnames as $fname) {
+        
+        $params['FNAME'] = $fname;
+        dosomething_mandrill_mail_firstname($message, $params);
+        $this->assertEqual('First', $message['params']['FNAME'],
+         'First Name: First => ' . $message['params']['FNAME']);
+        
+      }
+
   }
   
   /**
@@ -134,6 +87,27 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(strlen($tag_assignments[1]) <= 50 , 'Tag: ' . $tags[1] . ' => ' .$tag_assignments[1] . ' less than 50 characters.');
     $this->assertTrue($tag_assignments[2] == "-test_tag_three", 'Tag: ' . $tag_assignments[2] . ', leading \'_\' changed to \'-\'');
     $this->assertTrue(count($tag_assignments) == 3, 'Three tags returned.');
+    
+  }
+  
+  /**
+   * @see dosomething_mandrill_mail_petition()
+   */
+  public function testMailPetition() {
+    
+    $message = array();
+    $params['TITLE'] = 'Test Petition Title';
+    $params['URL'] = '/petitions';
+    
+    dosomething_mandrill_mail_petition($message, $params);
+    
+    $this->assertTrue(isset($message['from_name']), '$message[\'from_name\'] is set.');
+    $this->assertTrue(isset($message['subject']), '$message[\'subject\'] is set.');
+    $this->assertTrue(strpos($message['subject'], $params['TITLE']) !== FALSE, '$message[\'subject\'] contains petition title.');
+    $this->assertTrue(in_array('petition', $message['tags']), '\'petition\' tag assigned.');
+    $this->assertTrue(in_array($params['TITLE'], $message['tags']), '\'' . $params['TITLE'] . '\' tag assigned.');
+    $this->assertTrue($params['TITLE'] == $message['params']['TITLE'], 'TITLE merge var assigned.');
+    $this->assertTrue('http://www.dosomething.org' . $params['URL'] == $message['params']['URL'], 'URL merge var assigned.');
     
   }
   

@@ -199,6 +199,10 @@ function dosomething_mandrill_mail($key, &$message, $params) {
   dosomething_mandrill_mail_common($message, $params);
 
   switch ($key) {
+    
+    // @todo: Passing via $mandrill_params['params']['message']['from_name'] should be
+    // $message['message']['from_name'] not $message['params']['message']['from_name']
+    // in hook_mail dsdrip-momm13-x functionality when drip functionality is added back in
 
     case 'petition':      
       dosomething_mandrill_mail_petition($message, $params);
@@ -235,10 +239,13 @@ function dosomething_mandrill_mail($key, &$message, $params) {
  */
 function dosomething_mandrill_mail_common(&$message, &$params) {
   
-  // FNAME
+  // Default values
+  $message['from_name'] = 'DoSomething.org';
+  
+  // *|FNAME|*
   dosomething_mandrill_mail_firstname($message, $params);
 
-  // CAMPAIGNS
+  // *|CAMPAIGNS|*
   $message['params']['CAMPAIGNS'] = dosomething_mandrill_campaign_listing();
   
 }
@@ -256,7 +263,7 @@ function dosomething_mandrill_mail_common(&$message, &$params) {
  */
 function dosomething_mandrill_mail_petition(&$message, &$params) {
 
-  $message['from'] = 'dosomething@dosomething.org';
+  $message['from_name'] = 'Ben at DoSomething.org';
   $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
 
   // Possible tag values
@@ -484,8 +491,16 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     }
   }
   
-  // Adjust the From Name value
-  !isset($mandrill_params['params']['message']['from_name']) ?: $mandrill_params['message']['from_name'] = $mandrill_params['params']['message']['from_name'];
+  // Adjust the "From Name" message value
+  if (isset($message['from_name'])) {
+    $mandrill_params['message']['from_name'] = $message['from_name'];
+  }
+  else {
+    // @todo: Passing via $mandrill_params['params']['message']['from_name'] should be
+    // $message['message']['from_name'] not $message['params']['message']['from_name'] in hook_mail dsdrip-momm13-x
+    // Remove this else once drip functionality is added back in
+    $mandrill_params['message']['from_name'] = $mandrill_params['params']['message']['from_name'];
+  }
   
   // Tags
   if (is_array($mandrill_params['message']['tags']) && is_array($message['tags'])) {
@@ -511,6 +526,8 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
  * @return string
  */
 function dosomething_mandrill_campaign_listing() {
+  
+  // @todo: Should this be cached?
   
   $results = array();
   $campaigns = array();
