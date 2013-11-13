@@ -12,8 +12,8 @@ Feature: Share a Stat tests
     And I should see "Share this stat with six friends for a chance to win a $2000 Scholarship"
     And I should see "Caterpillars must spend a lot on shoes"
     And I should see "Text STOP to opt-out"
-  @do
-  Scenario: Fail submitting the form (no data)
+
+  #Scenario: Fail submitting the form (no data)
     #When I press "Submit"
     #Then I should see "Your First Name field is required"
     #And I should see "Your phone number must be a valid phone number"
