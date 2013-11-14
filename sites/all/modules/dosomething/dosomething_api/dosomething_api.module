@@ -187,7 +187,7 @@ function dosomething_api_user_fetch_data($data = array('account' => array(), 'pr
  *    A new user with new profile2 main profile.
  *
  */
-function dosomething_api_user_create($info = array('name' => '', 'email' => '', 'mobile' => '', 'roles' => array())) {
+function dosomething_api_user_create($info = array('name' => '', 'email' => '', 'mobile' => '', 'first_name' => '', 'roles' => array())) {
   // Start the account class.
   $account = new stdClass;
 
@@ -251,7 +251,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   }
   // If they have a real first name, set that.
   if ($info['name'] != 'Guest user' && $info['name'] != $info['mobile']) {
-    $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $info['name'];
+    $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $info['first_name'];
   }
 
   // Try and save the profile and set a message that we did so...
