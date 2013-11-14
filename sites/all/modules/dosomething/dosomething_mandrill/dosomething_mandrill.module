@@ -263,7 +263,7 @@ function dosomething_mandrill_mail_common(&$message, &$params) {
  */
 function dosomething_mandrill_mail_petition(&$message, &$params) {
 
-  $message['from_name'] = 'Ben at DoSomething.org';
+  $message['from_name'] = t('Ben at DoSomething.org');
   $message['subject'] = t('Thanks for signing the petition: ') . $params['TITLE'];
 
   // Possible tag values
