@@ -28,8 +28,8 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     dosomething_mandrill_mail_common($message, $params);
 
     // Expected default "common" values
-    $this->assertTrue(is_string($message['from_name']), 'Default \'from_name\' set to: ' . $message['from_name']);
-    $this->assertTrue($message['from_name'] == 'Dosomething.org', '\'from_name\' set to \'Dosomething.org\'');
+    $this->assertTrue(is_string($message['from_name']), 'Default \'from_name\' is a string.');
+    $this->assertTrue($message['from_name'] == 'DoSomething.org', '\'from_name\' set to \'Dosomething.org\'');
 
     $this->assertEqual($params['FNAME'], $message['params']['FNAME'],
          '$params[\'FNAME\']: ' . $params['FNAME'] . ' assigned to $message[\'params\'][\'FNAME\']');
