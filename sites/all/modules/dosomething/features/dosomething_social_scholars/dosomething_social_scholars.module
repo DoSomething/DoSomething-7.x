@@ -302,7 +302,8 @@ function dosomething_social_scholars_validate_form($form, &$form_state) {
 
   $total_errors = form_get_errors();
   if (count($total_errors) > 0) {
-    drupal_goto('node/' . $s['sas_nid']);
+    // Not strictly Drupal-y, but drupal_goto() doesn't work on QA for some reason.
+    header('location: /' . drupal_get_path_alias('node/' . $s['sas_nid']), FALSE);
   }
 }
 
@@ -370,9 +371,12 @@ function dosomething_social_scholars_submit_form($form, &$form_state) {
   // Load the SaS node to get information later.
   $nid = intval($s['sas_nid']);
   $node = node_load($nid);
-  if (module_exists('dosomething_subscribe_mobilecommons')) {
-    dosomething_subscribe_mobilecommons_referral_signup($your_number, $alphas_campaign, $them, $betas_campaign);
+  try {
+    if (module_exists('dosomething_subscribe_mobilecommons')) {
+      dosomething_subscribe_mobilecommons_referral_signup($your_number, $alphas_campaign, $them, $betas_campaign);
+    }
   }
+  catch (Exception $e) {}
 
   // Set the message to the redirect message found on the form.
   #drupal_set_message(t($node->field_redirect_message[LANGUAGE_NONE][0]['value']));
