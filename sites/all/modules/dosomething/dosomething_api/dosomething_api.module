@@ -253,7 +253,7 @@ function dosomething_api_user_create($info = array('name' => '', 'email' => '', 
   if (!empty($info['first_name']) && $info['first_name'] != 'Guest user' && $info['name_name'] != $info['mobile']) {
     $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $info['first_name'];
   }
-  else {
+  elseif ($info['name'] != 'Guest user' && $info['name'] != $info['mobile']) {
     $profile->field_user_first_name[LANGUAGE_NONE][0]['value'] = $info['name'];
   }
 
