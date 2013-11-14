@@ -36,6 +36,7 @@ class User extends Factory {
       'password' => $this->default['pass'],
       'email' => $this->default['mail'],
       'mobile' => $this->default['mobile'],
+      'first_name' => $this->default['first_name'],
       'roles' => $this->default['roles'])
     );
     $this->throwOut($user->uid, 'user');
