@@ -571,6 +571,9 @@ function dosomething_mandrill_campaign_listing() {
  *
  * @param object $account
  *   The account that has requested the password reset.
+ *
+ * @return array $message_status
+ *   Response from Mandrill API. Used for testing.
  */
 function dosomething_mandrill_dispatch_password_reset($account) {
   
@@ -583,11 +586,6 @@ function dosomething_mandrill_dispatch_password_reset($account) {
   $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
 
   $message_status = dosomething_mandrill_dispatch($account->mail, 'password_reset', $message);
-  
-  watchdog('dosomething_mandrill', 'A user with the email address %email was sent a password reset message.',
-    array('%email' => $account->mail),
-    WATCHDOG_NOTICE
-  );
   
   return $message_status;
 
