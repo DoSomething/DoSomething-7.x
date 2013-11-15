@@ -583,8 +583,15 @@ function dosomething_mandrill_dispatch_password_reset($account) {
   // merge var values to match *|URL|* and *|FNAME|* in Mandrill template
   $message['URL'] = user_pass_reset_url($account);
   $message['ACCOUNT'] = $account->name;
-  $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-
+  
+  // Only set the FNAME key if the account has a first name value. If this key
+  // is not passed into the dosomething_mandrill_dispatch() call below
+  // dosomething_mandrill_mail_firstname() will haddle setting a default
+  // FNAME value.
+  if (!empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+    $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  }
+  
   $message_status = dosomething_mandrill_dispatch($account->mail, 'password_reset', $message);
   
   return $message_status;
