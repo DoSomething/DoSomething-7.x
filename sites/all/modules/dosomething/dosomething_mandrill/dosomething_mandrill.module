@@ -588,7 +588,7 @@ function dosomething_mandrill_dispatch_password_reset($account) {
   // is not passed into the dosomething_mandrill_dispatch() call below
   // dosomething_mandrill_mail_firstname() will haddle setting a default
   // FNAME value.
-  if (!empty($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+  if (isset($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
     $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
   }
   
