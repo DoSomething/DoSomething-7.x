@@ -4,6 +4,9 @@
  * Unit Tests for DoSomething.org Mandrill transaction message system
  */
 class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
+  
+  const TEST_EMAIL = 'dlee+test@dosomething.org';
+  protected $auth_user;
 
   public static function getInfo() {
     return array(
@@ -15,6 +18,13 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   public function setUp() {
     parent::setUp();
+    
+    $this->auth_user = $this->factory->create('User', array(
+      'name' => 'DS Test',
+      'mail' => self::TEST_EMAIL,
+      'first_name' => 'First',
+    ));
+        
   }
 
   /**
@@ -105,6 +115,21 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(in_array($params['TITLE'], $message['tags']), '\'' . $params['TITLE'] . '\' tag assigned.');
     $this->assertTrue($params['TITLE'] == $message['params']['TITLE'], 'TITLE merge var assigned.');
     $this->assertTrue('http://www.dosomething.org' . $params['URL'] == $message['params']['URL'], 'URL merge var assigned.');
+
+  }
+  
+  /**
+   * @see dosomething_mandrill_dispatch_password_reset()
+   */
+  public function testMailDispatchPasswordReset() {
+
+    $account = $this->auth_user;
+    $message_status = dosomething_mandrill_dispatch_password_reset($account);
+
+    $this->assertTrue(strpos($message_status['params']['URL'], '/user/reset/') !== FALSE, 'Reset URL returned from Mandrill');
+    $this->assertTrue($message_status['params']['ACCOUNT'] == 'DS Test', 'Account name \'' . $message_status['params']['ACCOUNT'] . '\' returned from Mandrill');
+    $this->assertTrue($message_status['params']['FNAME'] == 'First', 'First name \'' . $message_status['params']['FNAME'] . '\' returned from Mandrill');
+    $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Password Reset message to ' . $message_status['to']);
 
   }
   

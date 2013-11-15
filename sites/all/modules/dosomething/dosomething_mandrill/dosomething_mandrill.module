@@ -147,7 +147,7 @@ function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL) {
               array('%to' => $to, '%key' => $key), WATCHDOG_INFO);
 	}
   
-  return $message_status['result'];
+  return $message_status;
 
 }
 
@@ -503,10 +503,10 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   }
   
   // Tags
-  if (is_array($mandrill_params['message']['tags']) && is_array($message['tags'])) {
+  if (isset($message['tags']) && is_array($mandrill_params['message']['tags']) && is_array($message['tags'])) {
     $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
   }
-  elseif (is_array($message['tags'])) {
+  elseif (isset($message['tags']) && is_array($message['tags'])) {
     $mandrill_params['message']['tags'] = $message['tags'];
   }
   
@@ -561,4 +561,39 @@ function dosomething_mandrill_campaign_listing() {
   
   return theme('dosomething_mandrill_campaign_listing', array('campaigns' => $campaigns));
   
+}
+
+/**** ENTRY POINTS ****/
+
+/*
+ * Entry point function to trigger specific Mandrill dispatch related to a user
+ * password reset request.
+ *
+ * @param object $account
+ *   The account that has requested the password reset.
+ *
+ * @return array $message_status
+ *   Response from Mandrill API. Used for testing.
+ */
+function dosomething_mandrill_dispatch_password_reset($account) {
+  
+  // Lookup account profile details
+  $profile = profile2_load_by_user($account, 'main');
+  
+  // merge var values to match *|URL|* and *|FNAME|* in Mandrill template
+  $message['URL'] = user_pass_reset_url($account);
+  $message['ACCOUNT'] = $account->name;
+  
+  // Only set the FNAME key if the account has a first name value. If this key
+  // is not passed into the dosomething_mandrill_dispatch() call below
+  // dosomething_mandrill_mail_firstname() will haddle setting a default
+  // FNAME value.
+  if (isset($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
+    $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+  }
+  
+  $message_status = dosomething_mandrill_dispatch($account->mail, 'password_reset', $message);
+  
+  return $message_status;
+
 }
