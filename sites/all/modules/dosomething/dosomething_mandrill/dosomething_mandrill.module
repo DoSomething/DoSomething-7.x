@@ -8,8 +8,9 @@
 /*
  * Implements hook_menu()
  *
- * Used for development / testing. Drush access to the callbacks should be used
- * in production.
+ * Used for development / testing. Drush access to the functions should be used
+ * in production. The hook_menu callbacks are only for debugging with a IDE that
+ * can be removed once the drip code is released.
  */
 function dosomething_mandrill_menu() {
 
@@ -161,7 +162,7 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * @return array $message_status
  *   Response from Mandrill API
  */
-function dosomething_mandrill_dispatch($to, $key='dsplain', $message=NULL, $test_flag=FALSE) {
+function dosomething_mandrill_dispatch($to, $key = 'dsplain', $message = NULL, $test_flag = FALSE) {
 
   $language = language_default();
   $from = NULL;
@@ -666,10 +667,6 @@ function dosomething_mandrill_dispatch_password_reset($account) {
  * @param int $target_drop
  *  The drop message to send in the message drip series.
  *
- * @param boolean $test_flag
- *  A flag used for testing to enable the use of test data rather than live /
- *  real user data gathered form the database for sending Mandrill messages.
- *
  * @param string $target_date
  *  The target date in international format - YYYY-MM-DD
  *
@@ -682,11 +679,15 @@ function dosomething_mandrill_dispatch_password_reset($account) {
  * To avoid potential ambiguity, it's best to use ISO 8601 (YYYY-MM-DD) dates or
  * DateTime::createFromFormat() when possible.
  *
+ * @param boolean $test_flag
+ *  A flag used for testing to enable the use of test data rather than live /
+ *  real user data gathered form the database for sending Mandrill messages.
+ *
  * @return array $dispatch_result
  *   Results returned form Mandrill API reporting on the status of the sent
  *   message(s).
  */
-function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE, $target_date=NULL) {
+function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date = NULL, $test_flag = TRUE) {
 
   $to = array();
   $merge_vars = array();

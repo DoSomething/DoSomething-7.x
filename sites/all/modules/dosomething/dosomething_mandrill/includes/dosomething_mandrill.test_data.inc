@@ -3,9 +3,11 @@
 /*
  * Test data in arrays.
  *
- * The contents of this include file are a function dosomething_mandrill_test_data()
- * that is used to generate arrays of test data. The arrays are injected into functionality
- * in dosomething_mandrill to replace live data.
+ * The contents of this include file are used to generate arrays of test data based
+ * on keys ($op) defined in dosomething_mandrill_mail (hook_mail). The arrays are injected
+ * into dosomething_mandrill_dispatch() just before sending messages to Mandrill.
+ * This allows for debugging with "real" from the database but only sending test
+ * messages.
  */
 function dosomething_mandrill_test_data($op) {
   
