@@ -400,15 +400,8 @@ function dosomething_login_password_recovery_submit($form, &$form_state) {
     $account->pass = user_hash_password($pass);
     user_save($account);
 
-    $param['URL'] = user_pass_reset_url($account);
-    $param['FNAME'] = $account->name;
-    dosomething_mandrill_dispatch($account->mail, 'password_reset', $param, $account);
-  
-    watchdog('dosomething_mandrill', 'A user with the email address of %email asked for a password reset.',
-      array('%email' => $account->mail),
-      WATCHDOG_NOTICE
-    );
-    drupal_set_message(t('An email message with reset instructions has been sent to %email.', array('%email' => $account->mail)));
+    // Send Mandrill transaction message
+    dosomething_mandrill_dispatch_password_reset($account);
     
   } // User is already logged in, send them to the user profile page to change their password
   else {
