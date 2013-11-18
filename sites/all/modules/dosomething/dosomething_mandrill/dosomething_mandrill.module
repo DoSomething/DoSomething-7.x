@@ -691,7 +691,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
   $to = array();
   $merge_vars = array();
   $dispatch_result = array();
-	
+
 
 	// Code stub for functionality to follow in future commits related to this function
 	// This explains the need for dosomething_mandrill_get_clean_first_name()
@@ -723,7 +723,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE
 }
 
 /*
- * Petition for hook_mail()
+ * drip for MOMM settings for hook_mail()
  * See dosomething_mandrill_mail()
  *
  * @param array $message
