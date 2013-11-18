@@ -375,12 +375,15 @@ function dosomething_mandrill_mail_plain(&$message, &$params) {
 function dosomething_mandrill_mail_firstname(&$message, &$params) {
   
   // Common merge tag used in most Mandrill templates
-  $message['params']['FNAME'] = dosomething_mandrill_fname($params['FNAME']);
+  $message['params']['FNAME'] = dosomething_mandrill_get_clean_first_name($params['FNAME']);
 
 }
 
 /*
  * Core first name functionality
+ *
+ * Used in dosomething_mandrill_dispatch_drip() to assign fname value that doesn't
+ * use the ($message, $params) structure of dosomething_mandrill_mail_firstname()
  *
  * @param string $fname
  *   The initial fname value
@@ -388,7 +391,7 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
  * @return string $fname
  *   The resulting first name value
  */
-function dosomething_mandrill_fname($fname) {
+function dosomething_mandrill_get_clean_first_name($fname) {
 
   if (!empty($fname)) {
     $fname = ucfirst(strtolower($params['FNAME']));
@@ -685,7 +688,35 @@ function dosomething_mandrill_dispatch_password_reset($account) {
  */
 function dosomething_mandrill_dispatch_drip($op, $target_drop=1, $test_flag=TRUE, $target_date=NULL) {
 
-	$dispatch_result = array();
+  $to = array();
+  $merge_vars = array();
+  $dispatch_result = array();
+	
+
+	// Code stub for functionality to follow in future commits related to this function
+	// This explains the need for dosomething_mandrill_get_clean_first_name()
+	$results = array();
+	foreach($results as $user_details) {
+
+	// Skip if missing user email address
+	if ($user_details->mail != NULL) {
+
+		$to[] = array(
+			'email' => $user_details->mail,
+			'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
+		);
+
+		$merge_vars[] = array(
+			'rcpt' => $user_details->mail,
+			'vars' => array(
+				array(
+					'name' => 'FNAME',
+					'content' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
+				),
+			),
+		);
+
+	}
 
   return $dispatch_result;
 

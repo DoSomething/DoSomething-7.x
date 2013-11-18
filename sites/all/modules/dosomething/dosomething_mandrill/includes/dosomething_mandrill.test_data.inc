@@ -1,7 +1,11 @@
 <?php
 
 /*
- * Generate test data
+ * Test data in arrays.
+ *
+ * The contents of this include file are a function dosomething_mandrill_test_data()
+ * that is used to generate arrays of test data. The arrays are injected into functionality
+ * in dosomething_mandrill to replace live data.
  */
 function dosomething_mandrill_test_data($op) {
   
