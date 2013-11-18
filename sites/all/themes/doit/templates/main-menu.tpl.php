@@ -15,6 +15,7 @@
         <ul class="dropdown">
             <li><a href="/teensforjeans">Teens For Jeans</a></li>
             <li><a href="/grandparents">Grandparents Gone Wired</a></li>
+            <li><a href="/footlocker">Foot Locker Scholarship</a></li>
             <li><a href="/money">Mind on my Money</a></li>
             <li><a href="/50cans">50 Cans</a></li>
             <li><a href="/bullytext">Bully Text</a></li>
