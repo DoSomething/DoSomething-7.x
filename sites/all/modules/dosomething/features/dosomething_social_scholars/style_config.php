@@ -121,7 +121,7 @@ $campaign_styles = array(
 
 
 /**
- * @var array $campaign_styles
+ * @var array $scheme_styles
  *   Directly related to the "Color scheme" field on the SaS forms.  The key
  *   here is the key of the select element.  The array is an aray of arrays,
  *   including the 'longform' array and the 'shortform' array.  The 'longform'
