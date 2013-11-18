@@ -1,5 +1,38 @@
 <?php
 
+/**
+ * @file
+ * Sets up the share a stat color profiles.  This file is directly correlated
+ * with the "Linked campaign" and "Color scheme" fields in the SaS edit forms.
+ *
+ * @see dosomething_social_scholars.module lines 176-209.
+ */
+
+/**
+ * @var array $campaign_styles
+ *   Directly related to the "Linked campaign" field on the SaS forms.  The key
+ *   here is the NID of the campaign that is related to the Share a Stat.  The
+ *   array is an aray of arrays, including the 'longform' array and the
+ *   'shortform' array.  The 'longform' is the form that users see on the actaul
+ *   Share a Stat page.  The 'shortform' is likely unused from now on, but was
+ *   basically a small bordered box with name and email.
+ *
+ *   The campaign profile should follow this standard:
+ *   @code
+ *     NID => array(
+ *       'longform' => array(
+ *         'background' => 'HEX_CODE',   # Background color of the SaS form.
+ *         'tip' => 'HEX_CODE',          # Background color of the tip box.
+ *         'font_color' => 'HEX_CODE',   # Font color of the SaS form.
+ *         'tip_color' => 'HEX_CODE',    # Font color of the tip box.
+ *       ),
+ *       'shortform' => array(
+ *         'background' => 'HEX_CODE',   # Background color of the shortform
+ *         'font_color' => 'HEX_CODE',   # Font color of the shortform.
+ *       ),
+ *     )
+ *   @endcode
+ */
 $campaign_styles = array(
   // Green your school
   '718328' => array(
@@ -86,6 +119,32 @@ $campaign_styles = array(
     ),
   );
 
+
+/**
+ * @var array $campaign_styles
+ *   Directly related to the "Color scheme" field on the SaS forms.  The key
+ *   here is the key of the select element.  The array is an aray of arrays,
+ *   including the 'longform' array and the 'shortform' array.  The 'longform'
+ *   is the form that users see on the actaul Share a Stat page.  The
+ *   'shortform' is likely unused from now on, but was basically a small
+ *   bordered box with name and email.
+ *
+ *   The color profile should follow this standard:
+ *   @code
+ *     NID => array(
+ *       'longform' => array(
+ *         'background' => 'HEX_CODE',   # Background color of the SaS form.
+ *         'tip' => 'HEX_CODE',          # Background color of the tip box.
+ *         'font_color' => 'HEX_CODE',   # Font color of the SaS form.
+ *         'tip_color' => 'HEX_CODE',    # Font color of the tip box.
+ *       ),
+ *       'shortform' => array(
+ *         'background' => 'HEX_CODE',   # Background color of the shortform
+ *         'font_color' => 'HEX_CODE',   # Font color of the shortform.
+ *       ),
+ *     )
+ *   @endcode
+ */
 $scheme_styles = array(
   // Green
   'green' => array(

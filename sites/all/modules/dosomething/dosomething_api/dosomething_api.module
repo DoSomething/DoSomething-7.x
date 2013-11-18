@@ -30,10 +30,13 @@ function dosomething_api_libraries_info() {
 }
 
 /**
- *  Log in a user.  Assuming $e_or_c is a valid email or cell phone
- *  number of a DoSomething.org member:
+ *  Attemps to log in a user.  If they do not exist, creates the user.
+ *
  *  @code
- *    dosomething_api_user_log_in('email@dosomething.org');
+ *    dosomething_api_create_or_log_in_user('Mike', 'mchittenden@dosomething.org', 'testing-123', array('ShareAStat2013', '11426'), array(
+ *      'user' => array(),
+ *      'profile' => array('field_user_first_name' => 'Mike', 'field_user_last_name' => 'Chittenden')
+ *    ));
  *  @endcode
  *
  *  @param string $name
@@ -45,13 +48,14 @@ function dosomething_api_libraries_info() {
  *  @param string $password
  *    The user's password.
  *
+ *  @param array $buckets
+ *    (Optional) array of buckets for MailChimp / Mobile Commons integration.
+ *
  *  @param array $addons
  *    An (optional) array of arrays, with the following standard:
  *      - 'user' => a key/value array where the key is a valid user field name, and the value is the value.
  *      - 'profile' => a key/value array where the key is a valid profile field name, and the value is the value.
  *
- *  @param array $buckets
- *    (Optional) array of buckets for MailChimp / Mobile Commons integration.
  */
 function dosomething_api_create_or_log_in_user($name = '', $contact = '', $password = '', $buckets = array('email' => '', 'mobile' => ''), $addons = array()) {
   // Only run this if a user is not logged in.
@@ -59,35 +63,48 @@ function dosomething_api_create_or_log_in_user($name = '', $contact = '', $passw
     return;
   }
 
+  // Attempt to log in the user you specified.
   $account = dosomething_api_user_log_in($contact, 0, array(), $addons);
 
+  // If the user you specified can't be found (the array is empty)...
   if (empty($account)) {
+    // Set up a basic user object.
     $u = array(
       'name' => $name,
       'password' => $password
     );
 
+    // Include the email, if possible.
     if (valid_email_address($contact)) {
       $u['email'] = $contact;
     }
+    // Include the cell phone number, if possible.
     elseif (dosomething_general_valid_cell($contact)) {
       $u['mobile'] = $contact;
     }
 
+    // Create the user.
     $account = dosomething_api_user_create($u);
 
+    // Assuming that worked...
     if (!empty($account)) {
       // Run these *after* we know a user was successfully created.
       if (isset($u['email']) && !empty($buckets['email'])) {
+        // MailChimp subscribe.
         dosomething_subscribe_mailchimp_signup($u['email'], $buckets['email']);
       }
       elseif (isset($u['mobile']) && !empty($buckets['mobile'])) {
+        // Mobile commons subscribe.
         dosomething_general_mobile_commons_subscribe($u['mobile'], $buckets['mobile']);
       }
 
+      // Log in the user.
       dosomething_api_user_log_in($contact);
     }
   }
+
+  // Return the account.
+  return $account;
 }
 
 /**
