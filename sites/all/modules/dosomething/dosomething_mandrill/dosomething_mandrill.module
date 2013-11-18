@@ -6,33 +6,6 @@
  */
 
 /*
- * Implements hook_menu()
- *
- * Used for development / testing. Drush access to the functions should be used
- * in production. The hook_menu callbacks are only for debugging with a IDE that
- * can be removed once the drip code is released.
- */
-function dosomething_mandrill_menu() {
-
-  $items = array();
-
-  $items['dosomething_mandrill/dispatch_drip_events/%/%/%'] = array(
-    'page callback' => 'dosomething_mandrill_dispatch_drip',
-    'page arguments' => array(2, 3, 4),
-    'access arguments' => array('administer modules'),
-  );
-
-  $items['dosomething_mandrill/dispatch_drip_events/%/%/%/%'] = array(
-    'page callback' => 'dosomething_mandrill_dispatch_drip',
-    'page arguments' => array(2, 3, 4, 5),
-    'access arguments' => array('administer modules'),
-  );
-
-  return $items;
-
-}
-
-/*
  * Implements hook_theme()
  */
 function dosomething_mandrill_theme($existing, $type, $theme, $path) {
@@ -693,34 +666,34 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
   $merge_vars = array();
   $dispatch_result = array();
 
-
 	// Code stub for functionality to follow in future commits related to this function
 	// This explains the need for dosomething_mandrill_get_clean_first_name()
-	$results = array();
-	foreach($results as $user_details) {
+  $results = array();
+  foreach($results as $user_details) {
 
-	// Skip if missing user email address
-	if ($user_details->mail != NULL) {
+    // Skip if missing user email address
+    if ($user_details->mail != NULL) {
 
-		$to[] = array(
-			'email' => $user_details->mail,
-			'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
-		);
+      $to[] = array(
+        'email' => $user_details->mail,
+        'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
+      );
 
-		$merge_vars[] = array(
-			'rcpt' => $user_details->mail,
-			'vars' => array(
-				array(
-					'name' => 'FNAME',
-					'content' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
-				),
-			),
-		);
+      $merge_vars[] = array(
+        'rcpt' => $user_details->mail,
+        'vars' => array(
+          array(
+            'name' => 'FNAME',
+            'content' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
+          ),
+        ),
+      );
 
-	}
+    }
+
+  }
 
   return $dispatch_result;
-
 }
 
 /*
