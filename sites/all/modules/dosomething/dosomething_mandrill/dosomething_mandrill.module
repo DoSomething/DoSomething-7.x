@@ -5,34 +5,7 @@
  *
  */
 
- define('WEEK', 604800); // 60*60*24*7
-
- /*
- * Implements hook_menu()
- *
- * Used for development / testing. Drush access to the functions should be used
- * in production. The hook_menu callbacks are only for debugging with a IDE that
- * can be removed once the drip code is released.
- */
-function dosomething_mandrill_menu() {
-
-  $items = array();
-
-  $items['dosomething_mandrill/dispatch_drip_events/%/%/%'] = array(
-    'page callback' => 'dosomething_mandrill_dispatch_drip',
-    'page arguments' => array(2, 3, 4),
-    'access arguments' => array('administer modules'),
-  );
-
-  $items['dosomething_mandrill/dispatch_drip_events/%/%/%/%'] = array(
-    'page callback' => 'dosomething_mandrill_dispatch_drip',
-    'page arguments' => array(2, 3, 4, 5),
-    'access arguments' => array('administer modules'),
-  );
-
-  return $items;
-
-}
+define('WEEK', 604800); // 60*60*24*7
 
 /*
  * Implements hook_theme()
