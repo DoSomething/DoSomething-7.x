@@ -1,7 +1,10 @@
 <?php
 
 /**
- *  Implements hook_drush_command()
+ *  Implements hook_drush_command
+ *
+ *  ex:dispatch-drips
+ *  drush dispatch-drips <operation (dsdrip-momm)> <target drop (1-5)> <YYYY-MM-DD> <test flag (1 or 0)>
  */
 function dosomething_mandrill_drush_command() {
   return array(
