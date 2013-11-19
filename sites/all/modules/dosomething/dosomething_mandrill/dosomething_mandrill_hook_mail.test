@@ -134,22 +134,22 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   }
   
   /**
-   * @see dosomething_mandrill_target_stamp()
+   * @see dosomething_mandrill_get_targetstamp()
    *
    * Pass a date string and return the timestamp. If the date value is NULL
    * return the timestamp for the start of the day.
    */
-  public function testTargetStamp() {
+  public function testGetTargetTimestamp() {
 
     // Drip and date provided
     $target_date = '2013-11-18';  // 1384732800 - one week (604800) Mon, 11 Nov 2013 05:00:00 GMT
-    $target_stamp = dosomething_mandrill_target_stamp(1, $target_date);
+    $target_stamp = dosomething_mandrill_get_targetstamp(1, $target_date);
 
     // Epoch timestamp: 1384146000
     $this->assertTrue($target_stamp == 1384146000, 'Date string \'2013-11-18\' to time stamp 1384146000 : Mon, 11 Nov 2013 05:00:00 GMT');
     
     // Parameters not provided
-    $target_stamp = dosomething_mandrill_target_stamp();
+    $target_stamp = dosomething_mandrill_get_targetstamp();
     $nextweek_stamp =  mktime(0, 0, 0, date('m'), date('d') - 7, date('Y'));
 
     $this->assertTrue($target_stamp == $nextweek_stamp, 'Returned timestamp for drip 1 as of today when passed NULL');
@@ -157,17 +157,17 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   }
   
   /**
-   * @see dosomething_mandrill_dispatch_drip_momm_query()
+   * @see dosomething_mandrill_get_drip_dispatch_momm_data()
    *
    * Test collection of user accounts that have signed up for the MOMM campaign
    * on a supplied date.
    */
-  public function testDispatchDripMOMM() {
+  public function testDispatchDripMOMMQuery() {
 
     //  Fri, 01 Nov 2013 00:00:00 GMT - a date when the campaign was active
     $target_stamp = 1383264000;
 
-    list($to, $merge_vars) = dosomething_mandrill_dispatch_drip_momm_query($target_stamp);
+    list($to, $merge_vars) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
 
     // Are the returned values in an array format
     $this->assertTrue(is_array($to), '$to returned as an array');

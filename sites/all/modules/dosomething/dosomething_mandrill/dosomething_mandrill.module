@@ -669,7 +669,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
   $dispatch_result = array();
 
   // Calculate the target timestamp based on the date
-  $target_stamp = dosomething_mandrill_target_stamp($target_drop, $target_date);
+  $target_stamp = dosomething_mandrill_get_targetstamp($target_drop, $target_date);
 	
 	switch ($op){
 
@@ -677,7 +677,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 			
 			// Format merge details based on Mandrill API
       // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
-	    list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_dispatch_drip_momm_query($target_stamp);
+	    list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
 		  break;
 			
   }
@@ -709,8 +709,8 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 }
 
 /*
- * Generate a target datestemp value based on a supplied target date. Round results
- * down to the nearest start of the day.
+ * Generate a target timestamp value based on a supplied target date. The "drop"
+ * value defines the additional interval value to be removed from the timestamp.
  *
  * @param int $target_drop
  *   The message state / sequence number to send 
@@ -725,7 +725,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
  * @return int $target_stamp
  *   Target date value as a timestamp
  */
-function dosomething_mandrill_target_stamp($target_drop = 1, $target_date = NULL) {
+function dosomething_mandrill_get_targetstamp($target_drop = 1, $target_date = NULL) {
 
   // Assume target_date is current date if not defined
   if ($target_date == NULL) {
@@ -762,7 +762,7 @@ function dosomething_mandrill_drip_momm(&$message, &$params) {
  * @param int $target_stamp
  *   The target date rounded to the nearest midnight in timstamp format
  */
-function dosomething_mandrill_dispatch_drip_momm_query($target_stamp) {
+function dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp) {
 	
 	$to = array();
 	$merge_vars = array();

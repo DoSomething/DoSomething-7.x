@@ -22,11 +22,29 @@ function dosomething_mandrill_drush_command() {
  * ex: drush mandrill-dispatch-drip dsdrip-momm 1 0 2013-11-04
  *
  * Optional target date, defaults to current date (minus a week) if not provided.
+ *
+ * @param string $op
+ *   The drip operation to perform. ex: dsdrip-momm for the Mind on Your Money
+ *   campaign.
+ *
+ * @param int $target_drop
+ *   drip campaigns consist of a series of messages. The drop defines what
+ *   message in the series to send and the related logic to target certain users
+ *   who have signed up for the campaign. In the case of MOMM, each drop is a
+ *   week apart from the time the user signed up.
+ *
+ * @param string $target_date
+ *   The target date to base the drip query on. To avoid potential ambiguity,
+ *   it's best to use ISO 8601 (YYYY-MM-DD) date format. See the PHP function
+ *   strtotime: http://php.net/manual/en/function.strtotime.php for more options.
+ *
+ * @param int $test_flag
+ *   Enable (1) or disable (0) the use of test data when sending a drip message.
  */
-function drush_dosomething_mandrill_dispatch_drips($op, $target_drop = 1 , $test_flag=TRUE, $target_date=NULL) {
+function drush_dosomething_mandrill_dispatch_drips($op, $target_drop = 1, $target_date = NULL, $test_flag = TRUE) {
   try {
     
-    $results = dosomething_mandrill_dispatch_drip($op, $target_drop, $test_flag, $target_date);
+    $results = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
     
     drush_print(dt($results['send_status']));
     drush_print(dt($results['sent'] . " messages sent..."));
