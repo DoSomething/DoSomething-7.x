@@ -59,7 +59,7 @@ function dosomething_share_buttons($subtype, $conf, $panel_args, $context) {
     $title = (isset($page->title) ? rawurlencode($page->title) : '(Untitled)');
   }
 
-  $uri = request_uri();
+  $uri = request_path();
   $url = url($uri, array('absolute' => TRUE));
 
   // Create the share buttons "template"
@@ -70,7 +70,7 @@ function dosomething_share_buttons($subtype, $conf, $panel_args, $context) {
 
 <a href="http://twitter.com/share?url=' . $short . '&amp;count=horizontal&amp;via=dosomething&amp;text=' . $title . '&amp;counturl=' . $url . '" class="twitter-share-button service-links-twitter-widget" title="Tweet This" rel="nofollow" target="_blank"><span class="element-invisible">' . t('Tweet Widget') . '</span></a>
 
-<a href="/print' . $uri . '" title="Printable version" class="service-links-print" rel="nofollow" target="_blank"><img typeof="foaf:Image" src="/' . drupal_get_path('module', 'dosomething_general') . '/images/print.png" alt="Print HTML" /></a>';
+<a href="/print/' . $uri . '" title="' . t('Printable version') . '" class="service-links-print" rel="nofollow" target="_blank"><img typeof="foaf:Image" src="/' . drupal_get_path('module', 'dosomething_general') . '/images/print.png" alt="' . t('Print HTML') . '" /></a>';
 
   // Builds the content
   $content = array();
