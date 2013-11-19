@@ -127,7 +127,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $message_status = dosomething_mandrill_dispatch_password_reset($account);
 
     $this->assertTrue(strpos($message_status['params']['URL'], '/user/reset/') !== FALSE, 'Reset URL returned from Mandrill');
-    $this->assertTrue($message_status['params']['ACCOUNT'] == 'DS Mandrill Test', 'Account name \'' . $message_status['params']['ACCOUNT'] . '\' returned from Mandrill');
+    $this->assertTrue($message_status['params']['ACCOUNT'] == $account->name, 'Account name \'' . $message_status['params']['ACCOUNT'] . '\' returned from Mandrill');
     $this->assertTrue($message_status['params']['FNAME'] == 'First', 'First name \'' . $message_status['params']['FNAME'] . '\' returned from Mandrill');
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Password Reset message to ' . $message_status['to']);
 
@@ -156,4 +156,28 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   }
   
+  /**
+   * @see dosomething_mandrill_dispatch_drip_momm_query()
+   *
+   * Test collection of user accounts that have signed up for the MOMM campaign
+   * on a supplied date.
+   */
+  public function testDispatchDripMOMM() {
+
+    //  Fri, 01 Nov 2013 00:00:00 GMT - a date when the campaign was active
+    $target_stamp = 1383264000;
+
+    list($to, $merge_vars) = dosomething_mandrill_dispatch_drip_momm_query($target_stamp);
+
+    // Are the returned values in an array format
+    $this->assertTrue(is_array($to), '$to returned as an array');
+    $this->assertTrue(is_array($merge_vars), '$merge_vars returned as an array');
+
+    // Test random returned merge_var values
+    $target_index = rand(1, count($to));
+    $this->assertTrue($to[$target_index]['email'] == $merge_vars[$target_index]['rcpt'], '$to[' . $target_index . '][\'email\'] matches $merge_vars[' . $target_index . '][\'rcpt\']');
+    $this->assertTrue($to[$target_index]['name'] == $merge_vars[$target_index]['vars'][0]['content'], '$to[' . $target_index . '][\'name\'] matches $merge_vars[' . $target_index . '][0][\'content\']');
+
+  }
+
 }

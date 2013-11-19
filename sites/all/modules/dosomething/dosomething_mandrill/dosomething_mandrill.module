@@ -795,27 +795,27 @@ function dosomething_mandrill_dispatch_drip_momm_query($target_stamp) {
 	$merge_vars = array();
 	
 	$results = db_query("
-	SELECT
-		u.mail,
-		fdfufn.field_user_first_name_value
-	FROM
-		dosomething_campaign_signups dcs
-		LEFT JOIN users u ON u.uid = dcs.uid
-		LEFT JOIN profile p ON p.uid = u.uid
-		LEFT JOIN field_data_field_user_first_name fdfufn ON fdfufn.entity_id = p.pid
-	WHERE
-		dcs.nid = 731098
-		AND
-		(u.mail != ''
-		OR
-		u.mail != SUBSTRING('@mobile'))
-		AND
-		dcs.timestamp >= :timestamp
-		AND
-		dcs.timestamp <= :timestamp_end",
-		array(
-			':timestamp' => $target_stamp,
-			':timestamp_end' => $target_stamp + (60*60*24) // One day: 86400
+		SELECT
+			u.mail,
+			fdfufn.field_user_first_name_value
+		FROM
+			dosomething_campaign_signups dcs
+			LEFT JOIN users u ON u.uid = dcs.uid
+			LEFT JOIN profile p ON p.uid = u.uid
+			LEFT JOIN field_data_field_user_first_name fdfufn ON fdfufn.entity_id = p.pid
+		WHERE
+			dcs.nid = 731098
+			AND
+			(u.mail != ''
+			OR
+			 LOCATE('@mobile', u.mail) != 0)
+			AND
+			dcs.timestamp >= :timestamp
+			AND
+			dcs.timestamp <= :timestamp_end",
+			array(
+				':timestamp' => $target_stamp,
+				':timestamp_end' => $target_stamp + (60*60*24) // One day: 86400
 		));
 	
 	// Convert results to array in format defined by Mandrill API
@@ -826,7 +826,7 @@ function dosomething_mandrill_dispatch_drip_momm_query($target_stamp) {
 
 		  $to[] = array(
 			  'email' => $user_details->mail,
-			  'name' => dosomething_mandrill_fname($message['params']['FNAME']),
+			  'name' => dosomething_mandrill_get_clean_first_name($user_details->field_user_first_name_value),
 		  );
 
 		  $merge_vars[] = array(
@@ -834,7 +834,7 @@ function dosomething_mandrill_dispatch_drip_momm_query($target_stamp) {
 			  'vars' => array(
 				  array(
 					  'name' => 'FNAME',
-					  'content' => dosomething_mandrill_fname($message['params']['FNAME']),
+					  'content' => dosomething_mandrill_get_clean_first_name($user_details->field_user_first_name_value),
 				  ),
 			  ),
 		  );
