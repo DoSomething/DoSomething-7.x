@@ -34,9 +34,8 @@ function dosomething_mandrill_drush_command() {
  *   week apart from the time the user signed up.
  *
  * @param string $target_date
- *   The target date to base the drip query on. To avoid potential ambiguity,
- *   it's best to use ISO 8601 (YYYY-MM-DD) date format. See the PHP function
- *   strtotime: http://php.net/manual/en/function.strtotime.php for more options.
+ *   The target date to base the drip query on. Use ISO 8601 (YYYY-MM-DD) date
+ *   format.
  *
  * @param int $test_flag
  *   Enable (1) or disable (0) the use of test data when sending a drip message.

@@ -643,16 +643,8 @@ function dosomething_mandrill_dispatch_password_reset($account) {
  *  The drop message to send in the message drip series.
  *
  * @param string $target_date
- *  The target date in international format - YYYY-MM-DD
- *
- *  http://php.net/manual/en/function.strtotime.php
- *  Dates in the m/d/y or d-m-y formats are disambiguated by looking at the
- *  separator between the various components: if the separator is a slash (/),
- *  then the American m/d/y is assumed; whereas if the separator is a dash (-)
- *  or a dot (.), then the European d-m-y format is assumed.
- *
- * To avoid potential ambiguity, it's best to use ISO 8601 (YYYY-MM-DD) dates or
- * DateTime::createFromFormat() when possible.
+ *  The target date to base the drip query on. Use ISO 8601 (YYYY-MM-DD)
+ *  date format.
  *
  * @param boolean $test_flag
  *  A flag used for testing to enable the use of test data rather than live /
@@ -716,14 +708,12 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
  *   The message state / sequence number to send 
  *
  * @param string $target_date
- *   A flag used for testing to enable the use of test data rather than live /
- *   real user data gathered form the database for sending Mandrill messages.
- *
- * To avoid potential ambiguity, it's best to use ISO 8601 (YYYY-MM-DD) dates or
- * DateTime::createFromFormat() when possible.
+ *   The target date to base the drip query on. Use ISO 8601 (YYYY-MM-DD) date
+ *   format.
  *
  * @return int $target_stamp
- *   Target date value as a timestamp
+ *   A flag used for testing to enable the use of test data rather than live /
+ *   real user data gathered form the database for sending Mandrill messages.
  */
 function dosomething_mandrill_get_targetstamp($target_drop = 1, $target_date = NULL) {
 
