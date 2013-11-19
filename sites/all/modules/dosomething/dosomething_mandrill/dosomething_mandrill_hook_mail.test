@@ -20,7 +20,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     parent::setUp();
     
     $this->auth_user = $this->factory->create('User', array(
-      'name' => 'DS Test',
+      'name' => 'DS Mandrill Test',
       'mail' => self::TEST_EMAIL,
       'first_name' => 'First',
     ));
@@ -127,9 +127,32 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $message_status = dosomething_mandrill_dispatch_password_reset($account);
 
     $this->assertTrue(strpos($message_status['params']['URL'], '/user/reset/') !== FALSE, 'Reset URL returned from Mandrill');
-    $this->assertTrue($message_status['params']['ACCOUNT'] == 'DS Test', 'Account name \'' . $message_status['params']['ACCOUNT'] . '\' returned from Mandrill');
+    $this->assertTrue($message_status['params']['ACCOUNT'] == 'DS Mandrill Test', 'Account name \'' . $message_status['params']['ACCOUNT'] . '\' returned from Mandrill');
     $this->assertTrue($message_status['params']['FNAME'] == 'First', 'First name \'' . $message_status['params']['FNAME'] . '\' returned from Mandrill');
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Password Reset message to ' . $message_status['to']);
+
+  }
+  
+  /**
+   * @see dosomething_mandrill_target_stamp()
+   *
+   * Pass a date string and return the timestamp. If the date value is NULL
+   * return the timestamp for the start of the day.
+   */
+  public function testTargetStamp() {
+
+    // Drip and date provided
+    $target_date = '2013-11-18';  // 1384732800 - one week (604800) Mon, 11 Nov 2013 05:00:00 GMT
+    $target_stamp = dosomething_mandrill_target_stamp(1, $target_date);
+
+    // Epoch timestamp: 1384146000
+    $this->assertTrue($target_stamp == 1384146000, 'Date string \'2013-11-18\' to time stamp 1384146000 : Mon, 11 Nov 2013 05:00:00 GMT');
+    
+    // Parameters not provided
+    $target_stamp = dosomething_mandrill_target_stamp();
+    $nextweek_stamp =  mktime(0, 0, 0, date('m'), date('d') - 7, date('Y'));
+
+    $this->assertTrue($target_stamp == $nextweek_stamp, 'Returned timestamp for drip 1 as of today when passed NULL');
 
   }
   

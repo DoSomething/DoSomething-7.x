@@ -5,6 +5,35 @@
  *
  */
 
+ define('WEEK', 604800); // 60*60*24*7
+
+ /*
+ * Implements hook_menu()
+ *
+ * Used for development / testing. Drush access to the functions should be used
+ * in production. The hook_menu callbacks are only for debugging with a IDE that
+ * can be removed once the drip code is released.
+ */
+function dosomething_mandrill_menu() {
+
+  $items = array();
+
+  $items['dosomething_mandrill/dispatch_drip_events/%/%/%'] = array(
+    'page callback' => 'dosomething_mandrill_dispatch_drip',
+    'page arguments' => array(2, 3, 4),
+    'access arguments' => array('administer modules'),
+  );
+
+  $items['dosomething_mandrill/dispatch_drip_events/%/%/%/%'] = array(
+    'page callback' => 'dosomething_mandrill_dispatch_drip',
+    'page arguments' => array(2, 3, 4, 5),
+    'access arguments' => array('administer modules'),
+  );
+
+  return $items;
+
+}
+
 /*
  * Implements hook_theme()
  */
@@ -368,7 +397,7 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
 function dosomething_mandrill_get_clean_first_name($fname) {
 
   if (!empty($fname)) {
-    $fname = ucfirst(strtolower($params['FNAME']));
+    $fname = ucfirst(strtolower($fname));
   }
   else {
     $fname = 'Doer';
@@ -666,34 +695,75 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
   $merge_vars = array();
   $dispatch_result = array();
 
-	// Code stub for functionality to follow in future commits related to this function
-	// This explains the need for dosomething_mandrill_get_clean_first_name()
-  $results = array();
-  foreach($results as $user_details) {
+  // Calculate the target timestamp based on the date
+  $target_stamp = dosomething_mandrill_target_stamp($target_drop, $target_date);
+	
+	switch ($op){
 
-    // Skip if missing user email address
-    if ($user_details->mail != NULL) {
+    case 'dsdrip-momm':
+			
+			// Format merge details based on Mandrill API
+      // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+	    list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_dispatch_drip_momm_query($target_stamp);
+		  break;
+			
+  }
+	  // Respond to list of target email addresses found
+  if (count($to) > 0) {
 
-      $to[] = array(
-        'email' => $user_details->mail,
-        'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
-      );
+    // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
+    $dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
 
-      $merge_vars[] = array(
-        'rcpt' => $user_details->mail,
-        'vars' => array(
-          array(
-            'name' => 'FNAME',
-            'content' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
-          ),
-        ),
-      );
+    // Report to Drush results
+		if ($dispatch_results['result']) {
+			$dispatch_result['send_status'] = 'Success sending ' . $op . ' Mandrill messages.';
+		}
+		else {
+			$dispatch_result['send_status'] = 'Error sending ' . $op . ' Mandrill messages.';
+		}
+    $dispatch_result['sent'] = count($to);
 
-    }
+    // Record the number of messages sent
+		// @todo: Add StatHat data logging
 
+  }
+  else {
+    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and target drop: ' . $target_drop;
+    $dispatch_result['sent'] = 0;
   }
 
   return $dispatch_result;
+}
+
+/*
+ * Generate a target datestemp value based on a supplied target date. Round results
+ * down to the nearest start of the day.
+ *
+ * @param int $target_drop
+ *   The message state / sequence number to send 
+ *
+ * @param string $target_date
+ *   A flag used for testing to enable the use of test data rather than live /
+ *   real user data gathered form the database for sending Mandrill messages.
+ *
+ * To avoid potential ambiguity, it's best to use ISO 8601 (YYYY-MM-DD) dates or
+ * DateTime::createFromFormat() when possible.
+ *
+ * @return int $target_stamp
+ *   Target date value as a timestamp
+ */
+function dosomething_mandrill_target_stamp($target_drop = 1, $target_date = NULL) {
+
+  // Assume target_date is current date if not defined
+  if ($target_date == NULL) {
+    $target_stamp = strtotime('today') - (WEEK * $target_drop);
+  }
+  else {
+    $target_stamp = strtotime($target_date) - (WEEK * $target_drop);
+  }
+	
+	return $target_stamp;
+	
 }
 
 /*
@@ -711,4 +781,68 @@ function dosomething_mandrill_drip_momm(&$message, &$params) {
 
   $message['message']['from_name'] = 'Farah at DoSomething.org';
 
+}
+
+/*
+ * Query and process results into array for the MOMM 2013 campaign
+ *
+ * @param int $target_stamp
+ *   The target date rounded to the nearest midnight in timstamp format
+ */
+function dosomething_mandrill_dispatch_drip_momm_query($target_stamp) {
+	
+	$to = array();
+	$merge_vars = array();
+	
+	$results = db_query("
+	SELECT
+		u.mail,
+		fdfufn.field_user_first_name_value
+	FROM
+		dosomething_campaign_signups dcs
+		LEFT JOIN users u ON u.uid = dcs.uid
+		LEFT JOIN profile p ON p.uid = u.uid
+		LEFT JOIN field_data_field_user_first_name fdfufn ON fdfufn.entity_id = p.pid
+	WHERE
+		dcs.nid = 731098
+		AND
+		(u.mail != ''
+		OR
+		u.mail != SUBSTRING('@mobile'))
+		AND
+		dcs.timestamp >= :timestamp
+		AND
+		dcs.timestamp <= :timestamp_end",
+		array(
+			':timestamp' => $target_stamp,
+			':timestamp_end' => $target_stamp + (60*60*24) // One day: 86400
+		));
+	
+	// Convert results to array in format defined by Mandrill API
+	foreach($results as $user_details) {
+
+  	// Skip if record missing user email address
+	  if ($user_details->mail != NULL) {
+
+		  $to[] = array(
+			  'email' => $user_details->mail,
+			  'name' => dosomething_mandrill_fname($message['params']['FNAME']),
+		  );
+
+		  $merge_vars[] = array(
+		    'rcpt' => $user_details->mail,
+			  'vars' => array(
+				  array(
+					  'name' => 'FNAME',
+					  'content' => dosomething_mandrill_fname($message['params']['FNAME']),
+				  ),
+			  ),
+		  );
+			
+		}
+
+	}
+
+	return array($to, $merge_vars);
+	
 }
