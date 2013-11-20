@@ -7,22 +7,46 @@
  */
 class ConductorActivitySignupAddressSubmit extends ConductorActivity {
 
-  // Context name to get Street Address 1
+  /**
+   * Context name to get Street Address 1.
+   *
+   * @var string
+   */
   public $addr1Context;
 
-  // Context name to get the address's city
+  /**
+   * Context name to get the address's city.
+   *
+   * @var string
+   */
   public $cityContext;
 
-  // Context name to get the address's state
+  /**
+   * Context name to get the address's state.
+   *
+   * @var string
+   */
   public $stateContext;
 
-  // Context name to get the address's zipcode
+  /**
+   * Context name to get the address's zipcode.
+   *
+   * @var string
+   */
   public $zipContext;
 
-  // Context name to get the person's name to ship to
+  /**
+   * Context name to get the person's name to ship to.
+   *
+   * @var string
+   */
   public $nameContext;
 
-  // Node id of the campaign the shipping information is being submitted for
+  /**
+   * Node id of the campaign the shipping information is being submitted for.
+   *
+   * @var string
+   */
   public $campaignNid;
 
   public function run() {

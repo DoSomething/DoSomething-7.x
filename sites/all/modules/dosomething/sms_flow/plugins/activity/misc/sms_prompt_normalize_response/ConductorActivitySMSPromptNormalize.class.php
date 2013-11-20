@@ -6,11 +6,15 @@
  */
 class ConductorActivitySMSPromptNormalize extends ConductorActivitySMSPrompt {
 
-  // Expected structure of array
-  // array(
-  //   array(<normalized value>, <unnormalized response 1>, ..., <unnormalized repsonse n>),
-  //   ...
-  // );
+  /**
+   * List of responses to listen for and the value to normalize them to.
+   *
+   * Definition:
+   * array(
+   *   array(<normalized value>, <unnormalized response 1>, ..., <unnormalized repsonse n>),
+   *   ...
+   * );
+   */
   public $normalizedGroups = array();
 
   public function run() {

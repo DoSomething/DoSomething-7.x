@@ -6,7 +6,11 @@
  */
 class ConductorActivityCanSendMMSReportBack extends ConductorActivity {
 
-  // Map of incoming opt-in paths and their output paths
+  /**
+   * Map of incoming opt-in paths and their output paths.
+   *
+   * @var array
+   */
   public $routes;
 
   public function run() {

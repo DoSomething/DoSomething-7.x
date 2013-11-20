@@ -5,6 +5,11 @@
  */
 class ConductorActivityEndAndStartNew extends ConductorActivityEnd {
 
+  /**
+   * Name of the workflow to start upon completion of this activity.
+   *
+   * @var string
+   */
 	public $next_workflow_name = '';
 
 	public function option_definition() {

@@ -5,25 +5,50 @@
  */
 class ConductorActivitySubmitReportBack extends ConductorActivity {
 
-  // Associative array of data inputs to submit in the report back
+  /**
+   * Associative array of data inputs to submit in the report back.
+   *
+   * @var array
+   */
   public $submission_fields = array();
 
-  // NID of the webform to submit to
+  /**
+   * NID of the webform to submit to.
+   *
+   * @var int
+   */
   public $webform_nid;
 
-  // Array of campaign IDs to opt the user out of
+  /**
+   * Campaign IDs to opt the user out of.
+   *
+   * @var array
+   */
   public $campaign_opt_outs;
 
-  // (Optional) Response to send to the user upon successful submission.
-  // Use @submission_count to include the number of submissions from this user in the msg.
+  /**
+   * (optional) Response to send to the user upon successful submission.
+   * Use @submission_count to include the number of submissions from this user
+   * in the msg.
+   *
+   * @var string
+   */
   public $success_response;
 
-  // (Optional) Åctivity name to pull value from and insert into $success_response
-  // Use @field_value to include this value into the success message.
+  /**
+   * (optional) Åctivity name to pull value from and insert into $success_response.
+   * Use @field_value to include this value into the success message.
+   *
+   * @var string
+   */
   public $field_value_in_response;
 
-  // (Optional) Identifier to use different method of submitting a report back.
-  // ex: 'hunt2013' does not submit to a webform
+  /**
+   * (optional) Identifier to use different method of submitting a report back.
+   * ex: 'hunt2013' does not submit to a webform
+   *
+   * @var string
+   */
   public $use_special_submitter;
 
   public function run() {

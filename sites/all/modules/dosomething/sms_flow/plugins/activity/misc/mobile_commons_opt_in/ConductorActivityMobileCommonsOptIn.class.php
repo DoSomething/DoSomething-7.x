@@ -5,7 +5,11 @@
  */
 class ConductorActivityMobileCommonsOptIn extends ConductorActivity {
 
-  // The Mobile Commons opt-in path to join the user into.
+  /**
+   * The Mobile Commons opt-in path to join the user into.
+   *
+   * @var int
+   */
   public $opt_in_path_id;
 
   public function run() {

@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * ConductorWorkflow definitions for the miscellany endpoints.
+ */
+
+/**
  * Uses the mdata_id to determine which FTAF to trigger
  */
 $workflow = new ConductorWorkflow();

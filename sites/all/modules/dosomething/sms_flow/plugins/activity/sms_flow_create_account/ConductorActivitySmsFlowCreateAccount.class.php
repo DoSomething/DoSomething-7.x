@@ -6,7 +6,11 @@
  */
 class ConductorActivitySmsFlowCreateAccount extends ConductorActivity {
 
-  // Mailchimp bucket emails should get added into
+  /**
+   * The Mailchimp bucket that emails should get added into.
+   *
+   * @var string
+   */
   public $mailchimp_group_name;
 
   public function run($workflow) {

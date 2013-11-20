@@ -17,21 +17,41 @@ class UserResponseType {
  */
 class ConductorActivityVerifySchoolInProfile extends ConductorActivity {
   
-  // Message sent to user asking her to verify the school we have in her
-  // profile. Use @school_name to insert the school name into the message.
+  /**
+   * Message sent to user asking her to verify the school we have in her.
+   * profile. Use @school_name to insert the school name into the message.
+   *
+   * @var string
+   */
   public $question = '';
 
-  // Message sent to user if they reply with an invalid response
+  /**
+   * Message sent to user if they reply with an invalid response.
+   *
+   * @var string
+   */
   public $invalid_response_msg = '';
 
-  // Array of key-value pairs of mData IDs and the keywords associated with them.
-  // Used by the return messages to let users know what keyword to use to try again.
+  /**
+   * Array of key-value pairs of mData IDs and the keywords associated with them.
+   * Used by the return messages to let users know what keyword to use to try again.
+   *
+   * @var array
+   */
   public $mdata_keywords;
 
-  // Name of the output activity to go to if the school in the user profile is correct
+  /**
+   * Name of the output activity to go to if the school in the user profile is correct.
+   *
+   * @var string
+   */
   public $output_school_correct = '';
 
-  // Name of the output activity to go to if the school in the user profile is incorrect
+  /**
+   * Name of the output activity to go to if the school in the user profile is incorrect.
+   *
+   * @var string
+   */
   public $output_school_incorrect = '';
 
   public function run() {
@@ -99,6 +119,9 @@ class ConductorActivityVerifySchoolInProfile extends ConductorActivity {
   /**
    * Modify the outputs array to select the correct one to go to based on the
    * user's response to the verification prompt.
+   *
+   * @param int $responseType
+   *   See UserResponseType class. 
    */
   private function selectNextOutput($responseType) {
     if ($responseType == UserResponseType::YES) {

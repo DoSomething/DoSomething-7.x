@@ -7,33 +7,64 @@
  */
 class ConductorActivitySmsFlowGenericFtaf extends ConductorActivity {
 
-  // Mobile Commons opt-in path that Alpha inviters are sent into after the FTAF
+  /**
+   * Mobile Commons opt-in path that Alpha inviters are sent into after the FTAF.
+   *
+   * @var int
+   */
   protected $alpha_optin;
 
-  // Mobile Commons opt-in path that the Betas are invited to
+  /**
+   * Mobile Commons opt-in path that the Betas are invited to.
+   *
+   * @var int
+   */
   public $beta_optin;
 
-  // Number identifier of an invite sent for a particular campaign, sms game, etc
+  /**
+   * Number identifier of an invite sent for a particular campaign, sms game, etc.
+   *
+   * @var int
+   */
   public $id_override;
 
-  // Response to send on an error
+  /**
+   * Response to send on an error.
+   *
+   * @var mixed
+   */
   public $response_error;
 
-  // Response to send if FTAF is successful
+  /**
+   * Response to send if FTAF is successful.
+   *
+   * @var mixed
+   */
   public $response_success;
 
-  // Type of invite sent - particularly if it's for an sms_game or club
+  /**
+   * Type of invite sent - particularly if it's for an sms_game or club.
+   *
+   * @var string
+   */
   public $type_override;
 
-  // Nested array of FTAF data. mdata_id or opt_in_path_id are used to determine which FTAF data to use.
-  // array(
-  //   array(
-  //     'opt_in_path_id' => number
-  //     'mdata_id' => number,
-  //     'alpha_optin',
-  //     'beta_optin', etc...
-  //   ), ...
-  // )
+  /**
+   * Nested array of FTAF data. mdata_id or opt_in_path_id are used to determine
+   * which FTAF data to use.
+   *
+   * @var array
+   *
+   * Defintion:
+   * array(
+   *   array(
+   *     'opt_in_path_id' => number
+   *     'mdata_id' => number,
+   *     'alpha_optin',
+   *     'beta_optin', etc...
+   *   ), ...
+   * )
+   */
   public $ftaf_sets;
 
   public function run($workflow) {

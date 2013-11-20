@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * ConductorWorkflow definitions for SMS games.
+ */
+
 require_once drupal_get_path('module', 'sms_flow') . '/sms_flow_game_constants.inc';
 
 /**

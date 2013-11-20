@@ -1,11 +1,22 @@
 <?php
 
 /**
- * 
+ * Send an invite from an Alpha to a Beta and logs that relationship.
  */
 class ConductorActivityMLKAlphaInvite extends ConductorActivity {
 
+  /**
+   * Game ID for the MLK game.
+   *
+   * @var int
+   */
   private $game_id = 1;
+
+  /**
+   * Game type override.
+   *
+   * @var string
+   */
   private $type_override = 'sms_game';
 
   public function option_definition() {

@@ -6,18 +6,23 @@
  */
 class ConductorActivitySmsSignPetition extends ConductorActivity {
 
-  // Array of petition data sets
-  // array(
-  //   'nid' => int The node id for the petition.,
-  //   'mdata_id' => (optional) int. The mdata id that the petition signature is coming from. Must be set if opt_in_path_id is not set.,
-  //   'opt_in_path_id' => (optional) int. Opt-in path id that petition signature is coming from. Must be set if mdata_id is not set.,
-  //   'ftaf_beta_optin' => (optional) int. Opt-in path betas will be invited to if user sends FTAFs.
-  //   'ftaf_response_success' => (optional) string. Message sent to user AFTER an FTAF is sent in an activity later in the workflow.
-  //   'skip_ftaf' => (optional) boolean. Skip the FTAF step in the workflow
-  //   'beta_to_alpha_feedback' => mixed. Message sent back to Alpha after Beta signs.
-  //   'alpha_campaign_id' => (optional) int. Mobile Commons campaign id to subscribe alpha to. Not needed if beta_to_alpha_feedback is an opt-in path.
-  //   'ftaf_prompt' => string. Required if skip_ftaf != FALSE. Message to send to user after they sign the petition and we want to prompt them to share.
-  // )
+  /**
+   * Array of petition data sets.
+   *
+   * @var array
+   *
+   * array(
+   *   'nid' => int The node id for the petition.,
+   *   'mdata_id' => (optional) int. The mdata id that the petition signature is coming from. Must be set if opt_in_path_id is not set.,
+   *   'opt_in_path_id' => (optional) int. Opt-in path id that petition signature is coming from. Must be set if mdata_id is not set.,
+   *   'ftaf_beta_optin' => (optional) int. Opt-in path betas will be invited to if user sends FTAFs.
+   *   'ftaf_response_success' => (optional) string. Message sent to user AFTER an FTAF is sent in an activity later in the workflow.
+   *   'skip_ftaf' => (optional) boolean. Skip the FTAF step in the workflow
+   *   'beta_to_alpha_feedback' => mixed. Message sent back to Alpha after Beta signs.
+   *   'alpha_campaign_id' => (optional) int. Mobile Commons campaign id to subscribe alpha to. Not needed if beta_to_alpha_feedback is an opt-in path.
+   *   'ftaf_prompt' => string. Required if skip_ftaf != FALSE. Message to send to user after they sign the petition and we want to prompt them to share.
+   * )
+   */
   public $petitions;
 
   public function run($workflow) {
