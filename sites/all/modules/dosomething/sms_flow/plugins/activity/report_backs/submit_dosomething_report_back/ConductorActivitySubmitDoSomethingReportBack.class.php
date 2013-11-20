@@ -7,25 +7,29 @@
 class ConductorActivitySubmitDoSomethingReportBack extends ConductorActivity {
 
   /**
-   * Mobile Commons campaign IDs to opt the user out of
+   * Mobile Commons campaign IDs to opt the user out of.
+   *
    * @var array
    */
   public $campaign_opt_outs;
 
   /**
-   * Node ID of the campaign
+   * Node ID of the campaign.
+   *
    * @var int
    */
   public $nid;
 
   /**
-   * Organization code of the campaign
+   * Organization code of the campaign.
+   *
    * @var int
    */
   public $organization_code;
 
   /**
-   * Conductor activity name to retrieve the picture info, if any
+   * Conductor activity name to retrieve the picture info, if any.
+   *
    * @var string
    */
   public $picture_activity_name;
@@ -34,13 +38,15 @@ class ConductorActivitySubmitDoSomethingReportBack extends ConductorActivity {
    * Key/Value pair defining where data retrieved through the workflow should get 
    * submitted. Key is the field names in the report back form, and Value is the
    * activity name to get the data from.
+   *
    * @var array
    */
   public $submission_fields;
 
   /**
    * Response to send back to the user upon completion. Accepts either int for
-   * Mobile Commons opt-in path IDs or string to set the response message here.
+   * Mobile Commons opt-in path ID or string to set the response message here.
+   *
    * @var mixed
    */
   public $success_response;

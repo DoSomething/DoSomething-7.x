@@ -6,22 +6,48 @@
  */
 class ConductorActivityCreateDrive extends ConductorActivity {
   
-  // URL for campaign - used to get gid of the user's team
+  /**
+   * URL for campaign - used to get gid of the user's team.
+   *
+   * @var string
+   */
   public $campaign_url;
 
-  // nid of the webform node to associate report backs with
+  /**
+   * The nid of the webform node to associate report backs with.
+   *
+   * @var int
+   */
   public $sign_up_nid;
   
-  // Response sent to users in case of error
+  /**
+   * Response sent to users in case of error.
+   *
+   * @var string
+   */
   public $response_error;
 
-  // Response sent to users when it's found that they are already in a drive
+  /**
+   * Response sent to users when it's found that they are already in a drive.
+   *
+   * @var string
+   */
   public $response_in_drive;
 
-  // Response sent to users when drive join is successful, and they've created a new account
+  /**
+   * Response sent to users when drive join is successful, and they've created a
+   * new account.
+   *
+   * @var string
+   */
   public $response_new_account;
 
-  // Response sent to users when drive join is successful, and they already have an account
+  /**
+   * Response sent to users when drive join is successful, and they already have
+   * an account.
+   *
+   * @var string
+   */
   public $response_success;
 
   public function run($workflow) {

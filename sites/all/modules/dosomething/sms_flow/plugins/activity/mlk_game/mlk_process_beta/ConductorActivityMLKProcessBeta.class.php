@@ -7,8 +7,25 @@
  */
 class ConductorActivityMLKProcessBeta extends ConductorActivity {
 
+  /**
+   * MLK Game campaign ID for the Alpha user.
+   *
+   * @var int
+   */
   public $alpha_campaign_id = 107981;
+
+  /**
+   * Game ID for the MLK game.
+   *
+   * @var int
+   */
   public $game_id = 1;
+
+  /**
+   * Game type override.
+   *
+   * @var string
+   */
   public $type_override = 'sms_game';
 
   public function option_definition() {

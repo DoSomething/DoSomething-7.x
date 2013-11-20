@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Array of endpoints ("keywords") and the name of the workflows they are each
+ * associated with. Keyword/workflow pairs here are for campaign report backs.
+ */
 $keywords['can-send-mms-report-back'] = 'sms_flow_can_send_mms_report_back';
 $keywords['birthdaymail-report-back'] = 'sms_flow_birthdaymail_report_back';
 $keywords['spit-report-back'] = 'sms_flow_spit_report_back';

@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * ConductorWorkflow definitions for campaign sign-ups.
+ */
+
+/**
  * Teens for Jeans 2013 sign up flow.
  */
 $workflow = new ConductorWorkflow;

@@ -5,14 +5,22 @@
  */
 class ConductorActivityShareStatProcessMMS extends ConductorActivity {
 
-  // Nested array of opt-in paths and their destinations
-  // = array(
-  //     <incoming opt-in path> => array (
-  //       'mms' => mms opt-in path
-  //       'no_mms' => no mms opt-in path
-  //     ),
-  //     ...
-  //   )
+  /**
+   * Nested array of opt-in paths and their destinations.
+   *
+   * @var array
+   *
+   * Definition:
+   * @code
+   * array(
+   *   <incoming opt-in path> => array (
+   *     'mms' => mms opt-in path
+   *     'no_mms' => no mms opt-in path
+   *   ),
+   *   ...
+   * )
+   * @endcode
+   */
   public $routes;
 
   public function run($workflow) {

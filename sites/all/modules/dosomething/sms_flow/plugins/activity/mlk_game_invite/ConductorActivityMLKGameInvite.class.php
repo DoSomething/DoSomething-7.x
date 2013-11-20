@@ -9,9 +9,32 @@
  */
 class ConductorActivityMLKGameInvite extends ConductorActivity {
 
+  /**
+   * Mobile Commons opt-in path for the Alpha inviter.
+   *
+   * @var int
+   */
   public $alpha_optin = 140061;
+
+  /**
+   * Mobile Commons opt-in path for the Beta invitee.
+   *
+   * @var int
+   */
   public $beta_optin = 140071;
+
+  /**
+   * Game ID for the MLK game.
+   *
+   * @var int
+   */
   public $game_id = 1;
+
+  /**
+   * Game type override.
+   *
+   * @var string
+   */
   public $type_override = 'sms_game';
 
   public function run($workflow) {

@@ -6,10 +6,18 @@
  */
 class ConductorActivitySmsFlowYesNoGate extends ConductorActivity {
 
-  // Activity name to go if input is YES
+  /**
+   * Activity name to go if input is YES.
+   *
+   * @var string
+   */
   public $onYesActivity;
 
-  // Activity name to go if input is NO
+  /**
+   * Activity name to go if input is NO.
+   *
+   * @var string
+   */
   public $onNoActivity;
 
   private $yesAnswers = array('y', 'ya', 'yea', 'yes');

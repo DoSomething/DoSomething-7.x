@@ -10,13 +10,25 @@
  */
 class ConductorActivitySmsFlowCheckSchool extends ConductorActivity {
 
-  // NID of the webform to check for user's school there. Used as backup if school's not found in profile.
+  /**
+   * NID of the webform to check for user's school there. Used as backup if school's not found in profile.
+   *
+   * @var int
+   */
   public $webform_nid_check = 0;
 
-  // Name of the next activity to go to if a school was found
+  /**
+   * Name of the next activity to go to if a school was found.
+   *
+   * @var string
+   */
   public $school_found_activity = 'school_found';
 
-  // Name of the next activity to go to if no school was found
+  /**
+   * Name of the next activity to go to if no school was found.
+   *
+   * @var string
+   */
   public $no_school_found_activity = 'no_school_found';
 
   public function run() {

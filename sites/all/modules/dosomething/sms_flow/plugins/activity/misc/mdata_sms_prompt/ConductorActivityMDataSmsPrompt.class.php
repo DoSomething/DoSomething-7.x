@@ -5,7 +5,12 @@
  */
 class ConductorActivityMDataSmsPrompt extends ConductorActivitySMSPrompt {
 
-  // Array of key-value pairs of mdata IDs and the corresponding question to ask for that ID.
+  /**
+   * Array of key-value pairs of mdata IDs and the corresponding question to ask
+   * for that ID.
+   *
+   * @var array
+   */
   public $questions;
 
   public function run() {

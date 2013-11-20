@@ -7,16 +7,22 @@
  */
 class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
 
-  // Nested array of ordered lists of Mobile Commons opt-in paths
-  // array(
-  //   array(
-  //     'mdata_id' => mData ID associated with this set
-  //     'game_id' => Unique identifier. Needs to be unique also compared to random pathing workflow and other SMS games
-  //     'opt_in_paths' => Array of ordered paths
-  //     'paths_finished_msg' => Optional. Number. Opt-in path to send user to if they've finished all tips.
-  //     'should_loop' => Optional. Set to TRUE if you want the tips to loop through again after going through them all.
-  //   ), ...
-  // )
+  /**
+   * Nested array of ordered lists of Mobile Commons opt-in paths.
+   *
+   * Definition:
+   * @code
+   * array(
+   *   array(
+   *     'mdata_id' => mData ID associated with this set
+   *     'game_id' => Unique identifier. Needs to be unique also compared to random pathing workflow and other SMS games
+   *     'opt_in_paths' => Array of ordered paths
+   *     'paths_finished_msg' => Optional. Number. Opt-in path to send user to if they've finished all tips.
+   *     'should_loop' => Optional. Set to TRUE if you want the tips to loop through again after going through them all.
+   *   ), ...
+   * )
+   * @endcode
+   */
   public $sets = array();
 
   public function run($workflow) {

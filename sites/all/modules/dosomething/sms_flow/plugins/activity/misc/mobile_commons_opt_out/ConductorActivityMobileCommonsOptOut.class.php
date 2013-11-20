@@ -5,7 +5,10 @@
  */
 class ConductorActivityMobileCommonsOptOut extends ConductorActivity {
 
-  // Array of campaign id(s) to opt the user out of
+  /**
+   * Array of campaign id(s) to opt the user out of.
+   *
+   * @var array
   public $opt_out_ids = array();
 
   public function run() {
