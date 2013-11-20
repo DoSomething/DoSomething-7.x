@@ -10,22 +10,24 @@ class ConductorActivityOutOfFlowResponder extends ConductorActivity {
    * Nested array of responses and their matching criteria.
    *
    * Definition:
-   *  array(
-   *    array(
-   *      'phrase_match' => array('phrase 1', 'phrase 2'),
-   *      'AND_match'    => array(
-   *        array('word1A', 'word1B'),
-   *        array('word2A', 'word2B', 'phrase 2 C'),
-   *        ...
-   *      ),
-   *      'word_match'   => array('word1', 'word2', ...),
-   *      'word_match_exact' => boolean. If true, will not do a levenshtein distance check.
-   *      'response'     => string. Message to send back to user if match is found.
-   *      'response_negative' => string. Message to send back to user if match is found and user message is a negative form.
-   *                             ex: User responds with, "I do NOT love you"
-   *      'trigger_opt_out'   => mixed. Could be either a single number or array of numbers for campaign ids to opt out of.
-   *    )
-   *  )
+   * @code
+   * array(
+   *   array(
+   *     'phrase_match' => array('phrase 1', 'phrase 2'),
+   *     'AND_match'    => array(
+   *       array('word1A', 'word1B'),
+   *       array('word2A', 'word2B', 'phrase 2 C'),
+   *       ...
+   *     ),
+   *     'word_match'   => array('word1', 'word2', ...),
+   *     'word_match_exact' => boolean. If true, will not do a levenshtein distance check.
+   *     'response'     => string. Message to send back to user if match is found.
+   *     'response_negative' => string. Message to send back to user if match is found and user message is a negative form.
+   *                            ex: User responds with, "I do NOT love you"
+   *     'trigger_opt_out'   => mixed. Could be either a single number or array of numbers for campaign ids to opt out of.
+   *   )
+   * )
+   * @endcode
    * 
    * Sets at the beginning of the array will match against the user response 
    * first and take priority over later sets.

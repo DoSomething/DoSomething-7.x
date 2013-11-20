@@ -11,6 +11,7 @@ class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
    * Nested array of ordered lists of Mobile Commons opt-in paths.
    *
    * Definition:
+   * @code
    * array(
    *   array(
    *     'mdata_id' => mData ID associated with this set
@@ -20,6 +21,7 @@ class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
    *     'should_loop' => Optional. Set to TRUE if you want the tips to loop through again after going through them all.
    *   ), ...
    * )
+   * @endcode
    */
   public $sets = array();
 

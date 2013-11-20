@@ -10,10 +10,12 @@ class ConductorActivitySMSPromptNormalize extends ConductorActivitySMSPrompt {
    * List of responses to listen for and the value to normalize them to.
    *
    * Definition:
+   * @code
    * array(
    *   array(<normalized value>, <unnormalized response 1>, ..., <unnormalized repsonse n>),
    *   ...
    * );
+   * @endcode
    */
   public $normalizedGroups = array();
 

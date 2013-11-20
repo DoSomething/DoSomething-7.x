@@ -33,14 +33,16 @@
  *   cases where there is no appropriate NID or Drupal type for this invite. ex: the MLK day SMS game.
  *
  * Example (found in dosomething_clubs_preserve_shortform_email() in dosomething_clubs.module):
- *   sms_flow_start(
- *     '555-555-5555', 128441, 128441, array('field_webform_mobile'),
- *     $form_state['values'],
- *     array(
- *       'first_name' => 'Mike',
- *       'club_name' => "Mike's cool DoSomething.org Club."
- *     )
- *   );
+ * @code
+ * sms_flow_start(
+ *   '555-555-5555', 128441, 128441, array('field_webform_mobile'),
+ *   $form_state['values'],
+ *   array(
+ *     'first_name' => 'Mike',
+ *     'club_name' => "Mike's cool DoSomething.org Club."
+ *   )
+ * );
+ * @endcode
  */
 function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, $beta_numbers, $form_values, $beta_variables, $beta_to_alpha_campaign = FALSE, $type_override = NULL) {
 
@@ -123,8 +125,10 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, $beta_numbers,
  * @return string
  *   The alpha's phone number, if applicable, or false.
  *
- *  Example:
- *  sms_flow_find_alpha('610-368-3195');
+ * Example:
+ * @code
+ * sms_flow_find_alpha('555-555-5555');
+ * @endcode
  */
 function sms_flow_find_alpha($beta, $nid = 0, $type = '') {
   $beta_parsed = preg_replace('#[^0-9]#i', '', $beta);

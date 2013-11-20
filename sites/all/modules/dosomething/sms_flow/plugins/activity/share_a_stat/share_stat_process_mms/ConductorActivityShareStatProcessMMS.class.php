@@ -11,13 +11,15 @@ class ConductorActivityShareStatProcessMMS extends ConductorActivity {
    * @var array
    *
    * Definition:
-   *   array(
-   *     <incoming opt-in path> => array (
-   *       'mms' => mms opt-in path
-   *       'no_mms' => no mms opt-in path
-   *     ),
-   *     ...
-   *   )
+   * @code
+   * array(
+   *   <incoming opt-in path> => array (
+   *     'mms' => mms opt-in path
+   *     'no_mms' => no mms opt-in path
+   *   ),
+   *   ...
+   * )
+   * @endcode
    */
   public $routes;
 
