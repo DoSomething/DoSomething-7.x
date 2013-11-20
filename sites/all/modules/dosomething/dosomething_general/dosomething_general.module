@@ -977,9 +977,9 @@ function dosomething_general_valid_cell($number) {
 
   preg_match('#^(?:\+?1([\-\s\.]{1})?)?\(?([0-9]{3})\)?(?:[\-\s\.]{1})?([0-9]{3})(?:[\-\s\.]{1})?([0-9]{4})#', $number, $valid);
   preg_match('#([0-9]{1})\1{9,}#', $trimmed, $repeat);
-  preg_match('#(?<first>555|\d{3})(?<second>555|\d{3})(?<third>5555|\d{4})#i', $trimmed, $fives);
+  preg_match('#(?<first>555|\d{3})(?<second>555|\d{3})(?<third>5555|\d{4})$#i', $trimmed, $fives);
 
-  return !empty($valid) && empty($repeat) && in_array('555', $fives) === FALSE;
+  return !empty($valid) && empty($repeat) && in_array('555', $fives) === FALSE && in_array('5555', $fives) === FALSE;
 }
 
 /**
