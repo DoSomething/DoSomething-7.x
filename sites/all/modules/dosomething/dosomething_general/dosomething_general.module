@@ -973,14 +973,13 @@ function dosomething_general_load_user_by_mail_or_cell($value) {
  *  Either FALSE or the cleaned up cell phone number (only digits).
  */
 function dosomething_general_valid_cell($number) {
-  $trimmed_number = dosomething_general_clean_cell_number($number);
+  $trimmed = dosomething_general_clean_cell_number($number);
 
-  // Three 5's in a row, in the first 6 digits, constitute a bad phone number.
-  if (preg_match('#(5{3})#', substr($trimmed_number, 0, 6))) {
-    return false;
-  }
+  preg_match('#^(?:\+?1([\-\s\.]{1})?)?\(?([0-9]{3})\)?(?:[\-\s\.]{1})?([0-9]{3})(?:[\-\s\.]{1})?([0-9]{4})#', $number, $valid);
+  preg_match('#([0-9]{1})\1{9,}#', $trimmed, $repeat);
+  preg_match('#(?<first>555|\d{3})(?<second>555|\d{3})(?<third>5555|\d{4})#i', $trimmed, $fives);
 
-  return $trimmed_number;
+  return !empty($valid) && empty($repeat) && in_array('555', $fives) === FALSE;
 }
 
 /**

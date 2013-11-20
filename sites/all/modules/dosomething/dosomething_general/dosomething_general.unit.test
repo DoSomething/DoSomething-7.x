@@ -79,10 +79,29 @@ class DosomethingGeneralTestCase extends DrupalUnitTestCase {
    * @see dosomething_general_valid_cell()
    */
   public function testValidCell() {
-    $cell = '610-913-4416';
-    $valid = dosomething_general_valid_cell($cell);
-    $this->assertTrue(!empty($valid));
-    $this->assertFalse(dosomething_general_valid_cell('610-555-1234'));
+    $true = array(
+      '718-224-9982',
+      '1-718-224-9982',
+      '1 (718) 224.9982',
+      '+1 (718) 224-9982',
+      '1 (255) 559-9822',
+    );
+    $false = array(
+      '718-555-2234',
+      '718-224',
+      'abcdefg',
+      '718#224_9982',
+      '718 #12 99-6',
+      '999-999-9999',
+    );
+
+    foreach ($true as $number) {
+      $this->assertTrue(dosomething_general_valid_cell($number), t("!number is a valid cell", array('!number' => $number)));
+    }
+
+    foreach ($false as $number) {
+      $this->assertFalse(dosomething_general_valid_cell($number), t("!number is an invalid cell", array('!number' => $number)));
+    }
   }
 
   /**
