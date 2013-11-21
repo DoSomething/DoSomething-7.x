@@ -448,9 +448,6 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   
   $merge_vars = array();
   $global_merge_vars = array();
-
-	// Construct "to" index to pass to the Mandrill API
-	dosomething_mandrill_mail_alter_to($mandrill_params, $message);
   
   // Pass parameters passed via dosomething_mandrill_dispach call
   $mandrill_params['params'] = $message['params'];
@@ -493,6 +490,9 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
       }
     }
   }
+
+	// Format "to" values to meet Mandrill API specs
+	dosomething_mandrill_mail_alter_to($mandrill_params, $message);
 
   if (!empty($mandrill_params['params']['message']['merge_vars'])) {
     $merge_vars = $mandrill_params['params']['message']['merge_vars'];
@@ -546,16 +546,23 @@ function dosomething_mandrill_mail_alter_to(&$mandrill_params, &$message) {
       )
     );
   }
-  else {
-    // $message['to'] supplied as array. Could be for one or more (array
-    // entries)recipients
-    $mandrill_params['message']['to'] = array(
-      0 => array(
-        'email' => $message['to'][0]['email'],
-        'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
-        'type' => 'to',
-      )
-    );
+  elseif (is_array($message['to'])) { // $message['to'] supplied as array.
+
+		// Complete formatting to Mandrill API specs if single entry
+		if (count($message['to']) == 1) {
+			$mandrill_params['message']['to'] = array(
+				0 => array(
+					'email' => $message['to'][0]['email'],
+					'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
+					'type' => 'to',
+				)
+			);
+		}
+		else {
+			// Pass everything on as is when more than one entry. Typically created
+			// by dosomething_mandrill_dispatch_drip()
+			$mandrill_params['message']['to'] = $message['to'];
+		}
   }
 
 }

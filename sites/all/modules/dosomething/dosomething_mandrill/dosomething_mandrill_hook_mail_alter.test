@@ -4,7 +4,7 @@
  * Unit Tests for DoSomething.org Mandrill transaction message system at the
  * hook_mail_alter point and beyond.
  */
-class DoSomethingMandrillAlterUnitTestCase extends WebTestSuite  {
+class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
   
   const TEST_EMAIL = 'dlee+test@dosomething.org';
   
@@ -40,7 +40,7 @@ class DoSomethingMandrillAlterUnitTestCase extends WebTestSuite  {
     $this->assertTrue($message['params']['FNAME'] == $mandrill_params['message']['to'][0]['name'], 'Passed FNAME: ' . $message['params']['FNAME'] . ' to $mardrill_params was formatted correctly.');
     $this->assertTrue('to' == $mandrill_params['message']['to'][0]['type'], 'Message \'to\' type set to \'to\'');
 
-    // Pass email as an array
+    // Pass single email as an array
     $mandrill_params = array();
     $message['to'] = array(
       0 => array(
@@ -54,6 +54,25 @@ class DoSomethingMandrillAlterUnitTestCase extends WebTestSuite  {
     $this->assertTrue($message['to'][0]['email'] == $mandrill_params['message']['to'][0]['email'], 'Passed the array email: ' . self::TEST_EMAIL . ' to $mardrill_params was formatted correctly.');
     $this->assertTrue($message['params']['FNAME'] == $mandrill_params['message']['to'][0]['name'], 'Passed FNAME: ' . $message['params']['FNAME'] . ' to $mardrill_params as array was formatted correctly.');
     $this->assertTrue('to' == $mandrill_params['message']['to'][0]['type'], 'Message \'to\' type passed as array set to \'to\'');
+    
+    // Pass several email addresses as array
+    $mandrill_params = array();
+    $message['to'] = array(
+      0 => array(
+        'email' => self::TEST_EMAIL,
+      ),
+      1 => array(
+        'email' => self::TEST_EMAIL,
+      ),
+      2 => array(
+        'email' => self::TEST_EMAIL,
+      ),
+      
+    );
+
+    dosomething_mandrill_mail_alter_to($mandrill_params, $message);
+
+    $this->assertTrue(count($mandrill_params['message']['to']) == 3, 'Passed the array of several email entries, $mardrill_params was formatted correctly.');
 
   }
 
