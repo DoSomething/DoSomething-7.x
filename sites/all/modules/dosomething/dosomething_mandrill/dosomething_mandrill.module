@@ -494,13 +494,11 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
 	// Format "to" values to meet Mandrill API specs
 	dosomething_mandrill_mail_alter_to($mandrill_params, $message);
 
+	// Assign "from_name"
+	dosomething_mandrill_mail_alter_from_name($mandrill_params, $message);
+
   if (!empty($mandrill_params['params']['message']['merge_vars'])) {
     $merge_vars = $mandrill_params['params']['message']['merge_vars'];
-  }
-
-  // Adjust the "From Name" message value
-  if (isset($message['from_name'])) {
-    $mandrill_params['message']['from_name'] = $message['from_name'];
   }
   
   // Tags
@@ -563,6 +561,26 @@ function dosomething_mandrill_mail_alter_to(&$mandrill_params, &$message) {
 			// by dosomething_mandrill_dispatch_drip()
 			$mandrill_params['message']['to'] = $message['to'];
 		}
+  }
+
+}
+
+/*
+ * Construct from_name value for hook_mail_alter()
+ *
+ * @param array $mandrill_params
+ *   Values to be passed on to the mail system and ultimately the Mandrill API.
+ *   The array structure must follow the Mandrill API for send-template:
+ *   https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *
+ * @param array $message
+ *   Values passed from hook_mail() to help construct $mandrill_params
+ *
+ */
+function dosomething_mandrill_mail_alter_from_name(&$mandrill_params, &$message) {
+
+	if (isset($message['from_name'])) {
+    $mandrill_params['message']['from_name'] = $message['from_name'];
   }
 
 }
