@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * ConductorWorkflow definitions for Share-A-Stats.
+ */
+
 //
 // sms_flow_share_stat_mms
 //

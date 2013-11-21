@@ -6,22 +6,43 @@
  */
 class ConductorActivitySubmitExternalReportBack extends ConductorActivity {
 
-  // HTTP request type - either POST or PUT.
+  /**
+   * HTTP request type - either POST or PUT.
+   *
+   * @var string
+   */
   public $http_request_type;
 
-  // Array of key/value pairs where key = the name of the context to pull data
-  // from. And value = the name of the field the data should be submitted to.
-  // Some key names are reserved for special cases: gsid, uid, append_query.
+  /**
+   * Array of key/value pairs where key = the name of the context to pull data
+   * from. And value = the name of the field the data should be submitted to.
+   * Some key names are reserved for special cases: gsid, uid, append_query.
+   *
+   * @var array
+   */
   public $submission_fields = array();
 
-  // URL to submit to.
+  /**
+   * URL to submit to.
+   *
+   * @var string
+   */
   public $submission_url;
 
-  // Response to send back to the user upon successful submission.
+  /**
+   * Response to send back to the user upon completion. Accepts either int for
+   * Mobile Commons opt-in path ID or string to set the response message here.
+   *
+   * @var mixed
+   */
   public $success_response;
 
-  // (Optional) URL for looking up submissions created by this user. Particularly
-  // useful when needing to PUT/UPDATE previously created submissions.
+  /**
+   * (optional) URL for looking up submissions created by this user. Particularly
+   * useful when needing to PUT/UPDATE previously created submissions.
+   *
+   * @var string
+   */
   public $uid_lookup_url;
 
   public function run() {
@@ -90,7 +111,8 @@ class ConductorActivitySubmitExternalReportBack extends ConductorActivity {
   /**
    * POST submission
    *
-   * @param $query Array of the content to POST
+   * @param array $query
+   *   Array of the content to POST
    */
   private function submitPost($query) {
     $state = $this->getState();
@@ -128,8 +150,10 @@ class ConductorActivitySubmitExternalReportBack extends ConductorActivity {
    * PUT submission. Will use the uid_lookup_url to find the post ID of the
    * submission to update.
    *
-   * @param $query Array of the content to PUT
-   * @param $uid UID of the user to look for previous submissions with
+   * @param array $query
+   *   Array of the content to PUT.
+   * @param int $uid
+   *   UID of the user to look for previous submissions with.
    */
   private function submitPut($query, $uid) {
     // GET the post id using the user's uid

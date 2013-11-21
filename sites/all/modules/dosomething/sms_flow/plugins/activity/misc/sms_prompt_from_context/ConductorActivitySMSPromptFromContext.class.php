@@ -6,7 +6,11 @@
  */
 class ConductorActivitySMSPromptFromContext extends ConductorActivitySMSPrompt {
 
-  // Context key to find question user should be prompted with
+  /**
+   * Context key to find question user should be prompted with.
+   *
+   * @var string
+   */
   public $question_context_key = '';
 
   public function run($workflow) {

@@ -6,36 +6,55 @@
  */
 class ConductorActivityOutOfFlowResponder extends ConductorActivity {
 
-  // Nested array of responses and their matching criteria.
-  // Expected structure:
-  //  array(
-  //    array(
-  //      'phrase_match' => array('phrase 1', 'phrase 2'),
-  //      'AND_match'    => array(
-  //        array('word1A', 'word1B'),
-  //        array('word2A', 'word2B', 'phrase 2 C'),
-  //        ...
-  //      ),
-  //      'word_match'   => array('word1', 'word2', ...),
-  //      'word_match_exact' => boolean. If true, will not do a levenshtein distance check.
-  //      'response'     => string. Message to send back to user if match is found.
-  //      'response_negative' => string. Message to send back to user if match is found and user message is a negative form.
-  //                             ex: User responds with, "I do NOT love you"
-  //      'trigger_opt_out'   => mixed. Could be either a single number or array of numbers for campaign ids to opt out of.
-  //    )
-  //  )
-  // 
-  // Sets at the beginning of the array will match against the user response 
-  // first and take priority over later sets.
+  /**
+   * Nested array of responses and their matching criteria.
+   *
+   * Definition:
+   * @code
+   * array(
+   *   array(
+   *     'phrase_match' => array('phrase 1', 'phrase 2'),
+   *     'AND_match'    => array(
+   *       array('word1A', 'word1B'),
+   *       array('word2A', 'word2B', 'phrase 2 C'),
+   *       ...
+   *     ),
+   *     'word_match'   => array('word1', 'word2', ...),
+   *     'word_match_exact' => boolean. If true, will not do a levenshtein distance check.
+   *     'response'     => string. Message to send back to user if match is found.
+   *     'response_negative' => string. Message to send back to user if match is found and user message is a negative form.
+   *                            ex: User responds with, "I do NOT love you"
+   *     'trigger_opt_out'   => mixed. Could be either a single number or array of numbers for campaign ids to opt out of.
+   *   )
+   * )
+   * @endcode
+   * 
+   * Sets at the beginning of the array will match against the user response 
+   * first and take priority over later sets.
+   *
+   * @var array
+   */
   public $response_sets = array();
 
-  // Response to send to the user if no match is found
+  /**
+   * Response to send to the user if no match is found.
+   *
+   * @var array
+   */
   public $no_match_responses = array();
 
-  // Responses to send if MMS was received from the user
+  /**
+   * Responses to send if MMS was received from the user.
+   *
+   * @var array
+   */
   public $mms_match_responses = array();
 
-  // Maximum allowed string edit distance to trigger a successful match
+  /**
+   * Maximum allowed string edit distance to trigger a successful match.
+   *
+   * @var int
+   */
   public $match_threshold = 1;
 
   public function run($workflow) {

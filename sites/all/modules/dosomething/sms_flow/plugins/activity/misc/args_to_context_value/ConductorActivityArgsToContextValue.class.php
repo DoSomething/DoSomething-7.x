@@ -6,7 +6,11 @@
  */
 class ConductorActivityArgsToContextValue extends ConductorActivity {
 
-  // Context field to save 'args' parameter to.
+  /**
+   * Context field to save 'args' parameter to.
+   *
+   * @var string
+   */
   public $context_field;
 
   public function run($workflow) {

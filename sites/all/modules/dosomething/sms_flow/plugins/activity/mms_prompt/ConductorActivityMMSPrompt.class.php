@@ -6,11 +6,19 @@
  */
 class ConductorActivityMMSPrompt extends ConductorActivitySMSPrompt {
 
-  // If FALSE, image is already incoming without the need for a prompt
+  /**
+   * If FALSE, image is already incoming without the need for a prompt.
+   *
+   * @var bool
+   */
   public $should_prompt = TRUE;
 
-  // Optional. If set and no mms image is found, will send respond with specified
-  // response and send user to the end activity in the workflow.
+  /**
+   * (optional) If set and no mms image is found, will send respond with specified
+   * response and send user to the end activity in the workflow.
+   *
+   * @var mixed
+   */
   public $no_mms_response;
   
   public function run() {
@@ -51,7 +59,8 @@ class ConductorActivityMMSPrompt extends ConductorActivitySMSPrompt {
   /**
    * Removes all outputs from this activity except for the one specified in the param
    *
-   * @param activityName Name of activity in outputs array to keep
+   * @param string $activityName
+   *   Name of activity in outputs array to keep
    */
   private function useOutput($activityName) {
     foreach($this->outputs as $key => $val) {

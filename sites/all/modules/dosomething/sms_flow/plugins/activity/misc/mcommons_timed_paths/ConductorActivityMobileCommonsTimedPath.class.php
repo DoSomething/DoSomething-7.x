@@ -6,21 +6,25 @@
  */
 class ConductorActivityMobileCommonsTimedPath extends ConductorActivity {
 
-  // Contains the info for sets of opt-in paths and the earliest possible time
-  // they can be sent to. Sets are grouped by their unique mdata_id from Mobile Commons.
-  // $sets = array(
-  //   array(
-  //     'mdata_id'         // Number. ID provided by the mData setup in Mobile Commons.
-  //     'timezone'         // String. Timezone to process times in. ex: 'America/New_York'
-  //     'paths' => array(
-  //       array(
-  //         'time'         // String. Earliest time when users will be sent to this opt-in path.
-  //                        //  Format: Y-m-d H:i:s ex: '2013-07-16 10:00:00'
-  //         'opt_in_path'  // Number. Opt-in path to send user to.
-  //       ),
-  //       ...
-  //     )
-  //   ), ...
+  /**
+   * Contains the info for sets of opt-in paths and the earliest possible time
+   * they can be sent to. Sets are grouped by their unique mdata_id from Mobile Commons.
+   *
+   * Defintion:
+   * $sets = array(
+   *   array(
+   *     'mdata_id'         // Number. ID provided by the mData setup in Mobile Commons.
+   *     'timezone'         // String. Timezone to process times in. ex: 'America/New_York'
+   *     'paths' => array(
+   *       array(
+   *         'time'         // String. Earliest time when users will be sent to this opt-in path.
+   *                        //  Format: Y-m-d H:i:s ex: '2013-07-16 10:00:00'
+   *         'opt_in_path'  // Number. Opt-in path to send user to.
+   *       ),
+   *       ...
+   *     )
+   *   ), ...
+   */
   public $sets = array();
 
   public function run($workflow) {

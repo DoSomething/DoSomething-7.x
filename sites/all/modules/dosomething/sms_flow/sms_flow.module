@@ -1,37 +1,50 @@
 <?php
 
 /**
- *  Begins the most epic SMS flow ever.  But seriously, opts an Alpha into a Mobile Commons campaign.  Then opts in Betas into another Mobile Commons
- *  campaign.  Sends $variables (an array of custom variables, surprisingly) along with those opt-ins.  Apply this function in a form submit function.
- *  
- *  @param $alpha_number
- *    The phone number of the alpha who invited the betas.
- *  @param $alpha_optin
- *    A campaign number on mobile commons that the ALPHA will be opted in to.
- *  @param $beta_optin
- *    A campaign on mobile commons that the BETA will be opted into.
- *  @param $beta_numbers
- *    An array of the field keys that represent the phone numbers that the alpha invited through the form.
- *    ALTERNATELY: An array of valid phone numbers to opt in through the opt-in path.
- *  @param $form_values
- *    An array of form values from the submitted webform.
- *  @param $beta_variables
- *    An array of custom variables to send with the opt-in. Are only applied to the Beta profiles. These translate to {{variables}} on Mobile Commons.
- *  @param $beta_to_alpha_campaign
- *    A campaign that the beta (then Gamma, then whatever is after Gamma) should be opted into when they invite their friends.  Optional.
- *  @param $type_override (optional)
- *    Set a custom value to the 'type' column. Particularly useful for cases where there is no appropriate NID 
- *    or Drupal type for this invite. ex: the MLK day SMS game
- *
- *  Example (found in dosomething_clubs_preserve_shortform_email() in dosomething_clubs.module):
- *    sms_flow_start('610-368-3195', 128441, 128441, array('field_webform_mobile'), $form_state['values'], array(
- *      'first_name' => 'Mike',
- *      'club_name' => "Mike's cool DoSomething.org Club."
- *    ));
- *
+ * @file
+ * Provides Do Something-specific SMS functionality.
  */
 
-function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_numbers, $form_values, Array $beta_variables, $beta_to_alpha_campaign = FALSE, $type_override = NULL) {
+/**
+ * Begins the most epic SMS flow ever. But seriously, opts an Alpha into a 
+ * Mobile Commons campaign. Then opts in Betas into another Mobile Commons
+ * campaign. Sends $variables (an array of custom variables, surprisingly) along
+ * with those opt-ins. Apply this function in a form submit function.
+ *  
+ * @param string $alpha_number
+ *   The phone number of the alpha who invited the betas.
+ * @param int $alpha_optin
+ *   A campaign number on mobile commons that the ALPHA will be opted in to.
+ * @param int $beta_optin
+ *   A campaign on mobile commons that the BETA will be opted into.
+ * @param array $beta_numbers
+ *   Field keys that represent the phone numbers that the alpha invited through the form.
+ *   ALTERNATELY: An array of valid phone numbers to opt in through the opt-in path.
+ * @param array $form_values
+ *   Form values from the submitted webform.
+ * @param array $beta_variables
+ *   Custom variables to send with the opt-in. Are only applied to the Beta profiles.
+ *   These translate to {{variables}} on Mobile Commons.
+ * @param int $beta_to_alpha_campaign
+ *   (optional) A campaign that the beta (then Gamma, then whatever is after Gamma)
+ *   should be opted into when they invite their friends.
+ * @param string $type_override
+ *   (optional) Set a custom value to the 'type' column. Particularly useful for
+ *   cases where there is no appropriate NID or Drupal type for this invite. ex: the MLK day SMS game.
+ *
+ * Example (found in dosomething_clubs_preserve_shortform_email() in dosomething_clubs.module):
+ * @code
+ * sms_flow_start(
+ *   '555-555-5555', 128441, 128441, array('field_webform_mobile'),
+ *   $form_state['values'],
+ *   array(
+ *     'first_name' => 'Mike',
+ *     'club_name' => "Mike's cool DoSomething.org Club."
+ *   )
+ * );
+ * @endcode
+ */
+function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, $beta_numbers, $form_values, $beta_variables, $beta_to_alpha_campaign = FALSE, $type_override = NULL) {
 
   $nid = 0;
   if (!empty($form_values['details']['nid'])) {
@@ -98,20 +111,24 @@ function sms_flow_start($alpha_number, $alpha_optin, $beta_optin, Array $beta_nu
 }
 
 /**
- *  Accepts a phone number and returns the alpha who invited that phone number, if applicable.
+ * Accepts a phone number and returns the alpha who invited that phone number, if applicable.
  *
- *  @param $beta
- *    The beta's phone number.  Accepts with punctuation (e.g. xxx-xxx-xxxx) or without.
- *  @param $nid (optional...for now.)
- *    The node id that is being referenced.  This will ensure that we pull the correct alpha, when we
- *    have multiple flow types running at the same time.
- *  @param $type (optional)
- *    Type of invite being referenced. Possible some 'nid' values could overlap depending on the type.
+ * @param string $beta
+ *   The beta's phone number. Accepts with punctuation (e.g. xxx-xxx-xxxx) or without.
+ * @param int $nid
+ *   (optional) The node id that is being referenced. This will ensure that we 
+ *   pull the correct alpha, when we have multiple flow types running at the same time.
+ * @param string $type 
+ *   (optional) Type of invite being referenced. Possible some 'nid' values could
+ *   overlap depending on the type.
  *
- *  @return the alpha's phone number, if applicable, or false.
+ * @return string
+ *   The alpha's phone number, if applicable, or false.
  *
- *  Example:
- *  sms_flow_find_alpha('610-368-3195');
+ * Example:
+ * @code
+ * sms_flow_find_alpha('555-555-5555');
+ * @endcode
  */
 function sms_flow_find_alpha($beta, $nid = 0, $type = '') {
   $beta_parsed = preg_replace('#[^0-9]#i', '', $beta);
@@ -132,21 +149,19 @@ function sms_flow_find_alpha($beta, $nid = 0, $type = '') {
 }
 
 /**
- *  Checks whether an alpha in the sms_flow_records table has received a message from
- *  an invited beta before, given a particular type and node ID.
+ * Checks whether an alpha in the sms_flow_records table has received a message
+ * from an invited beta before, given a particular type and node ID.
  *
- *  @param int $alpha
- *    The phone number without ANY punctuation of the alpha.
+ * @param int $alpha
+ *   The phone number without ANY punctuation of the alpha.
+ * @param int $nid
+ *   The nid of the invitation, as found in the sms_flow_records table.
+ * @param string $type
+ *   The "type" of invitation, as seen in the sms_flow_records table.
  *
- *  @param int $nid
- *    The nid of the invitation, as found in the sms_flow_records table.
- *
- *  @param string $type
- *    The "type" of invitation, as seen in the sms_flow_records table.
- *
- *  @return boolean
- *    true if there is at least one message from beta -> alpha sent
- *    false if there have not been any messages sent from beta -> alpha
+ * @return boolean
+ *   TRUE if there is at least one message from beta -> alpha sent. FALSE if there
+ *   have not been any messages sent from beta -> alpha.
  */
 function sms_flow_alpha_received_message($alpha, $nid, $type) {
   // Query the sms_flow_records table.
@@ -176,22 +191,20 @@ function sms_flow_alpha_received_message($alpha, $nid, $type) {
 }
 
 /**
- *  Updates the "accepted invite" status for a particular beta number in the sms_flow_records table.
+ * Updates the "accepted invite" status for a particular beta number in the
+ * sms_flow_records table.
  *
- *  @param $alpha_number
- *    The number of the alpha user who sent the invite.
+ * @param string $alpha_number
+ *   The number of the alpha user who sent the invite.
+ * @param string $beta_number
+ *   The beta number to look up.
+ * @param int $nid
+ *   The nid that the user is being invited to, as seen in the sms_flow_records table.
+ * @param string $type
+ *   The type of invite to check against.
  *
- *  @param $beta_number
- *    The beta number to look up.
- *
- *  @param $nid
- *    The nid that the user is being invited to, as seen in the sms_flow_records table.
- *
- *  @param $type
- *    The type of invite to check against.
- *
- *  @return
- *    Returns true.
+ * @return
+ *   Returns true.
  */
 function sms_flow_update_accepted_status($alpha_number, $beta_number, $nid, $type) {
   db_update('sms_flow_records')
@@ -208,7 +221,17 @@ function sms_flow_update_accepted_status($alpha_number, $beta_number, $nid, $typ
 }
 
 /**
- * Create record in sms_flow_game table
+ * Create record in sms_flow_game table.
+ *
+ * @param string $phone
+ *   Phone number to add to the table.
+ * @param int $game_id
+ *   The game ID for this record.
+ *   @see sms_flow_game_constants.inc
+ *
+ * @return
+ *   If the record insert or update failed, returns FALSE. If it succeeded,
+ *   returns SAVED_NEW or SAVED_UPDATED, depending on the operation performed.
  */
 function sms_flow_game_create_record($phone, $game_id) {
   $phone = substr($phone, -10);
@@ -224,7 +247,16 @@ function sms_flow_game_create_record($phone, $game_id) {
 }
 
 /**
- * Return paths user's been sent to as an array
+ * Retrieve the opt-in paths a user has been sent to.
+ *
+ * @param string $phone
+ *   Phone number of the user to lookup.
+ * @param int $game_id
+ *   The game ID to query for.
+ *   @see sms_flow_game_constants.inc
+ *
+ * @return array
+ *   The paths a user has been opted-in to.
  */
 function sms_flow_game_get_paths($phone, $game_id) {
   $phone = preg_replace('#[^0-9]#i', '', $phone);
@@ -250,7 +282,15 @@ function sms_flow_game_get_paths($phone, $game_id) {
 }
 
 /**
- * Save paths user's been sent to to the sms_flow_game table
+ * Save the opt-in paths a user has been sent to to the sms_flow_game table.
+ *
+ * @param string $phone
+ *   Phone number of the user.
+ * @param int $game_id
+ *   The game ID the paths are associated with.
+ *   @see sms_flow_game_constants.inc
+ * @param array $paths
+ *   The opt-in paths a user has been sent to.
  */
 function sms_flow_game_set_paths($phone, $game_id, $paths) {
   $phone = substr($phone, -10);
@@ -268,7 +308,16 @@ function sms_flow_game_set_paths($phone, $game_id, $paths) {
 }
 
 /**
- * Return answers from sms_flow_game as an associative array
+ * Return answers from sms_flow_game.
+ *
+ * @param string $phone
+ *   Phone number of the user.
+ * @param int $game_id
+ *   Game ID to get the answers for.
+ *   @see sms_flow_game_constants.inc
+ *
+ * @return
+ *   Associative array of the user's answers to the given game. Otherwise, NULL.
  */
 function sms_flow_game_get_answers($phone, $game_id) {
   $phone = preg_replace('#[^0-9]#i', '', $phone);
@@ -293,7 +342,15 @@ function sms_flow_game_get_answers($phone, $game_id) {
 }
 
 /**
- * Convert answers from associative array to json string and save to sms_flow_game
+ * Convert answers from associative array to json string and save to sms_flow_game.
+ *
+ * @param string $phone
+ *   Phone number of the user.
+ * @param int $game_id
+ *   Game ID the answers are associated with.
+ *   @see sms_flow_game_constants.inc
+ * @param array $answers
+ *   The answers to convert and save.
  */
 function sms_flow_game_set_answers($phone, $game_id, $answers) {
   $phone = substr($phone, -10);
@@ -326,12 +383,12 @@ function sms_flow_menu() {
 }
 
 /**
- * Mimics functionality found in sms_mobile_commons_incoming_callback(). Allows for
- * for different endpoints to trigger different keyword paths
+ * Mimics functionality found in sms_mobile_commons_incoming_callback(). Allows
+ * for different endpoints to trigger different keyword paths.
  */
 function sms_flow_incoming_callback($path) {
-  // Direct correlation between path endpoint and keyword used. If path doesn't match any keyword
-  // specified in the array of keywords, then error out.
+  // Direct correlation between path endpoint and keyword used. If the path doesn't
+  // match any keyword specified in the array of keywords, then error out.
   $keyword = $path;
   $keyword_map = module_invoke_all('conductor_sms_keywords');
   if (!array_key_exists($path, $keyword_map)) {
@@ -373,32 +430,14 @@ function sms_flow_incoming_callback($path) {
 }
 
 /**
- * Merely for reference.  Not used because dosomething_general_mobile_commons_subscribe offers the same functionality.
- */
-function sms_flow_mobile_commons_subscribe($mobile, $opt_in_path, $args = array()) {
-  $api_opt_in_path_url = 'https://dosomething.mcommons.com/profiles/join';
-
-  // Send the post data.
-  $options = array(
-    'headers' => array(
-      'Content-type' => 'application/x-www-form-urlencoded',
-      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    ),
-    'method' => 'POST',
-    'data' => "person[phone]=$mobile&opt_in_path[]=$opt_in_path",
-  );
-
-  if (!empty($args)) {
-    foreach ($args AS $key => $val) {
-      $options['data'] .= "&person[$key]=" . urlencode($val);
-    }
-  }
-
-  drupal_http_request($api_opt_in_path_url, $options);
-}
-
-/**
- * Helper function to find all files within a directory that end with the given extension
+ * Helper function to find all files within a directory that end with the given extension.
+ *
+ * @param string $dir
+ *   Directory to search for files.
+ * @param string $file_ext
+ *   File extension of files to search for.
+ * @param array $matching_files
+ *   The files that match the $file_ext being searched for.
  */
 function _sms_flow_list_files_by_extension($dir, $file_ext, &$matching_files) {
   $files = scandir($dir);
@@ -455,7 +494,7 @@ function sms_flow_ctools_plugin_directory($owner, $plugin_type) {
 
 /**
  * Implements hook_default_conductor_workflows().
- * Searches for local .workflows.inc files for instantiated ConductorWorkflows to add to array
+ * Searches for local .workflows.inc files for instantiated ConductorWorkflows to add to array.
  */
 function sms_flow_default_conductor_workflows() {
   $workflows = array();
@@ -472,101 +511,15 @@ function sms_flow_default_conductor_workflows() {
   return $workflows;
 }
 
-function sms_flow_team_invite_form($form, &$form_state, $gid, $alpha_optin = 0, $beta_optin = 0) {
-  $form['alpha'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Your Cell Number:',
-    '#size' => 16,
-  );
-
-  $form['beta0'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Friends\' Cell Numbers:',
-    '#size' => 16,
-  );
-  $form['beta1'] = array(
-    '#type' => 'textfield',
-    '#size' => 16,
-  );
-  $form['beta2'] = array(
-    '#type' => 'textfield',
-    '#size' => 16,
-  );
-  $form['beta3'] = array(
-    '#type' => 'textfield',
-    '#size' => 16,
-  );
-  $form['beta4'] = array(
-    '#type' => 'textfield',
-    '#size' => 16,
-  );
-
-  $form['invite-gid'] = array(
-    '#type' => 'hidden',
-    '#default_value' => $gid,
-    '#value' => $gid,
-  );
-
-  $form['alpha-optin'] = array(
-    '#type' => 'hidden',
-    '#default_value' => 0,
-    '#value' => $alpha_optin,
-  );
-
-  $form['beta-optin'] = array(
-    '#type' => 'hidden',
-    '#default_value' => 0,
-    '#value' => $beta_optin,
-  );
-
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Invite',
-  );
-
-  return $form;
-}
-
-function sms_flow_team_invite_form_submit($form, &$form_state) {
-  global $user;
-  $profile = profile2_load_by_user($user, 'main');
-  if ($profile) {
-    $inviter = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-  }
-
-  if (empty($inviter)) {
-    $inviter = $form_state['values']['alpha'];
-  }
-
-  $alpha_mobile = $form_state['values']['alpha'];
-  $beta_numbers = array();
-  for ($i = 0; $i < 5; $i++) {
-    $element_name = 'beta' . $i;
-    if (!empty($form_state['values'][$element_name])) {
-      $beta_numbers[] = $form_state['values'][$element_name];
-    }
-  }
-
-  $alpha_optin = $form_state['values']['alpha-optin'];
-  $beta_optin = $form_state['values']['beta-optin'];
-  $invite_gid = $form_state['values']['invite-gid'];
-  // TODO: sms_flow_start expects NID value to be here. Might want to consider modifying that
-  $form_state['values']['details']['nid'] = $invite_gid;
-
-  if (count($beta_numbers) > 0) {
-    sms_flow_start($alpha_mobile, $alpha_optin, $beta_optin, $beta_numbers, $form_state['values'], array(
-        'tfj2013_inviter' => $inviter,  // TODO: should remove this eventually when TFJ is done
-        'drives_inviter' => $inviter,
-        'drives_invite_gid' => $invite_gid,
-      )
-    );
-  }
-
-}
-
 /**
  * Returns the already existing Drupal user for the given mobile number, or 
  * creates one to then return.
+ *
+ * @param string $mobile
+ *   Phone number to search or create a user for.
+ *
+ * @return object
+ *   The user object either found or created for the given number.
  */
 function sms_flow_get_or_create_user_by_cell($mobile) {
   $account = dosomething_api_user_lookup($mobile);

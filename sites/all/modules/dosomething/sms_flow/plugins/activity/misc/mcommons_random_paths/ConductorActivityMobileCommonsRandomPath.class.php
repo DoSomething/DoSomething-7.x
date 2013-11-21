@@ -7,18 +7,21 @@
  */
 class ConductorActivityMobileCommonsRandomPath extends ConductorActivity {
   
-  // Entity containing info for each grouped set of opt-in paths to be randomized
-  // Expected elements:
-  // $sets = array(
-  //           array(
-  //             'mdata_id'     //
-  //             'game_id'      // Unique identifier for an SMS game
-  //             'opt_in_paths' // Array of possible opt-in paths to send the user to
-  //             'path_special' // Specific opt-in path to send user to after a specific number of times through this randomizer
-  //             'send_to_special_on' // If > 0, send user to path_special on this iteration through the randomizer
-  //           ),
-  //           ...
-  //         )
+  /**
+   * Entity containing info for each grouped set of opt-in paths to be randomized
+   *
+   * Defintion:
+   * $sets = array(
+   *           array(
+   *             'mdata_id'     //
+   *             'game_id'      // Unique identifier for an SMS game
+   *             'opt_in_paths' // Array of possible opt-in paths to send the user to
+   *             'path_special' // Specific opt-in path to send user to after a specific number of times through this randomizer
+   *             'send_to_special_on' // If > 0, send user to path_special on this iteration through the randomizer
+   *           ),
+   *           ...
+   *         )
+   */
   public $sets = array();
 
   public function run($workflow) {

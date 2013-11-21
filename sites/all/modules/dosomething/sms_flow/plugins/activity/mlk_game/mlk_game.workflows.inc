@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * ConductorWorkflow definitions for the MLK/Activist Text game.
+ */
+
 //
 // sms_flow_mlk_process_beta
 //

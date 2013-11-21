@@ -7,12 +7,14 @@ class ConductorActivitySmsFlowSignupSubmit extends ConductorActivity {
 
   /**
    * Node ID of the campaign being signed up for.
+   *
    * @var int
    */
   public $nid;
 
   /**
    * Context value to get the GSID from.
+   *
    * @var String
    */
   public $schoolContext;

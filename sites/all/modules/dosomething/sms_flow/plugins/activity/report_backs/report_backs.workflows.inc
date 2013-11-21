@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * ConductorWorkflow definitions for campaign report backs.
+ */
+
+/**
  * sms_flow_can_send_mms_report_back workflow
  *  Handles the user response to whether or not he can send MMS. The routes property
  *  uses the array key as the incoming opt-in path and the 'yes' and 'no' values as

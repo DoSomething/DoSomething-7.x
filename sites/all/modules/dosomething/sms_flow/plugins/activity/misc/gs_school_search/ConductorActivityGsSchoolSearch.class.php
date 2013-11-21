@@ -15,32 +15,69 @@ class OutputType {
  */
 class ConductorActivityGsSchoolSearch extends ConductorActivity {
 
-  // Activity name where school state was asked for
+  /**
+   * Activity name where school state was asked for.
+   *
+   * @var string
+   */
   public $state_activity_name = '';
 
-  // Activity name where school name was asked for
+  /**
+   * Activity name where school name was asked for.
+   *
+   * @var string
+   */
   public $school_activity_name = '';
 
-  // Activity name to go to when user indicates the search results didn't return his/her school
+  /**
+   * Activity name to go to when user indicates the search results didn't return
+   * his/her school.
+   *
+   * @var string
+   */
   public $schoolNotFound_activity_name;
 
-  // Max results to return from the search
+  /**
+   * Max results to return from the search.
+   *
+   * @var int
+   */
   public $max_results = 6;
 
-  // Array of key-value pairs of mData IDs and the keywords associated with them.
-  // Used by the return messages to let users know what keyword to use to try again.
+  /**
+   * Array of key-value pairs of mData IDs and the keywords associated with them.
+   * Used by the return messages to let users know what keyword to use to try again.
+   *
+   * @var array
+   */
   public $mdata_keywords;
 
-  // Message to return if no results are found
+  /**
+   * Message to return if no results are found.
+   *
+   * @var string
+   */
   public $no_school_found_msg;
 
-  // Message to return if a single result is found
+  /**
+   * Message to return if a single result is found.
+   *
+   * @var string
+   */
   public $one_school_found_msg;
 
-  // Message prepended before the list of results when multiple schools are found
+  /**
+   * Message prepended before the list of results when multiple schools are found.
+   *
+   * @var string
+   */
   public $schools_found_msg;
 
-  // Message to return if user replies with an invalid response
+  /**
+   * Message to return if user replies with an invalid response.
+   *
+   * @var string
+   */
   public $invalid_response_msg;
 
   public function run() {
@@ -145,7 +182,10 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
   }
 
   /**
-   * Setup activity to go to 'end' activity or whatever other activity is available
+   * Setup activity to go to 'end' activity or whatever other activity is available.
+   *
+   * @param int $nextOutput
+   *   See OutputType class.
    */
   private function selectNextOutput($nextOutput) {
     $state = $this->getState();
@@ -199,6 +239,9 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
 
   /**
    * Handle the user's response to the results from the school search
+   *
+   * @param string $userResponse
+   *   Message received from the user.
    */
   private function handleUserResponse($userResponse) {
     $state = $this->getState();
@@ -250,7 +293,11 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
   /**
    * Determine whether or not user response qualifies as a 'No'
    *
-   * @return TRUE if qualified as a 'No'. Otherwise, FALSE.
+   * @param string $userResponse
+   *   Message received from the user.
+   *
+   * @return bool
+   *   TRUE if qualified as a 'No'. Otherwise, FALSE.
    */
   private function isNoResponse($userResponse) {
     $words = explode(' ', $userResponse);
@@ -262,7 +309,11 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
   /**
    * Determine whether or not user response qualifies as a 'Yes'
    *
-   * @return TRUE if qualified as a 'Yes'. Otherwise, FALSE.
+   * @param string $userResponse
+   *   Message received from the user.
+   *
+   * @return bool
+   *   TRUE if qualified as a 'Yes'. Otherwise, FALSE.
    */
   private function isYesResponse($userResponse) {
     $words = explode(' ', $userResponse);
@@ -274,7 +325,11 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
   /**
    * Ensure user's school selection is within the bounds of the results found.
    *
-   * @return TRUE if user's selection is valid. Otherwise, FALSE.
+   * @param string $userResponse
+   *   Message received from the user.
+   *
+   * @return bool
+   *   TRUE if user's selection is valid. Otherwise, FALSE.
    */
   private function isValidSchoolIndex($userResponse) {
     $state = $this->getState();
@@ -293,7 +348,11 @@ class ConductorActivityGsSchoolSearch extends ConductorActivity {
    * Goes through search results checking if any of the school names match
    * the user's response.
    *
-   * @return Object with school data if match is found. Otherwise, FALSE.
+   * @param string $userResponse
+   *   Message received from the user.
+   *
+   * @return object
+   *   Object with school data if match is found. Otherwise, FALSE.
    */
   private function findSchoolNameMatch($userResponse) {
     $state = $this->getState();
