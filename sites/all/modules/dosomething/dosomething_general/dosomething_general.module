@@ -887,6 +887,10 @@ function dosomething_general_get_full_name($account, $display_type = 'public') {
  *  The user account object.
  */
 function dosomething_general_find_user_by_cell($number) {
+  if (!dosomething_general_valid_cell($number)) {
+    return FALSE;
+  }
+
   $or = db_or()
     ->condition('mail', $number . '@mobile')
     // Tolerate not having a `1` in the source but having one in the db.
@@ -898,6 +902,7 @@ function dosomething_general_find_user_by_cell($number) {
     ->condition($or)
     ->execute()
     ->fetchField();
+
   if ($uid) {
     return user_load($uid);
   }
@@ -908,6 +913,7 @@ function dosomething_general_find_user_by_cell($number) {
     // so this won't prevent them from logging in.
     return $account;
   }
+
   return FALSE;
 }
 
@@ -979,7 +985,12 @@ function dosomething_general_valid_cell($number) {
   preg_match('#([0-9]{1})\1{9,}#', $trimmed, $repeat);
   preg_match('#(?<first>555|\d{3})(?<second>555|\d{3})(?<third>5555|\d{4})$#i', $trimmed, $fives);
 
-  return !empty($valid) && empty($repeat) && in_array('555', $fives) === FALSE && in_array('5555', $fives) === FALSE;
+  if (!empty($valid) && empty($repeat) && in_array('555', $fives) === FALSE && in_array('5555', $fives) === FALSE) {
+    return $trimmed;
+  }
+  else {
+    return FALSE;
+  }
 }
 
 /**
