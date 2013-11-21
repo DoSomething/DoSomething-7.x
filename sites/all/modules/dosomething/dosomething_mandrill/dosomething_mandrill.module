@@ -358,8 +358,8 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
 /*
  * Core first name functionality
  *
- * Used in dosomething_mandrill_dispatch_drip() to assign fname value that doesn't
- * use the ($message, $params) structure of dosomething_mandrill_mail_firstname()
+ * Used to assign fname value that doesn't use the ($message, $params) structure
+ * of dosomething_mandrill_mail_firstname()
  *
  * @param string $fname
  *   The initial fname value
@@ -491,43 +491,13 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
     }
   }
 
-  // Format $to to meet Mandrill API, must be in array format
-  if (gettype($message['to']) == 'string') {
-    $target_email = $message['to'];
-    $message['to'] = array(
-      0 => array(
-        'email' => $target_email,
-        'name' => $message['params']['FNAME'],
-        'merge_var_name' => 'FNAME',
-        'merge_var_content' => $message['params']['FNAME']
-      ) 
-    );
-  }
-  
-  $mandrill_params['message']['to'] = $message['to'];
+	// Format "to" values to meet Mandrill API specs
+	dosomething_mandrill_mail_alter_to($mandrill_params, $message);
+
   if (!empty($mandrill_params['params']['message']['merge_vars'])) {
     $merge_vars = $mandrill_params['params']['message']['merge_vars'];
   }
 
-
-  if(!empty($mandrill_params['message']['to']) && empty($merge_vars)) {
-    foreach($mandrill_params['message']['to'] as $i => $rcpt) {
-      if (isset($rcpt['merge_var_name'])) {
-        $vars = array();
-        $vars[] = array(
-          'name' => $rcpt['merge_var_name'],
-          'content' => $rcpt['merge_var_content'],
-        );
-        unset($mandrill_params['message']['to'][0]['merge_var_name']);
-        unset($mandrill_params['message']['to'][0]['merge_var_content']);
-        $merge_vars[] = array(
-          'rcpt' => $rcpt['email'],
-          'vars' => $vars,
-        );
-      }
-    }
-  }
-  
   // Adjust the "From Name" message value
   if (isset($message['from_name'])) {
     $mandrill_params['message']['from_name'] = $message['from_name'];
@@ -546,6 +516,54 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   // the matching *|TAGS|*  
   $mandrill_params['message']['merge_vars'] = $merge_vars;
   $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
+
+}
+
+/*
+ * Construct to values for hook_mail_alter()
+ *
+ * Format $to to meet Mandrill API, must be in array format
+ * @todo: Look into how Mandrill module handled email as a string
+ *
+ * @param array $mandrill_params
+ *   Values to be passed on to the mail system and ultimately the Mandrill API.
+ *   The array structure must follow the Mandrill API for send-template:
+ *   https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *
+ * @param array $message
+ *   Values passed from hook_mail() to help construct $mandrill_params
+ *
+ */
+function dosomething_mandrill_mail_alter_to(&$mandrill_params, &$message) {
+
+  if (gettype($message['to']) == 'string') {
+    $target_email = $message['to'];
+    $mandrill_params['message']['to'] = array(
+      0 => array(
+        'email' => $target_email,
+        'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
+        'type' => 'to',
+      )
+    );
+  }
+  elseif (is_array($message['to'])) { // $message['to'] supplied as array.
+
+		// Complete formatting to Mandrill API specs if single entry
+		if (count($message['to']) == 1) {
+			$mandrill_params['message']['to'] = array(
+				0 => array(
+					'email' => $message['to'][0]['email'],
+					'name' => dosomething_mandrill_get_clean_first_name($message['params']['FNAME']),
+					'type' => 'to',
+				)
+			);
+		}
+		else {
+			// Pass everything on as is when more than one entry. Typically created
+			// by dosomething_mandrill_dispatch_drip()
+			$mandrill_params['message']['to'] = $message['to'];
+		}
+  }
 
 }
 
@@ -617,7 +635,7 @@ function dosomething_mandrill_dispatch_password_reset($account) {
   
   // Only set the FNAME key if the account has a first name value. If this key
   // is not passed into the dosomething_mandrill_dispatch() call below
-  // dosomething_mandrill_mail_firstname() will haddle setting a default
+  // dosomething_mandrill_mail_firstname() will handle setting a default
   // FNAME value.
   if (isset($profile->field_user_first_name[LANGUAGE_NONE][0]['value'])) {
     $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
@@ -666,15 +684,19 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 	switch ($op){
 
     case 'dsdrip-momm':
-			
-			// Format merge details based on Mandrill API
+
+      // Format merge details based on Mandrill API
       // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
-	    list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
-		  break;
-			
+      list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
+
+      // Defined in Mail System entries, one for each drop
+      $key = 'dsdrip-momm13-' . $target_drop;
+
+      break;
+
   }
 	  // Respond to list of target email addresses found
-  if (count($to) > 0) {
+  if (count($message['message']['to']) > 0) {
 
     // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
     $dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
