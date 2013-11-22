@@ -3,6 +3,10 @@
  * @file
  * A collection of functionality related to website transactional email messages using the Mandrill service.
  *
+ * Mandrill API reference for send-template:
+ * https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *
+ * Follow the structure outlined by the send-template method when sending "dispatch"es.
  */
 
 define('WEEK', 604800); // 60*60*24*7
@@ -123,8 +127,8 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
  * 
  * @param array $message
  *   Custom message content to be merged into the Mandrill template. The values can
- *   be any item listed in the Mandrill API:
- *   https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *   be any item listed structured in the Mandrill API for send-template.
+ *
  *   Variables within the custom message text or within the template that will be
  *   dynamically replace with custom content specific to each message. Variables
  *   are denoted in the Mandrill template with *|<some name>|*
@@ -389,8 +393,7 @@ function dosomething_mandrill_get_clean_first_name($fname) {
  *
  * @param array $tags
  *   An array of all the tags to be assigned to a message. The tag names will be
- *   formatted to the limitations outlined in the Mandrill API:
- *   https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *   formatted to the limitations outlined in the Mandrill API.
  *
  *   Tags should be 50 characters or less. Any tags starting with an underscore
  *   are reserved for internal use and will cause errors.
@@ -520,13 +523,9 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
 /*
  * Construct to values for hook_mail_alter()
  *
- * Format $to to meet Mandrill API, must be in array format
- * @todo: Look into how Mandrill module handled email as a string
- *
  * @param array $mandrill_params
  *   Values to be passed on to the mail system and ultimately the Mandrill API.
- *   The array structure must follow the Mandrill API for send-template:
- *   https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *   The array structure must follow the Mandrill API for send-template
  *
  * @param array $message
  *   Values passed from hook_mail() to help construct $mandrill_params
@@ -570,8 +569,7 @@ function dosomething_mandrill_mail_alter_to(&$mandrill_params, &$message) {
  *
  * @param array $mandrill_params
  *   Values to be passed on to the mail system and ultimately the Mandrill API.
- *   The array structure must follow the Mandrill API for send-template:
- *   https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *   The array structure must follow the Mandrill API for send-template
  *
  * @param array $message
  *   Values passed from hook_mail() to help construct $mandrill_params
@@ -704,7 +702,6 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
     case 'dsdrip-momm':
 
       // Format merge details based on Mandrill API
-      // https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
       list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
 
       // Defined in Mail System entries, one for each drop
