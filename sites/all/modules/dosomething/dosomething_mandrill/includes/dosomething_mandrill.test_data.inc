@@ -277,16 +277,7 @@ function dosomething_mandrill_test_dsdrip_momm13() {
     )
   );
 
-  $to_test = array(
-    0 => array(
-      'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
-      'name' => 'TheDee'
-    ),
-    1 => array(
-      'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
-      'name' => 'TheDeeThree'
-    )
-  );
+  $to_test = 'doers@dosomething.org';
 
   return array($message_test, $to_test);
 }

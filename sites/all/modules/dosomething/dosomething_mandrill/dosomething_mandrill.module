@@ -353,9 +353,16 @@ function dosomething_mandrill_mail_plain(&$message, &$params) {
  *   Values to be applied to $message
  */
 function dosomething_mandrill_mail_firstname(&$message, &$params) {
-  
+
+	if (isset($params['FNAME'])) {
+		$fname = $params['FNAME'];
+	}
+	else {
+		$fname = NULL;
+	}
+
   // Common merge tag used in most Mandrill templates
-  $message['params']['FNAME'] = dosomething_mandrill_get_clean_first_name($params['FNAME']);
+  $message['params']['FNAME'] = dosomething_mandrill_get_clean_first_name($fname);
 
 }
 
@@ -723,7 +730,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 		else {
 			$dispatch_result['send_status'] = 'Error sending ' . $op . ' Mandrill messages.';
 		}
-    $dispatch_result['sent'] = count($to);
+    $dispatch_result['sent'] = count($message['message']['to']);
 
     // Record the number of messages sent
 		// @todo: Add StatHat data logging

@@ -180,4 +180,23 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   }
 
+  /**
+   * @see dosomething_mandrill_dispatch_drip()
+   *
+   * Test triggering sending test messages to the MOMM campaign drip.
+   */
+  public function testDispatchDripMOMM() {
+
+    $op = 'dsdrip-momm';
+    $target_drop = 1;
+    $target_date = '2013-11-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+
+    $this->assertTrue($dispatch_result['send_status'] == TRUE, 'Test MOMM drip messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue($dispatch_result['sent'] > 0, $dispatch_result['sent'] . ' test MOMM drip messages sent successfully.');
+
+  }
+
 }
