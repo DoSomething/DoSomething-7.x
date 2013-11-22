@@ -194,8 +194,8 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
 
-    $this->assertTrue($dispatch_result['send_status'] == TRUE, 'Test MOMM drip messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
-    $this->assertTrue($dispatch_result['sent'] > 0, $dispatch_result['sent'] . ' test MOMM drip messages sent successfully.');
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' test MOMM drip messages sent successfully.');
 
   }
 

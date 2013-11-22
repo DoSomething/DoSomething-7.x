@@ -72,7 +72,7 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
 
     dosomething_mandrill_mail_alter_to($mandrill_params, $message);
 
-    $this->assertTrue(count($mandrill_params['message']['to']) == 3, 'Passed the array of several email entries, $mardrill_params was formatted correctly.');
+    $this->assertEqual(count($mandrill_params['message']['to']), 3, 'Passed the array of several email entries, $mardrill_params was formatted correctly.');
 
   }
 
