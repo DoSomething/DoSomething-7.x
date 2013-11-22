@@ -11,21 +11,25 @@
  *
  * @param string $op
  *   The operation (key) to be performed in collecting test data.
+ *
+ * @param boolean|integer $test_flag
+ *   Test flag that triggers the use of test data. When the flag is an integer
+ *   invalid data is sent.
  */
-function dosomething_mandrill_test_data($op) {
+function dosomething_mandrill_test_data($op, $test_flag=NULL) {
   
   switch ($op) {
 
     case 'dsevent-birthday':
-      list($message_test, $to_test) = dosomething_mandrill_test_dsevent_birthday();
+      list($message_test, $to_test) = dosomething_mandrill_test_dsevent_birthday($test_flag);
       break;
 
     case 'dsevent-reg-90':
-      list($message_test, $to_test) = dosomething_mandrill_test_dsevent_reg_90();
+      list($message_test, $to_test) = dosomething_mandrill_test_dsevent_reg_90($test_flag);
       break;
 
     case 'dsevent-reg-365':
-      list($message_test, $to_test) = dosomething_mandrill_test_dsevent_reg_365();
+      list($message_test, $to_test) = dosomething_mandrill_test_dsevent_reg_365($test_flag);
       break;
 
     case 'dsdrip-momm13-1':
@@ -33,7 +37,7 @@ function dosomething_mandrill_test_data($op) {
     case 'dsdrip-momm13-3':
     case 'dsdrip-momm13-4':
     case 'dsdrip-momm13-5':
-      list($message_test, $to_test) = dosomething_mandrill_test_dsdrip_momm13();
+      list($message_test, $to_test) = dosomething_mandrill_test_dsdrip_momm13($test_flag);
       break;
 
   }
@@ -43,8 +47,12 @@ function dosomething_mandrill_test_data($op) {
 
 /*
  * Populates array of test data for hook_mail key: dsevent-birthday
+ *
+ * @param boolean|integer $test_flag
+ *   Test flag that triggers the use of test data. When the flag is an integer
+ *   invalid data is sent.
  */
-function dosomething_mandrill_test_dsevent_birthday() {
+function dosomething_mandrill_test_dsevent_birthday($test_flag) {
 
   $message_test = array(
     'message' => array(
@@ -111,8 +119,12 @@ function dosomething_mandrill_test_dsevent_birthday() {
 
 /*
  * Populates array of test data for hook_mail key: dsevent-reg-90
+ *
+ * @param boolean|integer $test_flag
+ *   Test flag that triggers the use of test data. When the flag is an integer
+ *   invalid data is sent.
  */
-function dosomething_mandrill_test_dsevent_reg_90() {
+function dosomething_mandrill_test_dsevent_reg_90($test_flag) {
 
   $message_test = array(
     'message' => array(
@@ -171,8 +183,12 @@ function dosomething_mandrill_test_dsevent_reg_90() {
 
 /*
  * Populates array of test data for hook_mail key: dsevent-reg-365
+ *
+ * @param boolean|integer $test_flag
+ *   Test flag that triggers the use of test data. When the flag is an integer
+ *   invalid data is sent.
  */
-function dosomething_mandrill_test_dsevent_reg_365() {
+function dosomething_mandrill_test_dsevent_reg_365($test_flag) {
 
   $message_test = array(
     'message' => array(
@@ -239,45 +255,93 @@ function dosomething_mandrill_test_dsevent_reg_365() {
 
 /*
  * Populates array of test data for hook_mail key: dsdrip-momm13-x
+ *
+ * @param boolean|integer $test_flag
+ *   Test flag that triggers the use of test data. When the flag is an integer
+ *   invalid data is sent.
  */
-function dosomething_mandrill_test_dsdrip_momm13() {
+function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
 
-  $message_test = array(
-    'message' => array(
-      'merge_vars' => array(
-        0 => array(
-          'rcpt' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
-          'vars' => array(
-            0 => array(
-              'content' => 'Dee',
-              'name' => 'FNAME'
+  // Bad data - missing 'rcpt
+  if ($test_flag === 1) {
+
+    // Missing 'message'
+    $message_test = array(
+      'message' => array(
+        'merge_vars' => array(
+          0 => array(
+            'rcpt' => '',
+            'vars' => array(
+              0 => array(
+                'content' => 'Dee',
+                'name' => 'FNAME'
+              )
+            )
+          ),
+          1 => array(
+            'vars' => array(
+              0 => array(
+                'content' => 'DeeThree',
+                'name' => 'FNAME'
+              )
             )
           )
         ),
-        1 => array(
-          'rcpt' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
-          'vars' => array(
-            0 => array(
-              'content' => 'DeeThree',
-              'name' => 'FNAME'
-            )
+        'to' => array(
+          0 => array(
+            'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+            'name' => 'TheDee',
+          ),
+          1 => array(
+            'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
+            'name' => 'TheDeeThree',
           )
-        )
-      ),
-      'to' => array(
-        0 => array(
-          'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
-          'name' => 'TheDee',
-        ),
-        1 => array(
-          'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
-          'name' => 'TheDeeThree',
         )
       )
-    )
-  );
+    );
+    $to_test = 'doers@dosomething.org';
 
-  $to_test = 'doers@dosomething.org';
+  } // Good data
+  else {
+
+    $message_test = array(
+      'message' => array(
+        'merge_vars' => array(
+          0 => array(
+            'rcpt' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+            'vars' => array(
+              0 => array(
+                'content' => 'Dee',
+                'name' => 'FNAME'
+              )
+            )
+          ),
+          1 => array(
+            'rcpt' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
+            'vars' => array(
+              0 => array(
+                'content' => 'DeeThree',
+                'name' => 'FNAME'
+              )
+            )
+          )
+        ),
+        'to' => array(
+          0 => array(
+            'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+            'name' => 'TheDee',
+          ),
+          1 => array(
+            'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
+            'name' => 'TheDeeThree',
+          )
+        )
+      )
+    );
+
+    $to_test = 'doers@dosomething.org';
+
+  }
 
   return array($message_test, $to_test);
 }

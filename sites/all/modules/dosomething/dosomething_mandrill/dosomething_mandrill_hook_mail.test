@@ -195,7 +195,43 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
 
     $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
-    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' test MOMM drip messages sent successfully.');
+    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
+
+    // Invalid op
+    $op = 'dsdrip-invalid';
+    $target_drop = 1;
+    $target_date = '2013-11-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'No recipients found')), 'Invalid test drip $op did not send messages as expected.');
+
+    // Invalid drop
+    $op = 'dsdrip-momm';
+    $target_drop = 10;
+    $target_date = '2013-11-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'No recipients found')), 'Invalid test drip $target_drop did not send messages as expected.');
+
+    // Invalid date
+    $op = 'dsdrip-momm';
+    $target_drop = 1;
+    $target_date = '11-2003-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Invalid target timestamp')), 'Invalid test drip $target_date did not send messages as expected.');
+
+    // Invalid data
+    $op = 'dsdrip-momm';
+    $target_drop = 1;
+    $target_date = '2013-11-15';
+    $test_flag = 1; // Not boolean, send invalid test data
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Error sending')), 'Invalid formatted test drip data did not send messages as expected.');
 
   }
 
