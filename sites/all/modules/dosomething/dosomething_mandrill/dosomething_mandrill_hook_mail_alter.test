@@ -3,6 +3,9 @@
  * @file
  * Unit Tests for DoSomething.org Mandrill transaction message system at the
  * hook_mail_alter point and beyond.
+ *
+ * See Mandrill API send-template method for details
+ * mail-template: https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
  */
 class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
   
@@ -23,8 +26,7 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
   /**
    * @see dosomething_mandrill_mail_alter_to()
    *
-   * Test constructing the $to array for submission to the Mandrill API based on
-   * mail-template: https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+   * Test constructing the $to array for submission to the Mandrill API.
    *
    */
   public function testMailAlterTo() {
@@ -79,8 +81,7 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
   /**
    * @see dosomething_mandrill_mail_alter_from_name()
    *
-   * Test constructing the $to array for submission to the Mandrill API based on
-   * mail-template: https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+   * Test constructing the $to array for submission to the Mandrill API.
    */
   public function testMailAlterFromName() {
 
@@ -91,6 +92,44 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
     dosomething_mandrill_mail_alter_from_name($mandrill_params, $message);
 
     $this->assertTrue($mandrill_params['message']['from_name'] == $from_name, '\'from_name\' in $mandrill_params == $message');
+
+  }
+  
+  /**
+   * @see dosomething_mandrill_mail_alter_tags()
+   *
+   * Test constructing the $tags array for submission to the Mandrill API.
+   */
+  public function testMailAlterTags() {
+
+    // $mandrill_params only tag(s) - there will always be one based on $key
+    $mandrill_params = array(
+      'message' => array(
+        'tags' => array(
+          0 => 'params tag',
+        ),
+      ),
+    );
+    $message = array();
+    dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
+
+    $this->assertTrue(count($mandrill_params['message']['tags']) == 1, 'One \'tags\' found in $mandrill_params.');
+
+    // $mandrill_params and $message tag(s)
+    $mandrill_params = array(
+      'message' => array(
+        'tags' => array(
+          0 => 'params tag',
+        ),
+      ),
+    );
+    $message['tags'] = array(
+      0 => 'tag zero',
+      1 => 'tag one',
+    );
+    dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
+
+    $this->assertTrue(count($mandrill_params['message']['tags']) == 3, 'Three \'tags\' found in $mandrill_params with $message assigments.');
 
   }
 
