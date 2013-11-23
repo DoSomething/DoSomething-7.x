@@ -154,8 +154,20 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $this->assertTrue($target_stamp == $nextweek_stamp, 'Returned timestamp for drip 1 as of today when passed NULL');
 
+    // Date outside of the first user creation date - return error (-1)
+    $target_date = '1900-11-18';
+    $target_stamp = dosomething_mandrill_get_targetstamp(1, $target_date);
+
+    $this->assertTrue($target_stamp == -1, 'Returned error timestamp for date outside of DS user date range.');
+
+    // Invalid date resulting a timestamp outside of the first user creation to
+    // the current date range
+    $target_date = '11-2013-11';
+    $target_stamp = dosomething_mandrill_get_targetstamp(1, $target_date);
+
+    $this->assertTrue($target_stamp == -1, 'Returned error timestamp for invalid date.');
   }
-  
+
   /**
    * @see dosomething_mandrill_get_drip_dispatch_momm_data()
    *
