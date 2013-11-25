@@ -154,8 +154,20 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $this->assertTrue($target_stamp == $nextweek_stamp, 'Returned timestamp for drip 1 as of today when passed NULL');
 
+    // Date outside of the first user creation date - return error (-1)
+    $target_date = '1900-11-18';
+    $target_stamp = dosomething_mandrill_get_targetstamp(1, $target_date);
+
+    $this->assertTrue($target_stamp == -1, 'Returned error timestamp for date outside of DS user date range.');
+
+    // Invalid date resulting a timestamp outside of the first user creation to
+    // the current date range
+    $target_date = '11-2013-11';
+    $target_stamp = dosomething_mandrill_get_targetstamp(1, $target_date);
+
+    $this->assertTrue($target_stamp == -1, 'Returned error timestamp for invalid date.');
   }
-  
+
   /**
    * @see dosomething_mandrill_get_drip_dispatch_momm_data()
    *
@@ -177,6 +189,61 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $target_index = rand(1, count($to));
     $this->assertTrue($to[$target_index]['email'] == $merge_vars[$target_index]['rcpt'], '$to[' . $target_index . '][\'email\'] matches $merge_vars[' . $target_index . '][\'rcpt\']');
     $this->assertTrue($to[$target_index]['name'] == $merge_vars[$target_index]['vars'][0]['content'], '$to[' . $target_index . '][\'name\'] matches $merge_vars[' . $target_index . '][0][\'content\']');
+
+  }
+
+  /**
+   * @see dosomething_mandrill_dispatch_drip()
+   *
+   * Test triggering sending test messages to the MOMM campaign drip.
+   */
+  public function testDispatchDripMOMM() {
+
+    $op = 'dsdrip-momm13';
+    $target_drop = 1;
+    $target_date = '2013-11-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
+
+    // Invalid op
+    $op = 'dsdrip-invalid';
+    $target_drop = 1;
+    $target_date = '2013-11-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'No recipients found')), 'Invalid test drip $op did not send messages as expected.');
+
+    // Invalid drop
+    $op = 'dsdrip-momm13';
+    $target_drop = 10;
+    $target_date = '2013-11-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'No recipients found')), 'Invalid test drip $target_drop did not send messages as expected.');
+
+    // Invalid date
+    $op = 'dsdrip-momm13';
+    $target_drop = 1;
+    $target_date = '11-2003-15';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Invalid target timestamp')), 'Invalid test drip $target_date did not send messages as expected.');
+
+    // Invalid data
+    $op = 'dsdrip-momm13';
+    $target_drop = 1;
+    $target_date = '2013-11-15';
+    $test_flag = 1; // Not boolean, send invalid test data
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Error sending')), 'Invalid formatted test drip data did not send messages as expected.');
 
   }
 

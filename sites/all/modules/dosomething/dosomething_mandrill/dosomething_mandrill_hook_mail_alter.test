@@ -72,7 +72,25 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
 
     dosomething_mandrill_mail_alter_to($mandrill_params, $message);
 
-    $this->assertTrue(count($mandrill_params['message']['to']) == 3, 'Passed the array of several email entries, $mardrill_params was formatted correctly.');
+    $this->assertEqual(count($mandrill_params['message']['to']), 3, 'Passed the array of several email entries, $mardrill_params was formatted correctly.');
+
+  }
+
+  /**
+   * @see dosomething_mandrill_mail_alter_from_name()
+   *
+   * Test constructing the $to array for submission to the Mandrill API based on
+   * mail-template: https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+   */
+  public function testMailAlterFromName() {
+
+    $mandrill_params = array();
+    $from_name = 'Test from_name';
+    $message['from_name'] = $from_name;
+
+    dosomething_mandrill_mail_alter_from_name($mandrill_params, $message);
+
+    $this->assertTrue($mandrill_params['message']['from_name'] == $from_name, '\'from_name\' in $mandrill_params == $message');
 
   }
 
