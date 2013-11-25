@@ -149,7 +149,7 @@ function dosomething_mandrill_dispatch($to, $key = 'dsplain', $message = NULL, $
   // Replace with test $message and $to values
   if ($test_flag) {
     module_load_include('inc', 'dosomething_mandrill', 'includes/dosomething_mandrill.test_data');
-    list($message, $to) = dosomething_mandrill_test_data($key);
+    list($message, $to) = dosomething_mandrill_test_data($key, $test_flag);
   }
 
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
@@ -353,9 +353,16 @@ function dosomething_mandrill_mail_plain(&$message, &$params) {
  *   Values to be applied to $message
  */
 function dosomething_mandrill_mail_firstname(&$message, &$params) {
-  
+
+	if (isset($params['FNAME'])) {
+		$fname = $params['FNAME'];
+	}
+	else {
+		$fname = NULL;
+	}
+
   // Common merge tag used in most Mandrill templates
-  $message['params']['FNAME'] = dosomething_mandrill_get_clean_first_name($params['FNAME']);
+  $message['params']['FNAME'] = dosomething_mandrill_get_clean_first_name($fname);
 
 }
 
@@ -456,7 +463,7 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   $mandrill_params['params'] = $message['params'];
 
   $global_merge_vars = array();
-  if (isset($message['subject']) && ($message['subject'] != '' || $mandrill_params['subject'] != '')) {
+  if ((isset($message['subject']) && $message['subject'] != '') || (isset($mandrill_params['subject']) && $mandrill_params['subject'] != '')) {
     $global_merge_vars[] = array(
       'name' => 'subject',
       'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
@@ -696,43 +703,53 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 
   // Calculate the target timestamp based on the date
   $target_stamp = dosomething_mandrill_get_targetstamp($target_drop, $target_date);
-	
-	switch ($op){
 
-    case 'dsdrip-momm':
+	// Test for valid timestamp
+	if ($target_stamp != -1) {
 
-      // Format merge details based on Mandrill API
-      list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
+		switch ($op){
 
-      // Defined in Mail System entries, one for each drop
-      $key = 'dsdrip-momm13-' . $target_drop;
+			case 'dsdrip-momm13':
 
-      break;
+				// Format merge details based on Mandrill API
+				list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
 
-  }
-	  // Respond to list of target email addresses found
-  if (count($message['message']['to']) > 0) {
+				// Defined in Mail System entries, one for each drop
+				$key = 'dsdrip-momm13-' . $target_drop;
 
-    // Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-    $dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
+				break;
 
-    // Report to Drush results
-		if ($dispatch_results['result']) {
-			$dispatch_result['send_status'] = 'Success sending ' . $op . ' Mandrill messages.';
+		}
+
+		// Respond to a list of target email addresses or a test dispatch
+		if ((isset($message['message']['to']) && count($message['message']['to']) > 0) || $test_flag === 1) {
+
+			// Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
+			$dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
+
+			// Report to Drush results
+			if ($dispatch_results['result']) {
+				$dispatch_result['send_status'] = 'Success sending ' . $op . ' Mandrill messages.';
+			}
+			else {
+				$dispatch_result['send_status'] = 'Error sending ' . $op . ' Mandrill messages.';
+			}
+			$dispatch_result['sent'] = $test_flag ? '2 test messages' : count($message['message']['to']);
+
+			// Record the number of messages sent
+			// @todo: Add StatHat data logging
+
 		}
 		else {
-			$dispatch_result['send_status'] = 'Error sending ' . $op . ' Mandrill messages.';
+			$dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and target drop: ' . $target_drop;
+			$dispatch_result['sent'] = 0;
 		}
-    $dispatch_result['sent'] = count($to);
 
-    // Record the number of messages sent
-		// @todo: Add StatHat data logging
-
-  }
-  else {
-    $dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and target drop: ' . $target_drop;
-    $dispatch_result['sent'] = 0;
-  }
+	}
+	else {
+			$dispatch_result['send_status'] = 'Invalid target timestamp generated.';
+			$dispatch_result['sent'] = 0;
+	}
 
   return $dispatch_result;
 }
@@ -749,8 +766,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
  *   format.
  *
  * @return int $target_stamp
- *   A flag used for testing to enable the use of test data rather than live /
- *   real user data gathered form the database for sending Mandrill messages.
+ *   A flag used for testing to enable the use of test data rather than live /} *   real user data gathered form the database for sending Mandrill messages.
  */
 function dosomething_mandrill_get_targetstamp($target_drop = 1, $target_date = NULL) {
 
@@ -761,9 +777,24 @@ function dosomething_mandrill_get_targetstamp($target_drop = 1, $target_date = N
   else {
     $target_stamp = strtotime($target_date) - (WEEK * $target_drop);
   }
-	
+
+	// Check for valid timestamp results
+	// 2147483647: 19 Jan 2038
+	if (ctype_digit($target_stamp) && $target_stamp <= 2147483647) {
+
+		// Check for valid timestamp range - pre DS to now
+		// 1210614999: 12 May 2008, first DS user
+		if (!($target_stamp > 1210614999 && $target_stamp < time())) {
+			return -1;
+		}
+
+	}
+	else {
+		return -1;
+	}
+
 	return $target_stamp;
-	
+
 }
 
 /*
