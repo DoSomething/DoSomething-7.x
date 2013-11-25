@@ -463,7 +463,7 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   $mandrill_params['params'] = $message['params'];
 
   $global_merge_vars = array();
-  if (isset($message['subject']) && ($message['subject'] != '' || $mandrill_params['subject'] != '')) {
+  if ((isset($message['subject']) && $message['subject'] != '') || (isset($mandrill_params['subject']) && $mandrill_params['subject'] != '')) {
     $global_merge_vars[] = array(
       'name' => 'subject',
       'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
@@ -722,7 +722,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 		}
 
 		// Respond to a list of target email addresses or a test dispatch
-		if (count($message['message']['to']) > 0 || $test_flag === 1) {
+		if ((isset($message['message']['to']) && count($message['message']['to']) > 0) || $test_flag === 1) {
 
 			// Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
 			$dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);

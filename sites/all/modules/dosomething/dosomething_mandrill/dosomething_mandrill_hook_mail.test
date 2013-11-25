@@ -199,7 +199,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
    */
   public function testDispatchDripMOMM() {
 
-    $op = 'dsdrip-momm';
+    $op = 'dsdrip-momm13-1';
     $target_drop = 1;
     $target_date = '2013-11-15';
     $test_flag = TRUE;
@@ -219,7 +219,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'No recipients found')), 'Invalid test drip $op did not send messages as expected.');
 
     // Invalid drop
-    $op = 'dsdrip-momm';
+    $op = 'dsdrip-momm13-1';
     $target_drop = 10;
     $target_date = '2013-11-15';
     $test_flag = TRUE;
@@ -228,7 +228,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'No recipients found')), 'Invalid test drip $target_drop did not send messages as expected.');
 
     // Invalid date
-    $op = 'dsdrip-momm';
+    $op = 'dsdrip-momm13-1';
     $target_drop = 1;
     $target_date = '11-2003-15';
     $test_flag = TRUE;
@@ -237,7 +237,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Invalid target timestamp')), 'Invalid test drip $target_date did not send messages as expected.');
 
     // Invalid data
-    $op = 'dsdrip-momm';
+    $op = 'dsdrip-momm13-1';
     $target_drop = 1;
     $target_date = '2013-11-15';
     $test_flag = 1; // Not boolean, send invalid test data
