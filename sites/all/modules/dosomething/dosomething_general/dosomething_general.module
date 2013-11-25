@@ -144,6 +144,10 @@ function dosomething_general_mail_alter(&$message) {
       $message['mandrill_template_content']['std_preheader_content'] = $reasons[$message['key']];
     }
   }
+  // "to" can be an array when the message is going to a group of addresses
+  if (is_array($message['to'])) {
+    $message['to'] = $message['to'][0]['email'];
+  }
   // Build a per recipient unsubscribe link.
   $message['mandrill_merge_vars'][$message['to']]['unsub'] = url('unsubscribe-email/' . $message['to'], array('alias' => TRUE, 'absolute' => TRUE));
 

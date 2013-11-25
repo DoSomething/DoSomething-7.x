@@ -262,6 +262,11 @@ function dosomething_mandrill_test_dsevent_reg_365($test_flag) {
  */
 function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
 
+  // Create different target email addresses for various tests running at the
+  // same time
+  $id_one = rand(0, 100);
+  $id_two = rand(0, 100);
+
   // Bad data - missing 'rcpt
   if ($test_flag === 1) {
 
@@ -279,6 +284,7 @@ function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
             )
           ),
           1 => array(
+            'rcpt' => 'dlee+dsevent-dsdrip-momm-fail02@dosomething.org',
             'vars' => array(
               0 => array(
                 'content' => 'DeeThree',
@@ -289,17 +295,27 @@ function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
         ),
         'to' => array(
           0 => array(
-            'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
-            'name' => 'TheDee',
+            'email' => '',
+            'name' => 'Dee',
           ),
           1 => array(
-            'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
-            'name' => 'TheDeeThree',
+            'email' => 'dlee+dsevent-dsdrip-momm-fail' . $id_one . '@dosomething.org',
+            'name' => 'DeeThree',
           )
         )
       )
     );
-    $to_test = 'doers@dosomething.org';
+
+    $to_test = array(
+      0 => array(
+        'email' => '',
+        'name' => 'TheDee'
+      ),
+      1 => array(
+        'email' => 'dlee+dsevent-dsdrip-momm-fail' . $id_one . '@dosomething.org',
+        'name' => 'TheDeeThree'
+      )
+    );
 
   } // Good data
   else {
@@ -308,7 +324,7 @@ function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
       'message' => array(
         'merge_vars' => array(
           0 => array(
-            'rcpt' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+            'rcpt' => 'dlee+dsdrip-momm-' . $id_one . '@dosomething.org',
             'vars' => array(
               0 => array(
                 'content' => 'Dee',
@@ -317,7 +333,7 @@ function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
             )
           ),
           1 => array(
-            'rcpt' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
+            'rcpt' => 'dlee+dsdrip-momm-' . $id_two . '@dosomething.org',
             'vars' => array(
               0 => array(
                 'content' => 'DeeThree',
@@ -328,18 +344,27 @@ function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
         ),
         'to' => array(
           0 => array(
-            'email' => 'dlee+dsevent-dsdrip-momm-01@dosomething.org',
+            'email' => 'dlee+dsdrip-momm-' . $id_one . '@dosomething.org',
             'name' => 'TheDee',
           ),
           1 => array(
-            'email' => 'dlee+dsevent-dsdrip-momm-02@dosomething.org',
+            'email' => 'dlee+dsdrip-momm-' . $id_two . '@dosomething.org',
             'name' => 'TheDeeThree',
           )
         )
       )
     );
 
-    $to_test = 'doers@dosomething.org';
+    $to_test = array(
+      0 => array(
+        'email' => 'dlee+dsdrip-momm-' . $id_one . '@dosomething.org',
+        'name' => 'TheDee'
+      ),
+      1 => array(
+            'email' => 'dlee+dsdrip-momm-' . $id_two . '@dosomething.org',
+        'name' => 'TheDeeThree'
+      )
+    );
 
   }
 
