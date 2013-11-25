@@ -21,9 +21,9 @@
 
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="/sites/all/libraries/ds-neue/assets/ie.css" type="text/css" />
-        <script src="/sites/all/libraries/ds-neue/assets/ie/html5.min.js"></script>
-        <script src="/sites/all/libraries/ds-neue/assets/ie/rem.min.js"></script>
-  <![endif]-->
+        <script src="/sites/all/libraries/ds-neue/assets/ie/html5shiv.min.js"></script>
+        <script src="/sites/all/libraries/ds-neue/assets/ie/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
@@ -32,5 +32,9 @@
   <?php print $scripts; ?>
   <?php print $page_bottom; ?>
   <?php if (extension_loaded('newrelic')) print newrelic_get_browser_timing_footer(); ?>
+
+  <!--[if lt IE 9]>
+    <script src="/sites/all/libraries/ds-neue/assets/ie/rem.min.js"></script>
+  <![endif]-->
 </body>
 </html>
