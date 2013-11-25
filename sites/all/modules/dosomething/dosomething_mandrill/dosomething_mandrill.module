@@ -18,7 +18,7 @@ function dosomething_mandrill_theme($existing, $type, $theme, $path) {
   return array(
     'dosomething_mandrill_campaign_listing' => array(
       'variables' => array('campaigns' => NULL),
-      'template' => 'dosomething-mandrill-campaign-listing',
+      'template' => 'templates/dosomething-mandrill-campaign-listing',
     ),
   );
 }
@@ -293,7 +293,7 @@ function dosomething_mandrill_mail_petition(&$message, &$params) {
 
   $message['params']['TITLE'] = $params['TITLE'];
   $message['params']['URL'] = 'http://www.dosomething.org' . $params['URL'];
-      
+
 }
 
 /*
@@ -507,16 +507,11 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
 	// Assign "from_name"
 	dosomething_mandrill_mail_alter_from_name($mandrill_params, $message);
 
+  // Assign "tags"
+	dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
+
   if (!empty($mandrill_params['params']['message']['merge_vars'])) {
     $merge_vars = $mandrill_params['params']['message']['merge_vars'];
-  }
-  
-  // Tags
-  if (isset($message['tags']) && is_array($mandrill_params['message']['tags']) && is_array($message['tags'])) {
-    $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
-  }
-  elseif (isset($message['tags']) && is_array($message['tags'])) {
-    $mandrill_params['message']['tags'] = $message['tags'];
   }
   
   // Combine all merge_var values - these values are used to send multiple messages
@@ -586,6 +581,28 @@ function dosomething_mandrill_mail_alter_from_name(&$mandrill_params, &$message)
 
 	if (isset($message['from_name'])) {
     $mandrill_params['message']['from_name'] = $message['from_name'];
+  }
+
+}
+
+/*
+ * Construct tags values for hook_mail_alter()
+ *
+ * @param array $mandrill_params
+ *   Values to be passed on to the mail system and ultimately the Mandrill API.
+ *   The array structure must follow the Mandrill API for send-template:
+ *
+ * @param array $message
+ *   Values passed from hook_mail() to help construct $mandrill_params
+ */
+function dosomething_mandrill_mail_alter_tags(&$mandrill_params, &$message) {
+
+	// Test that both possible tag values are an array as array_merge() will create NULL results otherwise
+  if (isset($message['tags']) && is_array($mandrill_params['message']['tags']) && is_array($message['tags'])) {
+    $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
+  }
+  elseif (isset($message['tags']) && is_array($message['tags'])) {
+    $mandrill_params['message']['tags'] = $message['tags'];
   }
 
 }
