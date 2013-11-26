@@ -94,4 +94,25 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
 
   }
 
+  /**
+   * @see dosomething_mandrill_mail_alter_tags()
+   */
+  public function testMailAlterTags() {
+
+    $mandrill_params['message']['tags'] = array('params_tags_one');
+    $message['tags'] = array();
+
+    dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
+
+    $this->assertTrue(count($mandrill_params['message']['tags']) == 1, 'Tag assignment from $mandrill_params only worked');
+
+    $mandrill_params['message']['tags'] = array('params_tags_one');
+    $message['tags'] = array('message_tag_one', 'message_tag_two');
+
+    dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
+
+    $this->assertTrue(count($mandrill_params['message']['tags']) == 3, 'Tag assignment from both $mandrill_params and $message worked');
+
+  }
+
 }
