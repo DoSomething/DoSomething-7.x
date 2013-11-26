@@ -102,16 +102,24 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
     $mandrill_params['message']['tags'] = array('params_tags_one');
     $message['tags'] = array();
 
+    $mandrill_params_pre = $mandrill_params['message']['tags'];
+
     dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
 
-    $this->assertTrue(count($mandrill_params['message']['tags']) == 1, 'Tag assignment from $mandrill_params only worked');
+    $this->assertTrue(count($mandrill_params['message']['tags']) == 1, 'Tag assignment from $mandrill_params only has one entry');
+    $this->assertTrue($mandrill_params_pre[0] == $mandrill_params['message']['tags'][0], 'Tag assignment $mandrill_params only worked');
 
     $mandrill_params['message']['tags'] = array('params_tags_one');
     $message['tags'] = array('message_tag_one', 'message_tag_two');
 
+    $mandrill_params_pre = $mandrill_params['message']['tags'];
+
     dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
 
-    $this->assertTrue(count($mandrill_params['message']['tags']) == 3, 'Tag assignment from both $mandrill_params and $message worked');
+    $this->assertTrue(count($mandrill_params['message']['tags']) == 3, 'Tag assignment from both $mandrill_params and $message has three entries');
+    $this->assertTrue($mandrill_params_pre[0] == $mandrill_params['message']['tags'][0] &&
+                      $message['tags'][0] == $mandrill_params['message']['tags'][1] &&
+                      $message['tags'][1] == $mandrill_params['message']['tags'][2], 'Tag assignment from pre $mandrill_params and $message to $mandrill_params worked');
 
   }
 
