@@ -687,6 +687,63 @@ function dosomething_mandrill_dispatch_password_reset($account) {
 
 }
 
+/*
+ * Entry point function to trigger sending Mandrill dispatch related to a user
+ * subscribing to a campaign.
+ *
+ * @see dosomething_campaign_signup()
+ *
+ * @param string $email
+ *   The email address used to subscribe / signup.
+ *
+ * @param object $node
+ *   Details of the item the email address holder has subscribed to.
+ *
+ * @param array $params
+ *   A list of Mandrill merge_var values related to the email address
+ *
+ *   Currently supported: FNAME
+ */
+function dosomething_mandrill_dispatch_campaign_signup($email = NULL, $node = NULL, $params = array())  {
+	
+	// Check for email value or mobile spoof address
+	if (valid_email_address($email)) {
+		
+		// Check for valid node object
+		if (is_object($node)) {
+	
+	    // Check for Mandrill Key value in node
+	    $keys = field_get_items('node', $node, 'field_mandrill_key');
+
+	    // Skip if field_mandrill_key(s) not defined, can be more than one
+	    if ($keys != FALSE) {
+
+		    $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
+		    $key = $key['#markup'];
+		
+		    // Prepare passed $params for $message to be sent to dosomething_mandrill_dispatch()
+		    if (isset($params['FNAME'])) {
+			    $message['FNAME'] = $params['FNAME'];
+		    }
+				
+				// Send transactional email message via Mandrill
+				$message_status = dosomething_mandrill_dispatch($email, $key, $message);
+				
+			}
+			else {
+        watchdog('dosomething_mandrill', 'field_mandrill_key setting in dosomething_mandrill_dispatch_campaign_signup() not found in %title (%nid).',
+					array('%title' => $node->title, '%nid' => $node->nid), WATCHDOG_ERROR);
+			}
+
+		}
+		else {
+      watchdog('dosomething_mandrill', 'Invalid email address to dosomething_mandrill_dispatch_campaign_signup() is not an object.', WATCHDOG_ERROR);
+		}
+
+	}
+	
+}
+
 /**** DRIP ****/
 
 /*
