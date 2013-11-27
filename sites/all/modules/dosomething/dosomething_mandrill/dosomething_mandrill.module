@@ -741,7 +741,7 @@ function dosomething_mandrill_dispatch_campaign_signup($email = NULL, $node = NU
 
 		}
 		else {
-      watchdog('dosomething_mandrill', '$node values passed to dosomething_mandrill_dispatch_campaign_signup() is not an object.', WATCHDOG_ERROR);
+      watchdog('dosomething_mandrill', '$node value passed to dosomething_mandrill_dispatch_campaign_signup() is not an object.', WATCHDOG_ERROR);
 		}
 
 	}
