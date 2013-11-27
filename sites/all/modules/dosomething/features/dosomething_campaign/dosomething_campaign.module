@@ -114,15 +114,9 @@ function dosomething_campaign_signup($account, $node) {
         watchdog('dosomething_campaign', 'cell = ' . $cell . ' opt_in = ' . $mobilecommons . ' response = ' . print_r($response, TRUE));
       }
     }
-    // Mandrill mail:
-    if (module_exists('dosomething_mandrill')) {
-      $mandrill = $node->field_mandrill_key[LANGUAGE_NONE][0]['value'];
-      $fname = field_get_items('profile2', $user2, 'field_user_first_name');
-      $message['FNAME'] = $fname[0]['value'];
-      if ($mandrill && !empty($mandrill)) {
-        dosomething_mandrill_dispatch($email, $mandrill, $message);
-      }
-    }
+    // Mandrill
+    $fname = field_get_items('profile2', $user2, 'field_user_first_name');
+    dosomething_mandrill_dispatch_campaign_signup($email, $node, array('FNAME' =>  $fname[0]['value']));
   }
 }
 
