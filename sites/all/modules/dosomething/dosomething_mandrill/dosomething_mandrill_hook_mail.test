@@ -120,6 +120,8 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   
   /**
    * @see dosomething_mandrill_dispatch_password_reset()
+   *
+   * Reference: Entry Point
    */
   public function testMailDispatchPasswordReset() {
 
@@ -132,7 +134,26 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Password Reset message to ' . $message_status['to']);
 
   }
-  
+
+    /**
+   * @see dosomething_mandrill_dispatch_password_reset()
+   *
+   * Reference: Entry Point
+   */
+  public function testMailDispatchCampaignSignup() {
+
+    $email = 'dlee+CampaignSignupTest@dosomething.org';
+    $node = node_load(731105); // Grandparents Gone Wired campaign
+    $params = array('FNAME' => 'FIrST');
+
+    $message_status = dosomething_mandrill_dispatch_campaign_signup($email, $node, $params);
+
+    $this->assertTrue($message_status['key'] == 'GGWired13', 'Mandrill API reported key \'jeans14\' sent with campaign signup message for Campaign Signup.');
+    $this->assertTrue($message_status['params']['FNAME'] == 'First', 'First name \'' . $message_status['params']['FNAME'] . '\' returned from Mandrill API on Campaign Signup.');
+    $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Campaign Signup message to ' . $message_status['to']);
+
+  }
+
   /**
    * @see dosomething_mandrill_get_targetstamp()
    *

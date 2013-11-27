@@ -703,15 +703,19 @@ function dosomething_mandrill_dispatch_password_reset($account) {
  *   A list of Mandrill merge_var values related to the email address
  *
  *   Currently supported: FNAME
+ *
+ * @return array $dispatch_result
+ *   Results returned form Mandrill API reporting on the status of the sent
+ *   message(s).
  */
 function dosomething_mandrill_dispatch_campaign_signup($email = NULL, $node = NULL, $params = array())  {
-	
+
 	// Check for email value or mobile spoof address
 	if (valid_email_address($email)) {
-		
+
 		// Check for valid node object
 		if (is_object($node)) {
-	
+
 	    // Check for Mandrill Key value in node
 	    $keys = field_get_items('node', $node, 'field_mandrill_key');
 
@@ -720,15 +724,15 @@ function dosomething_mandrill_dispatch_campaign_signup($email = NULL, $node = NU
 
 		    $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
 		    $key = $key['#markup'];
-		
+
 		    // Prepare passed $params for $message to be sent to dosomething_mandrill_dispatch()
 		    if (isset($params['FNAME'])) {
 			    $message['FNAME'] = $params['FNAME'];
 		    }
-				
+
 				// Send transactional email message via Mandrill
-				$message_status = dosomething_mandrill_dispatch($email, $key, $message);
-				
+				$dispatch_result = dosomething_mandrill_dispatch($email, $key, $message);
+
 			}
 			else {
         watchdog('dosomething_mandrill', 'field_mandrill_key setting in dosomething_mandrill_dispatch_campaign_signup() not found in %title (%nid).',
@@ -741,7 +745,9 @@ function dosomething_mandrill_dispatch_campaign_signup($email = NULL, $node = NU
 		}
 
 	}
-	
+
+	return $dispatch_result;
+
 }
 
 /**** DRIP ****/
