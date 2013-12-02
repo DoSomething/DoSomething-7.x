@@ -1066,3 +1066,83 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
   }
   return $fields;
 }
+
+/**
+ * Implements hook_views_data().
+ */
+function dosomething_user_my_somethings_views_data() {
+  $data = array();
+  $table_name = 'dosomething_campaign_signups';
+
+  // Basic table / join information.
+  $data[$table_name] = array(
+    'table' => array(
+      'group' => t('Campaign Signups'),
+      'base' => array(
+        'field' => 'uid',
+        'title' => t('Campaign Signups'),
+        'help' => t('Stores the campaign signup data for users.  Can be referenced with users.'),
+        'weight' => -10,
+      ),
+      'join' => array(
+        'node' => array(
+          'left_join' => 'nid',
+          'field' => 'nid',
+        ),
+        'users' => array(
+          'left_join' => 'uid',
+          'field' => 'uid',
+        ),
+      ),
+    )
+  );
+
+  // Views-aware table fields.  These fields will allow us to better specify
+  // how campaign signups are related to a particular user.
+
+  // The User ID of the user that signed up for the campaign.
+  $data[$table_name]['uid'] = array(
+    'title' => t('User ID'),
+    'help' => t('The User ID of the user that signed up.'),
+    'relationship' => array(
+      'base' => 'users',
+      'base field' => 'uid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('User that is signing up'),
+      'title' => t('User that is signing up'),
+      'help' => t('User that is signing up'),
+    ),
+  );
+
+  // The NID of the campaign that is being signed up to.
+  $data[$table_name]['nid'] = array(
+    'title' => t('Node ID'),
+    'help' => t('The Node ID of the campaign that is being signed up to.'),
+    'relationship' => array(
+      'base' => 'node',
+      'base field' => 'nid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('Campaign NID'),
+      'title' => t('Campaign NID'),
+      'help' => t('Campaign NID'),
+    ),
+  );
+
+  // The timestamp at which the signup happened.
+  $data[$table_name]['timestamp'] = array(
+    'title' => t('Sign up timestamp'),
+    'help' => t('The timestamp at which the signup happened.'),
+    'field' => array(
+      'handler' => 'views_handler_field_date',
+      'click sortable' => TRUE,
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort_date',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_date',
+    ),
+  );
+
+  return $data;
+}
