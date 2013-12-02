@@ -580,7 +580,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_since'] = date('m/d/Y', $account->created);
   $profile_completion = dosomething_user_my_somethings_profile_completion($account, FALSE);
   $variables['member_percentage'] = $profile_completion['percentage'];
-  $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
+  $variables['member_vitals'] = "";
   // Don't show a user picture if there isn't one in the account.
   $picture = array(
     '#theme' => 'image_formatter',
