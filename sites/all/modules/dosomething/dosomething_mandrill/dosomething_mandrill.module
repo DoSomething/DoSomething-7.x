@@ -805,7 +805,8 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 		if ((isset($message['message']['to']) && count($message['message']['to']) > 0) || $test_flag === 1) {
 
 			// Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-			$dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
+			$to = $message['message']['to'];
+			$dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test_flag);
 
 			// Report to Drush results
 			if ($dispatch_results['result']) {
@@ -904,6 +905,7 @@ function dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp) {
 	
 	$to = array();
 	$merge_vars = array();
+	$target_stamp_end = $target_stamp + (60*60*24); // One day: 86400
 	
 	$results = db_query("
 		SELECT
@@ -926,7 +928,7 @@ function dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp) {
 			dcs.timestamp <= :timestamp_end",
 			array(
 				':timestamp' => $target_stamp,
-				':timestamp_end' => $target_stamp + (60*60*24) // One day: 86400
+				':timestamp_end' => $target_stamp_end
 		));
 	
 	// Convert results to array in format defined by Mandrill API
