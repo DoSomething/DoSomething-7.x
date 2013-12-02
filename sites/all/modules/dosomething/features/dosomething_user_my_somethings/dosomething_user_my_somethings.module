@@ -1108,9 +1108,9 @@ function dosomething_user_my_somethings_views_data() {
       'base' => 'users',
       'base field' => 'uid',
       'handler' => 'views_handler_relationship',
-      'label' => t('User that is signing up'),
-      'title' => t('User that is signing up'),
-      'help' => t('User that is signing up'),
+      'label' => t('Sign-up User ID'),
+      'title' => t('Sign-up User ID'),
+      'help' => t('The user that is signing up for the campaign.'),
     ),
   );
 
@@ -1122,9 +1122,9 @@ function dosomething_user_my_somethings_views_data() {
       'base' => 'node',
       'base field' => 'nid',
       'handler' => 'views_handler_relationship',
-      'label' => t('Campaign NID'),
-      'title' => t('Campaign NID'),
-      'help' => t('Campaign NID'),
+      'label' => t('Sign-up Campaign NID'),
+      'title' => t('Sign-up Campaign NID'),
+      'help' => t('The NID of the campaign that the user is signing up to.'),
     ),
   );
 
