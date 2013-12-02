@@ -7,6 +7,20 @@
 include_once('dosomething_grant_application.features.inc');
 
 /**
+ * Implements hook_page_alter().
+ */
+function dosomething_grant_application_page_alter(&$page) {
+  // Redirects all grants/* pages to /campaigns.
+  $path = request_path();
+  if (!in_array($path, array('grants-closed', 'grants')) && preg_match('#^grants#i', $path)) {
+    drupal_goto('campaigns');
+  }
+  elseif ($path == 'grants') {
+    drupal_goto('grants-closed');
+  }
+}
+
+/**
  *  Implements hook_views_query_alter()
  */
 function dosomething_grant_application_views_query_alter($view, $query) {
