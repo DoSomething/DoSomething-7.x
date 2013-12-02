@@ -101,6 +101,8 @@ function dosomething_user_my_somethings_member_block() {
         ),
         'completion' => dosomething_user_my_somethings_profile_completion(),
       ),
+      'somethings' => dosomething_user_my_somethings_my_current_somethings(),
+      'past_somethings' => dosomething_user_my_somethings_my_past_somethings(),
     ),
   );
 }
@@ -178,6 +180,187 @@ function dosomething_user_my_somethings_profile_completion($account = FALSE, $si
           'class' => array('complete-link'),
         ),
         '#children' => l('Go', 'user/' . $account->uid . '/complete-profile'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Build the array of sidebar links for the somethings.
+ *
+ * @param $config
+ *   Array with the following require keys:
+ *   - 'title' - List title.
+ *   - 'title_field' - Object field to use for the item title.
+ *   - 'link_path' - Pattern to use for generating the item's link.
+ *   - 'link_id_fields' - Array with property names to be replaced in the path.
+ * @param $uid
+ *   User id.
+ * @param $era
+ *   String 'current' or 'past'.
+ * @return nested array of HTML links, keyed by type.
+ */
+function dosomething_user_my_somethings_make_links($config, $uid, $era) {
+  $items = array();
+
+  $data = dosomething_user_my_somethings_get_my_somethings_cached($uid, $era);
+  foreach (array_filter($data) as $type => $somethings) {
+    if (isset($config[$type])) {
+      $c = $config[$type];
+      $items[$type] = array('data' => isset($c['title']) ? $c['title'] : '', 'children' => array());
+
+      foreach ($somethings as $s) {
+        if ($c['title_field']) {
+          $title = filter_xss($s->{$c['title_field']});
+          $replacements = array();
+          foreach ($c['link_id_fields'] as $field) {
+            $replacements['%' . $field] = $s->$field;
+          }
+          $link = strtr($c['link_path'], $replacements);
+
+          $items[$type]['children'][] = l($title, $link);
+        }
+      }
+    }
+  }
+
+  return $items;
+}
+
+/**
+ * Get markup for my somethings (sidebar version). Renamed 'Doing It' for theming purposes.
+ */
+function dosomething_user_my_somethings_my_current_somethings() {
+  global $user;
+
+  $defaults = array(
+    'title_field' => 'title',
+    'link_path' => 'node/%nid/submission/%sid/edit',
+    'link_id_fields' => array('nid', 'sid'),
+  );
+
+  $project_defaults = array(
+    'title_field' => 'title',
+    'link_path' => 'webform-submission/%sid',
+    'link_id_fields' => array('nid', 'sid'),
+  );
+
+  $somethings_info = array(
+    'grant_application' => array(
+      'title' => t('Grant Applications'),
+    ) + $defaults,
+    'scholarship_application_with_rec' => array(
+      'title' => t('Scholarship Applications'),
+    ) + $defaults,
+    'project_report' => array(
+      'title' => t('Project Reports'),
+      'title_field' => 'field_project_title_value',
+    ) + $project_defaults,
+    'campaign_report_back' => array(
+      'title' => t('Campaigns'),
+      'title_field' => 'campaign_title',
+      'link_path' => 'node/%report_back_entity_id',
+      'link_id_fields' => array('report_back_entity_id'),
+    ),
+  );
+  $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'current');
+
+  if (empty($items)) {
+    $items[] = t('You are not doing anything. Join a campaign, or start a grant application or project!');
+  }
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h3 class="doing-it">',
+      '#suffix' => '</h3>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('inner'),
+        ),
+        '#children' => t('Doing It'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array('doing-it'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Get markup for my past somethings (sidebar version).
+ * Renamed 'Done It' for theming purposes.
+ */
+function dosomething_user_my_somethings_my_past_somethings() {
+  global $user;
+
+  $defaults = array(
+    'title_field' => 'title',
+    'link_path' => 'webform-submission/%sid',
+    'link_id_fields' => array('sid'),
+  );
+
+  $somethings_info = array(
+    'grant_application' => array(
+      'title' => t('Grant Applications'),
+    ) + $defaults,
+    'scholarship_application_with_rec' => array(
+      'title' => t('Scholarship Applications'),
+      'title_field' => 'title',
+      'link_path' => 'node/%campaign_nid',
+      'link_id_fields' => array('campaign_nid'),
+    ),
+    'project_report' => array(
+      'title' => t('Project Reports'),
+      'title_field' => 'field_project_title_value',
+      'link_path' => 'webform-submission/%sid',
+      'link_id_fields' => array('sid'),
+    ),
+    'campaign_report_back' => array(
+      'title' => t('Campaigns'),
+      'title_field' => 'campaign_title',
+      'link_path' => 'node/%campaign_entity_id',
+      'link_id_fields' => array('campaign_entity_id'),
+    ),
+    // Hard coding some of this to pics for pets until we know what the other
+    // stuff will look like.
+    'fb_app_data_gathering_form' => array(
+      'title' => t('Facebook Campaigns'),
+      'link_path' => 'picsforpets',
+    ) + $defaults,
+  );
+  $items = dosomething_user_my_somethings_make_links($somethings_info, $user->uid, 'past');
+
+  // More pics for pets hard coding. Just show it once.
+  if (isset($items['fb_app_data_gathering_form']['children'][1])) {
+    $items['fb_app_data_gathering_form']['children'] = array($items['fb_app_data_gathering_form']['children'][0]);
+  }
+
+  if (empty($items)) {
+    $items[] = t('Come on Do Something! Complete a campaign report back, or finish a grant application or project!');
+  }
+
+  return array(
+    'title' => array(
+      '#prefix' => '<h3 class="done-it">',
+      '#suffix' => '</h3>',
+      'inner' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('inner'),
+        ),
+        '#children' => t('Done It'),
+      ),
+    ),
+    'list' => array(
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => array(
+        'class' => array('done-it'),
       ),
     ),
   );
@@ -397,7 +580,7 @@ function dosomething_user_my_somethings_preprocess_dosomething_profile_info(&$va
   $variables['member_since'] = date('m/d/Y', $account->created);
   $profile_completion = dosomething_user_my_somethings_profile_completion($account, FALSE);
   $variables['member_percentage'] = $profile_completion['percentage'];
-  $variables['member_vitals'] = "";
+  $variables['member_vitals'] = dosomething_user_my_somethings_counter($account->uid);
   // Don't show a user picture if there isn't one in the account.
   $picture = array(
     '#theme' => 'image_formatter',
@@ -882,84 +1065,4 @@ function dosomething_user_my_somethings_profile_fields_complete($uid, $era) {
     }
   }
   return $fields;
-}
-
-/**
- * Implements hook_views_data().
- */
-function dosomething_user_my_somethings_views_data() {
-  $data = array();
-  $table_name = 'dosomething_campaign_signups';
-
-  // Basic table / join information.
-  $data[$table_name] = array(
-    'table' => array(
-      'group' => t('Campaign Signups'),
-      'base' => array(
-        'field' => 'uid',
-        'title' => t('Campaign Signups'),
-        'help' => t('Stores the campaign signup data for users.  Can be referenced with users.'),
-        'weight' => -10,
-      ),
-      'join' => array(
-        'node' => array(
-          'left_join' => 'nid',
-          'field' => 'nid',
-        ),
-        'users' => array(
-          'left_join' => 'uid',
-          'field' => 'uid',
-        ),
-      ),
-    )
-  );
-
-  // Views-aware table fields.  These fields will allow us to better specify
-  // how campaign signups are related to a particular user.
-
-  // The User ID of the user that signed up for the campaign.
-  $data[$table_name]['uid'] = array(
-    'title' => t('User ID'),
-    'help' => t('The User ID of the user that signed up.'),
-    'relationship' => array(
-      'base' => 'users',
-      'base field' => 'uid',
-      'handler' => 'views_handler_relationship',
-      'label' => t('Sign-up User ID'),
-      'title' => t('Sign-up User ID'),
-      'help' => t('The user that is signing up for the campaign.'),
-    ),
-  );
-
-  // The NID of the campaign that is being signed up to.
-  $data[$table_name]['nid'] = array(
-    'title' => t('Node ID'),
-    'help' => t('The Node ID of the campaign that is being signed up to.'),
-    'relationship' => array(
-      'base' => 'node',
-      'base field' => 'nid',
-      'handler' => 'views_handler_relationship',
-      'label' => t('Sign-up Campaign NID'),
-      'title' => t('Sign-up Campaign NID'),
-      'help' => t('The NID of the campaign that the user is signing up to.'),
-    ),
-  );
-
-  // The timestamp at which the signup happened.
-  $data[$table_name]['timestamp'] = array(
-    'title' => t('Sign up timestamp'),
-    'help' => t('The timestamp at which the signup happened.'),
-    'field' => array(
-      'handler' => 'views_handler_field_date',
-      'click sortable' => TRUE,
-    ),
-    'sort' => array(
-      'handler' => 'views_handler_sort_date',
-    ),
-    'filter' => array(
-      'handler' => 'views_handler_filter_date',
-    ),
-  );
-
-  return $data;
 }
