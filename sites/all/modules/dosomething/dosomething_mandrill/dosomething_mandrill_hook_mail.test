@@ -317,7 +317,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
         ),
         'merge_vars' => array(
           0 => array(
-            'rcpt' => $fname1,
+            'rcpt' => self::TEST_EMAIL1,
             'vars' => array(
               0 => array(
                 'name' => 'FNAME',
@@ -326,7 +326,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
             ),
           ),
           1 => array(
-            'rcpt' => $fname2,
+            'rcpt' => self::TEST_EMAIL2,
             'vars' => array(
               0 => array(
                 'name' => 'FNAME',
