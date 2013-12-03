@@ -12,6 +12,23 @@ include_once('includes/momm.inc');
 include_once('includes/tfj.inc');
 
 /**
+ * Implements hook_page_alter().
+ */
+function dosomething_campaign_page_alter(&$page) {
+  global $user;
+
+  // Don't allow pending members to see campaigns.
+  if (isset($user->roles) && in_array('pending member', $user->roles)) {
+    if (preg_match('#^campaign/join/\d+#i', request_path()) || $page['#type'] == 'campaign') {
+      drupal_set_message(t("Sorry, you need to get permission from your parents to do that."), 'error');
+      $_GET['destination'] = '/front';
+      drupal_goto();
+    }
+  }
+}
+
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function dosomething_campaign_ctools_plugin_directory($module, $plugin) {
