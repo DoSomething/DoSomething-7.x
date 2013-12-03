@@ -369,7 +369,7 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
 /*
  * Core first name functionality
  *
- * Used to assign fname value that don't use the ($message, $params) structure
+ * Used to assign fname value that doesn't use the ($message, $params) structure
  * of dosomething_mandrill_mail_firstname()
  *
  * @param string $fname
