@@ -369,7 +369,7 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
 /*
  * Core first name functionality
  *
- * Used to assign fname value that doesn't use the ($message, $params) structure
+ * Used to assign fname value that don't use the ($message, $params) structure
  * of dosomething_mandrill_mail_firstname()
  *
  * @param string $fname
@@ -381,14 +381,13 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
 function dosomething_mandrill_get_clean_first_name($fname) {
 
   if (!empty($fname)) {
-    $fname = ucfirst(strtolower($fname));
+    $fname = preg_replace_callback('#((?<=^|\-|\s)[a-z])#i', function($matches) {
+      return strtoupper($matches[1]);
+    }, strtolower($fname));
   }
   else {
     $fname = 'Doer';
   }
-
-  // @todo: Deal with multi part names, ex: "Emma Jane" or "Emma-Jane". Current
-  // results in cap of first character only
 
   return $fname;
 
