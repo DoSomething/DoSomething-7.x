@@ -5,14 +5,16 @@
  */
 class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   
-  const TEST_EMAIL = 'dlee+test@dosomething.org';
+  const TEST_EMAIL1 = 'dlee+test01@dosomething.org';
+  const TEST_EMAIL2 = 'dlee+test02@dosomething.org';
+
   protected $auth_user;
   protected $campaign;
 
   public static function getInfo() {
     return array(
-      'name' => 'DoSomething Mandrill hook_mail Unit Tests',
-      'description' => 'DoSomething Mandrill mail unit tests for the dosomething_mandrill_mail() function.',
+      'name' => 'DoSomething Mandrill hook_mail Tests',
+      'description' => 'DoSomething Mandrill mail web tests for the dosomething_mandrill_mail() function.',
       'group' => 'DoSomething',
     );
   }
@@ -22,7 +24,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     
     $this->auth_user = $this->factory->create('User', array(
       'name' => 'DS Mandrill Test',
-      'mail' => self::TEST_EMAIL,
+      'mail' => self::TEST_EMAIL1,
       'first_name' => 'First',
     ));
 
@@ -178,7 +180,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     // The template entry is needed to test sending a Mandrill transactional
     // message with the ds-testing key.
     $mandrill_template = entity_load_single('mandrill_template_map', 'dosomething_test');
-    $email = self::TEST_EMAIL;
+    $email = self::TEST_EMAIL1;
     $params = array('FNAME' => 'FIrST');
 
     $this->assertTrue($mandrill_template->mailsystem_key == 'dosomething_mandrill_ds-testing', 'The DS Testing Mandrill template is connected.');
@@ -316,6 +318,65 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
     $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Error sending')), 'Invalid formatted test drip data did not send messages as expected.');
+
+  }
+
+  /**
+   * @see dosomething_mandrill_dispatch_drip_engine()
+   *
+   * Test base "engine" functionality to send drip messages.
+   */
+  public function testDispatchDripEngine() {
+
+    $fname1 = 'DispatchDripEngine Test 1';
+    $fname2 = 'DispatchDripEngine Test 2';
+
+    $key = 'ds-testing';
+    $message = array(
+      'subject' => 'testDispatchDripEngine',
+      'message' => array(
+        'to' => array(
+          0 => array(
+            'email' => self::TEST_EMAIL1,
+            'name' => $fname1
+          ),
+          1 => array(
+            'email' => self::TEST_EMAIL2,
+            'name' => $fname2
+          ),
+        ),
+        'merge_vars' => array(
+          0 => array(
+            'rcpt' => self::TEST_EMAIL1,
+            'vars' => array(
+              0 => array(
+                'name' => 'FNAME',
+                'content' => $fname1
+              ),
+            ),
+          ),
+          1 => array(
+            'rcpt' => self::TEST_EMAIL2,
+            'vars' => array(
+              0 => array(
+                'name' => 'FNAME',
+                'content' => $fname2
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    // Disable use of test data to ensure data supplied in $message is used.
+    // The "to" value in $message should result in $to also being set
+    $test_flag = FALSE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip_engine($key, $message, $test_flag);
+
+    // Test $to is passed via $message['message']['to']
+    $this->assertTrue(strpos($dispatch_result['send_status'], 'Success sending') !== FALSE, 'Drip message sent with $message[\'message\'][\'to\'] set and defaulting to $to.');
+    $this->assertTrue($dispatch_result['sent'] === 2, 'Sent two $message[\'message\'][\'to\'] drip messages with $to unset as expected.');
 
   }
 
