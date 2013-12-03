@@ -963,8 +963,9 @@ function dosomething_mandrill_dispatch_drip_engine($key, $message, $test_flag) {
 
 	$dispatch_result = array();
 
-	// The values $to and $message['message']['to'] must be identical when sending
-	// to more than one address as an array rather than a single address as a string.
+  // In the case of a mass mail out for a drip campaign the values $to and 
+  // $message['message']['to'] must be identical when sending to more than 
+  // one address as an array rather than a single address as a string.
 	$to = $message['message']['to'];
 	$dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test_flag);
 
