@@ -806,7 +806,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 		if ((isset($message['message']['to']) && count($message['message']['to']) > 0) || $test_flag === 1) {
 
 			// Send merge details to Mandrill for mass dispatch - note use of $message['message']['to'] in $to
-			// dosomething_mandrill_dispatch($to, $key... ) call as bulk / mass mailouts must have the recepiant email
+			// dosomething_mandrill_dispatch($to, $key... ) call as bulk / mass mailouts must have the repentant email
 			// address defined in both the $to and $message parameters.
 			$dispatch_results = dosomething_mandrill_dispatch($message['message']['to'], $key, $message, $test_flag);
 
