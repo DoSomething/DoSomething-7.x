@@ -304,6 +304,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $key = 'ds-testing';
     $message = array(
+      'subject' => 'testDispatchDripEngine',
       'message' => array(
         'to' => array(
           0 => array(
