@@ -153,11 +153,6 @@ function dosomething_mandrill_dispatch($to, $key = 'dsplain', $message = NULL, $
   }
 
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
-	
-	$bla = TRUE;
-  if ($bla) {
-    $bla = TRUE;
-  }
 
   // Log results - convert $to to a format that can be logged with watchdog
 	is_null($to) ? $to = '$to is NULL' : $to;
