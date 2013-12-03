@@ -381,6 +381,7 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
 function dosomething_mandrill_get_clean_first_name($fname) {
 
   if (!empty($fname)) {
+    // Deal with multi part names, ex: "Emma Jane" or "Emma-Jane"
     $fname = preg_replace_callback('#((?<=^|\-|\s)[a-z])#i', function($matches) {
       return strtoupper($matches[1]);
     }, strtolower($fname));
