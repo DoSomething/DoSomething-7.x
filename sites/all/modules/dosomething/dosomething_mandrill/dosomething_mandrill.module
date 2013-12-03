@@ -153,8 +153,15 @@ function dosomething_mandrill_dispatch($to, $key = 'dsplain', $message = NULL, $
   }
 
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
+	
+	$bla = TRUE;
+  if ($bla) {
+    $bla = TRUE;
+  }
 
-  // Log results
+  // Log results - convert $to to a format that can be logged with watchdog
+	is_null($to) ? $to = '$to is NULL' : $to;
+	is_array($to) ? $to = print_r($to, TRUE) : $to;
   if ($message_status['result'] == FALSE) {
     watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
               array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
@@ -803,23 +810,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 
 		// Respond to a list of target email addresses or a test dispatch
 		if ((isset($message['message']['to']) && count($message['message']['to']) > 0) || $test_flag === 1) {
-
-			// Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-			$to = $message['message']['to'];
-			$dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test_flag);
-
-			// Report to Drush results
-			if ($dispatch_results['result']) {
-				$dispatch_result['send_status'] = 'Success sending ' . $op . ' Mandrill messages.';
-			}
-			else {
-				$dispatch_result['send_status'] = 'Error sending ' . $op . ' Mandrill messages.';
-			}
-			$dispatch_result['sent'] = $test_flag ? '2 test messages' : count($message['message']['to']);
-
-			// Record the number of messages sent
-			// @todo: Add StatHat data logging
-
+			$dispatch_result = dosomething_mandrill_dispatch_drip_engine($key, $message, $test_flag);
 		}
 		else {
 			$dispatch_result['send_status'] = 'No recipients found for operation: ' . $op . ', target date: ' . $target_date . ' and target drop: ' . $target_drop;
@@ -958,4 +949,40 @@ function dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp) {
 
 	return array($to, $merge_vars);
 	
+}
+
+/*
+ * Basic "engine" code to manage sending drip messages
+ * See dosomething_mandrill_dispatch_drip()
+ *
+ * @param string $key
+ *
+ * @param array $message
+ *   Current state / structure of the message array that will ultimately be sent
+ *   to the Mandrill API.
+ *
+ * @param string $test_flag
+ *   Flag variable to trigger using test data when sending a message.
+ */
+function dosomething_mandrill_dispatch_drip_engine($key, $message, $test_flag) {
+
+	$dispatch_result = array();
+
+	// $to used by drupal_mail and $message['message']['to'] must be identical
+	$to = $message['message']['to'];
+	$dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test_flag);
+
+	// Report results
+	if ($dispatch_results['result']) {
+		$dispatch_result['send_status'] = 'Success sending ' . $key . ' Mandrill messages.';
+	}
+	else {
+		$dispatch_result['send_status'] = 'Error sending ' . $key . ' Mandrill messages.';
+	}
+	$dispatch_result['sent'] = $test_flag ? '2 test messages' : count($message['message']['to']);
+
+	// Record the number of messages sent
+	// @todo: Add StatHat data logging
+
+  return $dispatch_result;
 }
