@@ -155,6 +155,7 @@ function dosomething_mandrill_dispatch($to, $key = 'dsplain', $message = NULL, $
   $message_status = drupal_mail('dosomething_mandrill', $key, $to, $language, $message, $from, TRUE);
 
   // Log results
+	is_array($to) ? $to = print_r($to, TRUE) : $to;
   if ($message_status['result'] == FALSE) {
     watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to using the Mandrill %key.',
               array('%to' => $to, '%key' => $key), WATCHDOG_ERROR);
@@ -804,8 +805,10 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 		// Respond to a list of target email addresses or a test dispatch
 		if ((isset($message['message']['to']) && count($message['message']['to']) > 0) || $test_flag === 1) {
 
-			// Send merge details to Mandrill for mass dispatch - note use of global_merge_tags for CAMPAIGNS
-			$dispatch_results = dosomething_mandrill_dispatch('doers@dosomething.org', $key, $message, $test_flag);
+			// Send merge details to Mandrill for mass dispatch - note use of $message['message']['to'] in $to
+			// dosomething_mandrill_dispatch($to, $key... ) call as bulk / mass mailouts must have the recepiant email
+			// address defined in both the $to and $message parameters.
+			$dispatch_results = dosomething_mandrill_dispatch($message['message']['to'], $key, $message, $test_flag);
 
 			// Report to Drush results
 			if ($dispatch_results['result']) {
