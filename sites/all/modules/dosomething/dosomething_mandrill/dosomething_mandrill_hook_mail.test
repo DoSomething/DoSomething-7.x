@@ -60,12 +60,11 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
    */
   public function testMandrillMailFirstName() {
 
-      // @todo: "First Name", "First-Name"
       $fnames = array(
         'First',
         'first',
         'fiRSt',
-        'FIRST'
+        'FIRST',
       );
 
       foreach($fnames as $fname) {
@@ -74,6 +73,36 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
         dosomething_mandrill_mail_firstname($message, $params);
         $this->assertEqual('First', $message['params']['FNAME'],
          'First Name: First => ' . $message['params']['FNAME']);
+
+      }
+
+      $fnames = array(
+        'the first',
+        'THE FIRST',
+        'tHe fIrSt',
+      );
+
+      foreach($fnames as $fname) {
+
+        $params['FNAME'] = $fname;
+        dosomething_mandrill_mail_firstname($message, $params);
+        $this->assertEqual('The First', $message['params']['FNAME'],
+         'First Name: The First => ' . $message['params']['FNAME']);
+
+      }
+
+      $fnames = array(
+        'the-first',
+        'THE-FIRST',
+        'tHe-fIrSt',
+      );
+
+      foreach($fnames as $fname) {
+
+        $params['FNAME'] = $fname;
+        dosomething_mandrill_mail_firstname($message, $params);
+        $this->assertEqual('The-First', $message['params']['FNAME'],
+         'First Name: The First => ' . $message['params']['FNAME']);
 
       }
 
