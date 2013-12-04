@@ -704,15 +704,8 @@ projects and organizations.',
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => '',
-      'title' => 'QUICK INFO:',
-      'body' => '<h3>STEP 1</h3>
-Set up your DoSomething <a href="/user/registration"> account</a>.
-
-<h3>STEP 2</h3>
-Create a <a href="/projects/submit">project posting</a>.
-
-<h3>STEP 3</h3>
-<a href="/grants/grant-application"> Apply! </a> Our grant applications are accepted on a rolling basis.',
+      'title' => 'APPLICATION CLOSED',
+      'body' => '<p>Applications for 2013 grants have now closed.  Final 2013 winners will be announced December 19th.</p>',
       'format' => '1',
       'substitute' => 1,
     );
