@@ -49,7 +49,6 @@
             <li><a href="/petitions">Petitions</a></li>
             <li><a href="/quizzes">Quizzes</a></li>
             <li><a href="/awards">Do Something Awards</a></li>
-            <li><a href="/grants">Grants</a></li>
             <li><a href="/blog">Blog Center</a></li>
             <li><a href="/projects">Projects</a></li>
         </ul>
