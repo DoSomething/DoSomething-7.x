@@ -29,7 +29,8 @@ function dosomething_grant_application_views_query_alter($view, $query) {
  * Implements hook_page_alter().
  */
 function dosomething_grant_application_page_alter(&$page) {
-  // Need ot redirect grant application and seed grant pages to /grants with a message.
+  $path = request_path();
+  // Need to redirect grant application and seed grant pages to /grants with a message.
   if (in_array($path, array('grants/grant-application', 'grants/seed-grants'))) {
     drupal_set_message(t('Sorry, grants applications are closed now.'));
     drupal_goto('grants');
