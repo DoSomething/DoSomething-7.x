@@ -7,6 +7,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   
   const TEST_EMAIL = 'dlee+test@dosomething.org';
   protected $auth_user;
+  protected $campaign;
 
   public static function getInfo() {
     return array(
@@ -24,7 +25,9 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
       'mail' => self::TEST_EMAIL,
       'first_name' => 'First',
     ));
-        
+
+    // Bugs
+    // $this->campaign = $this->factory->create('Campaign', array()); 
   }
 
   /**
@@ -57,12 +60,11 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
    */
   public function testMandrillMailFirstName() {
 
-      // @todo: "First Name", "First-Name"
       $fnames = array(
         'First',
         'first',
         'fiRSt',
-        'FIRST'
+        'FIRST',
       );
 
       foreach($fnames as $fname) {
@@ -71,6 +73,36 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
         dosomething_mandrill_mail_firstname($message, $params);
         $this->assertEqual('First', $message['params']['FNAME'],
          'First Name: First => ' . $message['params']['FNAME']);
+
+      }
+
+      $fnames = array(
+        'the first',
+        'THE FIRST',
+        'tHe fIrSt',
+      );
+
+      foreach($fnames as $fname) {
+
+        $params['FNAME'] = $fname;
+        dosomething_mandrill_mail_firstname($message, $params);
+        $this->assertEqual('The First', $message['params']['FNAME'],
+         'First Name: The First => ' . $message['params']['FNAME']);
+
+      }
+
+      $fnames = array(
+        'the-first',
+        'THE-FIRST',
+        'tHe-fIrSt',
+      );
+
+      foreach($fnames as $fname) {
+
+        $params['FNAME'] = $fname;
+        dosomething_mandrill_mail_firstname($message, $params);
+        $this->assertEqual('The-First', $message['params']['FNAME'],
+         'First Name: The First => ' . $message['params']['FNAME']);
 
       }
 
@@ -120,6 +152,8 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   
   /**
    * @see dosomething_mandrill_dispatch_password_reset()
+   *
+   * Reference: Entry Point
    */
   public function testMailDispatchPasswordReset() {
 
@@ -132,7 +166,45 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Password Reset message to ' . $message_status['to']);
 
   }
-  
+
+  /**
+   * @see dosomething_mandrill_dispatch_password_reset()
+   *
+   * Reference: Entry Point
+   */
+  public function testMailDispatchCampaignSignup() {
+
+    // Test to see if "DoSomething - Test Mandrill template is set up
+    // The template entry is needed to test sending a Mandrill transactional
+    // message with the ds-testing key.
+    $mandrill_template = entity_load_single('mandrill_template_map', 'dosomething_test');
+    $email = self::TEST_EMAIL;
+    $params = array('FNAME' => 'FIrST');
+
+    $this->assertTrue($mandrill_template->mailsystem_key == 'dosomething_mandrill_ds-testing', 'The DS Testing Mandrill template is connected.');
+
+    // @todo: Campaign factory bug - remove campaign specific node_load once the
+    // campaign factory is working.
+    // $campaign = $this->campaign;
+    $node = node_load(731105); // Grandparents Gone Wired campaign
+    // $this->assertTrue($campaign->field_mandrill_key == 'ds-testing', 'The DS Testing Mandrill template is connected.');
+
+    $keys = field_get_items('node', $node, 'field_mandrill_key');
+    $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
+		$key = $key['#markup'];
+
+    $this->assertTrue($key != NULL, 'The DS Testing Mandrill key is set.');
+    // $this->assertTrue($key == 'ds-testing', 'The DS Testing Mandrill key is set.');
+    $this->assertTrue($key == 'GGWired13', 'The DS Testing Mandrill key is set to ' . $key . ' as expected.');
+
+    $message_status = dosomething_mandrill_dispatch_campaign_signup($email, $node, $params);
+
+    $this->assertTrue($message_status['key'] == $key, 'Mandrill API reported key \'GGWired13\' sent with campaign signup message for Campaign Signup.');
+    $this->assertTrue($message_status['params']['FNAME'] == 'First', 'First name \'' . $message_status['params']['FNAME'] . '\' returned from Mandrill API on Campaign Signup.');
+    $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Campaign Signup message to ' . $message_status['to']);
+
+  }
+
   /**
    * @see dosomething_mandrill_get_targetstamp()
    *

@@ -21,7 +21,6 @@
         <ul>
             <li><a href="/awards">Do Something Awards</a></li>
             <li><a href="/scholarships">Scholarships</a></li>
-            <li><a href="/grants">Grants</a></li>
         </ul>
     </div>
     <div class="footer-col">

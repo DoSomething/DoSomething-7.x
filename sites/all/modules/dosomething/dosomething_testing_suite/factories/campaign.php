@@ -58,7 +58,7 @@ class Campaign extends Factory {
     'field_gate_subheadline' => 'Sub headline',
     'field_has_gate' => 0,
     'field_is_gate_login_signup' => 0,
-    'field_mandrill_key' => '',
+    'field_mandrill_key' => 'ds-testing',
     'field_mc_optin' => 0,
     'field_gate_color' => '',
   );

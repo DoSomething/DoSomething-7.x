@@ -18,7 +18,7 @@ function dosomething_mandrill_theme($existing, $type, $theme, $path) {
   return array(
     'dosomething_mandrill_campaign_listing' => array(
       'variables' => array('campaigns' => NULL),
-      'template' => 'dosomething-mandrill-campaign-listing',
+      'template' => 'templates/dosomething-mandrill-campaign-listing',
     ),
   );
 }
@@ -293,7 +293,7 @@ function dosomething_mandrill_mail_petition(&$message, &$params) {
 
   $message['params']['TITLE'] = $params['TITLE'];
   $message['params']['URL'] = 'http://www.dosomething.org' . $params['URL'];
-      
+
 }
 
 /*
@@ -381,14 +381,14 @@ function dosomething_mandrill_mail_firstname(&$message, &$params) {
 function dosomething_mandrill_get_clean_first_name($fname) {
 
   if (!empty($fname)) {
-    $fname = ucfirst(strtolower($fname));
+    // Deal with multi part names, ex: "Emma Jane" or "Emma-Jane"
+    $fname = preg_replace_callback('#((?<=^|\-|\s)[a-z])#i', function($matches) {
+      return strtoupper($matches[1]);
+    }, strtolower($fname));
   }
   else {
     $fname = 'Doer';
   }
-
-  // @todo: Deal with multi part names, ex: "Emma Jane" or "Emma-Jane". Current
-  // results in cap of first character only
 
   return $fname;
 
@@ -507,16 +507,11 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
 	// Assign "from_name"
 	dosomething_mandrill_mail_alter_from_name($mandrill_params, $message);
 
+  // Assign "tags"
+	dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
+
   if (!empty($mandrill_params['params']['message']['merge_vars'])) {
     $merge_vars = $mandrill_params['params']['message']['merge_vars'];
-  }
-  
-  // Tags
-  if (isset($message['tags']) && is_array($mandrill_params['message']['tags']) && is_array($message['tags'])) {
-    $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
-  }
-  elseif (isset($message['tags']) && is_array($message['tags'])) {
-    $mandrill_params['message']['tags'] = $message['tags'];
   }
   
   // Combine all merge_var values - these values are used to send multiple messages
@@ -586,6 +581,28 @@ function dosomething_mandrill_mail_alter_from_name(&$mandrill_params, &$message)
 
 	if (isset($message['from_name'])) {
     $mandrill_params['message']['from_name'] = $message['from_name'];
+  }
+
+}
+
+/*
+ * Construct tags values for hook_mail_alter()
+ *
+ * @param array $mandrill_params
+ *   Values to be passed on to the mail system and ultimately the Mandrill API.
+ *   The array structure must follow the Mandrill API for send-template:
+ *
+ * @param array $message
+ *   Values passed from hook_mail() to help construct $mandrill_params
+ */
+function dosomething_mandrill_mail_alter_tags(&$mandrill_params, &$message) {
+
+	// Test that both possible tag values are an array as array_merge() will create NULL results otherwise
+  if (isset($message['tags']) && is_array($mandrill_params['message']['tags']) && is_array($message['tags'])) {
+    $mandrill_params['message']['tags'] = array_merge($mandrill_params['message']['tags'], $message['tags']);
+  }
+  elseif (isset($message['tags']) && is_array($message['tags'])) {
+    $mandrill_params['message']['tags'] = $message['tags'];
   }
 
 }
@@ -667,6 +684,69 @@ function dosomething_mandrill_dispatch_password_reset($account) {
   $message_status = dosomething_mandrill_dispatch($account->mail, 'password_reset', $message);
   
   return $message_status;
+
+}
+
+/*
+ * Entry point function to trigger sending Mandrill dispatch related to a user
+ * subscribing to a campaign.
+ *
+ * @see dosomething_campaign_signup()
+ *
+ * @param string $email
+ *   The email address used to subscribe / signup.
+ *
+ * @param object $node
+ *   Details of the item the email address holder has subscribed to.
+ *
+ * @param array $params
+ *   A list of Mandrill merge_var values related to the email address
+ *
+ *   Currently supported: FNAME
+ *
+ * @return array $dispatch_result
+ *   Results returned form Mandrill API reporting on the status of the sent
+ *   message(s).
+ */
+function dosomething_mandrill_dispatch_campaign_signup($email = NULL, $node = NULL, $params = array())  {
+
+	// Check for email value or mobile spoof address
+	if (valid_email_address($email)) {
+
+		// Check for valid node object
+		if (is_object($node)) {
+
+	    // Check for Mandrill Key value in node
+	    $keys = field_get_items('node', $node, 'field_mandrill_key');
+
+	    // Skip if field_mandrill_key(s) not defined, can be more than one
+	    if ($keys != FALSE) {
+
+		    $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
+		    $key = $key['#markup'];
+
+		    // Prepare passed $params for $message to be sent to dosomething_mandrill_dispatch()
+		    if (isset($params['FNAME'])) {
+			    $message['FNAME'] = $params['FNAME'];
+		    }
+
+				// Send transactional email message via Mandrill
+				$dispatch_result = dosomething_mandrill_dispatch($email, $key, $message);
+
+			}
+			else {
+        watchdog('dosomething_mandrill', 'field_mandrill_key setting in dosomething_mandrill_dispatch_campaign_signup() not found in %title (%nid).',
+					array('%title' => $node->title, '%nid' => $node->nid), WATCHDOG_ERROR);
+			}
+
+		}
+		else {
+      watchdog('dosomething_mandrill', '$node value passed to dosomething_mandrill_dispatch_campaign_signup() is not an object.', WATCHDOG_ERROR);
+		}
+
+	}
+
+	return $dispatch_result;
 
 }
 
