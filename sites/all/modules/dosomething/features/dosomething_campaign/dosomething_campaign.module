@@ -19,7 +19,7 @@ function dosomething_campaign_page_alter(&$page) {
 
   // Don't allow pending members to see campaigns.
   if (isset($user->roles) && in_array('pending member', $user->roles)) {
-    if (preg_match('#^campaign/join/\d+#i', request_path()) || $page['#type'] == 'campaign') {
+    if (preg_match('#^campaign/join/\d+#i', request_path()) || (isset($page['#type']) && $page['#type'] == 'campaign')) {
       drupal_set_message(t("Sorry, you need to get permission from your parents to do that."), 'error');
       $_GET['destination'] = '/front';
       drupal_goto();
