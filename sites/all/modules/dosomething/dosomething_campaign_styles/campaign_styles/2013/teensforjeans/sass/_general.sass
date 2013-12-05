@@ -32,11 +32,9 @@ img
   position: relative
   padding-right: 32px
   &:after
-    position: absolute
-    top: 6px
-    right: 6px
     content: ''
-    display: block
+    display: inline-block
+    margin-left: 6px
     width: 18px
     height: 13px
     background-image: url("assets/t4j-canada.png")
@@ -447,10 +445,16 @@ h1.headline-callout
 .headline
   .headline-callout
     background: #000
+    @include respond-to(phones)
+      font-size: 1.5em
+      line-height: 1.3em
+      padding-top: 0.5em
+      padding-bottom: 0.5em
 
 .headline-callout
   font-weight: 600
   text-align: center
+
   span
     text-align: center
     display: inline-block
@@ -458,11 +462,6 @@ h1.headline-callout
     text-transform: uppercase
     background: #000
     color: #fff
-
-    @include respond-to(phones)
-      font-size: 0.9em
-    
-    
 
 .headline-instructions
   padding: 1em 0
