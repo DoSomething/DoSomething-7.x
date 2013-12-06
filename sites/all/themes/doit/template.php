@@ -4,7 +4,6 @@
  * Implements hook_preprocess_html()).
  */
 function doit_preprocess_html(&$variables, $hook) {
-
   $theme_path = drupal_get_path('theme', 'doit');
   $variables['selectivizr'] = '<!--[if (gte IE 6)&(lte IE 8)]>';
   // mootools causes AJAX conflicts. Selectivizr works without it.
@@ -67,6 +66,7 @@ function doit_preprocess_html(&$variables, $hook) {
     $variables['user_styles'] = drupal_get_css($css);
 
   }
+  
   drupal_alter('html_templates', $variables);
 
   if (doit_is_neue_page()) {
@@ -253,6 +253,7 @@ function doit_preprocess_page(&$variables) {
       $gate_link_text = 'register';
       if ($current_path == 'user/password') {
         $variables['page']['gate_headline'] = t('Forgot your password?');
+        $variables['messages'] = theme('status_messages');
         $is_user_password_page = TRUE;
       }
       else {
