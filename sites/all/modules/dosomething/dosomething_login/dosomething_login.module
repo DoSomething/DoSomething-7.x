@@ -413,9 +413,7 @@ function dosomething_login_password_recovery_submit($form, &$form_state) {
     }
 
   }
-  else {
-    drupal_set_message(t('Really?!?, a blank email, what we trying to reset?'), 'status');
-  }
+
 }
 
 /**
