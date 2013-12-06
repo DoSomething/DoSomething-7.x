@@ -793,7 +793,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 			case 'dsdrip-momm13':
 
 				// Format merge details based on Mandrill API
-				list($message['message']['to'], $message['message']['merge_vars']) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
+				list($to, $merge_vars) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
 
 				// Defined in Mail System entries, one for each drop
 				$key = 'dsdrip-momm13-' . $target_drop;
@@ -803,12 +803,11 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 		}
 
 		// Respond to a list of target email addresses or a test dispatch
-		if ((isset($message['message']['to']) && count($message['message']['to']) > 0) || $test_flag === 1) {
+		if ((isset($to) && count($to) > 0) || $test_flag === 1) {
 
-			// Send merge details to Mandrill for mass dispatch - note use of $message['message']['to'] in $to
-			// dosomething_mandrill_dispatch($to, $key... ) call as bulk / mass mailouts must have the repentant email
-			// address defined in both the $to and $message parameters.
-			$dispatch_results = dosomething_mandrill_dispatch($message['message']['to'], $key, $message, $test_flag);
+			// Send merge details to Mandrill for mass dispatch
+			dosomething_mandrill_prep_for_dispatch($to, $merge_vars, $message);
+			$dispatch_results = dosomething_mandrill_dispatch($to, $key, $message, $test_flag);
 
 			// Report to Drush results
 			if ($dispatch_results['result']) {
@@ -835,6 +834,37 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
 	}
 
   return $dispatch_result;
+}
+
+/*
+ * Format $message to meet Mandrill API
+ *
+ * dosomething_mandrill_dispatch($to, $key... ) calls as bulk / mass mailouts must
+ * have the recepentant email address defined in both the $to and $message parameters
+ * that follow the structure defined in send-template.
+ *
+ * Mandrill API reference for send-template:
+ * https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template
+ *
+ * @param array $to
+ *   List of recipients in email, name format
+ *
+ * @param array $merge_vars
+ *  List of merge vars defined by related email addresses in $to using
+ *  rcpt, vars format
+ *
+ * @param array &$message
+ *  Formatted array that follows the Mandrill API structure
+ */
+function dosomething_mandrill_prep_for_dispatch($to, $merge_vars, &$message) {
+
+	$message = array(
+		'message' => array(
+	    'to' => $to,
+	    'merge_vars' => $merge_vars
+		)
+	);
+
 }
 
 /*
@@ -901,7 +931,7 @@ function dosomething_mandrill_drip_momm(&$message, &$params) {
  * Query and process results into array for the MOMM 2013 campaign
  *
  * @param int $target_stamp
- *   The target date rounded to the nearest midnight in timstamp format
+ *   The target date rounded to the nearest midnight in timestamp format
  */
 function dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp) {
 	
