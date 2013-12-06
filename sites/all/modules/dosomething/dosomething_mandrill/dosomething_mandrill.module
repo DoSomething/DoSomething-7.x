@@ -840,7 +840,7 @@ function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date 
  * Format $message to meet Mandrill API
  *
  * dosomething_mandrill_dispatch($to, $key... ) calls as bulk / mass mailouts must
- * have the recepentant email address defined in both the $to and $message parameters
+ * have the recipient email address defined in both the $to and $message parameters
  * that follow the structure defined in send-template.
  *
  * Mandrill API reference for send-template:
