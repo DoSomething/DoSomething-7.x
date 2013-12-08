@@ -1,0 +1,13 @@
+diff --git a/mandrill.module b/mandrill.module
+index 40b0332..eb640af 100644
+--- a/mandrill.module
++++ b/mandrill.module
+@@ -184,7 +184,7 @@ function mandrill_mailsend($message, $function, $args = array()) {
+   catch (MandrillException $e) {
+     watchdog('mandrill', 'Error sending email from %from to %to. @code: @message',
+       array(
+-        '%from' => $message['from'],
++        '%from' => $message['from_email'],
+         '%to' => $message['to'],
+         '@code' => $e->getCode(),
+         '@message' => $e->getMessage(),
