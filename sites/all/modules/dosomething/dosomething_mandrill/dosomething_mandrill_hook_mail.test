@@ -5,7 +5,8 @@
  */
 class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   
-  const TEST_EMAIL = 'dlee+test@dosomething.org';
+  const TEST_EMAIL1 = 'dlee+test01@dosomething.org';
+  const TEST_EMAIL2 = 'dlee+test02@dosomething.org';
   protected $auth_user;
   protected $campaign;
 
@@ -22,7 +23,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     
     $this->auth_user = $this->factory->create('User', array(
       'name' => 'DS Mandrill Test',
-      'mail' => self::TEST_EMAIL,
+      'mail' => self::TEST_EMAIL1,
       'first_name' => 'First',
     ));
 
@@ -178,7 +179,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     // The template entry is needed to test sending a Mandrill transactional
     // message with the ds-testing key.
     $mandrill_template = entity_load_single('mandrill_template_map', 'dosomething_test');
-    $email = self::TEST_EMAIL;
+    $email = self::TEST_EMAIL1;
     $params = array('FNAME' => 'FIrST');
 
     $this->assertTrue($mandrill_template->mailsystem_key == 'dosomething_mandrill_ds-testing', 'The DS Testing Mandrill template is connected.');
@@ -316,6 +317,55 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
     $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Error sending')), 'Invalid formatted test drip data did not send messages as expected.');
+
+  }
+
+  /**
+   * @see dosomething_mandrill_dispatch_drip()
+   *
+   * Test triggering sending test messages to the MOMM campaign drip.
+   */
+  public function testPrepForDispatch() {
+
+    $to = array(
+      0 => array(
+        'email' => self::TEST_EMAIL1,
+			  'name'  => 'First Name'
+      ),
+      1 => array(
+        'email' => self::TEST_EMAIL2,
+			  'name'  => 'Second Name'
+      )
+    );
+
+    $merge_vars = array(
+      0 => array(
+        'rcpt' => self::TEST_EMAIL1,
+			  'vars' => array(
+				  array(
+					  'name' => 'FNAME',
+					  'content' => 'First',
+				  ),
+        ),
+      ),
+      1 => array(
+        'rcpt' => self::TEST_EMAIL2,
+			  'vars' => array(
+				  array(
+					  'name' => 'FNAME',
+					  'content' => 'Second',
+				  ),
+        ),
+      ),
+    );
+
+    dosomething_mandrill_prep_for_dispatch($to, $merge_vars, $message);
+
+    $this->assertTrue(is_array($message['message']['to']), '$message[\'message\'][\'to\'] is formatted correctly.');
+    $this->assertTrue(is_array($message['message']['merge_vars']), '$message[\'message\'][\'merge_vars\'] is formatted correctly.');
+
+    $random_index = rand(0, count($to) - 1);
+    $this->assertTrue($message['message']['merge_vars'][$random_index]['rcpt'] == $message['message']['to'][$random_index]['email'], '$message[\'message\'][\'merge_vars\'][' . $random_index . '] == $message[\'message\'][\'to\'][' . $random_index . ']');
 
   }
 
