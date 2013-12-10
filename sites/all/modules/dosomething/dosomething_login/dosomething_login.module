@@ -387,27 +387,33 @@ function dosomething_login_password_recovery_validate(&$form, &$form_state) {
  * signup reset capabilities.
  */
 function dosomething_login_password_recovery_submit($form, &$form_state) {
+  
+  if ($form_state['values']['account'] != '') {
 
-  global $user;
-  if ($user->uid == 0) {
+    global $user;
+    if ($user->uid == 0) {
+  
+      // Reset user password
+      $account = $form_state['values']['account'];
+      require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+      $pass = user_password(6);
+      $account = user_load($account->uid);
+  
+      $account->pass = user_hash_password($pass);
+      user_save($account);
+  
+      // Send Mandrill transaction message
+      dosomething_mandrill_dispatch_password_reset($account);
+      drupal_set_message(t('A password reset link has been sent to the email address.'), 'status');
 
-    // Reset user password
-    $account = $form_state['values']['account'];
-    require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
-    $pass = user_password(6);
-    $account = user_load($account->uid);
+    } // User is already logged in, send them to the user profile page to change their password
+    else {
+      drupal_set_message(t('You\'re currently logged in, update your password rather than resetting it.'), 'status');
+      drupal_goto('user');
+    }
 
-    $account->pass = user_hash_password($pass);
-    user_save($account);
-
-    // Send Mandrill transaction message
-    dosomething_mandrill_dispatch_password_reset($account);
-    
-  } // User is already logged in, send them to the user profile page to change their password
-  else {
-    drupal_set_message(t('You\'re currently logged in, update your password rather than resetting it.'), 'status');
-    drupal_goto('user');
   }
+
 }
 
 /**
