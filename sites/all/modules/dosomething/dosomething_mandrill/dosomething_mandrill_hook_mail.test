@@ -37,7 +37,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   public function testMailCommon() {
 
     $message = array();
-    $params['FNAME'] = 'First';
+    $params['merge_vars'][0]['FNAME'] = 'First';
 
     dosomething_mandrill_mail_common($message, $params);
 
@@ -45,13 +45,13 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(is_string($message['from_name']), 'Default \'from_name\' is a string.');
     $this->assertTrue($message['from_name'] == 'DoSomething.org', '\'from_name\' set to \'Dosomething.org\'');
 
-    $this->assertEqual($params['FNAME'], $message['params']['FNAME'],
-         '$params[\'FNAME\']: ' . $params['FNAME'] . ' assigned to $message[\'params\'][\'FNAME\']');
-    $this->assertTrue(strlen($message['params']['CAMPAIGNS']) > 0, 'CAMPAIGNS value returned.');
+    $this->assertEqual($params['merge_vars'][0]['FNAME'], $message['params']['global_merge_vars']['FNAME'],
+         '$params[\'FNAME\']: ' . $params['merge_vars'][0]['FNAME'] . ' assigned to $message[\'params\'][\'global_merge_vars\'][\'FNAME\']');
+    $this->assertTrue(strlen($message['params']['global_merge_vars']['CAMPAIGNS']) > 0, 'CAMPAIGNS value returned.');
     $this->assertTrue(
-      strpos($message['params']['CAMPAIGNS'], '<ul>') !== FALSE &&
-      strpos($message['params']['CAMPAIGNS'], '</ul>') !== FALSE &&
-      strpos($message['params']['CAMPAIGNS'], '<li>') !== FALSE,
+      strpos($message['params']['global_merge_vars']['CAMPAIGNS'], '<ul>') !== FALSE &&
+      strpos($message['params']['global_merge_vars']['CAMPAIGNS'], '</ul>') !== FALSE &&
+      strpos($message['params']['global_merge_vars']['CAMPAIGNS'], '<li>') !== FALSE,
       'CAMPAIGNS markup found.');
 
   }
@@ -70,10 +70,10 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
       foreach($fnames as $fname) {
 
-        $params['FNAME'] = $fname;
+        $params['merge_vars'][0]['FNAME'] = $fname;
         dosomething_mandrill_mail_firstname($message, $params);
-        $this->assertEqual('First', $message['params']['FNAME'],
-         'First Name: First => ' . $message['params']['FNAME']);
+        $this->assertEqual('First', $message['params']['global_merge_vars']['FNAME'] ,
+         'First Name: First => ' . $message['params']['global_merge_vars']['FNAME'] );
 
       }
 
@@ -85,10 +85,10 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
       foreach($fnames as $fname) {
 
-        $params['FNAME'] = $fname;
+        $params['merge_vars'][0]['FNAME'] = $fname;
         dosomething_mandrill_mail_firstname($message, $params);
-        $this->assertEqual('The First', $message['params']['FNAME'],
-         'First Name: The First => ' . $message['params']['FNAME']);
+        $this->assertEqual('The First', $message['params']['global_merge_vars']['FNAME'] ,
+         'First Name: The First => ' . $message['params']['global_merge_vars']['FNAME'] );
 
       }
 
@@ -100,10 +100,10 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
       foreach($fnames as $fname) {
 
-        $params['FNAME'] = $fname;
+        $params['merge_vars'][0]['FNAME'] = $fname;
         dosomething_mandrill_mail_firstname($message, $params);
-        $this->assertEqual('The-First', $message['params']['FNAME'],
-         'First Name: The First => ' . $message['params']['FNAME']);
+        $this->assertEqual('The-First', $message['params']['global_merge_vars']['FNAME'] ,
+         'First Name: The First => ' . $message['params']['global_merge_vars']['FNAME']);
 
       }
 
@@ -128,7 +128,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(count($tag_assignments) == 3, 'Three tags returned.');
 
   }
-  
+
   /**
    * @see dosomething_mandrill_mail_petition()
    */
@@ -150,7 +150,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue('http://www.dosomething.org' . $params['URL'] == $message['params']['URL'], 'URL merge var assigned.');
 
   }
-  
+
   /**
    * @see dosomething_mandrill_dispatch_password_reset()
    *
@@ -161,15 +161,15 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $account = $this->auth_user;
     $message_status = dosomething_mandrill_dispatch_password_reset($account);
 
-    $this->assertTrue(strpos($message_status['params']['URL'], '/user/reset/') !== FALSE, 'Reset URL returned from Mandrill');
-    $this->assertTrue($message_status['params']['ACCOUNT'] == $account->name, 'Account name \'' . $message_status['params']['ACCOUNT'] . '\' returned from Mandrill');
-    $this->assertTrue($message_status['params']['FNAME'] == 'First', 'First name \'' . $message_status['params']['FNAME'] . '\' returned from Mandrill');
+    $this->assertTrue(strpos($message_status['params']['merge_vars'][0]['URL'], '/user/reset/') !== FALSE, 'Reset URL returned from Mandrill');
+    $this->assertTrue($message_status['params']['merge_vars'][0]['ACCOUNT'] == $account->name, 'Account name \'' . $message_status['params']['merge_vars'][0]['ACCOUNT'] . '\' returned from Mandrill');
+    $this->assertTrue($message_status['params']['merge_vars'][0]['FNAME'] == 'First', 'First name \'' . $message_status['params']['merge_vars'][0]['FNAME'] . '\' returned from Mandrill');
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Password Reset message to ' . $message_status['to']);
 
   }
 
   /**
-   * @see dosomething_mandrill_dispatch_password_reset()
+   * @see  dosomething_mandrill_dispatch_campaign_signup()
    *
    * Reference: Entry Point
    */
@@ -201,7 +201,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $message_status = dosomething_mandrill_dispatch_campaign_signup($email, $node, $params);
 
     $this->assertTrue($message_status['key'] == $key, 'Mandrill API reported key \'GGWired13\' sent with campaign signup message for Campaign Signup.');
-    $this->assertTrue($message_status['params']['FNAME'] == 'First', 'First name \'' . $message_status['params']['FNAME'] . '\' returned from Mandrill API on Campaign Signup.');
+    $this->assertTrue($message_status['params']['merge_vars'][0]['FNAME'] == 'First', 'First name \'' . $message_status['params']['merge_vars'][0]['FNAME'] . '\' returned from Mandrill API on Campaign Signup.');
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Campaign Signup message to ' . $message_status['to']);
 
   }
@@ -279,7 +279,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
 
-    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip message sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
     $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
 
     // Invalid op
@@ -361,11 +361,11 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     dosomething_mandrill_prep_for_dispatch($to, $merge_vars, $message);
 
-    $this->assertTrue(is_array($message['message']['to']), '$message[\'message\'][\'to\'] is formatted correctly.');
-    $this->assertTrue(is_array($message['message']['merge_vars']), '$message[\'message\'][\'merge_vars\'] is formatted correctly.');
+    $this->assertTrue(is_array($message['to']), '$message[\'to\'] is formatted correctly.');
+    $this->assertTrue(is_array($message['merge_vars']), '$message[\'merge_vars\'] is formatted correctly.');
 
     $random_index = rand(0, count($to) - 1);
-    $this->assertTrue($message['message']['merge_vars'][$random_index]['rcpt'] == $message['message']['to'][$random_index]['email'], '$message[\'message\'][\'merge_vars\'][' . $random_index . '] == $message[\'message\'][\'to\'][' . $random_index . ']');
+    $this->assertTrue($message['merge_vars'][$random_index]['rcpt'] == $message['to'][$random_index]['email'], '$message[\'merge_vars\'][' . $random_index . '] == $message[\'to\'][' . $random_index . ']');
 
   }
 

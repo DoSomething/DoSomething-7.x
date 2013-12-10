@@ -272,36 +272,34 @@ function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
 
     // Missing 'message'
     $message_test = array(
-      'message' => array(
-        'merge_vars' => array(
-          0 => array(
-            'rcpt' => '',
-            'vars' => array(
-              0 => array(
-                'content' => 'Dee',
-                'name' => 'FNAME'
-              )
-            )
-          ),
-          1 => array(
-            'rcpt' => 'dlee+dsevent-dsdrip-momm-fail02@dosomething.org',
-            'vars' => array(
-              0 => array(
-                'content' => 'DeeThree',
-                'name' => 'FNAME'
-              )
+      'merge_vars' => array(
+        0 => array(
+          'rcpt' => '',
+          'vars' => array(
+            0 => array(
+              'content' => 'Dee',
+              'name' => 'FNAME'
             )
           )
         ),
-        'to' => array(
-          0 => array(
-            'email' => '',
-            'name' => 'Dee',
-          ),
-          1 => array(
-            'email' => 'dlee+dsevent-dsdrip-momm-fail' . $id_one . '@dosomething.org',
-            'name' => 'DeeThree',
+        1 => array(
+          'rcpt' => 'dlee+dsevent-dsdrip-momm-fail02@dosomething.org',
+          'vars' => array(
+            0 => array(
+              'content' => 'DeeThree',
+              'name' => 'FNAME'
+            )
           )
+        )
+      ),
+      'to' => array(
+        0 => array(
+          'email' => '',
+          'name' => 'Dee',
+        ),
+        1 => array(
+          'email' => 'dlee+dsevent-dsdrip-momm-fail' . $id_one . '@dosomething.org',
+          'name' => 'DeeThree',
         )
       )
     );
@@ -321,36 +319,34 @@ function dosomething_mandrill_test_dsdrip_momm13($test_flag) {
   else {
 
     $message_test = array(
-      'message' => array(
-        'merge_vars' => array(
-          0 => array(
-            'rcpt' => 'dlee+dsdrip-momm-' . $id_one . '@dosomething.org',
-            'vars' => array(
-              0 => array(
-                'content' => 'Dee',
-                'name' => 'FNAME'
-              )
-            )
-          ),
-          1 => array(
-            'rcpt' => 'dlee+dsdrip-momm-' . $id_two . '@dosomething.org',
-            'vars' => array(
-              0 => array(
-                'content' => 'DeeThree',
-                'name' => 'FNAME'
-              )
+      'merge_vars' => array(
+        0 => array(
+          'rcpt' => 'dlee+dsdrip-momm-' . $id_one . '@dosomething.org',
+          'vars' => array(
+            0 => array(
+              'content' => 'Dee',
+              'name' => 'FNAME'
             )
           )
         ),
-        'to' => array(
-          0 => array(
-            'email' => 'dlee+dsdrip-momm-' . $id_one . '@dosomething.org',
-            'name' => 'TheDee',
-          ),
-          1 => array(
-            'email' => 'dlee+dsdrip-momm-' . $id_two . '@dosomething.org',
-            'name' => 'TheDeeThree',
+        1 => array(
+          'rcpt' => 'dlee+dsdrip-momm-' . $id_two . '@dosomething.org',
+          'vars' => array(
+            0 => array(
+              'content' => 'DeeThree',
+              'name' => 'FNAME'
+            )
           )
+        ),
+      ),
+      'to' => array(
+        0 => array(
+          'email' => 'dlee+dsdrip-momm-' . $id_one . '@dosomething.org',
+          'name' => 'TheDee',
+        ),
+        1 => array(
+          'email' => 'dlee+dsdrip-momm-' . $id_two . '@dosomething.org',
+          'name' => 'TheDeeThree',
         )
       )
     );

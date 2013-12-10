@@ -10,8 +10,8 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
   
   public static function getInfo() {
     return array(
-      'name' => 'DoSomething Mandrill hook_mail_alter Unit Tests',
-      'description' => 'DoSomething Mandrill mail unit tests for the dosomething_mandrill_<mail system>_mail_alter() function and related functions.',
+      'name' => 'DoSomething Mandrill hook_mail_alter Tests',
+      'description' => 'DoSomething Mandrill mail tests for the dosomething_mandrill_<mail system>_mail_alter() function and related functions.',
       'group' => 'DoSomething',
     );
   }
@@ -32,12 +32,12 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
     // Pass email address as a string
     $mandrill_params = array();
     $message['to'] = self::TEST_EMAIL;
-    $message['params']['FNAME'] = 'First';
+    $message['params']['merge_vars'][0]['FNAME'] = 'First';
 
     dosomething_mandrill_mail_alter_to($mandrill_params, $message);
 
     $this->assertTrue(self::TEST_EMAIL == $mandrill_params['message']['to'][0]['email'], 'Passed the string email: ' . self::TEST_EMAIL . ' to $mardrill_params was formatted correctly.');
-    $this->assertTrue($message['params']['FNAME'] == $mandrill_params['message']['to'][0]['name'], 'Passed FNAME: ' . $message['params']['FNAME'] . ' to $mardrill_params was formatted correctly.');
+    $this->assertTrue($message['params']['merge_vars'][0]['FNAME'] == $mandrill_params['message']['to'][0]['name'], 'Passed FNAME: ' . $message['params']['merge_vars'][0]['FNAME'] . ' to $mardrill_params was formatted correctly.');
     $this->assertTrue('to' == $mandrill_params['message']['to'][0]['type'], 'Message \'to\' type set to \'to\'');
 
     // Pass single email as an array
@@ -47,12 +47,12 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
         'email' => self::TEST_EMAIL,
       ),
     );
-    $message['params']['FNAME'] = 'Second';
+    $message['params']['merge_vars'][0]['FNAME'] = 'Second';
 
     dosomething_mandrill_mail_alter_to($mandrill_params, $message);
 
     $this->assertTrue($message['to'][0]['email'] == $mandrill_params['message']['to'][0]['email'], 'Passed the array email: ' . self::TEST_EMAIL . ' to $mardrill_params was formatted correctly.');
-    $this->assertTrue($message['params']['FNAME'] == $mandrill_params['message']['to'][0]['name'], 'Passed FNAME: ' . $message['params']['FNAME'] . ' to $mardrill_params as array was formatted correctly.');
+    $this->assertTrue($message['params']['merge_vars'][0]['FNAME'] == $mandrill_params['message']['to'][0]['name'], 'Passed FNAME: ' . $message['params']['merge_vars'][0]['FNAME'] . ' to $mardrill_params as array was formatted correctly.');
     $this->assertTrue('to' == $mandrill_params['message']['to'][0]['type'], 'Message \'to\' type passed as array set to \'to\'');
     
     // Pass several email addresses as array
@@ -120,6 +120,41 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
     $this->assertTrue($mandrill_params_pre[0] == $mandrill_params['message']['tags'][0] &&
                       $message['tags'][0] == $mandrill_params['message']['tags'][1] &&
                       $message['tags'][1] == $mandrill_params['message']['tags'][2], 'Tag assignment from pre $mandrill_params and $message to $mandrill_params worked');
+
+  }
+
+  /**
+   * @see dosomething_mandrill_mail_alter_global_merge_vars()
+   */
+  public function testMailAlterGlobalMergeVars() {
+
+    $mandrill_params = array();
+    $message['subject'] = 'Test Subject';
+    $message['from'] = 'Test From';
+    $message['params']['message']['global_merge_vars'] = array(
+      0 => array(
+        'name' => 'FNAME',
+        'content' => 'First'
+      ),
+      1 => array(
+        'name' => 'CAMPAIGNS',
+        'content' => 'Test campaign markup'
+      )
+    );
+
+    dosomething_mandrill_mail_alter_global_merge_vars($mandrill_params, $message);
+
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][0]['name'] == 'subject',  '\'global_merge_vars\' item 0 is "subject"');
+    $this->assertTrue($message['subject'] == $mandrill_params['message']['global_merge_vars'][0]['content'], '"subject" assigned in \'global_merge_vars\'');
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][1]['name'] == 'from',  '\'global_merge_vars\' item 1 is "from"');
+    $this->assertTrue($message['from'] == $mandrill_params['message']['global_merge_vars'][1]['content'], '"from" assigned in \'global_merge_vars\'');
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][2]['name'] == 'domain',  '\'global_merge_vars\' item 2 is "domain"');
+    $this->assertTrue(strpos($mandrill_params['message']['global_merge_vars'][2]['content'], 'http://') !== FALSE, '"domain" value assignment found in \'global_merge_vars\'');
+
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][3]['name'] == 'FNAME',  '\'global_merge_vars\' item 3 is "FNAME"');
+    $this->assertTrue($message['params']['message']['global_merge_vars'][0]['content'] == $mandrill_params['message']['global_merge_vars'][3]['content'], '"FNAME" assigned in \'global_merge_vars\'');
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][4]['name'] == 'CAMPAIGNS',  '\'global_merge_vars\' item 4 is "CAMPAIGNS"');
+    $this->assertTrue($message['params']['message']['global_merge_vars'][1]['content'] == $mandrill_params['message']['global_merge_vars'][4]['content'], '"CAMPAIGNS" assigned in \'global_merge_vars\'');
 
   }
 
