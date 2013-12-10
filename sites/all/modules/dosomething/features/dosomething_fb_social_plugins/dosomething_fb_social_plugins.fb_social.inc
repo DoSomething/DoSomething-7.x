@@ -110,7 +110,7 @@ function dosomething_fb_social_plugins_fb_social_default_presets() {
     'block' => 1,
   );
   $fb_social_preset->fb_attrs = array(
-    'numposts' => '0',
+    'numposts' => '10',
     'width' => '550',
     'colorscheme' => 'light',
     'migrated' => 0,
