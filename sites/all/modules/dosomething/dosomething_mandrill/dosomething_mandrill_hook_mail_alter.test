@@ -123,4 +123,39 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
 
   }
 
+  /**
+   * @see dosomething_mandrill_mail_alter_global_merge_vars()
+   */
+  public function testMailAlterGlobalMergeVars() {
+
+    $mandrill_params = array();
+    $message['subject'] = 'Test Subject';
+    $message['from'] = 'Test From';
+    $message['params']['message']['global_merge_vars'] = array(
+      0 => array(
+        'name' => 'FNAME',
+        'content' => 'First'
+      ),
+      1 => array(
+        'name' => 'CAMPAIGNS',
+        'content' => 'Test campaign markup'
+      )
+    );
+
+    dosomething_mandrill_mail_alter_global_merge_vars($mandrill_params, $message);
+
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][0]['name'] == 'subject',  '\'global_merge_vars\' item 0 is "subject"');
+    $this->assertTrue($message['subject'] == $mandrill_params['message']['global_merge_vars'][0]['content'], '"subject" assigned in \'global_merge_vars\'');
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][1]['name'] == 'from',  '\'global_merge_vars\' item 1 is "from"');
+    $this->assertTrue($message['from'] == $mandrill_params['message']['global_merge_vars'][1]['content'], '"from" assigned in \'global_merge_vars\'');
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][2]['name'] == 'domain',  '\'global_merge_vars\' item 2 is "domain"');
+    $this->assertTrue(strpos($mandrill_params['message']['global_merge_vars'][2]['content'], 'http://') !== FALSE, '"domain" value assignment found in \'global_merge_vars\'');
+
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][3]['name'] == 'FNAME',  '\'global_merge_vars\' item 3 is "FNAME"');
+    $this->assertTrue($message['params']['message']['global_merge_vars'][0]['content'] == $mandrill_params['message']['global_merge_vars'][3]['content'], '"FNAME" assigned in \'global_merge_vars\'');
+    $this->assertTrue($mandrill_params['message']['global_merge_vars'][4]['name'] == 'CAMPAIGNS',  '\'global_merge_vars\' item 4 is "CAMPAIGNS"');
+    $this->assertTrue($message['params']['message']['global_merge_vars'][1]['content'] == $mandrill_params['message']['global_merge_vars'][4]['content'], '"CAMPAIGNS" assigned in \'global_merge_vars\'');
+
+  }
+
 }

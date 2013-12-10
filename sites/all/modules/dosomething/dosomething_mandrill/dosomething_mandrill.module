@@ -458,49 +458,9 @@ function dosomething_mandrill_mail_tag_assignment($tags) {
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   
   $merge_vars = array();
-  $global_merge_vars = array();
   
-  // Pass parameters passed via dosomething_mandrill_dispach call
+  // Pass parameters passed via dosomething_mandrill_dispach calls
   $mandrill_params['params'] = $message['params'];
-
-  $global_merge_vars = array();
-  if ((isset($message['subject']) && $message['subject'] != '') || (isset($mandrill_params['subject']) && $mandrill_params['subject'] != '')) {
-    $global_merge_vars[] = array(
-      'name' => 'subject',
-      'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
-    );
-  }
-  if (isset($message['from']) && ($message['from'] != '' || $mandrill_params['from'] != '')) {
-    $global_merge_vars[] = array(
-      'name' => 'from',
-      'content' => isset($message['from']) ? $message['from'] : $mandrill_params['from'],
-    );
-  }
-  
-  $global_merge_vars[] = array(
-    'name' => 'domain',
-    'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
-  );
-
-  if (!empty($message['params']['message']['global_merge_vars'])) {
-    foreach($message['params']['message']['global_merge_vars'] as $content) {
-      $global_merge_vars[] = array(
-        'name' => $content['name'],
-        'content' => $content['content'],
-      );
-    }
-  }
-
-  if(!empty($mandrill_params['params'])) {
-    foreach($mandrill_params['params'] as $name => $content) {
-      if(is_string($content)) {
-        $global_merge_vars[] = array(
-          'name' => $name,
-          'content' => $content,
-        );
-      }
-    }
-  }
 
 	// Format "to" values to meet Mandrill API specs
 	dosomething_mandrill_mail_alter_to($mandrill_params, $message);
@@ -511,15 +471,17 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   // Assign "tags"
 	dosomething_mandrill_mail_alter_tags($mandrill_params, $message);
 
+  // global_merge_vars
+  dosomething_mandrill_mail_alter_global_merge_vars($mandrill_params, $message);
+
   if (!empty($mandrill_params['params']['message']['merge_vars'])) {
     $merge_vars = $mandrill_params['params']['message']['merge_vars'];
   }
-  
+
   // Combine all merge_var values - these values are used to send multiple messages
   // with customizations to the Mandrill template based on the merge_var values and
-  // the matching *|TAGS|*  
+  // the matching *|TAGS|*
   $mandrill_params['message']['merge_vars'] = $merge_vars;
-  $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
 }
 
@@ -605,6 +567,62 @@ function dosomething_mandrill_mail_alter_tags(&$mandrill_params, &$message) {
   elseif (isset($message['tags']) && is_array($message['tags'])) {
     $mandrill_params['message']['tags'] = $message['tags'];
   }
+
+}
+
+/*
+ * Construct global_merge_vars for hook_mail_alter()
+ *
+ * @param array $mandrill_params
+ *   Values to be passed on to the mail system and ultimately the Mandrill API.
+ *   The array structure must follow the Mandrill API for send-template:
+ *
+ * @param array $message
+ *   Values passed from hook_mail() to help construct $mandrill_params
+ */
+function dosomething_mandrill_mail_alter_global_merge_vars(&$mandrill_params, &$message) {
+
+  $global_merge_vars = array();
+
+  if ((isset($message['subject']) && $message['subject'] != '') || (isset($mandrill_params['subject']) && $mandrill_params['subject'] != '')) {
+    $global_merge_vars[] = array(
+      'name' => 'subject',
+      'content' => isset($message['subject']) ? $message['subject'] : $mandrill_params['subject'],
+    );
+  }
+  if (isset($message['from']) && ($message['from'] != '' || $mandrill_params['from'] != '')) {
+    $global_merge_vars[] = array(
+      'name' => 'from',
+      'content' => isset($message['from']) ? $message['from'] : $mandrill_params['from'],
+    );
+  }
+
+  $global_merge_vars[] = array(
+    'name' => 'domain',
+    'content' => $GLOBALS['base_url'] . $GLOBALS['base_path'],
+  );
+
+  if (!empty($message['params']['message']['global_merge_vars'])) {
+    foreach($message['params']['message']['global_merge_vars'] as $content) {
+      $global_merge_vars[] = array(
+        'name' => $content['name'],
+        'content' => $content['content'],
+      );
+    }
+  }
+
+  if(!empty($mandrill_params['params'])) {
+    foreach($mandrill_params['params'] as $name => $content) {
+      if(is_string($content)) {
+        $global_merge_vars[] = array(
+          'name' => $name,
+          'content' => $content,
+        );
+      }
+    }
+  }
+
+  $mandrill_params['message']['global_merge_vars'] = $global_merge_vars;
 
 }
 
