@@ -597,7 +597,8 @@ function dosomething_mandrill_mail_alter_merge_vars(&$mandrill_params, &$message
 
   // Combine all merge_var values - these values are used to send multiple messages
   // with customizations to the Mandrill template based on the merge_var values and
-  // the matching *|TAGS|*
+  // the matching *|TAGS|*. merge_var values take presedence over global_merge_var
+  // values by the same name, ex: FNAME.
   $mandrill_params['message']['merge_vars'] = $merge_vars;
 
 }
