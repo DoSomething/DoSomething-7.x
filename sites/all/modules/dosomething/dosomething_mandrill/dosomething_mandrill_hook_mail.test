@@ -12,7 +12,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   public static function getInfo() {
     return array(
-      'name' => 'DoSomething Mandrill hook_mail Unit Tests',
+      'name' => 'DoSomething Mandrill hook_mail Tests',
       'description' => 'DoSomething Mandrill mail unit tests for the dosomething_mandrill_mail() function.',
       'group' => 'DoSomething',
     );
