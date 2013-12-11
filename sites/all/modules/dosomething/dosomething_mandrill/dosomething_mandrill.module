@@ -457,8 +457,6 @@ function dosomething_mandrill_mail_tag_assignment($tags) {
  */
 function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   
-  $merge_vars = array();
-  
   // Pass parameters passed via dosomething_mandrill_dispach calls
   $mandrill_params['params'] = $message['params'];
 
@@ -474,14 +472,8 @@ function dosomething_mandrill_mandrill_mail_alter(&$mandrill_params, $message) {
   // global_merge_vars
   dosomething_mandrill_mail_alter_global_merge_vars($mandrill_params, $message);
 
-  if (!empty($mandrill_params['params']['message']['merge_vars'])) {
-    $merge_vars = $mandrill_params['params']['message']['merge_vars'];
-  }
-
-  // Combine all merge_var values - these values are used to send multiple messages
-  // with customizations to the Mandrill template based on the merge_var values and
-  // the matching *|TAGS|*
-  $mandrill_params['message']['merge_vars'] = $merge_vars;
+  // merge_vars
+  dosomething_mandrill_mail_alter_merge_vars($mandrill_params, $message);
 
 }
 
@@ -567,6 +559,47 @@ function dosomething_mandrill_mail_alter_tags(&$mandrill_params, &$message) {
   elseif (isset($message['tags']) && is_array($message['tags'])) {
     $mandrill_params['message']['tags'] = $message['tags'];
   }
+
+}
+
+/*
+ * Construct merge_vars for hook_mail_alter()
+ *
+ * @param array $mandrill_params
+ *   Values to be passed on to the mail system and ultimately the Mandrill API.
+ *   The array structure must follow the Mandrill API for send-template:
+ *
+ * @param array $message
+ *   Values passed from hook_mail() to help construct $mandrill_params
+ */
+function dosomething_mandrill_mail_alter_merge_vars(&$mandrill_params, &$message) {
+
+  $merge_vars = array();
+
+  // Skip if merge_var entries found in array format - ex. mass drip mailout
+  if(!empty($message['params']['merge_vars']) && !isset($message['params']['merge_vars'][0]['rcpt'])) {
+    foreach($message['params']['merge_vars'] as $index => $items) {
+      foreach($items as $name => $content) {
+        $vars[] = array(
+          'name' => $name,
+          'content' => $content
+        );
+      }
+      $merge_vars[] = array(
+        'rcpt' => $message['to'],
+        'vars' => $vars,
+      );
+    }
+  }
+  elseif (isset($message['params']['merge_vars'])) {
+    $merge_vars = $message['params']['merge_vars'];
+  }
+
+  // Combine all merge_var values - these values are used to send multiple messages
+  // with customizations to the Mandrill template based on the merge_var values and
+  // the matching *|TAGS|*. merge_var values take presedence over global_merge_var
+  // values by the same name, ex: FNAME.
+  $mandrill_params['message']['merge_vars'] = $merge_vars;
 
 }
 

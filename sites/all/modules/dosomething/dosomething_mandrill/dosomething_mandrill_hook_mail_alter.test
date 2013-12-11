@@ -10,7 +10,7 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
   
   public static function getInfo() {
     return array(
-      'name' => 'DoSomething Mandrill hook_mail_alter Unit Tests',
+      'name' => 'DoSomething Mandrill hook_mail_alter Tests',
       'description' => 'DoSomething Mandrill mail unit tests for the dosomething_mandrill_<mail system>_mail_alter() function and related functions.',
       'group' => 'DoSomething',
     );
@@ -155,6 +155,53 @@ class DoSomethingMandrillMailAlterUnitTestCase extends WebTestSuite  {
     $this->assertTrue($message['params']['message']['global_merge_vars'][0]['content'] == $mandrill_params['message']['global_merge_vars'][3]['content'], '"FNAME" assigned in \'global_merge_vars\'');
     $this->assertTrue($mandrill_params['message']['global_merge_vars'][4]['name'] == 'CAMPAIGNS',  '\'global_merge_vars\' item 4 is "CAMPAIGNS"');
     $this->assertTrue($message['params']['message']['global_merge_vars'][1]['content'] == $mandrill_params['message']['global_merge_vars'][4]['content'], '"CAMPAIGNS" assigned in \'global_merge_vars\'');
+
+  }
+
+  /**
+   * @see dosomething_mandrill_mail_alter_merge_vars()
+   */
+  public function testMailAlterMergeVars() {
+
+    $mandrill_params = array();
+    $message['to'][0]['email'] = self::TEST_EMAIL;
+    $message['params']['merge_vars'] = array(
+      0 => array(
+        'FNAME' => 'First',
+        'AGE' => '13'
+      ),
+    );
+
+    dosomething_mandrill_mail_alter_merge_vars($mandrill_params, $message);
+
+    $this->assertTrue($mandrill_params['message']['merge_vars'][0]['vars'][0]['name'] == 'FNAME', '"FNAME" merge_var found in $mandrill_params[\'message\'][\'merge_vars\'].');
+    $this->assertTrue($message['params']['merge_vars'][0]['FNAME'] == $mandrill_params['message']['merge_vars'][0]['vars'][0]['content'], '"FNAME: First" merge_var found.');
+    $this->assertTrue($mandrill_params['message']['merge_vars'][0]['vars'][1]['name'] == 'AGE', '"AGE" merge_var found in $mandrill_params[\'message\'][\'merge_vars\'].');
+    $this->assertTrue($message['params']['merge_vars'][0]['AGE'] == $mandrill_params['message']['merge_vars'][0]['vars'][1]['content'], '"AGE" merge_var found.');
+
+    $mandrill_params = array();
+    $message['to'][0]['email'] = self::TEST_EMAIL;
+    $message['params']['merge_vars'][0] = array(
+      'rcpt' => self::TEST_EMAIL,
+      'vars' => array(
+        0 => array(
+          'name' => 'FNAME',
+          'content' => 'First-Name'
+        ),
+        1 => array(
+          'name' => 'AGE',
+          'content' => '13'
+        )
+      )
+    );
+
+    dosomething_mandrill_mail_alter_merge_vars($mandrill_params, $message);
+
+    $this->assertTrue($mandrill_params['message']['merge_vars'][0]['rcpt'] == $message['to'][0]['email'], '"rcpt" '. self::TEST_EMAIL . ' merge_var found in $mandrill_params[\'message\'][\'merge_vars\'].');
+    $this->assertTrue($mandrill_params['message']['merge_vars'][0]['vars'][0]['name'] == 'FNAME', '"FNAME" merge_var found in $mandrill_params[\'message\'][\'merge_vars\'].');
+    $this->assertTrue($mandrill_params['message']['merge_vars'][0]['vars'][1]['name'] == 'AGE', '"FNAME" merge_var found in $mandrill_params[\'message\'][\'merge_vars\'].');
+    $this->assertTrue($message['params']['merge_vars'][0]['vars'][0]['content'] == $mandrill_params['message']['merge_vars'][0]['vars'][0]['content'], '"FNAME" merge_var \'content\' found.');
+    $this->assertTrue($message['params']['merge_vars'][0]['vars'][1]['content'] == $mandrill_params['message']['merge_vars'][0]['vars'][1]['content'], '"AGE" merge_var \'content\' found.');
 
   }
 
