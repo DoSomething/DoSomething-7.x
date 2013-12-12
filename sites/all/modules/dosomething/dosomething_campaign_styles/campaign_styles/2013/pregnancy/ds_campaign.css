@@ -873,7 +873,8 @@ body {
       font-size: 0.9em;
       color: #777777; }
     #cmp #signup-email .form-email {
-      width: 85%;
+      width: 100%;
+      max-width: 320px;
       color: #555555; }
     #cmp #signup-email #edit-actions {
       width: 100% !important;
@@ -918,7 +919,9 @@ body {
     #cmp #signup-logo {
       padding: 1em; }
     #cmp #signup-email {
-      padding: 1em 3em; }
+      padding: 1em 0em;
+      max-width: 380px;
+      margin: 0 auto; }
     #cmp .header-social {
       display: none; } }
   @media only screen and (max-width: 550px) {
