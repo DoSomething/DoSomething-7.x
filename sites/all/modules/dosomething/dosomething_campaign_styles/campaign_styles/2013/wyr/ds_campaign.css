@@ -1053,6 +1053,7 @@ body {
     padding: 0em 2em 1em;
     margin-left: 4em;
     clear: both;
+    float: left;
     display: block; }
   @media only screen and (max-width: 775px) {
     #cmp #signup-logo, #cmp #signup-email {
