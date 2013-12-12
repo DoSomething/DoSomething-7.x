@@ -45,4 +45,5 @@ class SmsFlowGameConstants {
   const TFJ_MARKET_TIPS         = 36;
   const TFJ_RUN_TIPS            = 37;
   const TFJ_PRIZE_GUIDE         = 38;
+  const TFJ_INFO_TIPS           = 39;
 }
