@@ -4,11 +4,10 @@
 //  #header     - sign up -
 //      //
 .section#header
-  background: url('http://www.dosomething.org/files/campaigns/pregnancy/baby-header.jpg') top center no-repeat
+  background: url('http://www.dosomething.org/files/campaigns/pregnancy/header-baby.jpg') top center no-repeat
   margin-bottom: 0
-  height: 260px
+  height: 330px
 #header
-  max-width: 800px
   margin: 0 auto
   text-align: left
   position: relative
@@ -101,7 +100,7 @@
   .header-social
     position: absolute
     bottom: 0
-    right: 8px
+    left: 8px
   .header-facebook-share, .header-twitter-share
     display: inline-block
     margin: 0 2px
@@ -305,4 +304,90 @@
   .action-arrow-right
     right: -70px
   .action-arrow-left
-    left: -70px  
+    left: -70px 
+
+//      //
+//  #signup
+//      //
+
+#signup-logo, #signup-email
+  width: 50%
+  float: left
+
+#signup-logo
+  padding: 3em 2em 1em
+  img
+    margin: 0 auto
+    display: block
+
+#signup-email
+  padding: 2em 3em
+
+  h3
+    color: #47BDFC
+    margin-bottom: 0.7em
+    font-size: 1.1em
+    letter-spacing: 1px
+  p
+    font-size: 1.25em
+    color: #1E1D1C
+    margin-bottom: 1em
+    font-weight: 300
+  .email-text
+    font-size: 0.9em
+    color: #777
+  .form-email
+    width: 85%
+    color: #555
+  #edit-actions
+    width: 100% !important
+    height: inherit !important
+  #edit-submit
+    float: left
+    display: inline-block
+    background: #ffcb15
+    margin: 0.5em auto 0
+    padding: 0.5em 1.5em 0.3em
+    clear: both
+    position: static
+    border: 1px solid #feb800
+    cursor: pointer
+    color: #1e1d1c !important
+    font-family: din-web-reg
+    font-weight: 600
+    text-align: center
+    text-decoration: none !important
+    text-transform: uppercase
+    -webkit-appearance: none !important
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    -ms-border-radius: 5px
+    -o-border-radius: 5px
+    border-radius: 5px
+    height: 1.95em
+    &:hover
+      background: #feb800
+      background-image: -webkit-gradient(linear,50% 0%,50% 100%,color-stop(0%,#ffcb15),color-stop(100%,#feb800))
+      background-image: -webkit-linear-gradient(#ffcb15,#feb800)
+      background-image: -moz-linear-gradient(#ffcb15,#feb800)
+      background-image: -o-linear-gradient(#ffcb15,#feb800)
+      background-image: linear-gradient(#ffcb15,#feb800)
+      -webkit-box-shadow: 0 10px 10px -10px #bbb
+      -moz-box-shadow: 0 10px 10px -10px #bbb
+      box-shadow: 0 10px 10px -10px #bbb
+
+
+@media only screen and (max-width: 775px)
+  #signup-logo, #signup-email
+    float: none
+    width: 100%
+  #signup-logo
+    padding: 1em
+  #signup-email
+    padding: 1em 3em
+  .header-social
+    display: none
+
+@media only screen and (max-width: 550px)
+  #signup-email
+    padding: 0 1.5em 1em
