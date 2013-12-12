@@ -11,7 +11,7 @@ img.logo {
   padding: 0 !important;
   margin: 0 !important;
   background: transparent;
-  width: 800px; }
+  width: 100%; }
 #main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5 {
   display: none; }
 #main-wrapper ul.primary {
@@ -24,7 +24,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #231f20; }
+  background: white; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -413,6 +413,31 @@ body {
 
   #dosomething-login-register-popup-form #edit-submit {
     width: 85%; } }
+.region-sidebar-first,
+.pane-title,
+#block-menu-menu-footer,
+#skip-link,
+#breadcrumb,
+#page-title,
+#block-dosomething-login-become-member,
+#block-dosomething-blocks-dosomething-make-impact,
+#block-dosomething-blocks-dosomething-social-skyscraper,
+#block-block-5 {
+  display: none; }
+
+.messages.status {
+  text-align: center; }
+
+#cmp {
+  border: 1px solid #cccccc;
+  border-top: none;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto; }
+
+@media only screen and (max-width: 775px) {
+  #cmp {
+    border: none; } }
 #cmp {
   /* element floats */
   /* centers wrappers contained within floated segments */ }
@@ -553,67 +578,17 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px;
     text-decoration: none; }
-  #cmp #header.section {
-    background-image: url(//www.dosomething.org/files/campaigns/wyr/bg-header.jpg);
-    background-repeat: no-repeat;
-    background-color: white;
-    background-position: 0% 50%;
-    margin: 0 0 2% 0;
-    height: 200px; }
-    @media only screen and (max-width: 800px) {
-      #cmp #header.section {
-        background-position: -50% 50%; } }
-    @media only screen and (max-width: 550px) {
-      #cmp #header.section {
-        background: white; } }
-    #cmp #header.section h2 {
-      text-transform: uppercase;
-      color: #279ed5;
-      font-weight: 600;
-      font-size: 35px;
-      line-height: 1em;
-      text-align: right; }
-    #cmp #header.section .header-right {
-      float: right;
-      width: 38%;
-      margin: 5% 0 0 0; }
-      @media only screen and (max-width: 1075px) {
-        #cmp #header.section .header-right {
-          width: 25%;
-          margin: 0; } }
-      @media only screen and (max-width: 900px) {
-        #cmp #header.section .header-right {
-          width: 30%;
-          margin: 2% 0 0 0; } }
-      @media only screen and (max-width: 800px) {
-        #cmp #header.section .header-right {
-          width: 40%;
-          margin: 2% 0 0 0; } }
-      @media only screen and (max-width: 550px) {
-        #cmp #header.section .header-right {
-          width: 80%;
-          margin: 2% 0 0 0; } }
+  #cmp .section#header {
+    background: url("http://www.dosomething.org/files/campaigns/wyr/header-wyr2.jpg") top center no-repeat;
+    margin-bottom: 0;
+    height: 330px; }
   #cmp .header-social {
-    float: left; }
-  #cmp .header-facebook-share,
-  #cmp .header-twitter-share {
-    display: block;
-    height: 20px; }
-  #cmp .header-facebook-share {
-    width: 75px;
-    height: 20px;
-    border: 1px solid #cad4e7;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px; }
-    #cmp .header-facebook-share:hover {
-      border: 1px solid #eceef5; }
-  #cmp .header-twitter-share {
-    float: left;
-    width: 54px;
-    margin: 5px 0 0 0; }
+    position: absolute;
+    bottom: 0;
+    left: 8px; }
+  #cmp .header-facebook-share, #cmp .header-twitter-share {
+    display: inline-block;
+    margin: 0 2px; }
   #cmp #action {
     padding: 3% 0 2%; }
   #cmp #scholarship {
@@ -1009,6 +984,95 @@ body {
       display: block;
       margin: 0 auto;
       width: 350px; }
+  #cmp #signup-logo, #cmp #signup-email {
+    width: 50%;
+    float: left; }
+  #cmp #signup-logo {
+    padding: 3em 2em 1em; }
+    #cmp #signup-logo img {
+      margin: 0 auto;
+      display: block; }
+    #cmp #signup-logo .powered {
+      padding: 2em 0 0; }
+  #cmp #signup-email {
+    padding: 2em 3em; }
+    #cmp #signup-email h3 {
+      color: #47bdfc;
+      margin-bottom: 0.7em;
+      font-size: 1.1em;
+      letter-spacing: 1px; }
+    #cmp #signup-email p {
+      font-size: 1.25em;
+      color: #1e1d1c;
+      margin-bottom: 1em;
+      font-weight: 300; }
+    #cmp #signup-email .email-text {
+      font-size: 0.9em;
+      color: #777777; }
+    #cmp #signup-email .form-email {
+      width: 100%;
+      max-width: 320px;
+      color: #555555; }
+    #cmp #signup-email #edit-actions {
+      width: 100% !important;
+      height: inherit !important; }
+    #cmp #signup-email #edit-submit {
+      float: left;
+      display: inline-block;
+      background: #ffcb15;
+      margin: 0.5em auto 0;
+      padding: 0.5em 1.5em 0.3em;
+      clear: both;
+      position: static;
+      border: 1px solid #feb800;
+      cursor: pointer;
+      color: #1e1d1c !important;
+      font-family: din-web-reg;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none !important;
+      text-transform: uppercase;
+      -webkit-appearance: none !important;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px;
+      height: 1.95em; }
+      #cmp #signup-email #edit-submit:hover {
+        background: #feb800;
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
+        background-image: -webkit-linear-gradient(#ffcb15, #feb800);
+        background-image: -moz-linear-gradient(#ffcb15, #feb800);
+        background-image: -o-linear-gradient(#ffcb15, #feb800);
+        background-image: linear-gradient(#ffcb15, #feb800);
+        -webkit-box-shadow: 0 10px 10px -10px #bbbbbb;
+        -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
+        box-shadow: 0 10px 10px -10px #bbbbbb; }
+  #cmp .poweredby {
+    padding: 0em 2em 1em;
+    margin-left: 4em;
+    clear: both;
+    display: block; }
+  @media only screen and (max-width: 775px) {
+    #cmp #signup-logo, #cmp #signup-email {
+      float: none;
+      width: 100%; }
+    #cmp #signup-logo {
+      padding: 1em; }
+    #cmp #signup-email {
+      padding: 1em 0em;
+      max-width: 380px;
+      margin: 0 auto; }
+    #cmp .header-social {
+      display: none; }
+    #cmp .poweredby {
+      padding: 3em 1em 1em;
+      float: none;
+      margin: 0 auto; } }
+  @media only screen and (max-width: 550px) {
+    #cmp #signup-email {
+      padding: 0 1.5em 1em; } }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {
