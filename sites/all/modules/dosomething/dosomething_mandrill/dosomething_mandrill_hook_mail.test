@@ -27,11 +27,11 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
       'first_name' => 'First',
     ));
 
-    // Bugs
+    // @todo: Bugs
     // $this->campaign = $this->factory->create('Campaign', array()); 
   }
 
-  /**
+  /*
    * @see dosomething_mandrill_mail_common()
    */
   public function testMailCommon() {
@@ -56,60 +56,71 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   }
 
-  /**
+  /*
    * @see dosomething_mandrill_mail_firstname()
    */
   public function testMandrillMailFirstName() {
 
-      $fnames = array(
-        'First',
-        'first',
-        'fiRSt',
-        'FIRST',
-      );
+    $fnames = array(
+      'First',
+      'first',
+      'fiRSt',
+      'FIRST',
+    );
 
-      foreach($fnames as $fname) {
+    foreach($fnames as $fname) {
+      $params['FNAME'] = $fname;
+      dosomething_mandrill_mail_firstname($message, $params);
+      $this->assertEqual('First', $message['params']['FNAME'],
+       'First Name: First => ' . $message['params']['FNAME']);
+    }
 
-        $params['FNAME'] = $fname;
-        dosomething_mandrill_mail_firstname($message, $params);
-        $this->assertEqual('First', $message['params']['FNAME'],
-         'First Name: First => ' . $message['params']['FNAME']);
+    $fnames = array(
+      'the first',
+      'THE FIRST',
+      'tHe fIrSt',
+    );
 
-      }
+    foreach($fnames as $fname) {
+      $params['FNAME'] = $fname;
+      dosomething_mandrill_mail_firstname($message, $params);
+      $this->assertEqual('The First', $message['params']['FNAME'],
+       'First Name: The First => ' . $message['params']['FNAME']);
+    }
 
-      $fnames = array(
-        'the first',
-        'THE FIRST',
-        'tHe fIrSt',
-      );
+    $fnames = array(
+      'the-first',
+      'THE-FIRST',
+      'tHe-fIrSt',
+    );
 
-      foreach($fnames as $fname) {
+    foreach($fnames as $fname) {
+      $params['FNAME'] = $fname;
+      dosomething_mandrill_mail_firstname($message, $params);
+      $this->assertEqual('The-First', $message['params']['FNAME'],
+       'First Name: The First => ' . $message['params']['FNAME']);
+    }
 
-        $params['FNAME'] = $fname;
-        dosomething_mandrill_mail_firstname($message, $params);
-        $this->assertEqual('The First', $message['params']['FNAME'],
-         'First Name: The First => ' . $message['params']['FNAME']);
+    // Send first name (FNAME) in merge_var format. Created by
+    // dosomething_mandrill_get_drip_dispatch_momm_data()
+    $params['FNAME'] = NULL;
+    $fnames = array(
+      'the first',
+      'THE FIRST',
+      'tHe firST',
+    );
 
-      }
-
-      $fnames = array(
-        'the-first',
-        'THE-FIRST',
-        'tHe-fIrSt',
-      );
-
-      foreach($fnames as $fname) {
-
-        $params['FNAME'] = $fname;
-        dosomething_mandrill_mail_firstname($message, $params);
-        $this->assertEqual('The-First', $message['params']['FNAME'],
-         'First Name: The First => ' . $message['params']['FNAME']);
-
-      }
+    foreach($fnames as $fname) {
+      $params['message']['merge_vars'][0]['vars'][0]['name'] = 'FNAME';
+      $params['message']['merge_vars'][0]['vars'][0]['content'] = $fname;
+      dosomething_mandrill_mail_firstname($message, $params);
+      $this->assertEqual('The First', $message['params']['FNAME'],
+       'merge_vars FNAME: The First => ' . $message['params']['FNAME']);
+    }
 
   }
 
-  /**
+  /*
    * @see dosomething_mandrill_mail_tag_assignment()
    */
   public function testMailTagAssignment() {
@@ -128,8 +139,8 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(count($tag_assignments) == 3, 'Three tags returned.');
 
   }
-  
-  /**
+
+  /*
    * @see dosomething_mandrill_mail_petition()
    */
   public function testMailPetition() {
@@ -150,8 +161,8 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue('http://www.dosomething.org' . $params['URL'] == $message['params']['URL'], 'URL merge var assigned.');
 
   }
-  
-  /**
+
+  /*
    * @see dosomething_mandrill_dispatch_password_reset()
    *
    * Reference: Entry Point
@@ -168,7 +179,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   }
 
-  /**
+  /*
    * @see dosomething_mandrill_dispatch_password_reset()
    *
    * Reference: Entry Point
@@ -205,8 +216,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Campaign Signup message to ' . $message_status['to']);
 
   }
-
-  /**
+  /*
    * @see dosomething_mandrill_get_targetstamp()
    *
    * Pass a date string and return the timestamp. If the date value is NULL
@@ -241,7 +251,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue($target_stamp == -1, 'Returned error timestamp for invalid date.');
   }
 
-  /**
+  /*
    * @see dosomething_mandrill_get_drip_dispatch_momm_data()
    *
    * Test collection of user accounts that have signed up for the MOMM campaign
@@ -259,13 +269,13 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue(is_array($merge_vars), '$merge_vars returned as an array');
 
     // Test random returned merge_var values
-    $target_index = rand(1, count($to));
+    $target_index = rand(1, count($to) - 1);
     $this->assertTrue($to[$target_index]['email'] == $merge_vars[$target_index]['rcpt'], '$to[' . $target_index . '][\'email\'] matches $merge_vars[' . $target_index . '][\'rcpt\']');
     $this->assertTrue($to[$target_index]['name'] == $merge_vars[$target_index]['vars'][0]['content'], '$to[' . $target_index . '][\'name\'] matches $merge_vars[' . $target_index . '][0][\'content\']');
 
   }
 
-  /**
+  /*
    * @see dosomething_mandrill_dispatch_drip()
    *
    * Test triggering sending test messages to the MOMM campaign drip.
@@ -274,12 +284,52 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
     $op = 'dsdrip-momm13';
     $target_drop = 1;
-    $target_date = '2013-11-15';
+    $target_date = '2013-12-01';
     $test_flag = TRUE;
 
     $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
 
-    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip 1 messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
+
+    $op = 'dsdrip-momm13';
+    $target_drop = 2;
+    $target_date = '2013-12-01';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip 2 messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
+
+    $op = 'dsdrip-momm13';
+    $target_drop = 3;
+    $target_date = '2013-12-01';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip 3 messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
+
+    $op = 'dsdrip-momm13';
+    $target_drop = 4;
+    $target_date = '2013-12-01';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip 4 messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
+    $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
+
+    $op = 'dsdrip-momm13';
+    $target_drop = 5;
+    $target_date = '2013-12-01';
+    $test_flag = TRUE;
+
+    $dispatch_result = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
+
+    $this->assertTrue(is_int(strpos($dispatch_result['send_status'], 'Success sending')), 'Test MOMM drip 5 messages sent successfully. Operation: ' . $op . ', Drop: ' . $target_drop . ', Target Date: ' . $target_date);
     $this->assertTrue($dispatch_result['sent'], $dispatch_result['sent'] . ' sent successfully for MOMM drip.');
 
     // Invalid op
@@ -320,7 +370,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
 
   }
 
-  /**
+  /*
    * @see dosomething_mandrill_dispatch_drip()
    *
    * Test triggering sending test messages to the MOMM campaign drip.
