@@ -57,7 +57,7 @@ class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
             $lastOptInIndex = array_search($lastOptIn, $set['opt_in_paths']);
             $nextOptInIndex = $lastOptInIndex + 1;
 
-            if (($nextOptInIndex >= count($set['opt_in_paths']) && $set['should_loop'] === TRUE) || $lastOptInIndex == FALSE) {
+            if (($nextOptInIndex >= count($set['opt_in_paths']) && $set['should_loop'] === TRUE) || $lastOptInIndex === FALSE) {
               $nextOptInIndex = 0;
             }
           }
