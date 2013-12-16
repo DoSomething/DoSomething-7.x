@@ -14,7 +14,7 @@ img.logo
     padding: 0!important
     margin: 0!important
     background: transparent
-    width: 800px
+    width: 100%
   #breadcrumb, #page-title, #block-dosomething-login-become-member, #block-dosomething-blocks-dosomething-make-impact, #block-dosomething-blocks-dosomething-social-skyscraper, #block-block-5
     display: none
   ul.primary
@@ -389,3 +389,33 @@ body
   #dosomething-login-register-popup-form
     #edit-submit
       width: 85%    
+
+
+// Hide elements inherited from global site
+// Panelizer and any other Drupal nonsense
+.region-sidebar-first,
+.pane-title,
+#block-menu-menu-footer,
+#skip-link,
+#breadcrumb,
+#page-title,
+#block-dosomething-login-become-member,
+#block-dosomething-blocks-dosomething-make-impact,
+#block-dosomething-blocks-dosomething-social-skyscraper,
+#block-block-5
+  display: none
+
+.messages.status
+  text-align: center
+
+// set width of page content
+#cmp
+  border: 1px solid #ccc
+  border-top: none 
+  max-width: 960px
+  width: 100%
+  margin: 0 auto
+
+@media only screen and (max-width: 775px)
+  #cmp
+    border: none
