@@ -219,6 +219,20 @@ $activity->sets = array(
     'opt_in_paths' => array(163551, 163553, 163555),
     'should_loop'  => TRUE,
   ),
+  // PBJ 2014 - HUNGER tips
+  array(
+    'mdata_id'     => 10103,
+    'game_id'      => SmsFlowGameConstants::PBJ_HUNGER_TIPS,
+    'opt_in_paths' => array(163593, 163595, 163597),
+    'should_loop'  => TRUE,
+  ),
+  // PBJ 2014 - Drive tips
+  array(
+    'mdata_id'     => 10113,
+    'game_id'      => SmsFlowGameConstants::PBJ_DRIVE_TIPS,
+    'opt_in_paths' => array(163599, 163601, 163603, 163605, 163607),
+    'should_loop'  => TRUE,
+  ),
 );
 
 $activity = $workflow->newActivity('end');

@@ -57,7 +57,7 @@ class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
             $lastOptInIndex = array_search($lastOptIn, $set['opt_in_paths']);
             $nextOptInIndex = $lastOptInIndex + 1;
 
-            if ($nextOptInIndex >= count($set['opt_in_paths']) && $set['should_loop'] === TRUE) {
+            if (($nextOptInIndex >= count($set['opt_in_paths']) && $set['should_loop'] === TRUE) || $lastOptInIndex == FALSE) {
               $nextOptInIndex = 0;
             }
           }
@@ -69,7 +69,7 @@ class ConductorActivityMobileCommonsOrderedPath extends ConductorActivity {
 
         // Send user to selected opt-in path or nothing if they've already received the last path
         if ($nextOptInIndex >= 0 && $nextOptInIndex < count($set['opt_in_paths'])) {
-          
+
           sms_mobile_commons_opt_in($mobile, $set['opt_in_paths'][$nextOptInIndex]);
 
           // Save path to database

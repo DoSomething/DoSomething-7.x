@@ -174,3 +174,71 @@ $activity->name = 'end';
 $activity->inputs = array('no_banner', 'end_message');
 
 $workflows[$workflow->name] = $workflow;
+
+/**
+ * PBJ Slam 2014 - Ask for address to send a kit to. Flow is triggered by a keyword
+ * that will directly forward along to this mData endpoint.
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_pbj2014_sign_up_address';
+$workflow->title = 'PBJ Slam 2014 Sign Up Address';
+$workflow->description = 'Ask for and submit address to ship kit to for PBJ Slam 2014.';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_street');
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_street';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_city');
+$activity->opt_in_path_id = 163573;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_city';
+$activity->inputs = array('ask_street');
+$activity->outputs = array('ask_state');
+$activity->opt_in_path_id = 163577;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_state';
+$activity->inputs = array('ask_city');
+$activity->outputs = array('ask_zip');
+$activity->opt_in_path_id = 163579;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_zip';
+$activity->inputs = array('ask_state');
+$activity->outputs = array('ask_name');
+$activity->opt_in_path_id = 163581;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_name';
+$activity->inputs = array('ask_zip');
+$activity->outputs = array('address_submit');
+$activity->opt_in_path_id = 163583;
+
+$activity = $workflow->newActivity('sms_flow_signup_address_submit');
+$activity->name = 'address_submit';
+$activity->inputs = array('ask_name');
+$activity->outputs = array('end_message');
+$activity->campaignNid = 731164;
+$activity->addr1Context = 'ask_street:message';
+$activity->cityContext = 'ask_city:message';
+$activity->stateContext = 'ask_state:message';
+$activity->zipContext = 'ask_zip:message';
+$activity->nameContext = 'ask_name:message';
+
+$activity = $workflow->newActivity('mobile_commons_opt_in');
+$activity->name = 'end_message';
+$activity->inputs = array('address_submit');
+$activity->outputs = array('end');
+$activity->opt_in_path_id = 163585;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('end_message');
+
+$workflows[$workflow->name] = $workflow;
