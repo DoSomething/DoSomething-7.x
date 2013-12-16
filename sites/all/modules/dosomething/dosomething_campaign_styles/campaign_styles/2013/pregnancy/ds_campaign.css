@@ -9,7 +9,7 @@ img.logo {
   padding: 0 !important;
   margin: 0 !important;
   background: transparent;
-  width: 800px; }
+  width: 100%; }
 #main-wrapper #breadcrumb, #main-wrapper #page-title, #main-wrapper #block-dosomething-login-become-member, #main-wrapper #block-dosomething-blocks-dosomething-make-impact, #main-wrapper #block-dosomething-blocks-dosomething-social-skyscraper, #main-wrapper #block-block-5 {
   display: none; }
 #main-wrapper ul.primary {
@@ -22,7 +22,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: #241f20; }
+  background: white; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -91,13 +91,16 @@ body {
     header[role="banner"] {
       width: 100%; } }
 
-#cmp img {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -o-box-shadow: none !important;
-  box-shadow: none !important; }
-#cmp .pane-title {
-  display: none; }
+#cmp {
+  border: 1px solid #cccccc;
+  border-top: none; }
+  #cmp img {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important; }
+  #cmp .pane-title {
+    display: none; }
 
 .invite_friends {
   background: white;
@@ -416,6 +419,29 @@ body {
 
   #dosomething-login-register-popup-form #edit-submit {
     width: 85%; } }
+.region-sidebar-first,
+.pane-title,
+#block-menu-menu-footer,
+#skip-link,
+#breadcrumb,
+#page-title,
+#block-dosomething-login-become-member,
+#block-dosomething-blocks-dosomething-make-impact,
+#block-dosomething-blocks-dosomething-social-skyscraper,
+#block-block-5 {
+  display: none; }
+
+#cmp {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto; }
+
+@media only screen and (max-width: 775px) {
+  #cmp {
+    border: none; } }
+.messages.status {
+  text-align: center; }
+
 #cmp {
   /* element floats */
   /* centers wrappers contained within floated segments */ }
@@ -554,11 +580,10 @@ body {
     border-radius: 5px;
     text-decoration: none; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/pregnancy/baby-header.jpg") top center no-repeat;
+    background: url("http://www.dosomething.org/files/campaigns/pregnancy/header-baby.jpg") top center no-repeat;
     margin-bottom: 0;
-    height: 260px; }
+    height: 330px; }
   #cmp #header {
-    max-width: 800px;
     margin: 0 auto;
     text-align: left;
     position: relative;
@@ -650,7 +675,7 @@ body {
     #cmp #header .header-social {
       position: absolute;
       bottom: 0;
-      right: 8px; }
+      left: 8px; }
     #cmp #header .header-facebook-share, #cmp #header .header-twitter-share {
       display: inline-block;
       margin: 0 2px; }
@@ -827,6 +852,84 @@ body {
     right: -70px; }
   #cmp #faq .action-arrow-left {
     left: -70px; }
+  #cmp #signup-logo, #cmp #signup-email {
+    width: 50%;
+    float: left; }
+  #cmp #signup-logo {
+    padding: 3em 2em 1em; }
+    #cmp #signup-logo img {
+      margin: 0 auto;
+      display: block; }
+  #cmp #signup-email {
+    padding: 2em 3em; }
+    #cmp #signup-email h3 {
+      color: #47bdfc;
+      margin-bottom: 0.7em;
+      font-size: 1.1em;
+      letter-spacing: 1px; }
+    #cmp #signup-email p {
+      font-size: 1.25em;
+      color: #1e1d1c;
+      margin-bottom: 1em;
+      font-weight: 300; }
+    #cmp #signup-email .email-text {
+      font-size: 0.9em;
+      color: #777777; }
+    #cmp #signup-email .form-email {
+      width: 100%;
+      max-width: 320px;
+      color: #555555; }
+    #cmp #signup-email #edit-actions {
+      width: 100% !important;
+      height: inherit !important; }
+    #cmp #signup-email #edit-submit {
+      float: left;
+      display: inline-block;
+      background: #ffcb15;
+      margin: 0.5em auto 0;
+      padding: 0.5em 1.5em 0.3em;
+      clear: both;
+      position: static;
+      border: 1px solid #feb800;
+      cursor: pointer;
+      color: #1e1d1c !important;
+      font-family: din-web-reg;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none !important;
+      text-transform: uppercase;
+      -webkit-appearance: none !important;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px;
+      height: 1.95em; }
+      #cmp #signup-email #edit-submit:hover {
+        background: #feb800;
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
+        background-image: -webkit-linear-gradient(#ffcb15, #feb800);
+        background-image: -moz-linear-gradient(#ffcb15, #feb800);
+        background-image: -o-linear-gradient(#ffcb15, #feb800);
+        background-image: linear-gradient(#ffcb15, #feb800);
+        -webkit-box-shadow: 0 10px 10px -10px #bbbbbb;
+        -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
+        box-shadow: 0 10px 10px -10px #bbbbbb; }
+  @media only screen and (max-width: 775px) {
+    #cmp #signup-logo, #cmp #signup-email {
+      float: none;
+      width: 100%; }
+    #cmp #signup-logo {
+      padding: 1em; }
+    #cmp #signup-email {
+      padding: 1em 0em;
+      max-width: 380px;
+      margin: 0 auto; }
+    #cmp .header-social {
+      display: none; } }
+  @media only screen and (max-width: 550px) {
+    #cmp #signup-email {
+      padding: 0 1.5em 1em; } }
   #cmp label {
     cursor: default; }
   #cmp #contact-form2 {

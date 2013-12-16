@@ -7,10 +7,25 @@
 
 // HEADER
 // ------
+.section#header
+  background: url('//www.dosomething.org/files/campaigns/pbjs13/header-pbjs.jpg') top center no-repeat
+  margin-bottom: 0
+  height: 330px
+  .row-bottom
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 1%
+  .header-facebook-share,
+  .header-twitter-share
+    display: inline-block
+    height: 20px
+  .header-twitter-share
+    margin-left: 1em
 .header
   position: relative
   width: 100%
-  height: 300px
+  height: 330px
   border-bottom: 0
   background-color: transparent
   padding: 1% 2%
@@ -516,4 +531,88 @@
       text-decoration: none !important
 
 
+//  #signup
+// --------
 
+#signup-logo, #signup-email
+  width: 50%
+  float: left
+
+#signup-logo
+  padding: 3em 2em 1em
+  img
+    margin: 0 auto
+    display: block
+
+#signup-email
+  padding: 2em 3em
+
+  h3
+    color: #86005C
+    margin-bottom: 0.7em
+    font-size: 1.1em
+    letter-spacing: 1px
+    text-align: left
+    text-transform: uppercase
+    font-weight: 500
+  p
+    font-size: 1.25em
+    color: #1E1D1C
+    margin-bottom: 1em
+    font-weight: 300
+    text-align: left
+  .email-text
+    font-size: 0.9em
+    color: #777
+  .form-email
+    width: 100%
+    max-width: 320px
+    color: #555
+
+#edit-submit
+  margin: 0.5em 0 !important
+  font-weight: 600
+  font-family: din-web-reg
+  font-size: 1.5em !important
+  padding: 0.5em 1.5em 0.3em !important
+  border: 1px solid #feb800
+  height: inherit !important
+
+#signup-pics
+  padding: 1em 3em 2em
+  .year-headline
+    border-top: 1px solid #ccc
+    text-align: center
+    margin-bottom: 1em
+  h2
+    background: #86005C
+    color: white
+    text-transform: uppercase
+    font-weight: 300
+    font-size: 1.2em
+    padding: 0.25em 2em 0em
+    margin: 0 auto
+    display: inline-block
+  img
+    width: 17.5%
+    margin: 1%
+
+
+@media only screen and (max-width: 775px)
+  #signup-logo, #signup-email
+    float: none
+    width: 100%
+  #signup-logo
+    padding: 1em
+  #signup-email
+    padding: 1em 0em
+    max-width: 380px
+    margin: 0 auto
+  .header-social
+    display: none
+  #signup-pics
+    display: none
+
+@media only screen and (max-width: 550px)
+  #signup-email
+    padding: 0 1.5em 1em
