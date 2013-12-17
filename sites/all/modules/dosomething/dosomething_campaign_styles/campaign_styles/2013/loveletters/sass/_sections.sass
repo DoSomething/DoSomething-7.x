@@ -98,7 +98,7 @@
   padding-bottom: 0
 
 .header-desktop
-  font-size: 2em
+  font-size: 1.4em
   @media only screen and (max-width: 780px)
     display: none
 
@@ -132,12 +132,14 @@
   p
     color: #fff
     float: left
-    width: 50%
   .lead
+    font-size: 1.4em
     text-align: right
-    padding: 1em
+    padding: 0.75em 1em 0.35em
+    width: 58%
   .follow
     text-align: left
+    width: 42%
   @media only screen and (max-width: 780px)
     padding: 0.5em
     p
@@ -156,6 +158,7 @@
 .official-rules
   display: block
   margin: 1em auto 0
+  padding: 1em 0
   width: 13em
   text-align: center
   color: #1e1d1c !important
@@ -180,115 +183,31 @@
     overflow: hidden
     margin: 0 1em 1em
 
-// ACTION-KIT
-// ----------
-.action-kit
-  img
-    position: relative
-    top: 15px
-    right: 20px
-
-  .section-container
-    width: $section-content-width
-
-// TECH TIPS
-// ---------
-#tips
-  a
-    background: $accent-color
-    color: #fff
-    padding: 0.75em 0.75em 0.5em
-    +border-radius(12px)
-    text-decoration: none
-    border: 2px solid white
-    box-shadow: 0px 0px 8px #ccc
-    text-transform: uppercase
-    font-weight: 500
-    -webkit-transition: background-color 0.25s linear
-    transition: background-color 0.25s linear  
-    width: 30%
-    display: inline-block
+// SCHOLARSHIP
+// ---
+#scholarship
+  .col50
+    width: 50%
+    float: left
+    padding: 0 1%
     text-align: center
-    margin: 1.5% 1.5%
-    font-size: 1.2em
-    &:hover
-      background: $secondary-color
-    @media only screen and (max-width: $break-large)
-      width: 46%
-    @media only screen and (max-width: $break-small)
-      width: 85%
-      margin: 3%
-  .tech-link
-    margin: 1em 0
-
-
-
-
-
-// PRIZING
-// -------
-.prizing
-  p
-    padding: 1em 0
-
-  .prizing-container
-    width: ( $section-unit-width * 2 )
-    margin: 0 auto
-    clear: both
-
-  .btn
-    margin: 0 auto 1em
-
+    margin: 2em 0
+    p
+      max-width: 300px
+      margin: 1em auto
 
 // #INFO
 // ----------------
-#info
+#info, #learn
   .headline-callout
     text-align: left
   em
     font-style: italic
   .center
     text-align: center
+  li
+    margin-bottom: 1.2em
   
-
-// PROFILES
-// --------
-.profiles
-  .intro
-    margin-bottom: 2em
-
-  .profile-photo, .profile-copy
-    float: left
-    text-align: left
-
-    @include respond-to(tablets_and_phones)
-      float: none
-
-  .profile-photo
-    width: 290px
-    clear: both
-    margin: 0.5em 2em 0 1em
-
-    @include respond-to(tablets_and_phones)
-      margin: 0.5em auto 0
-
-  .profile-copy
-    width: $section-content-width
-    margin: 0 0 3em 0
-
-    @include respond-to(tablets_and_phones)
-      width: 90%
-      max-width: $section-content-width
-      margin: 0 auto 3em
-
-    p
-      text-align: left
-    h2
-      color: $header-color
-      text-align: left
-
-      @include respond-to(tablets_and_phones)
-        text-align: center
 
 // CONTENT
 // -------
@@ -305,6 +224,32 @@
   h2
     padding-bottom: 0.5em
 
+// CUT BANNER
+// ------
+.banner.cutcool
+  text-align: center
+  padding: 0 1em 1em
+  p
+    color: white
+    float: none
+    display: inline-block
+    font-size: 1.4em
+    &:before
+      content: url('http://www.dosomething.org/files/campaigns/love/cut-left.png')
+      position: relative
+      top: 15px
+    &:after
+      content: url('http://www.dosomething.org/files/campaigns/love/cut-right.png')
+      position: relative
+      top: 15px
+  a
+    color: white
+    padding: 0 1em
+    text-decoration: underline
+    &:hover
+      text-decoration: none
+  img
+    display: inline-block
 
 // SMS
 // ---
@@ -365,17 +310,6 @@
     //border: 1px solid #ddd !important
     //+border-radius(3px)
     //+box-shadow(0 10px 10px -10px #bbb !important)
-
-
-// MAP
-// ---
-.map
-  iframe
-    width: 90%
-    margin: 0 auto
-    display: block
-    border: 1px solid #ddd
-    +box-shadow(0 10px 10px -10px #ccc)
 
 // THANKS
 // ------
@@ -459,61 +393,24 @@
     width: 50px
     +block-center
 
-.footer-partner, .footer-banner
-  display: none
-  img
-    margin: 0.5em auto 2em
-    display: block
-  @media only screen and (max-width: $break-small)
-    display: inherit
 .footer-partner
+  margin-top: 2em
   p
     margin-top: 1.5em
+    float: left
+    width: 40%
+    text-align: right
+    padding: 1em
+  img
+    margin: 0.5em auto 2em
+    float: right
+    width: 60%
+    text-align: left
+  @media only screen and (max-width: $break-small)
+    display: inherit
 .footer-banner
+  display: none
   background: $main-color
   padding: 1em
   a, p
     color: white
-
-
-// CONFIRMATION
-// ------
-.pane-dosomething-campaign-kiva-confirmation
-  background: $panel-color
-  text-align: center
-  padding-bottom: 32px
-
-  .pane-content a
-    background: $btn-color
-    margin: 0 auto
-    padding: 0.25em 2em
-    font-size: 32px
-    clear: both
-    position: static
-    height: 2em
-    display: inline-block
-    border: 1px solid $btn-border
-    cursor: pointer
-    color: $off-black !important
-    font-family: din-web-reg
-    font-weight: 600
-    text-align: center
-    text-decoration: none !important
-    text-transform: uppercase
-    +border-radius(5px)
-    &:hover /* While mouse hovers */
-      background: $btn-hover
-      +background-image(linear-gradient($btn-color, $btn-hover))
-      +box-shadow(0 10px 10px -10px #bbb)
-    &:active /* While mouse clicks */
-      color: lighten($off-black, 10) !important
-      padding: 0.35em 0 0.15em !important
-      background: $btn-color
-      +background-image(linear-gradient($btn-hover, $btn-color))
-      +box-shadow(0 10px 10px -10px #bbb)
-    &:link, &:active, &:hover
-      color: $off-black
-      text-decoration: none !important
-
-
-
