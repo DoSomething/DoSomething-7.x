@@ -226,6 +226,17 @@ function entityreference_field_validate($entity_type, $entity, $field, $instance
         'error' => 'entityreference_invalid_entity',
         'message' => t('The referenced entity (@type: @id) is invalid.', array('@type' => $field['settings']['target_type'], '@id' => $id)),
       );
+
+      if (!empty($_POST)) {
+        watchdog('entityreference', 'Can\'t load invalid entity !id. type: !type. POST payload: !post',
+          array(
+            '!id' => $id,
+            '!type' => $field['settings']['target_type'],
+            '!post' => print_r($_POST, true)
+          )
+        );
+      }
+
     }
   }
 
