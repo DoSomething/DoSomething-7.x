@@ -70,8 +70,8 @@
 
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div class="success_msg"><p>You just sent a phone baby to your friends. Good work!</p></div>';
-      $('#game').prepend(success_msg);
+      var success_msg = '<div id="success-message"><p>You\'ve signed up to receive updates for this campaign!</p></div>';
+      $('#signup-email').prepend(success_msg);
     }
 
     // #header section Facebook fun
