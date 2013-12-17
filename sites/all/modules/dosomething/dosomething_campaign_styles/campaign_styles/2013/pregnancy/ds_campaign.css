@@ -431,6 +431,9 @@ body {
 #block-block-5 {
   display: none; }
 
+.tabs {
+  text-align: center; }
+
 #cmp {
   max-width: 960px;
   width: 100%;
