@@ -1055,6 +1055,15 @@ body {
     clear: both;
     float: left;
     display: block; }
+  #cmp #success-message {
+    float: left;
+    width: 100%;
+    margin: 0 0 4%;
+    border: 1px solid #47bdfc;
+    padding: 1.4em 1em 0;
+    text-align: center; }
+    #cmp #success-message p {
+      color: #47bdfc; }
   @media only screen and (max-width: 775px) {
     #cmp #signup-logo, #cmp #signup-email {
       float: none;

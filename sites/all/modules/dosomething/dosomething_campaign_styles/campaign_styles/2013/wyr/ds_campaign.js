@@ -74,8 +74,8 @@
 
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div class="success_msg"><h2>Have we told you how amazing you are lately? Just the best.</h2></div>';
-      $('#scholarship').prepend(success_msg);
+      var success_msg = '<div id="success-message"><p>You\'ve signed up to receive updates for this campaign!</p></div>';
+      $('#signup-email').prepend(success_msg);
     }
 
     // #share section Facebook fun
