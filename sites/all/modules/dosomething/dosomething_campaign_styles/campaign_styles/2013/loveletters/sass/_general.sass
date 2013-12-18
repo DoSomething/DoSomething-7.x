@@ -15,6 +15,8 @@ img
   border-bottom: 1px solid #ddd
   @media only screen and (max-width: 825px)
     padding: 3% 2%
+  @media only screen and (max-width: 550px)
+    padding: 1em 2%
 
 .section-container
   width: 100%
@@ -42,6 +44,11 @@ img
     width: auto
     margin: 0 auto 1em
     display: block
+
+.section-unit-single
+  @media only screen and (max-width: 600px)
+    img
+      display: none
 
 .section-unit-double
   width: 2 * $section-unit-width
@@ -110,8 +117,9 @@ h1.headline-callout
     background: $accent-color
     @media only screen and (max-width: 780px)
       background: #fff
-      color: #d75932
+      color: $main-color
       line-height: 1.5em
+      padding: 0.25em 0.75em 0.5em
 
 
 .headline-callout.alt
