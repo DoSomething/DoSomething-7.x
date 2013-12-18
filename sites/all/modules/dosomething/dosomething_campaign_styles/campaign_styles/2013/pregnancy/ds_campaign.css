@@ -431,6 +431,9 @@ body {
 #block-block-5 {
   display: none; }
 
+.tabs {
+  text-align: center; }
+
 #cmp {
   max-width: 960px;
   width: 100%;
@@ -915,6 +918,15 @@ body {
         -webkit-box-shadow: 0 10px 10px -10px #bbbbbb;
         -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
         box-shadow: 0 10px 10px -10px #bbbbbb; }
+  #cmp #success-message {
+    float: left;
+    width: 100%;
+    margin: 0 0 4%;
+    border: 1px solid #47bdfc;
+    padding: 1.4em 1em 0;
+    text-align: center; }
+    #cmp #success-message p {
+      color: #47bdfc; }
   @media only screen and (max-width: 775px) {
     #cmp #signup-logo, #cmp #signup-email {
       float: none;
