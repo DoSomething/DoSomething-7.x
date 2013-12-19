@@ -15,12 +15,8 @@
         <ul class="dropdown">
             <li><a href="/teensforjeans">Teens For Jeans</a></li>
             <li><a href="/grandparents">Grandparents Gone Wired</a></li>
-            <li><a href="/footlocker">Foot Locker Scholarship</a></li>
-            <li><a href="/money">Mind on my Money</a></li>
-            <li><a href="/50cans">50 Cans</a></li>
-            <li><a href="/bullytext">Bully Text</a></li>
-            <li><a href="/spit">Give A Spit</a></li>
             <li><a href="/survivors">Cellphones for Survivors</a></li>
+            <li><a href="/money">Mind on my Money</a></li>
             <li><a href="//fedup.dosomething.org">Fed Up</a></li>
             <li><a href="/past-campaigns">Past Campaigns</a></li>
         </ul>
