@@ -116,12 +116,6 @@ $activity->sets = array(
     'game_id' => SmsFlowGameConstants::IHEARTDAD_GUIDE,
     'opt_in_paths' => array(158861, 158863, 158865, 158869, 158871, 158873),
   ),
-  // Birthday Mail 2013 Tips
-  array(
-    'mdata_id' => 10907,
-    'game_id' => SmsFlowGameConstants::BDAYMAIL_TIPS,
-    'opt_in_paths' => array(160625, 160627, 160629, 160631, 160633, 160635),
-  ),
   // Give A Spit 2013 Idea Tips
   array(
     'mdata_id' => 10921,
@@ -231,6 +225,13 @@ $activity->sets = array(
     'mdata_id'     => 10113,
     'game_id'      => SmsFlowGameConstants::PBJ_DRIVE_TIPS,
     'opt_in_paths' => array(163599, 163601, 163603, 163605, 163607),
+    'should_loop'  => TRUE,
+  ),
+  // Love Letter 2014 - CARD tips
+  array(
+    'mdata_id'     => 10907,
+    'game_id'      => SmsFlowGameConstants::LOVELETTER_TIPS,
+    'opt_in_paths' => array(163671, 163673, 163677, 163679, 163681, 163683, 163685),
     'should_loop'  => TRUE,
   ),
 );
