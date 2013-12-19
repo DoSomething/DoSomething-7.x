@@ -28,11 +28,6 @@ $activity->name = 'can_send_mms';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
 $activity->routes = array(
-  // Birthday Mail 2013 Report Back
-  '160639' => array(
-    'yes' => '160641',
-    'no' => '160645',
-  ),
   // Give A Spit 2013 Report Back
   '161255' => array(
     'yes' => '161257',
@@ -53,69 +48,17 @@ $activity->routes = array(
     'yes' => '162627',
     'no' => '162631',
   ),
+  // Love Letters 2014 Report Back
+  '163693' => array(
+    'yes' => '163695',
+    'no' => '163697',
+  ),
 );
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
 $activity->inputs = array('can_send_mms');
 $activity->outputs = array();
-
-$workflows[$workflow->name] = $workflow;
-
-/**
- * Birthday Mail 2013 Report Back User will first be prompted to submit a
- * picture from: https://secure.mcommons.com/campaigns/121121/opt_in_paths/160639
- */
-$workflow = new ConductorWorkflow;
-$workflow->wid = 'new';
-$workflow->name = 'sms_flow_birthdaymail_report_back';
-$workflow->title = 'Birthday Mail Report Back';
-$workflow->description = 'Submits the report back for the Birthday Mail campaign';
-$workflow->api_version = '1.0';
-
-$activity = $workflow->newActivity('start');
-$activity->name = 'start';
-$activity->outputs = array('ask_picture');
-
-$activity = $workflow->newActivity('mms_prompt');
-$activity->name = 'ask_picture';
-$activity->inputs = array('start');
-$activity->outputs = array('ask_cards', 'end');
-$activity->should_prompt = FALSE;
-$activity->no_mms_response = 160647;
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_cards';
-$activity->inputs = array('ask_picture');
-$activity->outputs = array('ask_people');
-$activity->question = t('Thanks! How many cards did you make?');
-
-$activity = $workflow->newActivity('sms_prompt');
-$activity->name = 'ask_people';
-$activity->inputs = array('ask_cards');
-$activity->outputs = array('strip_signature');
-$activity->question = t('How many people did you participate with? (If you made cards alone, text back 0.)');
-
-$activity = $workflow->newActivity('sms_strip_signature');
-$activity->name = 'strip_signature';
-$activity->inputs = array('ask_people');
-$activity->outputs = array('submit_report_back');
-
-$activity = $workflow->newActivity('submit_report_back');
-$activity->name = 'submit_report_back';
-$activity->inputs = array('strip_signature');
-$activity->outputs = array('end');
-$activity->submission_fields = array(
-  'ask_cards' => 1,
-  'ask_people' => 3,
-  'picture' => 'ask_picture:mms',
-);
-$activity->success_response = 160649;
-$activity->webform_nid = 730403;
-
-$activity = $workflow->newActivity('end');
-$activity->name = 'end';
-$activity->inputs = array('submit_report_back', 'ask_picture');
 
 $workflows[$workflow->name] = $workflow;
 
@@ -659,5 +602,69 @@ $activity->webform_nid = 731099;
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
 $activity->inputs = array('school_found', 'school_search', 'submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Love Letters 2014 Report Back - User will first be prompted to submit a
+ * picture from: https://secure.mcommons.com/campaigns/123417/opt_in_paths/163695
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_loveletters_report_back';
+$workflow->title = 'Love Letters Report Back';
+$workflow->description = 'Submits the report back for the Love Letters campaign';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_cards', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 163699;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_cards';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->opt_in_path_id = 163701;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_cards');
+$activity->outputs = array('ask_why');
+$activity->opt_in_path_id = 163703;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_why';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('strip_signature');
+$activity->opt_in_path_id = 163705;
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_why');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_cards' => 3,
+  'ask_people' => 4,
+  'ask_why' => 5,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 163707;
+$activity->webform_nid = 731168;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back', 'ask_picture');
 
 $workflows[$workflow->name] = $workflow;
