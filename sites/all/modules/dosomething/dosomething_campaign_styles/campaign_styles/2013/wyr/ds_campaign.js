@@ -74,7 +74,7 @@
 
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div id="success-message"><p>You\'ve signed up to receive updates for this campaign!</p></div>';
+      var success_msg = '<div id="success-message"><p>Thanks for signing up! Stay tuned for a text from us.</p></div>';
       $('#signup-email').prepend(success_msg);
     }
 

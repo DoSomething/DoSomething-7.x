@@ -22,6 +22,12 @@
         });
       };
 
+      // Mobile Commons success message
+      if (document.location.search.slice(1,8) === 'success') {
+        var success_msg = '<div id="success-message"><p>Thanks for signing up! Stay tuned for a text from us.</p></div>';
+        $('#signup-email').prepend(success_msg);
+      }
+
       // Dynamically set width of the call to action buttons
       //set_width('a.btn', 'span', 1.3);
 
