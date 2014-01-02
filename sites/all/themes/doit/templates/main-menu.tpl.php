@@ -13,8 +13,10 @@
     <li>
         <a class="menu-link" href="/campaigns">Campaigns</a>
         <ul class="dropdown">
+            <li><a href="/loveletters">Love Letters</a>
             <li><a href="/teensforjeans">Teens For Jeans</a></li>
             <li><a href="/grandparents">Grandparents Gone Wired</a></li>
+            <li><a href="/bully">Bully Text</a>
             <li><a href="/survivors">Cellphones for Survivors</a></li>
             <li><a href="/money">Mind on my Money</a></li>
             <li><a href="//fedup.dosomething.org">Fed Up</a></li>
