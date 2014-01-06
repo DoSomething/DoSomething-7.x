@@ -2236,6 +2236,11 @@ function dosomething_login_is_gated_signup_node($node) {
  *   Returns FALSE otherwise.
  */
 function dosomething_login_is_signup_gate_url($url) {
+  // If TFJ URL, its a signup gate.
+  if (strpos($url, 'teensforjeans') !== FALSE) {
+    $node = node_load(731115);
+    return $node;
+  }
   // Check if given URL is a signup gate.
   $destination = '?destination=node/';
   $user_registration_url = 'user/registration' . $destination;
