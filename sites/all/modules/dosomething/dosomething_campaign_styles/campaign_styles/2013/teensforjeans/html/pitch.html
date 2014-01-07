@@ -1,15 +1,25 @@
+<?php global $user; ?>
 <section class="headline section alt" id="headline">
   <h1 class="headline-callout"><span>OVER 1.5 MILLION TEENS AND CHILDREN ARE HOMELESS.</span></h1>
 </section>
 
 <section class="call-to-action section" id="call-to-action">
   <div class="section-container">
-    <div class="cta-leftcol">
-      <p>Join A&eacute;ropostale &amp; Do Something and donate jeans to help.</p>
-    </div>
-    <div class="cta-rightcol">
-      <?php print dosomething_campaign_tfj_get_signup_button(); ?>  
-    </div>
+    <?php if ($user->uid != 0): ?>
+      <div class="cta-leftcol">
+        <p>Join A&eacute;ropostale &amp; Do Something and donate jeans to help.</p>
+      </div>
+      <div class="cta-rightcol">
+        <?php print dosomething_campaign_tfj_get_signup_button(); ?>  
+      </div>
+    <?php else: ?>
+      <div id="user-login">
+        <?php print render(drupal_get_form('user_login_block')); ?>
+      </div>
+      <div id="user-register">
+        <?php print render(drupal_get_form('dosomething_login_register_popup_form')); ?>
+      </div>
+    <?php endif; ?>
   </div>
 </section>
 
