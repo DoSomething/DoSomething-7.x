@@ -53,6 +53,11 @@ $activity->routes = array(
     'yes' => '163695',
     'no' => '163697',
   ),
+  // Teens for Jeans 2014 Report Back
+  '163773' => array(
+    'yes' => '163775',
+    'no' => '163777',
+  ),
 );
 
 $activity = $workflow->newActivity('end');
@@ -662,6 +667,69 @@ $activity->submission_fields = array(
 );
 $activity->success_response = 163707;
 $activity->webform_nid = 731168;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back', 'ask_picture');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Teens for Jeans 2014 Report Back
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_tfj_report_back';
+$workflow->title = 'Teens for Jeans 2014 Report Back';
+$workflow->description = 'Submits the report back for the Teens for Jeans 2014 campaign.';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ask_picture');
+
+$activity = $workflow->newActivity('mms_prompt');
+$activity->name = 'ask_picture';
+$activity->inputs = array('start');
+$activity->outputs = array('ask_jeans', 'end');
+$activity->should_prompt = FALSE;
+$activity->no_mms_response = 163779;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_jeans';
+$activity->inputs = array('ask_picture');
+$activity->outputs = array('ask_people');
+$activity->opt_in_path_id = 163781;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_people';
+$activity->inputs = array('ask_jeans');
+$activity->outputs = array('ask_why');
+$activity->opt_in_path_id = 163783;
+
+$activity = $workflow->newActivity('mobile_commons_opt_in_prompt');
+$activity->name = 'ask_why';
+$activity->inputs = array('ask_people');
+$activity->outputs = array('strip_signature');
+$activity->opt_in_path_id = 163785;
+
+$activity = $workflow->newActivity('sms_strip_signature');
+$activity->name = 'strip_signature';
+$activity->inputs = array('ask_why');
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('strip_signature');
+$activity->outputs = array('end');
+$activity->submission_fields = array(
+  'ask_jeans' => 3,
+  'ask_people' => 5,
+  'ask_why' => 6,
+  'picture' => 'ask_picture:mms',
+);
+$activity->success_response = 163787;
+$activity->webform_nid = 731181;
 
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
