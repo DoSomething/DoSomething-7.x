@@ -14,3 +14,4 @@ $keywords['50cans-report-back'] = 'sms_flow_50cans_report_back';
 $keywords['ggw-report-back'] = 'sms_flow_ggw_report_back';
 $keywords['momm-report-back'] = 'sms_flow_momm_report_back';
 $keywords['loveletters-report-back'] = 'sms_flow_loveletters_report_back';
+$keywords['tfj-report-back'] = 'sms_flow_tfj_report_back';
