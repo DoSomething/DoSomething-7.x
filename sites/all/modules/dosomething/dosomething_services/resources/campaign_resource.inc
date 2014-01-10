@@ -121,7 +121,12 @@ function _campaign_signup_create($nid, $uid, $data) {
   // Create the initial sign up
   $signed_up = dosomething_signups_is_user_signed_up($uid, $nid);
   if (!$signed_up) {
-    $signup = dosomething_signups_insert_signup($uid, $nid);
+    $addl_data = NULL;
+    if (is_array($data) && isset($data['data'])) {
+      $addl_data = $data['data'];
+    }
+
+    $signup = dosomething_signups_insert_signup($uid, $nid, $addl_data);
     $signed_up = TRUE;
   }
 
