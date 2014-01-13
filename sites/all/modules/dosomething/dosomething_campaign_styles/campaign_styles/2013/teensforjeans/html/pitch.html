@@ -1,19 +1,19 @@
 <?php global $user; ?>
 <section class="headline section alt" id="headline">
-  <h1 class="headline-callout"><span>OVER 1.5 MILLION TEENS AND CHILDREN ARE HOMELESS.</span></h1>
+  <h1 class="headline-callout"><span>DONATE JEANS TO HOMELESS YOUTH IN YOUR COMMUNITY.</span></h1>
 </section>
 
 <section class="call-to-action section" id="call-to-action">
   <div class="section-container">
     <?php if ($user->uid != 0): ?>
       <div class="cta-leftcol">
-        <p>Join A&eacute;ropostale &amp; Do Something and donate jeans to help.</p>
+        <p>Join A&eacute;ropostale, DoSomething.org, and Fifth Harmony to help.</p>
       </div>
       <div class="cta-rightcol">
         <?php print dosomething_campaign_tfj_get_signup_button(); ?>  
       </div>
     <?php else: ?>
-      <h1>Join A&eacute;ropostale & DoSomething.org and donate jeans to help.</h1>
+    <h1>Join A&eacute;ropostale, DoSomething.org, and Fifth Harmony to help.</h1>
       
       <div id="login-form">
         <p class="cta-form-intro">Login with your DoSomething.org account to get everything you need to drop off your jeans and win scholarship $$!</p>
