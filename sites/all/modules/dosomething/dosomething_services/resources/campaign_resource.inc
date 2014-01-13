@@ -118,16 +118,18 @@ function _campaign_signup_retrieve($nid, $uid) {
  *   Supplementary data for the campaign sign up.
  */
 function _campaign_signup_create($nid, $uid, $data) {
-  // Create the initial sign up
-  $signed_up = dosomething_signups_is_user_signed_up($uid, $nid);
-  if (!$signed_up) {
-    $addl_data = NULL;
-    if (is_array($data) && isset($data['data'])) {
-      $addl_data = $data['data'];
-    }
+  $addl_data = NULL;
+  if (is_array($data) && isset($data['data'])) {
+    $addl_data = $data['data'];
+  }
 
-    $signup = dosomething_signups_insert_signup($uid, $nid, $addl_data);
-    $signed_up = TRUE;
+  // Create the initial sign up
+  if (!dosomething_signups_is_user_signed_up($uid, $nid)) {
+    dosomething_signups_insert_signup($uid, $nid, $addl_data);
+  }
+  // Or update an already existing one
+  else {
+    dosomething_signups_update_signup_data($uid, $nid, $addl_data);
   }
 
   // Add additional address data, if any
@@ -147,7 +149,7 @@ function _campaign_signup_create($nid, $uid, $data) {
   }
 
   $return = new stdClass();
-  $return->signed_up = $signed_up;
+  $return->signed_up = TRUE;
 
   return $return;
 }
