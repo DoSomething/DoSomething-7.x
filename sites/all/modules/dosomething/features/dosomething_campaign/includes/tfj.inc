@@ -97,7 +97,7 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
     ),
   );
   $form['poster_footer'] = array(
-    '#markup' => '<p><em>Banners will arrive in 3-4 weeks.</em></p>',
+    '#markup' => '<p><em>Banners will arrive in 1-2 weeks.</em></p>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
