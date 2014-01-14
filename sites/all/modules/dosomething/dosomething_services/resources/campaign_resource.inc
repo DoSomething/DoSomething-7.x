@@ -127,8 +127,8 @@ function _campaign_signup_create($nid, $uid, $data) {
   if (!dosomething_signups_is_user_signed_up($uid, $nid)) {
     dosomething_signups_insert_signup($uid, $nid, $addl_data);
   }
-  // Or update an already existing one
-  else {
+  // Or update an already existing one as long as there's data to update with
+  elseif ($addl_data) {
     dosomething_signups_update_signup_data($uid, $nid, $addl_data);
   }
 
