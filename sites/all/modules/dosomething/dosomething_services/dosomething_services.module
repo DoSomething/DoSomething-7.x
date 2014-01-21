@@ -21,11 +21,11 @@ function dosomething_services_field_widget_form_alter(&$element, &$form_state, $
   // Check that type is 'image'
   $type = $context['field']['type'];
   $is_type_image = $type == 'image';
-  
+
   // Checking 'programmed' and 'submitted' flags which indicate to us that it's
   // likely been submitted through the webform_service
   $is_services_submitted = $form_state['programmed'] && $form_state['submitted'];
-  
+
   // Finally check that there are field_webform_pictures that were submitted
   $has_field_webform_pictures_fid = isset($form_state['values']['submitted']['field_webform_pictures'][LANGUAGE_NONE][0]['fid']);
 
@@ -59,7 +59,7 @@ function dosomething_services_field_widget_form_alter(&$element, &$form_state, $
       '#title' => 'Pictures'
     );
 
-    // Then similar to what's found in file_field_widget_form(), essentially 
+    // Then similar to what's found in file_field_widget_form(), essentially
     // use the managed_file type, but extended with some enhancements.
     $element_info = element_info('managed_file');
     $elem += array(
@@ -73,7 +73,7 @@ function dosomething_services_field_widget_form_alter(&$element, &$form_state, $
       '#extended' => TRUE,
     );
 
-    // **IMPORTANT** Key difference in code is here where we unconditionally 
+    // **IMPORTANT** Key difference in code is here where we unconditionally
     // add to the $element array for each picture item
     $item_count = count($form_state['values']['submitted']['field_webform_pictures'][LANGUAGE_NONE]);
     for ($delta = 0; $delta < $item_count; $delta++) {
@@ -182,6 +182,9 @@ function dosomething_services_services_resources() {
 
   require_once('resources/profile_resource.inc');
   $resources += _profile_resource_definition();
+
+  require_once('resources/campaign_resource.inc');
+  $resources += _campaign_resource_definition();
 
   return $resources;
 }
@@ -360,7 +363,7 @@ function _dosomething_services_mailchimp_subscribe($group_name, $email) {
         array('id' => $groupingIdByGroupName[$group_name], 'groups' => $group_name)
       )
     );
-    
+
     $mcResult = $mcapi->listSubscribe($listid, $email, $mergeVars, 'html', FALSE, TRUE, FALSE);
   }
 }
@@ -401,7 +404,7 @@ function _dosomething_services_user_resource_create($account) {
   if (!empty($mobile) && dosomething_api_user_lookup($mobile)) {
     return _dosomething_services_form_error(t('An account with that mobile number already exists'), 406);
   }
-  
+
   // No existing account found, so create a new one
   $new_user = new stdClass;
 
@@ -586,8 +589,8 @@ function _dosomething_services_system_resource_connect() {
   $return = _system_resource_connect();
   $return->session_name = session_name();
   _dosomething_services_add_more_session_info($return);
-  
-  return $return; 
+
+  return $return;
 }
 
 /**
