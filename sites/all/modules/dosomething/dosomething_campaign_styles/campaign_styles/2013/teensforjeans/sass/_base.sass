@@ -69,6 +69,9 @@ $base-padding: 25px
   @else if $media == tablets
     @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1)
       @content
+  @else if $media == widescreens_and_tablets
+    @media only screen and (min-width: $break-small + 1)
+      @content
   @else if $media == widescreens
     @media only screen and (min-width: $break-large)
       @content
