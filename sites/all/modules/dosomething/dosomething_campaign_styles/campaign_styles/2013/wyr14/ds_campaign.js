@@ -55,18 +55,18 @@
       // FACEBOOK SHARING
       // ----------------
 
-      var fb_share_img = 'www.dosomething.org/files/campaigns/bullytext/bullytext_header.jpg';
-      var fb_title = 'Bully Text';
-      var fb_header_caption = 'Will you and your friends stand up?';
+      var fb_share_img = 'www.dosomething.org/files/campaigns/wyr/header.jpg';
+      var fb_title = 'Would You Rather';
+      var fb_header_caption = 'What would your friends do to save a few bucks?';
 
       Drupal.behaviors.fb.feed({
         'feed_picture': fb_share_img,
         'feed_title': fb_title,
         'feed_caption': fb_header_caption,
-        'feed_description': 'Everyone has the power to stop bullying. Join @do something for The Bully Text and find out how you and your friends can stand up to bullying',
+        'feed_description': 'Sign up to play Would You Rather with Do Something and H&R Block Dollars & Sense to test yourself now and learn a little something about financial education in the process',
         'feed_selector': '.header-facebook-share',
       }, function(response){
-        window.location.href = '/bullytext#header';
+        window.location.href = '/wyr';
       });
 
       // ------------------------
@@ -74,7 +74,7 @@
       // ------------------------
 
       if (document.location.search.slice(1,8) === 'success') {
-        var success_msg = '<div class="success_msg"><h2>Great! We sent The Bully Text to you and your friends.</h2></div>';
+        var success_msg = '<div class="success_msg"><h2>Great! We sent The Game to you and your friends.</h2></div>';
         $('#sms').prepend(success_msg);
       }
 
