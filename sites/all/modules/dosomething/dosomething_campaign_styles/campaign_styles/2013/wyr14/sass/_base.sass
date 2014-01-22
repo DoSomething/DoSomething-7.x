@@ -1,0 +1,85 @@
+// VARIABLES
+// ---------
+
+// breakpoints
+$break-small: 600px
+$break-large: 1140px
+$maxwidth: 960px
+
+// colors
+$first-color: #00A6DB
+$second-color: #FE7D2D
+
+
+$off-black: #1E1D1C
+$bg-light: #FFF
+$bg-alt: #EEE
+$accent: #00a99d
+$highlight: $accent
+$header-color: #fff
+
+$grey-subtle: #ddd
+$grey-subtle: #eee
+
+$btn-grey: #CCC
+$btn-color: #FFCB15
+$btn-hover: #FEB800
+$btn-border: $btn-hover
+
+$bg-header-color: $bg-alt
+$bg-header-fallback: $bg-alt
+
+$border-subtle: 1px solid $grey-subtle
+
+// images
+$bg-header-image: '//www.dosomething.org/files/campaigns/wyr/header.jpg'
+
+// fonts
+$font-grey: #CCC
+$font-light: #FFF
+$font-black: #000
+$din: din-web-reg,"Trebuchet MS",sans-serif
+
+// layout
+$section-wrapper-width: 960px
+$section-container-width: 960px
+$section-content-width: 35em
+$section-unit-width: 33.333333333%
+$base-padding: 25px
+
+// MIXINS
+// -----
+@mixin noBorder
+  border: none !important
+
+@mixin noShadow
+  -moz-box-shadow: none !important
+  -webkit-box-shadow: none !important
+  -o-box-shadow: none !important
+  box-shadow: none !important
+
+@mixin block-center
+  margin: 0 auto
+  display: block
+
+// TODO - #DDD & #EEE BORDERS?
+@mixin border-bottom-subtle
+  border-bottom: $border-subtle
+
+// creates style blocks for different breakpoints
+@mixin respond-to($media)
+  @if $media == tablets_and_phones
+    @media only screen and (max-width: $break-large - 1)
+      @content
+  @else if $media == phones
+    @media only screen and (max-width: $break-small)
+      @content
+  @else if $media == tablets
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1)
+      @content
+  @else if $media == widescreens
+    @media only screen and (min-width: $break-large)
+      @content
+
+@function em-calc($target)
+  @return ($target/16)*1em
