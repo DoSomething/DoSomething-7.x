@@ -169,11 +169,16 @@ function sms_mobile_commons_menu() {
 function sms_mobile_commons_incoming_check() {
   // Valid IP range as specified by Mobile Commons is: 64.22.127.0/24.
   // This translates to any IP 64.22.127.0 - 64.22.127.255
-  $valid = FALSE;
   $ip = ip_address();
   $valid = FALSE;
   if (strpos($ip, '64.22.127') === 0) {
     if ((int) substr($ip, 9, 3) >= 0 && (int) substr($ip, 10, 3) <= 255) {
+      $valid = TRUE;
+    }
+  }
+  // Also check the Mobile Commons backup data center IP: 67.214.223.81 - .94
+  else if (strpos($ip, '67.214.213') === 0) {
+    if ((int) substr($ip, 11, 3) >= 81 && (int) substr($ip, 11, 3) <= 94) {
       $valid = TRUE;
     }
   }
@@ -498,6 +503,7 @@ function sms_mobile_commons_profile_summary($number) {
   $context = stream_context_create($opts);
   return file_get_contents($api_profile_summary_url, FALSE, $context);
 }
+
 /**
  * Get the Mobile Commons authorization string for API calls
  */
