@@ -92,18 +92,17 @@ header[role="banner"]
   position: relative
 
 // re-position ds.org logo
-//#site-name
-  //top: -38px
-  //left: -94px
-  //@include respond-to(tablets_and_phones)
-    //top: -52px
-    //left: 5px
-
-    //a
-      //width: 60px
-      //height: 50px
-      //background-image: url('/sites/all/themes/doit/css/images/ds-logo.png')
-      //background-size: 60px 50px
+#site-name
+  top: -38px
+  left: -94px
+  @include respond-to(tablets_and_phones)
+    top: -52px
+    left: 5px
+    a
+      width: 60px
+      height: 50px
+      background-image: url('/sites/all/themes/doit/css/images/ds-logo.png')
+      background-size: 60px 50px
 
 // better looking error messages!
 #page .messages

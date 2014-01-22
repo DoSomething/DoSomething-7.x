@@ -42,19 +42,24 @@
     padding: 1% 2% 12% 2%
 
   .logo-campaign
+    margin-top: 1em
     h2
       text-align: right
       color: white
-      font-size: 3.4em
+      font-size: 3.8em
       text-transform: uppercase
-      letter-spacing: 1px
+      letter-spacing: 4px
       font-weight: 600
-      margin: 0.2em
+      margin: 0.1em
       line-height: 1em
       span
         display: inline-block
         background: $first-color
         padding: 0.2em 0.25em 0
+      @media only screen and (max-width: $break-large)
+        font-size: 3.4em
+      @media only screen and (max-width: $break-small)
+        font-size: 3em
 
   .log-out
     color: $font-light
@@ -89,6 +94,8 @@
       background: $second-color
       display: inline-block
       padding: 4px 1em 0
+      @include respond-to(phones)
+        font-size: 1.2em
 
 
   .header-sponsor
@@ -249,6 +256,7 @@
     p
       text-align: right
       color: #fff
+      min-width: 60px
 
   .btn
     width: 230px
@@ -336,17 +344,16 @@
       color: black
 
   h2, h3
-    margin: 0 auto 0.25em
+    margin: 0 auto
     text-transform: uppercase
     letter-spacing: 2px
-
     span
       font-weight: 500
       font-size: 1.2em
       color: white
       background-color: $second-color
       display: inline-block
-      padding: 5px 10px 0 10px
+      padding: 0.5em 0.3em 0.2em
       @include respond-to(phones)
         padding: 0
         background: none
