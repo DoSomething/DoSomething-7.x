@@ -47,4 +47,6 @@ class SmsFlowGameConstants {
   const TFJ_PRIZE_GUIDE         = 38;
   const TFJ_INFO_TIPS           = 39;
   const PBJ_HUNGER_TIPS         = 40;
+  const WYR_GAME_2014           = 41;
+  const WYR_TIPS                = 42;
 }

@@ -234,6 +234,20 @@ $activity->sets = array(
     'opt_in_paths' => array(163671, 163673, 163677, 163679, 163681, 163683, 163685),
     'should_loop'  => TRUE,
   ),
+  // WYR 2014 - Question set
+  array(
+    'mdata_id'     => 9783,
+    'game_id'      => SmsFlowGameConstants::WYR_GAME_2014,
+    'opt_in_paths' => array(164009, 164011, 164013),
+    'should_loop'  => TRUE,
+  ),
+  // WYR 2014 - Tips
+  array(
+    'mdata_id'     => 9903,
+    'game_id'      => SmsFlowGameConstants::WYR_TIPS,
+    'opt_in_paths' => array(/*TODO*/),
+    'should_loop'  => TRUE,
+  ),
 );
 
 $activity = $workflow->newActivity('end');
@@ -377,6 +391,80 @@ $activity->sets = array(
 $activity = $workflow->newActivity('end');
 $activity->name = 'end';
 $activity->inputs = array('mcommons_timed_paths');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Triggered at the end of a WYR question set. Processes the user's final answer
+ * to the question set, determines the next message, and composes and sends a
+ * return message to the user's alpha inviter, if any.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_wyr_qset_end';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('wyr_qset_end');
+
+$activity = $workflow->newActivity('wyr_qset_end');
+$activity->name = 'wyr_qset_end';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->gameId = SmsFlowGameConstants::WYR_GAME_2014;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('wyr_qset_end');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
+ * Invites the user-provided number to a campaign and internally makes note of
+ * the alpha (inviter) / beta (invitee) relationship.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_wyr_ftaf';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('ftaf');
+
+$activity = $workflow->newActivity('sms_flow_generic_ftaf');
+$activity->name = 'ftaf';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->ftaf_sets = array(
+  // Question Set #1
+  array(
+    'opt_in_path_id' => 164009,
+    'beta_optin' => 164009,
+    'response_success' => 164029,
+    'type_override' => 'sms_game',
+  ),
+  // Question Set #2
+  array(
+    'opt_in_path_id' => 164011,
+    'beta_optin' => 164011,
+    'response_success' => 164029,
+    'type_override' => 'sms_game',
+  ),
+  // Question Set #3
+  array(
+    'opt_in_path_id' => 164013,
+    'beta_optin' => 164013,
+    'response_success' => 164029,
+    'type_override' => 'sms_game',
+  ),
+);
+
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('ftaf');
 
 $workflows[$workflow->name] = $workflow;
 
