@@ -62,6 +62,8 @@ class ConductorActivityWYRQsetEnd extends ConductorActivity {
     $answers = sms_flow_game_get_answers($mobile, $this->gameId);
 
     if (empty($answers)) {
+      // Record needs to be created in order for sms_flow_game_set_answers to work later.
+      sms_flow_game_create_record($mobile, $this->gameId);
       $answers = array();
     }
 
