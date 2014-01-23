@@ -449,7 +449,14 @@ $activity->outputs = array('end');
 $activity->ftaf_sets = array(
   // Question Set #1
   array(
-    'opt_in_path_id'   => 164009,
+    'opt_in_path_id'   => 164017,
+    'beta_optin'       => 164009,
+    'response_success' => 164029,
+    'id_override'      => SmsFlowGameConstants::WYR_GAME_2014,
+    'type_override'    => 'sms_game',
+  ),
+  array(
+    'opt_in_path_id'   => 164019,
     'beta_optin'       => 164009,
     'response_success' => 164029,
     'id_override'      => SmsFlowGameConstants::WYR_GAME_2014,
@@ -457,7 +464,14 @@ $activity->ftaf_sets = array(
   ),
   // Question Set #2
   array(
-    'opt_in_path_id'   => 164011,
+    'opt_in_path_id'   => 164021,
+    'beta_optin'       => 164011,
+    'response_success' => 164029,
+    'id_override'      => SmsFlowGameConstants::WYR_GAME_2014,
+    'type_override'    => 'sms_game',
+  ),
+  array(
+    'opt_in_path_id'   => 164023,
     'beta_optin'       => 164011,
     'response_success' => 164029,
     'id_override'      => SmsFlowGameConstants::WYR_GAME_2014,
@@ -465,7 +479,14 @@ $activity->ftaf_sets = array(
   ),
   // Question Set #3
   array(
-    'opt_in_path_id'   => 164013,
+    'opt_in_path_id'   => 164025,
+    'beta_optin'       => 164013,
+    'response_success' => 164029,
+    'id_override'      => SmsFlowGameConstants::WYR_GAME_2014,
+    'type_override'    => 'sms_game',
+  ),
+  array(
+    'opt_in_path_id'   => 164027,
     'beta_optin'       => 164013,
     'response_success' => 164029,
     'id_override'      => SmsFlowGameConstants::WYR_GAME_2014,
