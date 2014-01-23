@@ -621,9 +621,9 @@ function dosomething_login_register_popup_form($form, &$form_state, $is_modal = 
   );
   $form['cell'] = array(
     '#type' => 'textfield',
-    '#title' => t('Cell'),
+    '#title' => t('Cell Phone (optional)'),
     '#attributes' => array(
-      'placeholder' => t('Cell phone number (optional)'),
+      'placeholder' => t('Cell phone number'),
     ),
     '#size' => 20,
   );
