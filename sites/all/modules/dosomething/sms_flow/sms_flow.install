@@ -45,7 +45,7 @@ function sms_flow_schema() {
       )
     ),
   );
-  
+
   $schema['sms_flow_game'] = array(
     'description' => 'Stores details to SAS games relative to a user / unique phone number.',
     'fields' => array(
@@ -133,7 +133,7 @@ function sms_flow_update_7103() {
 
   // Define new sms_flow_game table
   // http://drupal.org/node/150215
-  
+
   $schema['sms_flow_game'] = array(
     'description' => 'Stores details to SAS games relative to a user / unique phone number.',
     'fields' => array(
@@ -158,15 +158,31 @@ function sms_flow_update_7103() {
       'answers' => array(
       	'description' => 'Serialized struct of answers given by the user {optin-path: {array of answers}}',
       	'type' => 'varchar',
-      	'length' => 255,
+      	'length' => 512,
       	'not null' => true
       ),
     ),
   );
-  
+
   // Apply new schema to database
   db_create_table('sms_flow_game', $schema['sms_flow_game']);
-  
+
   drupal_set_message('Update of SMS Flow module. New table added - sms_flow_game', 'status');
-  
+
+}
+
+/**
+ * Increases the size of the 'answers' column in sms_flow_game.
+ */
+function sms_flow_update_7104() {
+  $spec = array(
+    'description' => 'Serialized struct of answers given by the user {optin-path: {array of answers}}',
+    'type' => 'varchar',
+    'length' => 512,
+    'not null' => true
+  );
+
+  db_change_field('sms_flow_game', 'answers', 'answers', $spec);
+
+  drupal_set_message('Update of the sms_flow_game table. Increased length of the \'answers\' field to 512.', 'status');
 }
