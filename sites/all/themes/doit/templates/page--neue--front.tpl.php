@@ -27,7 +27,7 @@
 <?php print $messages; ?>
 <div class="full-width wallpaper ds-intro">
   <div class="page-width with-copy">
-    <h1>Join over 2.4 million young people taking action. </h1>
+    <h1>Join over 2.5 million young people taking action. </h1>
     <p>Make the world suck less. Pick a campaign below to get started.</p>
   </div>
 </div>
