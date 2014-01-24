@@ -1,6 +1,6 @@
 <nav id="top" class="utility">
   <div class="page-width">
-    <a href="#" class="utility-link js-menu-toggle">Menu</a>
+    <a href="#" class="utility-link mobile-menu-link js-menu-toggle">Menu</a>
     <ul class="utility-links">
       <li class="search">
         <?php print render($page['utility']['dosomething_blocks_dosomething_utility_bar']['search']); ?>
