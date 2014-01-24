@@ -57,19 +57,19 @@
       </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/survivors-block.jpg'); background-position: center center;">
-     <a class="full-link" href="/survivors"><span>Do This</span></a>
-     <div class="headline red">
-       <div class="headline-row"><h4>Donate phones to help domestic abuse survivors</h4></div>
-       <div class="headline-row"><p class="homepage-block-cta"><a href="/survivors" class="btn primary large">Do This</a></p></div>
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/momm-sm.jpg'); background-position: center center;">
+     <a class="full-link" href="/money"><span>Do This</span></a>
+     <div class="headline blue">
+       <div class="headline-row"><h4>Help arm your friends with tools to stack their cash.</h4></div>
+       <div class="headline-row"><p class="homepage-block-cta"><a href="/money" class="btn primary large">Do This</a></p></div>
      </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/50cans-block.jpg'); background-position: center center;">
-      <a class="full-link" href="/50cans"><span>Do This</span></a>
-      <div class="headline yellow">
-        <div class="headline-row"><h4>Your challenge is simple. Recycle 50 aluminum cans.</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="/50cans" class="btn primary large">Do This</a></p></div>
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/loveletters-sm.jpg'); background-position: center center;">
+      <a class="full-link" href="/loveletters"><span>Do This</span></a>
+      <div class="headline red">
+        <div class="headline-row"><h4>Spread the love by sending a card to an older adult in need.</h4></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/loveletters" class="btn primary large">Do This</a></p></div>
       </div>
     </div>
   </div>
