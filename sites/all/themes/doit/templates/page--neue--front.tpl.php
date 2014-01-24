@@ -39,7 +39,7 @@
   <!-- homepage after specified date -->
 
   <div class="row">
-      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/t4j-feature.jpg'); background-position: left center;">
+      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/t4j-feature-2.jpg'); background-position: left center;">
       <a class="full-link" href="/teensforjeans"><span>Do This</span></a>
       <div class="headline big teal">
         <h3>Collect jeans for homeless youth in your community.</h3>
