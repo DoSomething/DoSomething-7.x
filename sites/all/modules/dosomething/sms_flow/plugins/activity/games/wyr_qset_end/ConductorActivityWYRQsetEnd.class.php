@@ -91,7 +91,8 @@ class ConductorActivityWYRQsetEnd extends ConductorActivity {
       $alphaMobile = sms_flow_find_alpha(substr($mobile, -10), $this->gameId, 'sms_game');
       if ($alphaMobile) {
         // Build and send message to the alpha
-        $alphaMsg = "Your friend ($mobile) said they'd rather $q1Answer, $q2Answer, $q3Answer, and $q4Answer. Want to play more? Text WYR.";
+        $mobileShortened = substr($mobile, -10);
+        $alphaMsg = "Your friend $mobileShortened would rather $q1Answer, $q2Answer, $q3Answer, and $q4Answer. Text WYR to play more";
         sms_mobile_commons_send($alphaMobile, $alphaMsg);
       }
     }
