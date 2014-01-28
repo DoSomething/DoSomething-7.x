@@ -39,11 +39,11 @@
   <!-- homepage after specified date -->
 
   <div class="row">
-      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/t4j-feature-2.jpg'); background-position: left center;">
-      <a class="full-link" href="/teensforjeans"><span>Do This</span></a>
-      <div class="headline big teal">
-        <h3>Collect jeans for homeless youth in your community.</h3>
-        <a href="/teensforjeans" class="btn primary large">Do This</a>
+      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/WYR_Homepage_Image.jpg'); background-position: left center;">
+      <a class="full-link" href="/wyr"><span>Do This</span></a>
+      <div class="headline big yellow">
+        <h3>Challenge your friends to a game of "Would you Rather?"</h3>
+        <a href="/wyr" class="btn primary large">Do This</a>
       </div>
     </div>
   </div>
