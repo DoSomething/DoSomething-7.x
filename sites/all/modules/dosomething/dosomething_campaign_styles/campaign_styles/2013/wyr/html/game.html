@@ -1,11 +1,44 @@
-<div class="section" id="game">
-  <div class="divider"><span>An Example From The Game</span></div>
+<section class="sms section" id="sms">
+  <h2><span>What would your friends do to save a few bucks?</span></h2>
 
-  <img class="img-game-left" src="http://files.dosomething.org/files/campaigns/wyr/bg-example1.jpg" alt="Hair Cut" />
-  <img class="img-game-center" src="http://files.dosomething.org/files/campaigns/wyr/bg-example3.png" alt="Game Text" />
-  <img class="img-game-right" src="http://files.dosomething.org/files/campaigns/wyr/bg-example2.jpg" alt="Long Hair" />
+  <h3><span>Challenge them to make a crazy choice to get personal finance tips</span></h3>
 
-  <img class="img-see-more" src="http://files.dosomething.org/files/campaigns/wyr/bg-example4.png" alt="Wanna See More?" />
-  <a class="go-button jump_scroll" href="#scholarship">I Want to Play</a>
+  <p>Invite your friends to play and be entered to win a <strong>$3,000 scholarship</strong></p>
 
-</div> <!-- .section #game -->
+    <form action="//dosomething.mcommons.com/profiles/join" method="POST">
+      <input type="hidden" name="redirect_to" value="http://www.dosomething.org/wyr/redirect" />
+
+      <div class="sms-alpha-name sms-input-wrapper">
+        <label>Your name:</label>
+        <input class="sms-input" type="text" name="person[first_name]" placeholder="Your name:"/>
+      </div>
+
+      <div class="sms-alpha-mobile sms-input-wrapper">
+        <label>Your cell #:</label>
+        <input class="sms-input" type="text" name="person[phone]" placeholder="Your cell #:" />
+      </div>
+
+      <label class="sms-beta-mobile">Friend's cell #s:</label>
+
+      <div class="sms-input-wrapper first-column">
+        <input class="sms-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+        <input class="sms-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+        <input class="sms-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+      </div>
+
+      <div class="sms-input-wrapper">
+        <input class="sms-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+        <input class="sms-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+        <input class="sms-input" type="text" name="friends[]" placeholder="Friend's cell #:"/>
+      </div>
+
+      <input type="hidden" name="opt_in_path" value="163447" />
+      <input type="hidden" name="friends_opt_in_path" value="164149" />
+      <div class="input-wrapper">
+        <input type="submit" class="btn btn-cta-large" value="Play" />
+      </div>
+
+      <p class="ctia legal">Msg &amp; data rates may apply. Text <strong>STOP</strong> to opt-out, <strong>HELP</strong> for help.</p>
+      <a class="official-rules" href="//www.dosomething.org/files/campaigns/wyr/rules-jan14.pdf" target="_blank">Official Rules &amp; Regulations</a>
+    </form>
+</section>
