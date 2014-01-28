@@ -13,6 +13,7 @@
     <li>
         <a class="menu-link" href="/campaigns">Campaigns</a>
         <ul class="dropdown">
+            <li><a href="/wyr">Would You Rather</a></li>
             <li><a href="/loveletters">Love Letters</a>
             <li><a href="/teensforjeans">Teens For Jeans</a></li>
             <li><a href="/bully">Bully Text</a>
