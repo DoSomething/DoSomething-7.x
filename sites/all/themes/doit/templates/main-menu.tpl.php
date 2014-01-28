@@ -14,9 +14,9 @@
         <a class="menu-link" href="/campaigns">Campaigns</a>
         <ul class="dropdown">
             <li><a href="/wyr">Would You Rather</a></li>
-            <li><a href="/loveletters">Love Letters</a>
+            <li><a href="/loveletters">Love Letters</a></li>
             <li><a href="/teensforjeans">Teens For Jeans</a></li>
-            <li><a href="/bully">Bully Text</a>
+            <li><a href="/bully">Bully Text</a></li>
             <li><a href="/survivors">Cellphones for Survivors</a></li>
             <li><a href="/money">Mind on my Money</a></li> 
             <li><a href="/past-campaigns">Past Campaigns</a></li>
