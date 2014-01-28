@@ -3,118 +3,82 @@
     attach: function (context, settings) {
       Drupal.settings.login = {
         replaceText      : 'You are almost there',
-        afterReplaceText : 'Just register with DoSomething.org to join The 50 Cans Challenge!',
+        afterReplaceText : 'Just register with DoSomething.org to join the campaign!',
       };
 
-      // LOGO - injection
-      var logo = '//www.dosomething.org/files/campaigns/wyr/logo-campaign.png';
-      $('.region-sidebar-first').not('.logo-processed').addClass('logo-processed').prepend('<a href="/wyr"><img class="logo-campaign" src="' + logo + '"/></a>');
-
-      // FAQ - onClick visibility
-      $('#faq h4').next('div').css('display','none');
-      $('#faq h4.activeFAQ').next('div').css('display','block');
-      $('#faq h4').click(function() {
-        if($(this).hasClass('activeFAQ')) {
-          $(this).removeClass().next('div').slideUp();
-        }
-        else {
-          $(this).addClass('activeFAQ');
-          $(this).siblings('h4').removeClass('activeFAQ');
-          $(this).next('div').slideToggle();
-          $(this).siblings().next('div').slideUp();
-        }
+      // Animate scrolling to fragment identifiers
+      $('.jump-scroll').click( function(e){
+        var hash = $(this).attr('href').split('#')[1];
+        $('html,body').animate({scrollTop: $('#' + hash).offset().top}, 'slow');
+        e.preventDefault();
       });
 
-      // animation for a.jump_scroll
-      var contentAnchors = 'a.jump_scroll';
-      var navAnchors = '#block-dosomething-campaign-styles-campaign-nav a';
-      var allAnchors = navAnchors + ', ' + contentAnchors;
+      // #faq drop down animations
+      faq_toggle = function(question, response) {
 
-      // variables for input highlighting
-      var webformEmail = '#contact-form input[type="text"]';
-      var webformCell = '#contact-form input[type="tel"]';
-      var webformBoth = webformEmail + ', ' + webformCell;
+        var $question = $('#faq ' + question);
+        var $question_active = $('#faq ' + question + '.active');
 
-      // scrolling navigation block
-      $(window).bind('load', function() {
-        var $nav = $('#block-dosomething-campaign-styles-campaign-nav');
-        var $footer = $('#block-menu-menu-footer');
-        var $document = $(document);
-        var scrollLimitTop = $nav.offset().top;
-        $document.scroll(function () {
-          var st = $document.scrollTop();
-          var scrollLimitBot = $document.height() - $nav.outerHeight() - $footer.outerHeight();
-          if (st > scrollLimitTop && st < scrollLimitBot) { // once scrolling engages $nav
-            $nav.css({
-              'position'    : 'fixed',
-              'top'         : '0px',
-              'bottom'      : 'auto',
-              'z-index'     : '3'
-            });
+        $question.next(response).hide();
+        $question_active.next(response).show();
+
+        $question.click(function() {
+          $this = $(this);
+          if( !$this.hasClass('active') ) {
+            $this.addClass('active');
+            $this.siblings('h3').removeClass('active');
+            $this.next(response).slideToggle();
+            $this.siblings().next(response).slideUp();
           }
-          else if (st >= scrollLimitTop) { // once $nav hits $footer
-            scrollLimitTop = $nav.offset().top;
-            $nav
-              .css('position', 'absolute')
-              .css('top', 'auto')
-              .css('bottom', '25px')
-          }
-          else { // before scrolling engages $nav
-            scrollLimitTop = $nav.offset().top;
-            $nav
-              .css('position', 'static')
+          else {
+            // do nothing!
           }
         });
-      }); // end scrolling nav
 
-     $(allAnchors).click(function(event){
-        $('html,body').animate({scrollTop: $(event.target.hash).offset().top}, 'slow');  
-        return false;
+      }
+      faq_toggle('h3', 'div');
+
+      // Switch "active" class on sibling elements
+      var activeSwitch = function(target, element) {
+
+        $(target).click(function() {
+          var $this = $(this);
+          if ($this.not('.active')) {
+            $this.addClass('active');
+            $this.siblings(element).removeClass('active');
+          }
+        });
+
+      }
+
+      // ----------------
+      // FACEBOOK SHARING
+      // ----------------
+
+      var fb_share_img = 'www.dosomething.org/files/campaigns/wyr/header.jpg';
+      var fb_title = 'Would You Rather';
+      var fb_header_caption = 'What would your friends do to save a few bucks?';
+
+      Drupal.behaviors.fb.feed({
+        'feed_picture': fb_share_img,
+        'feed_title': fb_title,
+        'feed_caption': fb_header_caption,
+        'feed_description': 'Sign up to play Would You Rather with Do Something and H&R Block Dollars & Sense to test yourself now and learn a little something about financial education in the process',
+        'feed_selector': '.header-facebook-share',
+      }, function(response){
+        window.location.href = '/wyr';
       });
 
-    // Mobile Commons success message
-    if (document.location.search.slice(1,8) === 'success') {
-      var success_msg = '<div id="success-message"><p>Thanks for signing up! Stay tuned for a text from us.</p></div>';
-      $('#signup-email').prepend(success_msg);
-    }
+      // ------------------------
+      // SMS CONFIRMATION MESSAGE
+      // ------------------------
 
-    // #share section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/wyr/bg-share1.png';
-    var fb_title = 'Would You Rather?';
-    var fb_caption = 'What would you rather do to save money?';
+      if (document.location.search.slice(1,8) === 'success') {
+        var success_msg = '<div class="success_msg"><h2>Great! We sent The Game to you and your friends.</h2></div>';
+        $('#sms').prepend(success_msg);
+      }
 
-    // #header section Facebook fun
-    var fb_header_caption = 'What would you rather do to save money?';
-
-    Drupal.behaviors.fb.feed({
-      'feed_picture': fb_share_img,
-      'feed_title': fb_title,
-      'feed_caption': fb_header_caption,
-      'feed_description': 'Would you rather get a hair cut from a 5 yr old, or not get it cut for a year? Play Would You Rather w/ @dosomething: www.dosomething.org/wyr',
-      'feed_selector': '.header-facebook-share',
-    }, function(response){
-      window.location.href = '/wyr#header';
-    });
-
-    Drupal.behaviors.fb.feed({
-      'feed_picture': fb_share_img,
-      'feed_title': fb_title,
-      'feed_caption': fb_caption,
-      'feed_description': 'I would eat only ramen for a month!',
-      'feed_selector': '.share-link-ramen',
-    }, function(response){
-      window.location.href = '/wyr#share';
-    });
-
-    Drupal.behaviors.fb.feed({
-      'feed_picture': fb_share_img,
-      'feed_title': fb_title,
-      'feed_caption': fb_caption,
-      'feed_description': 'I would eat only canned tuna for a month!',
-      'feed_selector': '.share-link-tuna',
-    }, function(response){
-      window.location.href = '/wyr#share';
-    });
+      // END
 
     } // end attach: function
   }; // end Drupal.behaviors
