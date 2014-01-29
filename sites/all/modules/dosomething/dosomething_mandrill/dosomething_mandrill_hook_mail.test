@@ -180,7 +180,7 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
   }
 
   /*
-   * @see dosomething_mandrill_dispatch_password_reset()
+   * @see dosomething_mandrill_dispatch_campaign_signup()
    *
    * Reference: Entry Point
    */
@@ -216,6 +216,32 @@ class DoSomethingMandrillUnitMailTestCase extends WebTestSuite {
     $this->assertTrue($message_status['result'] == TRUE, 'Mandrill API reported success sending Campaign Signup message to ' . $message_status['to']);
 
   }
+
+/**
+ * @see dosomething_mandrill_dispatch_webform_submission_insert()
+ *
+ * Reference: Entry Point
+ */
+public function testMailDispatchWebformSubmissionInsert() {
+
+  // Attempt to send invalid (blank) key
+  // @todo: test for invalid key value not found in mandrill_template entries
+  $key = '';
+  $dispatch_result = dosomething_mandrill_dispatch_webform_submission_insert($key);
+  $this->assertEqual($dispatch_result['send_status'], 'Invalid key.', 'Failed to send webform submission with blank key.');
+
+  // Attempt to send default key ("dsplain")
+  $key = 'dsplain';
+  $dispatch_result = dosomething_mandrill_dispatch_webform_submission_insert($key);
+  $this->assertEqual($dispatch_result['key'], 'dsplain', 'Send webform submission using default \'' . $key . '\' key.');
+
+  // Active report back
+  $key = 'momm13rb';
+  $dispatch_result = dosomething_mandrill_dispatch_webform_submission_insert($key);
+  $this->assertTrue($dispatch_result['send'], 'Success sending webform submission to: ' . $key);
+
+}
+
   /*
    * @see dosomething_mandrill_get_targetstamp()
    *
