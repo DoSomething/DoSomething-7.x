@@ -228,17 +228,17 @@ public function testMailDispatchWebformSubmissionInsert() {
   // @todo: test for invalid key value not found in mandrill_template entries
   $key = '';
   $dispatch_result = dosomething_mandrill_dispatch_webform_submission_insert($key);
-  $this->assertTrue($dispatch_result['send_status'], 'Invalid key.', 'Failed to send webform submission with blank key.');
+  $this->assertEqual($dispatch_result['send_status'], 'Invalid key.', 'Failed to send webform submission with blank key.');
 
   // Attempt to send default key ("dsplain")
   $key = 'dsplain';
   $dispatch_result = dosomething_mandrill_dispatch_webform_submission_insert($key);
-  $this->assertTrue($dispatch_result['key'], 'dsplain', 'Send webform submission using default \'' . $key . '\' key.');
+  $this->assertEqual($dispatch_result['key'], 'dsplain', 'Send webform submission using default \'' . $key . '\' key.');
 
   // Active report back
   $key = 'momm13rb';
   $dispatch_result = dosomething_mandrill_dispatch_webform_submission_insert($key);
-  $this->assertTrue($dispatch_result['send'], 1, 'Success sending webform submission to: ' . $key);
+  $this->assertTrue($dispatch_result['send'], 'Success sending webform submission to: ' . $key);
 
 }
 
