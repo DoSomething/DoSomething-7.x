@@ -100,6 +100,11 @@
     left: 0
     padding: 1% 2%
 
+.kira
+  margin: 1em auto
+  display: block
+  width: 96%
+
 // HEADLINE
 // --------
 .headline
@@ -107,6 +112,10 @@
   border-top: 1px solid #ddd
   border-left: 1px solid #ddd
   border-right: 1px solid #ddd
+  border-bottom: 1px solid #eee !important
+
+  p
+    margin: 1em 2em
 
   @include respond-to(phones)
     .headline-callout span
@@ -116,6 +125,10 @@
       color: $color-one
       line-height: 1.5em
       font-weight: 600
+
+h1.headline-callout
+  font-size: 2.4em
+  line-height: 1.4em
 
 // CALL TO ACTION
 // --------------

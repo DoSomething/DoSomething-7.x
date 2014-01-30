@@ -29,20 +29,11 @@ function dosomething_mandrill_theme($existing, $type, $theme, $path) {
  * Respond to webform submission from the content type: Campaign Contact Form
  * /admin/structure/types/manage/campaign_contact_form to trigger a Mandrill
  * transaction (template based) email message.
- *
- * Use the "mandrill_key" field value to determine what MailSystem
- * (/admin/config/system/mailsystem) key to use when sending the message via
- * a Mandrill Template entry: /admin/config/services/mandrill/templates
- * 
  */
 function dosomething_mandrill_webform_submission_insert($node, $submission) {
 
   // Campaign Report Back submissions
   if ($node->type == 'campaign_report_back') {
-
-    // Must be 'dosomething_mandrill' to trigger ManndrillMailSystem use based on entries in the MailSystem module
-    // /admin/config/system/mailsystem
-    $module = 'dosomething_mandrill';
 
     // Lookup the key value based on the webform submission
     // Load field_mandrill_key values on node (could be more than one in the future)
@@ -58,46 +49,20 @@ function dosomething_mandrill_webform_submission_insert($node, $submission) {
       $key = field_view_value('node', $node, 'field_mandrill_key', $keys[0]);
       $key = $key['#markup'];
 
-      // Lookup the email address to send the message to based on the webform submission or user account
-      // Register the $global $user object
-      global $user;
-
-      // Check for authenticated user making a report back, anonymous submissions
-      // are not allowed
-      if ($user->uid != 0) {
-        
-        $to = $user->mail;
-        // merge var support for user first name
-        $profile = profile2_load_by_user($user, 'main');
-        $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
-
-        // User the site default, perhaps someday we'll deal in other languages other than
-        $language = language_default();
-
-        // @todo: Adjust "from" email address to reflect the source campaign. Currently I don't think
-        // users responding to these messages result in anyone reading the message.
-        $from = NULL;
-
-        // Check for missing Email, ex: mobile submission / user
-        if (valid_email_address($to)) {
-          
-          $message_status = dosomething_mandrill_dispatch($to, $key, $message);
-
-          // Log results
-          if ($message_status['result'] == FALSE) {
-            watchdog('dosomething_mandrill', 'Failed to send Mandrill transactional message to %to via %source (%nid).',
-              array('%to' => $to, '%source' => $node->type, '%nid' => $node->nid), WATCHDOG_ERROR);
-          }
-          
-        }
-        
+      // Default mandrill_key value - "dsplain", the report back has not be
+      // setup to a specific mail system key
+      // @todo: use  mandrill_template_map_usage() to lookup key values that
+      // have a mandril template assignment. Consider caching this info as the
+      // function looks like a heavy lift to be run with each report back submission
+      if ($key != 'dsplain' || $key != '') {
+        dosomething_mandrill_dispatch_webform_submission_insert($key);
       }
 
     }
     else {
 
       // flag that campaign_report_back or campaign_contact_form does not have a mandrill_key setting
-      watchdog('dosomething_mandrill', 'Mandrill transactional message for campaign_report_back or campaign_contact_form
+      watchdog('dosomething_mandrill', 'Mandrill transactional message for campaign_report_back
                 via %source (%nid) not sent as key was undefined in node.',
                 array('%source' => $node->type, '%nid' => $node->nid), WATCHDOG_WARNING);
 
@@ -529,6 +494,10 @@ function dosomething_mandrill_mail_alter_to(&$mandrill_params, &$message) {
 		}
   }
 
+  if (isset($mandrill_params['params']['message']['to']) && is_array($mandrill_params['params']['message']['to'])) {
+    $mandrill_params['message']['to'] = $mandrill_params['params']['message']['to'];
+  }
+
 }
 
 /*
@@ -587,8 +556,8 @@ function dosomething_mandrill_mail_alter_merge_vars(&$mandrill_params, &$message
   $merge_vars = array();
 
   // Skip if merge_var entries found in array format - ex. mass drip mailout
-  if(!empty($message['params']['merge_vars']) && !isset($message['params']['merge_vars'][0]['rcpt'])) {
-    foreach($message['params']['merge_vars'] as $index => $items) {
+  if(!empty($message['params']['message']['merge_vars']) && !isset($message['params']['message']['merge_vars'][0]['rcpt'])) {
+    foreach($message['params']['message']['merge_vars'] as $index => $items) {
       foreach($items as $name => $content) {
         $vars[] = array(
           'name' => $name,
@@ -601,8 +570,8 @@ function dosomething_mandrill_mail_alter_merge_vars(&$mandrill_params, &$message
       );
     }
   }
-  elseif (isset($message['params']['merge_vars'])) {
-    $merge_vars = $message['params']['merge_vars'];
+  elseif (isset($message['params']['message']['merge_vars'])) {
+    $merge_vars = $message['params']['message']['merge_vars'];
   }
 
   // Combine all merge_var values - these values are used to send multiple messages
@@ -811,6 +780,60 @@ function dosomething_mandrill_dispatch_campaign_signup($email = NULL, $node = NU
 	return $dispatch_result;
 
 }
+
+/*
+ * Entry point function to trigger sending Mandrill dispatch related to a user
+ * submitting a campaign report back.
+ *
+ * Use the "mandrill_key" field value to determine what MailSystem
+ * (/admin/config/system/mailsystem) key to use when sending the message via
+ * a Mandrill Template entry: /admin/config/services/mandrill/templates
+ *
+ * @see dosomething_mandrill_webform_submission_insert()
+ *
+ * @param string $key
+ *   The mail system key of the Mandrill message to send. The key value is set
+ *   on the "Mandrill Key" field in report back content entry. This value is
+ *   unique for each campaign.
+ */
+function dosomething_mandrill_dispatch_webform_submission_insert($key)  {
+
+  // @todo: Check for valid key value based on values available in the
+  // mail_system database table
+  if (!empty($key)) {
+
+    // Lookup the email address to send the message to based on the webform
+    // submission or user account
+    // Register the $global $user object
+    global $user;
+
+    // Check for authenticated user making a report back, anonymous submissions
+    // are not allowed
+    if ($user->uid != 0) {
+
+      $to = $user->mail;
+
+      $profile = profile2_load_by_user($user, 'main');
+      $message['FNAME'] = $profile->field_user_first_name[LANGUAGE_NONE][0]['value'];
+
+      // Check for missing Email, ex: mobile submission / user
+      if (valid_email_address($to)) {
+        $message_status = dosomething_mandrill_dispatch($to, $key, $message);
+      }
+
+    }
+    else {
+      $message_status['send_status'] = 'Anonymous submissions is not allowed for report backs.';
+    }
+
+  }
+  else {
+    $message_status['send_status'] = 'Invalid key.';
+  }
+
+  return $message_status;
+
+ }
 
 /**** DRIP ****/
 
