@@ -860,7 +860,7 @@ function dosomething_mandrill_dispatch_webform_submission_insert($key)  {
  *   Results returned form Mandrill API reporting on the status of the sent
  *   message(s).
  */
-function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date = NULL, $test_flag = TRUE) {
+function dosomething_mandrill_dispatch_drip($op, $target_drop = 1, $target_date = NULL, $test_flag = 1) {
 
   $to = array();
   $merge_vars = array();
@@ -968,11 +968,11 @@ function dosomething_mandrill_prep_for_dispatch($to, $merge_vars, &$message) {
 function dosomething_mandrill_get_targetstamp($target_drop = 1, $target_date = NULL) {
 
   // Assume target_date is current date if not defined
-  if ($target_date == NULL) {
-    $target_stamp = strtotime('today') - (WEEK * $target_drop);
+  if (!empty($target_date)) {
+    $target_stamp = strtotime($target_date) - (WEEK * $target_drop);
   }
   else {
-    $target_stamp = strtotime($target_date) - (WEEK * $target_drop);
+    $target_stamp = strtotime('today') - (WEEK * $target_drop);
   }
 
 	// Check for valid timestamp results

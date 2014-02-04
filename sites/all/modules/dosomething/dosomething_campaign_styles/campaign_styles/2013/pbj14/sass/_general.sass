@@ -1,0 +1,245 @@
+// DO IT THEME RESETS
+// ------------------
+img
+  +noBorder
+  +noShadow
+
+// SECTION STYLES
+// --------------
+.section
+  margin: 0 auto
+  padding: $base-padding  16px
+  background: $bg-light
+  overflow: hidden
+  +border-bottom-subtle
+  border-bottom: 1px solid #ddd
+  @media only screen and (max-width: 825px)
+    padding: 3% 2%
+  @media only screen and (max-width: 550px)
+    padding: 1em 2%
+
+.section-container
+  width: 100%
+  margin: 0 auto
+  @media only screen and (max-width: 825px)
+    width: 100%
+
+.section-unit-single,
+.section-unit-double,
+.section-unit-full,
+.section-unit-half
+  padding: 0 1% 0
+  width: $section-unit-width
+  float: left
+  text-align: center
+
+  @include respond-to(phones)
+    float: none
+    max-width: 360px
+    width: 100%
+    margin: 0 auto
+    margin-bottom: 2em
+
+  img
+    width: auto
+    margin: 0 auto 1em
+    display: block
+
+.section-unit-single
+  @media only screen and (max-width: 600px)
+    img
+      display: none
+
+.section-unit-double
+  width: 2 * $section-unit-width
+  margin: 0 0 2em 0
+  +border-bottom-subtle
+
+.section-unit-full
+  width: 100%
+  padding: 0 0 0 0
+  margin: 0 0 2em 0
+  +border-bottom-subtle
+
+.section-unit-half
+  width: 50%
+  margin: 0 0 2em 0
+
+  @include respond-to(phones)
+    width: 100%
+
+.section-header
+  font-weight: 600
+  text-align: center
+  text-transform: capitalize
+  padding: 0
+  margin: 0 auto 1em auto
+  letter-spacing: 0.1em
+  color: $header-color
+  font-size: 1.8em
+  span
+    border-bottom: 10px solid $first-color
+
+// GENERAL-USE CLASSES
+// ------------------
+.left
+  float: left
+
+.right
+  float: right
+
+.center
+  margin: 0 auto
+  display: block
+  float: none
+
+.row
+  width: 100%
+  clear: both
+
+h1.headline-callout
+  padding: 0
+  max-width: 619px
+.headline-callout
+  font-weight: 500
+  text-align: center
+  margin: 0 auto 1em
+  text-transform: uppercase
+  letter-spacing: 2px
+  @media only screen and (max-width: $break-small)
+    font-size: 1.4em
+    letter-spacing: 0.1em
+  span
+    text-align: center
+    display: inline-block
+    padding: 0.25em 0.75em 0em
+    color: $callout-text
+    background: $first-color
+    @media only screen and (max-width: 780px)
+      background: #fff
+      color: $first-color
+      line-height: 1.5em
+      padding: 0.25em 0.75em 0.5em
+
+
+.headline-callout.alt
+  span
+    color: darken($bg-alt, 50)
+    background: $first-color
+    border: 1px solid #e8e8e8
+    +box-shadow(0 10px 10px -10px #ddd)
+    /* TODO - MOVE INTO VARIABLES */
+
+.headline-instructions
+  padding: 1em 0
+  width: 80%
+  margin: 0 auto
+
+.section-instructions
+  padding: 0 0 1em 0 !important
+
+.bg-header
+  margin: 0 0 0.5em 0
+
+.log-out
+  float: right
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+.error
+  background: none
+
+// TYPOGRAPHY
+// ----------
+
+h1, h2, h3, h4, p, b, a, label, .divider, .disclaimer
+  font-weight: 400
+  font-family: $din
+  text-align: left
+  color: $off_black
+  line-height: em-calc(28)
+
+h1, h2, h3, p, img
+  text-align: center
+
+p
+  color: $off-black
+  font-weight: 400
+  line-height: 1.5em
+  font-size: 18px
+
+h1
+  font-size: em-calc(32)
+  font-weight: 500
+
+h2
+  font-size: em-calc(24)
+  font-weight: 500
+
+h3
+  font-size: em-calc(18)
+
+h4
+  font-size: em-calc(16)
+
+strong
+  font-weight: 800
+
+.section a /* increase specificity */
+  text-decoration: underline
+  &:link, &:visited, &:active
+    color: $first-color
+    font-weight: 500
+  &:hover
+    text-decoration: underline
+
+// BUTTON STYLES
+// -------------
+
+.form-submit, .btn
+  clear: both
+  background: $btn-color
+  margin: 0 auto
+  display: inline-block
+  padding: 0.25em 1em 0.1em
+  border: 1px solid $btn-border
+  cursor: pointer
+  color: $off-black !important
+  font-family: din-web-reg
+  font-weight: 600
+  text-align: center
+  text-decoration: none
+  text-transform: uppercase
+  +border-radius(5px)
+  &:hover /* While mouse hovers */
+    background: $btn-hover
+    +background-image(linear-gradient($btn-color, $btn-hover))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:active /* While mouse clicks */
+    color: lighten($off-black, 10) !important
+    background: $btn-color
+    +background-image(linear-gradient($btn-hover, $btn-color))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:link, &:active, &:hover
+    color: $off-black
+    text-decoration: none !important
+
+.btn-cta-small
+  font-size: em-calc(14)
+
+.btn-cta-medium
+  font-size: em-calc(18)
+
+.btn-cta-large
+  font-size: em-calc(24)
+
+
+// REPORT BACK
+// -----------
+.node-campaign-report-back
+  background: #eee
+  max-width: 600px
+  padding: 25px 50px 50px
+  margin: 24px auto
+  border-radius: 2px
