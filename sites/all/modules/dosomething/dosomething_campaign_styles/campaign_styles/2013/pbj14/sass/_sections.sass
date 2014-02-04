@@ -9,18 +9,19 @@
 // ------
 .header
   position: relative
-  width: 100%
-  //height: 300px
-  border-bottom: 0
-  background-color: transparent
+  height: 328px
+  border-bottom: 0 
+  background: $bg-header-image center right
   padding: 1% 2%
   overflow: visible
+  @media only screen and (max-width: $break-large)
+    height: inherit
+    width: inherit
   @include respond-to(phones)
-    //height: 270px
     @include transition(height 0.5s)
 
   .header-logotype
-    text-align: right
+    text-align: left
     color: #fff
     text-transform: uppercase
     line-height: 1.2em
@@ -31,15 +32,15 @@
       margin: 0.25em 0 0
     @include respond-to(phones)
       text-align: center
-      //margin-top: 1em
 
     img
-      width: 100%
-      margin: 1em 0
+      margin: 1.75em 0.25em 0
+      @media only screen and (max-width: $break-large)
+        margin: 1em 0.25em 0.5em
       @include respond-to(phones)
+        margin: 0.5em 0
         @include transition(width 0.5s)
       
-
   .log-out
     color: $font-light
 
@@ -57,6 +58,11 @@
   .header-twitter-share
     display: inline-block
     height: 20px
+
+  .header-facebook-share
+    img
+      height: 20px
+      +border-radius(2px)
 
   .header-twitter-share
     margin-left: 1em
@@ -98,6 +104,12 @@
   margin: 0
   padding-bottom: 0
 
+  h2.headline-callout
+    font-size: 1.9em
+    margin-bottom: 0.5em
+  h3.headline-callout
+    font-size: 1.4em
+
 .header-desktop
   font-size: 1.4em
   @media only screen and (max-width: 780px)
@@ -108,7 +120,6 @@
   display: none
   @media only screen and (max-width: 780px)
     display: inherit
-
 
 
 // CALL TO ACTION
@@ -165,9 +176,10 @@
   display: block
   margin: 1em auto 0
   padding: 1em 0
-  width: 13em
+  //width: 13em
   text-align: center
   color: #1e1d1c !important
+  font-size: 0.9em
 
 .legal
   color: darken($panel-color, 15)
@@ -189,9 +201,24 @@
     overflow: hidden
     margin: 0 1em 1em
 
+    h2
+      text-transform: uppercase
+.drive
+  p
+    font-size: 1.5em
+
 // SCHOLARSHIP
 // ---
 #scholarship
+  .scholar-col
+    max-width: 270px
+    margin: 0 auto
+    img
+      display: block
+      margin: 0 auto 1em
+    h3
+      font-size: 1.8em
+
   .col50
     width: 50%
     float: left
@@ -209,6 +236,10 @@
 #info, #learn
   .headline-callout
     text-align: left
+    @media only screen and (max-width: 780px)
+      margin-bottom: 0
+      text-align: center
+      font-size: 1.4em
   em
     font-style: italic
   .center
@@ -232,92 +263,13 @@
   h2
     padding-bottom: 0.5em
 
-// CUT BANNER
-// ------
-.banner.cutcool
-  text-align: center
-  padding: 0 1em 1em
-  p
-    color: white
-    float: none
-    display: inline-block
-    font-size: 1.4em
-    &:before
-      content: url('http://www.dosomething.org/files/campaigns/love/cut-left.png')
-      position: relative
-      top: 15px
-    &:after
-      content: url('http://www.dosomething.org/files/campaigns/love/cut-right.png')
-      position: relative
-      top: 15px
-  @media only screen and (max-width: 780px)
-    padding-top: 1em
-    p
-      font-size: 1.2em
-      &:before, &:after
-        display: none
-
-  a
-    color: white
-    padding: 0 1em
-    text-decoration: underline
-    &:hover
-      text-decoration: none
-  img
-    display: inline-block
-
-// SMS
-// ---
-.pane-dosomething-campaign-kiva-signup
-  text-align: center
-  padding: 3% 0 0
-  border-left: 1px solid #ddd
-  border-right: 1px solid #ddd
-  background: $panel-color
-  label
-    margin: 3% 0 0
-  form
-    width: 80%
-    margin: 0 auto 0
-
-  .btn
-    width: 9.4em
-    margin: 1em auto
-
-  #edit-submit
-    float: none
-    margin: 24px auto 0
-    padding: 0.3em 1em 0.2em
-
-  .form-type-textfield
-    width: 45%
-    float: left
-    margin: 0 2.5% 0 2.5%
-
-    @include respond-to(phones)
-      width: 100%
-
-  .form-item-alpha-email
-    float: right
-
-    @include respond-to(phones)
-      float: none
-
-  #edit-beta-mobiles
-    clear: both
-    width: 100%
-    min-width: 100%
-
-.sms-lower
-  background: $panel-color
-  border-bottom: 1px solid #ddd
-  padding-bottom: 3%
 
 // GALLERY
 // -------
 #gallery
   p
-    margin-bottom: 1em
+    max-width: 400px
+    margin: 0 auto 1em
   @media only screen and (max-width: 550px)
     .btn
       font-size: 1.2em
@@ -334,9 +286,22 @@
 #location
   p
     text-align: center
+    font-size: 1.4em
+  form
+    margin: 0 auto 1em
+    max-width: 430px
+  input[type=text]
+    height: 3.1em
+    line-height: 3.3em
+    min-width: 250px
+    margin: 0 1em 1em 0
+  label
+    font-size: 1.4em
+  .btn
+    font-size: 1.6em
   @media only screen and (max-width: 550px)
     .btn
-      font-size: 1.2em
+      font-size: 1.5em
 
 // THANKS
 // ------
@@ -449,7 +414,7 @@
       padding-bottom: 1em
 .footer-banner
   display: none
-  background: $main-color
+  background: $first-color
   padding: 1em
   a, p
     color: white

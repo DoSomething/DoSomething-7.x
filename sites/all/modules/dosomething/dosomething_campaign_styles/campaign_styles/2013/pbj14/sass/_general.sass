@@ -78,7 +78,7 @@ img
   color: $header-color
   font-size: 1.8em
   span
-    border-bottom: 10px solid $main-color
+    border-bottom: 10px solid $first-color
 
 // GENERAL-USE CLASSES
 // ------------------
@@ -105,7 +105,7 @@ h1.headline-callout
   text-align: center
   margin: 0 auto 1em
   text-transform: uppercase
-  letter-spacing: 1px
+  letter-spacing: 2px
   @media only screen and (max-width: $break-small)
     font-size: 1.4em
     letter-spacing: 0.1em
@@ -114,10 +114,10 @@ h1.headline-callout
     display: inline-block
     padding: 0.25em 0.75em 0em
     color: $callout-text
-    background: $accent-color
+    background: $first-color
     @media only screen and (max-width: 780px)
       background: #fff
-      color: $main-color
+      color: $first-color
       line-height: 1.5em
       padding: 0.25em 0.75em 0.5em
 
@@ -125,7 +125,7 @@ h1.headline-callout
 .headline-callout.alt
   span
     color: darken($bg-alt, 50)
-    background: $main-color
+    background: $first-color
     border: 1px solid #e8e8e8
     +box-shadow(0 10px 10px -10px #ddd)
     /* TODO - MOVE INTO VARIABLES */
@@ -189,7 +189,7 @@ strong
 .section a /* increase specificity */
   text-decoration: underline
   &:link, &:visited, &:active
-    color: $main-color
+    color: $first-color
     font-weight: 500
   &:hover
     text-decoration: underline

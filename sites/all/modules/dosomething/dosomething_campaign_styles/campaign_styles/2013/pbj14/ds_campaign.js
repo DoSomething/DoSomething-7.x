@@ -50,6 +50,24 @@
       }
       faq_toggle('h3', 'div');
 
+      // ----------------
+      // FACEBOOK SHARING
+      // ----------------
+
+      var fb_share_img = 'www.dosomething.org/files/campaigns/pbj14/pbj-logo.png';
+      var fb_title = 'Peanut Butter and Jam Slam';
+      var fb_header_caption = 'Collect peanut butter for your local food bank.';
+
+      Drupal.behaviors.fb.feed({
+        'feed_picture': fb_share_img,
+        'feed_title': fb_title,
+        'feed_caption': fb_header_caption,
+        'feed_description': '1 in 5 children in the U.S. live in a household without enough food to eat. Help me and @Do Something collect peanut butter (and other food!) for local food banks this spring!',
+        'feed_selector': '.header-facebook-share',
+      }, function(response){
+        window.location.href = '/pbj';
+      });
+
       // Restyles #headline section depending on campaign model
       // if( $('#sms').length ) {
       //   $('#headline .headline-callout').addClass('alt');
