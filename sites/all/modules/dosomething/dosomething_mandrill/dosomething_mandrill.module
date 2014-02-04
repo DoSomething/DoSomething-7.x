@@ -981,7 +981,7 @@ function dosomething_mandrill_get_targetstamp($target_drop = 1, $target_date = N
 
 		// Check for valid timestamp range - pre DS to now
 		// 1210614999: 12 May 2008, first DS user
-		if (!($target_stamp > 1210614999 && $target_stamp < time())) {
+		if (!($target_stamp > 1207958400 && $target_stamp < time())) {
 			return -1;
 		}
 

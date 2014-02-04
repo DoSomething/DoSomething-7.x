@@ -48,6 +48,10 @@ function drush_dosomething_mandrill_dispatch_drips($op, $target_drop = 1, $targe
     
     $results = dosomething_mandrill_dispatch_drip($op, $target_drop, $target_date, $test_flag);
     
+    drush_print(dt('Operation: ' . $op));
+    drush_print(dt('Target Drop: ' . $target_drop));
+    drush_print(dt('Target Date: ' . $target_date));
+    drush_print(dt('Test Flag: ' . $test_flag));
     drush_print(dt($results['send_status']));
     drush_print(dt($results['sent'] . " messages sent..."));
 
