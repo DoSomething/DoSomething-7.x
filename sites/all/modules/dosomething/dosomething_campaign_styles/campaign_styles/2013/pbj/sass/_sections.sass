@@ -7,53 +7,40 @@
 
 // HEADER
 // ------
-.section#header
-  background: url('//www.dosomething.org/files/campaigns/pbjs13/header-pbjs.jpg') top center no-repeat
-  margin-bottom: 0
-  height: 330px
-  .row-bottom
-    position: absolute
-    bottom: 0
-    left: 0
-    padding: 1%
-  .header-facebook-share,
-  .header-twitter-share
-    display: inline-block
-    height: 20px
-  .header-twitter-share
-    margin-left: 1em
 .header
   position: relative
-  width: 100%
-  height: 330px
-  border-bottom: 0
-  background-color: transparent
+  height: 328px
+  border-bottom: 0 
+  background: $bg-header-image center right
   padding: 1% 2%
   overflow: visible
+  @media only screen and (max-width: $break-large)
+    height: inherit
+    width: inherit
   @include respond-to(phones)
-    height: 270px
     @include transition(height 0.5s)
 
   .header-logotype
-    text-align: right
+    text-align: left
     color: #fff
     text-transform: uppercase
     line-height: 1.2em
     font-weight: 600
     font-size: 4em
-    margin: 0.25em -0.7em 0 0
+    margin: 0
     @media only screen and (max-width: $break-large)
       margin: 0.25em 0 0
     @include respond-to(phones)
       text-align: center
-      margin-top: 1em
 
     img
-      width: 325px
+      margin: 1.75em 0.25em 0
+      @media only screen and (max-width: $break-large)
+        margin: 1em 0.25em 0.5em
       @include respond-to(phones)
+        margin: 0.5em 0
         @include transition(width 0.5s)
       
-
   .log-out
     color: $font-light
 
@@ -71,6 +58,11 @@
   .header-twitter-share
     display: inline-block
     height: 20px
+
+  .header-facebook-share
+    img
+      height: 20px
+      +border-radius(2px)
 
   .header-twitter-share
     margin-left: 1em
@@ -112,16 +104,22 @@
   margin: 0
   padding-bottom: 0
 
+  h2.headline-callout
+    font-size: 1.9em
+    margin-bottom: 0.5em
+  h3.headline-callout
+    font-size: 1.4em
+
 .header-desktop
-  font-size: 2em
+  font-size: 1.4em
   @media only screen and (max-width: 780px)
-    display: none
+    font-size: 1.2em
+    margin: 0
 
 .header-mobile
   display: none
   @media only screen and (max-width: 780px)
     display: inherit
-
 
 
 // CALL TO ACTION
@@ -147,12 +145,16 @@
   p
     color: #fff
     float: left
-    width: 50%
   .lead
+    font-size: 1.4em
     text-align: right
-    padding: 1em
+    padding: 0.75em 1em 0.35em
+    width: 58%
   .follow
     text-align: left
+    width: 42%
+    .btn
+      font-weight: 500
   @media only screen and (max-width: 780px)
     padding: 0.5em
     p
@@ -160,8 +162,10 @@
       width: 100%
     .lead, .follow
       text-align: center
+      width: 100%
     .lead
       padding: 0.5em
+      font-size: 1.2em
     .follow
       padding-bottom: 0.5em
 
@@ -171,9 +175,11 @@
 .official-rules
   display: block
   margin: 1em auto 0
-  width: 13em
+  padding: 1em 0
+  //width: 13em
   text-align: center
   color: #1e1d1c !important
+  font-size: 0.9em
 
 .legal
   color: darken($panel-color, 15)
@@ -195,115 +201,52 @@
     overflow: hidden
     margin: 0 1em 1em
 
-// ACTION-KIT
-// ----------
-.action-kit
-  img
-    position: relative
-    top: 15px
-    right: 20px
-
-  .section-container
-    width: $section-content-width
-
-// TECH TIPS
-// ---------
-#tips
-  a
-    background: $accent-color
-    color: #fff
-    padding: 0.75em 0.75em 0.5em
-    +border-radius(12px)
-    text-decoration: none
-    border: 2px solid white
-    box-shadow: 0px 0px 8px #ccc
-    text-transform: uppercase
-    font-weight: 500
-    -webkit-transition: background-color 0.25s linear
-    transition: background-color 0.25s linear  
-    width: 30%
-    display: inline-block
-    text-align: center
-    margin: 1.5% 1.5%
-    font-size: 1.2em
-    &:hover
-      background: $secondary-color
-    @media only screen and (max-width: $break-large)
-      width: 46%
-    @media only screen and (max-width: $break-small)
-      width: 85%
-      margin: 3%
-  .tech-link
-    margin: 1em 0
-
-
-
-
-
-// PRIZING
-// -------
-.prizing
+    h2
+      text-transform: uppercase
+.drive
   p
-    padding: 1em 0
+    font-size: 1.5em
 
-  .prizing-container
-    width: ( $section-unit-width * 2 )
+// SCHOLARSHIP
+// ---
+#scholarship
+  .scholar-col
+    max-width: 270px
     margin: 0 auto
-    clear: both
+    img
+      display: block
+      margin: 0 auto 1em
+    h3
+      font-size: 1.8em
 
-  .btn
-    margin: 0 auto 1em
-
+  .col50
+    width: 50%
+    float: left
+    padding: 0 1%
+    text-align: center
+    margin: 2em 0
+    p
+      max-width: 300px
+      margin: 1em auto
+    @media only screen and (max-width: 740px)
+      width: 100%
 
 // #INFO
 // ----------------
-#info
+#info, #learn
   .headline-callout
     text-align: left
+    @media only screen and (max-width: 780px)
+      margin-bottom: 0
+      text-align: center
+      font-size: 1.4em
   em
     font-style: italic
   .center
     text-align: center
+  li
+    margin-bottom: 1.2em
   
-
-// PROFILES
-// --------
-.profiles
-  .intro
-    margin-bottom: 2em
-
-  .profile-photo, .profile-copy
-    float: left
-    text-align: left
-
-    @include respond-to(tablets_and_phones)
-      float: none
-
-  .profile-photo
-    width: 290px
-    clear: both
-    margin: 0.5em 2em 0 1em
-
-    @include respond-to(tablets_and_phones)
-      margin: 0.5em auto 0
-
-  .profile-copy
-    width: $section-content-width
-    margin: 0 0 3em 0
-
-    @include respond-to(tablets_and_phones)
-      width: 90%
-      max-width: $section-content-width
-      margin: 0 auto 3em
-
-    p
-      text-align: left
-    h2
-      color: $header-color
-      text-align: left
-
-      @include respond-to(tablets_and_phones)
-        text-align: center
 
 // CONTENT
 // -------
@@ -321,58 +264,15 @@
     padding-bottom: 0.5em
 
 
-// SMS
-// ---
-.pane-dosomething-campaign-kiva-signup
-  text-align: center
-  padding: 3% 0 0
-  border-left: 1px solid #ddd
-  border-right: 1px solid #ddd
-  background: $panel-color
-  label
-    margin: 3% 0 0
-  form
-    width: 80%
-    margin: 0 auto 0
-
-  .btn
-    width: 9.4em
-    margin: 1em auto
-
-  #edit-submit
-    float: none
-    margin: 24px auto 0
-    padding: 0.3em 1em 0.2em
-
-  .form-type-textfield
-    width: 45%
-    float: left
-    margin: 0 2.5% 0 2.5%
-
-    @include respond-to(phones)
-      width: 100%
-
-  .form-item-alpha-email
-    float: right
-
-    @include respond-to(phones)
-      float: none
-
-  #edit-beta-mobiles
-    clear: both
-    width: 100%
-    min-width: 100%
-
-.sms-lower
-  background: $panel-color
-  border-bottom: 1px solid #ddd
-  padding-bottom: 3%
-
 // GALLERY
 // -------
 #gallery
   p
-    margin-bottom: 1em
+    max-width: 400px
+    margin: 0 auto 1em
+  @media only screen and (max-width: 550px)
+    .btn
+      font-size: 1.2em
 .section#gallery
   border-bottom: none
 .gallery
@@ -381,16 +281,27 @@
     //+border-radius(3px)
     //+box-shadow(0 10px 10px -10px #bbb !important)
 
-
-// MAP
-// ---
-.map
-  iframe
-    width: 90%
-    margin: 0 auto
-    display: block
-    border: 1px solid #ddd
-    +box-shadow(0 10px 10px -10px #ccc)
+// LOCATION
+// --------
+#location
+  p
+    text-align: center
+    font-size: 1.4em
+  form
+    margin: 0 auto 1em
+    max-width: 430px
+  input[type=text]
+    height: 3.1em
+    line-height: 3.3em
+    min-width: 250px
+    margin: 0 1em 1em 0
+  label
+    font-size: 1.4em
+  .btn
+    font-size: 1.6em
+  @media only screen and (max-width: 550px)
+    .btn
+      font-size: 1.5em
 
 // THANKS
 // ------
@@ -474,65 +385,59 @@
     width: 50px
     +block-center
 
-.footer-partner, .footer-banner
-  display: none
-  img
-    margin: 0.5em auto 2em
-    display: block
-  @media only screen and (max-width: $break-small)
-    display: inherit
 .footer-partner
+  margin-top: 2em
   p
     margin-top: 1.5em
+    float: left
+    width: 40%
+    text-align: right
+    padding: 1em
+  img
+    margin: 0.5em auto 2em
+    float: right
+    width: 60%
+    text-align: left
+    max-width: 250px
+  @media only screen and (max-width: $break-small)
+    p, img
+      text-align: center
+      width: 100%
+      float: none
+      display: block
+      margin: 0 auto
+      padding: 0
+    p
+      padding-top: 1em
+    img
+      max-width: 250px
+      padding-bottom: 1em
 .footer-banner
-  background: $main-color
+  display: none
+  background: $first-color
   padding: 1em
   a, p
     color: white
 
-
-// CONFIRMATION
-// ------
-.pane-dosomething-campaign-kiva-confirmation
-  background: $panel-color
-  text-align: center
-  padding-bottom: 32px
-
-  .pane-content a
-    background: $btn-color
-    margin: 0 auto
-    padding: 0.25em 2em
-    font-size: 32px
-    clear: both
-    position: static
-    height: 2em
+// PRE CAMPAIGN SIGNUP
+// -------------------
+#pre-header
+  background: url("//www.dosomething.org/files/campaigns/pbjs13/header-pbjs.jpg") top center no-repeat
+  margin-bottom: 0
+  height: 330px
+  .row-bottom
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 1%
+  .header-twitter-share
+    margin-left: 1em
     display: inline-block
-    border: 1px solid $btn-border
-    cursor: pointer
-    color: $off-black !important
-    font-family: din-web-reg
-    font-weight: 600
-    text-align: center
-    text-decoration: none !important
-    text-transform: uppercase
-    +border-radius(5px)
-    &:hover /* While mouse hovers */
-      background: $btn-hover
-      +background-image(linear-gradient($btn-color, $btn-hover))
-      +box-shadow(0 10px 10px -10px #bbb)
-    &:active /* While mouse clicks */
-      color: lighten($off-black, 10) !important
-      padding: 0.35em 0 0.15em !important
-      background: $btn-color
-      +background-image(linear-gradient($btn-hover, $btn-color))
-      +box-shadow(0 10px 10px -10px #bbb)
-    &:link, &:active, &:hover
-      color: $off-black
-      text-decoration: none !important
+  .fb-like
+    display: inline-block
 
-
-//  #signup
-// --------
+.pre-bg
+  background: white
 
 #signup-logo, #signup-email
   width: 50%
