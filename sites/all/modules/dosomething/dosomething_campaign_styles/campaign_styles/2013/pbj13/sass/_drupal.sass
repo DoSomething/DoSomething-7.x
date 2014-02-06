@@ -22,10 +22,7 @@ html /* reset "do it" theme base of 14px */
 
 // page background
 body
-  background: $background fixed top center
-  background-size: cover
-
-
+  background: white
 
 // set inner container width, remove floats and center
 #main-wrapper div[role="main"]
@@ -173,6 +170,15 @@ header[role="banner"]
   max-width: $section-wrapper-width
   width: 100%
   margin: 0 auto
+  border: 1px solid #ccc
+  border-top: none 
+
+@media only screen and (max-width: 775px)
+  #cmp
+    border: none
+
+.messages.status
+  text-align: center
 
 // why is this here?
 .view-campaign-gallery #slideshow
