@@ -59,46 +59,6 @@ function dosomething_campaign_tfj_signup_data_form($form, &$form_state) {
     '#type' => 'checkbox',
     '#title' => t("I won't be participating with a school."),
   );
-  $form['address_header'] = array(
-    '#markup' => '<h3>Enter your shipping address below to get a free banner. (Limited quantity available!)</h3>',
-  );
-  $form['address_name'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('Your Name'),
-    ),
-  );
-  $form['address1'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('Address 1'),
-    ),
-  );
-  $form['address2'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('Address 2'),
-    ),
-  );
-  $form['address_city'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('City'),
-    ),
-  );
-  $form['address_state'] = array(
-    '#type' => 'select',
-    '#options' => array_merge(array('' => 'State'),_dosomething_school_get_states()),
-  );
-  $form['address_zip'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => t('Zip'),
-    ),
-  );
-  $form['poster_footer'] = array(
-    '#markup' => '<p><em>Banners will arrive in 1-2 weeks.</em></p>',
-  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
