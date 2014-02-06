@@ -50,6 +50,14 @@
       }
       faq_toggle('h3', 'div');
 
+
+      // Mobile Commons success message
+      if (document.location.search.slice(1,8) === 'success') {
+        var success_msg = '<div id="success-message"><p>Thanks for signing up! Stay tuned for a text from us.</p></div>';
+        $('#signup-email').prepend(success_msg);
+      }
+      
+
       // ----------------
       // FACEBOOK SHARING
       // ----------------
