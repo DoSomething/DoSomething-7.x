@@ -6,6 +6,7 @@ img
 
 // SECTION STYLES
 // --------------
+
 .section
   margin: 0 auto
   padding: $base-padding  16px
@@ -15,8 +16,6 @@ img
   border-bottom: 1px solid #ddd
   @media only screen and (max-width: 825px)
     padding: 3% 2%
-  @media only screen and (max-width: 550px)
-    padding: 1em 2%
 
 .section-container
   width: 100%
@@ -45,11 +44,6 @@ img
     margin: 0 auto 1em
     display: block
 
-.section-unit-single
-  @media only screen and (max-width: 600px)
-    img
-      display: none
-
 .section-unit-double
   width: 2 * $section-unit-width
   margin: 0 0 2em 0
@@ -69,16 +63,16 @@ img
     width: 100%
 
 .section-header
-  font-weight: 600
+  font-weight: 500
   text-align: center
   text-transform: capitalize
   padding: 0
   margin: 0 auto 1em auto
   letter-spacing: 0.1em
   color: $header-color
-  font-size: 1.8em
+  
   span
-    border-bottom: 10px solid $first-color
+    border-bottom: 6px solid $accent-color
 
 // GENERAL-USE CLASSES
 // ------------------
@@ -101,11 +95,11 @@ h1.headline-callout
   padding: 0
   max-width: 619px
 .headline-callout
-  font-weight: 500
+  font-weight: 600
   text-align: center
-  margin: 0 auto 1em
+  margin: 0 auto 0.35em
   text-transform: uppercase
-  letter-spacing: 2px
+  letter-spacing: 0.2em
   @media only screen and (max-width: $break-small)
     font-size: 1.4em
     letter-spacing: 0.1em
@@ -114,18 +108,17 @@ h1.headline-callout
     display: inline-block
     padding: 0.25em 0.75em 0em
     color: $callout-text
-    background: $first-color
+    background: #D75932
     @media only screen and (max-width: 780px)
       background: #fff
-      color: $first-color
+      color: #d75932
       line-height: 1.5em
-      padding: 0.25em 0.75em 0.5em
 
 
 .headline-callout.alt
   span
     color: darken($bg-alt, 50)
-    background: $first-color
+    background: $bg-light
     border: 1px solid #e8e8e8
     +box-shadow(0 10px 10px -10px #ddd)
     /* TODO - MOVE INTO VARIABLES */
@@ -189,8 +182,7 @@ strong
 .section a /* increase specificity */
   text-decoration: underline
   &:link, &:visited, &:active
-    color: $first-color
-    font-weight: 500
+    color: $main-color
   &:hover
     text-decoration: underline
 

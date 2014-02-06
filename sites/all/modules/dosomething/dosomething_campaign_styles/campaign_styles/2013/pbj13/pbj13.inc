@@ -1,7 +1,7 @@
 <?php
 $plugin = array(
   // Campaign title. Not used yet, but please set it.
-  'title' => 'Grandparents Gone Wired?',
+  'title' => 'Peanut Butter and Jam',
 
   // Parent campaign to inherit the styling from
   //'parent' => 'footlocker_2011',
@@ -28,10 +28,10 @@ $plugin = array(
   // An array of arrays indexed with 'title' and 'href'
   // These get passed to url().
   'menu' => array(
-    array('title' => 'take action', 'href' => 'grandparents', 'fragment' => 'action'),
+    array('title' => 'take action', 'href' => 'pbj', 'fragment' => 'action'),
   ),
   'menu_suffix' => array(
-    '#markup' => 'Grandparents Gone Wired'
+    '#markup' => 'Peanut Butter and Jam'
   ),
     'menu_prefix' => array(
     '#markup' => '<p>Go To:</p>'
