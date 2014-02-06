@@ -743,7 +743,7 @@ $activity->inputs = array('submit_report_back', 'ask_picture');
 $workflows[$workflow->name] = $workflow;
 
 /**
- * Teens for Jeans 2014 Report Back
+ * PBJ 2014 Report Back
  */
 $workflow = new ConductorWorkflow;
 $workflow->wid = 'new';
