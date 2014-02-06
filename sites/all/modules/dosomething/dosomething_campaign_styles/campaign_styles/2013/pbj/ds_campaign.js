@@ -54,7 +54,7 @@
       // FACEBOOK SHARING
       // ----------------
 
-      var fb_share_img = 'www.dosomething.org/files/campaigns/pbj14/pbj-logo.png';
+      var fb_share_img = 'www.dosomething.org/files/campaigns/pbj14/pbj-fb.jpg';
       var fb_title = 'Peanut Butter and Jam Slam';
       var fb_header_caption = 'Collect peanut butter for your local food bank.';
 
