@@ -968,7 +968,7 @@ function dosomething_mandrill_prep_for_dispatch($to, $merge_vars, &$message) {
 function dosomething_mandrill_get_targetstamp($target_drop = 1, $target_date = NULL) {
 
   // Assume target_date is current date if not defined
-  if (empty($target_date) || $target_date == '*') {
+  if (empty($target_date) || $target_date == '-') {
     $target_stamp = strtotime('today') - (WEEK * $target_drop);
   }
   else {
