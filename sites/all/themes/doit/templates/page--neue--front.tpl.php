@@ -57,19 +57,19 @@
      </div>
     </div>
 
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/pbj-homepage-sm.jpg'); background-position: center center;">
+      <a class="full-link" href="/pbj"><span>Do This</span></a>
+      <div class="headline red">
+        <div class="headline-row"><h4>Collect peanut butter for your local food bank.</h4></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/pbj" class="btn primary large">Do This</a></p></div>
+      </div>
+    </div>
+
     <div class="column span_4 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
       <a class="full-link" href="/bullytext"><span>Do This</span></a>
       <div class="headline purple">
         <div class="headline-row"><h4>Everyone has the power to stop bullying. Learn how.</h4></div>
         <div class="headline-row"><p class="homepage-block-cta"><a href="/bullytext" class="btn primary large">Do This</a></p></div>
-      </div>
-    </div>
-
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/pbj-homepage-sm.jpg'); background-position: center center;">
-      <a class="full-link" href="/pbj"><span>Do This</span></a>
-      <div class="headline red">
-        <div class="headline-row"><h4>Collect peanut butter for your local food bank.</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="/loveletters" class="btn primary large">Do This</a></p></div>
       </div>
     </div>
   </div>
@@ -78,7 +78,7 @@
 
   <!-- homepage before specified date -->
 
-  <div class="row">
+    <div class="row">
       <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/t4j-feature-2.jpg'); background-position: center center;">
       <a class="full-link" href="/teensforjeans"><span>Do This</span></a>
       <div class="headline big teal">
@@ -105,11 +105,11 @@
       </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/loveletters-sm.jpg'); background-position: center center;">
-      <a class="full-link" href="/loveletters"><span>Do This</span></a>
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/pbj-homepage-sm.jpg'); background-position: center center;">
+      <a class="full-link" href="/pbj"><span>Do This</span></a>
       <div class="headline red">
-        <div class="headline-row"><h4>Spread the love by sending a card to an older adult in need.</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="/loveletters" class="btn primary large">Do This</a></p></div>
+        <div class="headline-row"><h4>Collect peanut butter for your local food bank.</h4></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/pbj" class="btn primary large">Do This</a></p></div>
       </div>
     </div>
   </div>
