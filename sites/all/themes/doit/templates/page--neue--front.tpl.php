@@ -61,7 +61,7 @@
       <a class="full-link" href="/pbj"><span>Do This</span></a>
       <div class="headline red">
         <div class="headline-row"><h4>Collect peanut butter for your local food bank.</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="/loveletters" class="btn primary large">Do This</a></p></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/pbj" class="btn primary large">Do This</a></p></div>
       </div>
     </div>
 
@@ -109,7 +109,7 @@
       <a class="full-link" href="/pbj"><span>Do This</span></a>
       <div class="headline red">
         <div class="headline-row"><h4>Collect peanut butter for your local food bank.</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="/loveletters" class="btn primary large">Do This</a></p></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/pbj" class="btn primary large">Do This</a></p></div>
       </div>
     </div>
   </div>
