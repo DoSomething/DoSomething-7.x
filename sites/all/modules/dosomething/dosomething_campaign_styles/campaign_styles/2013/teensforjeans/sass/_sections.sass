@@ -187,6 +187,54 @@ a
   .section-container
     width: $section-content-width
 
+
+// PSA
+// ---
+.video-container
+  margin: 0 auto
+  max-width: 900px
+  .video-wrapper
+    position: relative
+    margin: 0 1em
+    padding-bottom: 56.25%
+    height: 0
+    iframe
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+
+// IMPACT
+// ------
+#impact
+  .col50
+    float: left
+    width: 42%
+    margin: 1em 4%
+    h2
+      color: $bg-alt
+      text-transform: uppercase
+      text-align: left
+      font-size: 2em
+    img
+      display: block
+      margin: 0 auto 1em
+    p, ol
+      font-size: 1.4em
+      line-height: 1.3em
+      text-align: left
+    ul, ol
+      list-style: decimal !important
+  @media only screen and (max-width: 600px)
+    .col50
+      float: none
+      width: 92%
+      img
+        margin-top: 2em
+      h2
+        line-height: 1.3em
+
 // PRIZING
 // -------
 .prizing
@@ -492,6 +540,7 @@ a
       font-size: 1.4em
 
 .signup-future
+  padding-top: 0
   p
     text-align: left
     color: white
@@ -500,22 +549,40 @@ a
     font-size: 1.3em
     line-height: 1.4em
     margin-right: 1em
-  .sms-input
+  .webform-component-email-copy
+    margin: 0
+  .webform-component-email
+    float: left
+    width: 50%
+    margin: 0 0 2em 0
+  .sms-input, input.email
     width: 92%
     margin: 1% 4%
     height: 3em
   .input-wrapper
     float: left
-@media only screen and (max-width: 800px)
-  .signup-future
+  #edit-actions
+    float: left
+  #edit-submit
+    height: 48px
+    padding: 5px 20px
+
+  @media only screen and (max-width: 800px)
     p
       float: inherit
-      width: 100%
+      width: 92%
       margin: 0.5em 4%
-    .sms-input-wrapper
+    .sms-input-wrapper, .webform-component-email
       margin-bottom: 0.5em
-    .input-wrapper
-      margin: 0 4%
+    .input-wrapper, #edit-actions
+      margin: 0 4% !important
+  @media only screen and (max-width: 600px)
+    .webform-component-email
+      width: 100%
+
+img.sponsor
+  display: block
+  margin: 2.5em auto 0
 
 // slideshow hacks
 .view-campaign-gallery #slideshow
