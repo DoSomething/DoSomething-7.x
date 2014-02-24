@@ -6,6 +6,37 @@
  */
 
 /**
+ * Gateway from transactional Mobile Commons campaign to starting the actual
+ * campaign SMS experience.
+ */
+$workflow = new ConductorWorkflow();
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_start_campaign_transition';
+$workflow->title = 'Start Campaign Transition';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('start_campaign_gateway');
+
+$activity = $workflow->newActivity('start_campaign_gateway');
+$activity->name = 'start_campaign_gateway';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->routes = array(
+  '10851' => array(                // mData id with the campaign start keyword.
+    'out_campaign_id' => '124251', // TRANSACTIONAL campaign id to opt-out of.
+    'opt_in_path_id' => '164793',  // ACTUAL campaign opt-in path id to opt-in to.
+  ),
+);
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('start_campaign_gateway');
+
+$workflows[$workflow->name] = $workflow;
+
+/**
  * Uses the mdata_id to determine which FTAF to trigger
  */
 $workflow = new ConductorWorkflow();

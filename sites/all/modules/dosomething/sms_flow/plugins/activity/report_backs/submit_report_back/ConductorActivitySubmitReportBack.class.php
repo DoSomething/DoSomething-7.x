@@ -36,6 +36,15 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
   public $success_response;
 
   /**
+   * The Mobile Commons campaign ID of the $success_response opt-in path. This
+   * needs to be set in order to update the user's MCommons profile that helps
+   * indicate whether or not this is the first campaign a user's finished or not.
+   *
+   * @var int
+   */
+  public $success_response_mcommons_campaign_id;
+
+  /**
    * (optional) Åctivity name to pull value from and insert into $success_response.
    * Use @field_value to include this value into the success message.
    *
@@ -169,16 +178,27 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
         }
       }
 
-      $wrapper->save();
+      // Only attempt to save the submission if webform node id is valid.
+      if ($this->webform_nid > 0) {
+        $wrapper->save();
 
-      module_load_include('inc', 'webform', 'includes/webform.submissions');
-      $num_submissions = webform_get_submission_count($this->webform_nid, $user->uid);
+        module_load_include('inc', 'webform', 'includes/webform.submissions');
+        $num_submissions = webform_get_submission_count($this->webform_nid, $user->uid);
+      }
     }
 
     // Send response to user about successful submission, if set. @submission_count returns the number of submissions this user has made.
     if (!empty($this->success_response)) {
       if (is_numeric($this->success_response)) {
-        dosomething_general_mobile_commons_subscribe($mobile, $this->success_response);
+        // Set the first_completed_campaign_id field with this campaign if there is none set yet.
+        $args = array();
+        if (empty($_REQUEST['profile_first_completed_campaign_id'])) {
+          $args = array('first_completed_campaign_id' => $this->success_response_mcommons_campaign_id);
+        }
+
+        // Update user's profile and send a response via subscribing to an opt-in path.
+        dosomething_general_mobile_commons_subscribe($mobile, $this->success_response, $args);
+
         $state->setContext('ignore_no_response_error', TRUE);
       }
       else {
@@ -187,11 +207,11 @@ class ConductorActivitySubmitReportBack extends ConductorActivity {
       }
     }
 
-    //  Opt users out of Mobile Commons campaigns, if set.
+    // Opt users out of Mobile Commons campaigns, if set.
     if (!empty($this->campaign_opt_outs)) {
       sms_mobile_commons_campaign_opt_out($mobile, $this->campaign_opt_outs);
     }
-    
+
     $state->markCompleted();
   }
 
