@@ -797,3 +797,32 @@ $activity->name = 'end';
 $activity->inputs = array('submit_report_back', 'ask_picture');
 
 $workflows[$workflow->name] = $workflow;
+
+/**
+ * Report back test for the new world.
+ */
+$workflow = new ConductorWorkflow;
+$workflow->wid = 'new';
+$workflow->name = 'sms_flow_newworldtest_report_back';
+$workflow->title = 'New World Test Report Back';
+$workflow->api_version = '1.0';
+
+$activity = $workflow->newActivity('start');
+$activity->name = 'start';
+$activity->outputs = array('submit_report_back');
+
+$activity = $workflow->newActivity('submit_report_back');
+$activity->name = 'submit_report_back';
+$activity->inputs = array('start');
+$activity->outputs = array('end');
+$activity->submission_fields = array();
+$activity->success_response = 164799;
+$activity->webform_nid = 0;
+$activity->campaign_opt_outs = array(124253);
+$activity->success_response_mcommons_campaign_id = 124255;
+
+$activity = $workflow->newActivity('end');
+$activity->name = 'end';
+$activity->inputs = array('submit_report_back');
+
+$workflows[$workflow->name] = $workflow;
