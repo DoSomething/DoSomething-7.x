@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * This module exposes the Message Broker object library to Drupal.
@@ -108,14 +107,16 @@ function message_broker_producer_request($method = '', $param = array()) {
         'port' => variable_get('message_broker_producer_rabbitmq_port', ''),
         'username' => variable_get('message_broker_producer_rabbitmq_username', ''),
         'password' => variable_get('message_broker_producer_rabbitmq_password', ''),
+        'vhost' => variable_get('message_broker_producer_rabbitmq_vhost', ''),
       );
+      $bla = class_exists('MessageBroker');
       $MessageBroker = new MessageBroker($credentials);
 
       // Add 'activity_timestamp' and 'application_id' to $param for
       // produceTransactional method call
       $param['activity_timestamp'] = time();
       $application_id = variable_get('message_broker_producer_application_id', NULL);
-      if (!empty($application_id)) {
+      if (!empty($application_id) && $application_id != -1) {
         $param['application_id'] = $application_id;
       }
       else {
@@ -139,21 +140,21 @@ function message_broker_producer_request($method = '', $param = array()) {
 }
 
 /**
- * EXAMPLE use in Drupal code base
  * Send test produceTransactional entry
  */
 function message_broker_producer_test() {
+
   $payload = array(
     'activity' => 'campaign-signup',
     'event_id' => 8012345,
     'email' => 'dlee+messagebroker-test@dosomething.org',
     'merge_vars' => array(
       'FNAME' => 'First-Name',
-      'CAMPAIGN-TITLE' => 'Campaign Test Title',
-      'ACTION' => 'Some call to action',
-      'STEP-ONE' => 'Step one from Do It',
-      'STEP-TWO' => 'Step two from Do It',
-      'STEP-THREE' => 'Step three from Do It',
+      'CAMPAIGN_TITLE' => 'Campaign Test Title',
+      'CALL_TO_ACTION' => 'Some call to action',
+      'STEP_ONE' => 'Step one from Do It',
+      'STEP_TWO' => 'Step two from Do It',
+      'STEP_THREE' => 'Step three from Do It',
     ),
   );
   message_broker_producer_request('produceTransactional', $payload);
