@@ -131,9 +131,10 @@
       <i title="JetBlue" class="sprite sprite-jetblue"></i>
       <i title="AARP" class="sprite sprite-aarp"></i>
       <i title="Sprint" class="sprite sprite-sprint"></i>
-      <i title="VH1" class="sprite sprite-vh1"></i>
-      <i title="Walmart" class="sprite sprite-walmart"></i>
+      <i title="H&amp;M" class="sprite sprite-hm"></i>
+      <i title="Salt" class="sprite sprite-salt"></i>
       <i title="American Express" class="sprite sprite-amex"></i>
+      <i title="Google" class="sprite sprite-google"></i>
     </p>
   </div>
 </div>
