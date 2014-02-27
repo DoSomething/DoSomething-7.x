@@ -297,8 +297,24 @@ public function testMailDispatchWebformSubmissionInsert() {
     // Test random returned merge_var values
     $target_index = rand(1, count($to) - 1);
     $this->assertTrue($to[$target_index]['email'] == $merge_vars[$target_index]['rcpt'], '$to[' . $target_index . '][\'email\'] matches $merge_vars[' . $target_index . '][\'rcpt\']');
-    $this->assertTrue($to[$target_index]['name'] == $merge_vars[$target_index]['vars'][0]['content'], '$to[' . $target_index . '][\'name\'] matches $merge_vars[' . $target_index . '][0][\'content\']');
+    $this->assertTrue(strtolower($to[$target_index]['name']) == strtolower($merge_vars[$target_index]['vars'][0]['content']), '$to[' . $target_index . '][\'name\'] matches $merge_vars[' . $target_index . '][0][\'content\']');
 
+    // Exclude email that have reported back
+    // Test case: dlee+momm01@dosomething.org, uid: 1434845,
+    //                   reportback: 1381859559 (Tue, 15 Oct 2013 17:52:39 GMT),
+    // One week later: 1381859559 + 604800 (WEEK) = 1382464359
+    // (22 Oct 2013 17:52:39 GMT)
+    $target_stamp = 1382464359;
+    list($to, $merge_vars) = dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp);
+
+    // Test that dlee+momm01@dosomething.org is not in the results
+    $email_not_found = TRUE;
+    foreach ($to as $index => $to_details) {
+      if ($to_details['email'] == 'dlee+momm01@dosomething.org') {
+        $email_not_found = FALSE;
+      }
+    }
+    $this->assertTrue($email_not_found, 'MOMM report back user (karimarquez@live.com) not in list to send MOMM drip message.');
   }
 
   /*

@@ -1028,19 +1028,22 @@ function dosomething_mandrill_get_drip_dispatch_momm_data($target_stamp) {
 			fdfufn.field_user_first_name_value
 		FROM
 			dosomething_campaign_signups dcs
+      LEFT JOIN webform_submissions ws ON ws.uid = dcs.uid
 			LEFT JOIN users u ON u.uid = dcs.uid
 			LEFT JOIN profile p ON p.uid = u.uid
 			LEFT JOIN field_data_field_user_first_name fdfufn ON fdfufn.entity_id = p.pid
 		WHERE
-			dcs.nid = 731098
+			  dcs.nid = 731098
 			AND
-			(u.mail != ''
-			OR
-			 LOCATE('@mobile', u.mail) != 0)
+			  ws.nid <> 731099
 			AND
-			dcs.timestamp >= :timestamp
+			  (u.mail != ''
+			    OR
+			   LOCATE('@mobile', u.mail) != 0)
 			AND
-			dcs.timestamp <= :timestamp_end",
+			  dcs.timestamp >= :timestamp
+			AND
+			  dcs.timestamp <= :timestamp_end",
 			array(
 				':timestamp' => $target_stamp,
 				':timestamp_end' => $target_stamp + (60*60*24) // One day: 86400
