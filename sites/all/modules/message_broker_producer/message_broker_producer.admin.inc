@@ -64,7 +64,7 @@ function message_broker_producer_config_form($form, &$form_state) {
  */
 function message_broker_producer_status() {
 
-  $output = '';
+  $status = '';
 
   // List queues
   /* @todo: permission access issues for www user
@@ -82,23 +82,26 @@ function message_broker_producer_status() {
    */
   $queues = shell_exec('/usr/local/sbin/rabbitmqctl list_queues');
   if ($queues == NULL) {
-    $output['queues'] = 'Queue Listing - No RabbitMQ queues found, check that RabbitMQ is running.';
+    $status['queues'] = 'Queue Listing - No RabbitMQ queues found, check that RabbitMQ is running.';
   }
   else {
-    $output['queues'] = print_r($queues, TRUE);
+    $status['queues'] = print_r($queues, TRUE);
   }
 
   // List exchanges
   $exchanges = shell_exec('/usr/local/sbin/rabbitmqctl list_exchanges');
   if ($exchanges == NULL) {
-    $output['exchanges'] = 'Exchange Listing - No RabbitMQ exchanges found, check that RabbitMQ is running.';
+    $status['exchanges'] = 'Exchange Listing - No RabbitMQ exchanges found, check that RabbitMQ is running.';
   }
 
   // List bindings
   $bindings = shell_exec('rabbitmqctl list_exchanges');
   if ($bindings == NULL) {
-    $output['bindings'] = 'Bindings Listing - No RabbitMQ bindings found, check that RabbitMQ is running.';
+    $status['bindings'] = 'Bindings Listing - No RabbitMQ bindings found, check that RabbitMQ is running.';
   }
 
-  return theme('message_broker_producer_status', array('output' => $output));
+  // Test link to produce tranactionals queue entry
+  $test_link = 'Generate ' . l('test producer entry', 'admin/config/services/message-broker-producer-test') . '.';
+
+  return theme('message_broker_producer_status', array('status' => $status, 'test_link' => $test_link));
 }

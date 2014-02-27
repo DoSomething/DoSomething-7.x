@@ -28,7 +28,7 @@ function message_broker_producer_libraries_info() {
 function message_broker_producer_theme($existing, $type, $theme, $path) {
   return array(
     'message_broker_producer_status' => array(
-      'variables' => array('status' => array()),
+      'variables' => array('status' => array(), 'test_link' => array()),
       'template' => 'templates/message-broker-producer-status',
     ),
   );
@@ -64,7 +64,7 @@ function message_broker_producer_menu() {
   $items['admin/config/services/message-broker-producer-test'] = array(
     'title' => 'Message Broker TEST',
     'description' => 'Message Broker Producer TEST',
-    'page callback' => 'message_broker_producer_test',
+    'page callback' => 'message_broker_producer_test_page',
     'access arguments' => array('administer message_broker_producer'),
   );
 
@@ -109,7 +109,6 @@ function message_broker_producer_request($method = '', $param = array()) {
         'password' => variable_get('message_broker_producer_rabbitmq_password', ''),
         'vhost' => variable_get('message_broker_producer_rabbitmq_vhost', ''),
       );
-      $bla = class_exists('MessageBroker');
       $MessageBroker = new MessageBroker($credentials);
 
       // Add 'activity_timestamp' and 'application_id' to $param for
@@ -141,6 +140,14 @@ function message_broker_producer_request($method = '', $param = array()) {
 
 /**
  * Send test produceTransactional entry
+ *
+ * This is an example of how a Druapl app can produce a transactional message
+ * entry in MessageBroker system. The $payload defines the values passed to the
+ * consumers related to the activity. See the consumer docs for details.
+ *
+ * The $payload example below is for users signing up for a campaign. The
+ * merge_var values are specific to the Mandrill service used by the related
+ * consumer to send email messages.
  */
 function message_broker_producer_test() {
 
@@ -158,4 +165,16 @@ function message_broker_producer_test() {
     ),
   );
   message_broker_producer_request('produceTransactional', $payload);
+}
+
+/*
+ * Wrapper function for message_broker_producer_test() as the function can be
+ * called from both the admin UI as a link and a Drush command.
+ */
+function message_broker_producer_test_page() {
+  
+  message_broker_producer_test();
+  
+  drupal_set_message('Producer test sent.', 'status');
+  drupal_goto('admin/config/services/message-broker-producer/status');
 }
