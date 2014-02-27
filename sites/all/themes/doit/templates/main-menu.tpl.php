@@ -1,4 +1,4 @@
-<?php if( strtotime('now') > strtotime("2014-2-18 23:59:00") ) { ?>
+<?php if( strtotime('now') > strtotime("2014-3-1 01:00:00") ) { ?>
 
     <ul class="main-menu">
         <li>
@@ -17,7 +17,6 @@
             <ul class="dropdown">
                 <li><a href="/pbj">Peanut Butter &amp; Jam Slam</a></li>
                 <li><a href="/wyr">Would You Rather</a></li>
-                <li><a href="/teensforjeans">Teens For Jeans</a></li>
                 <li><a href="/bully">Bully Text</a></li>
                 <li><a href="/money">Mind on my Money</a></li> 
                 <li><a href="/past-campaigns">Past Campaigns</a></li>
@@ -70,8 +69,8 @@
         <li>
             <a class="menu-link" href="/campaigns">Campaigns</a>
             <ul class="dropdown">
+                <li><a href="/pbj">Peanut Butter &amp; Jam Slam</a></li>
                 <li><a href="/wyr">Would You Rather</a></li>
-                <li><a href="/loveletters">Love Letters</a></li>
                 <li><a href="/teensforjeans">Teens For Jeans</a></li>
                 <li><a href="/bully">Bully Text</a></li>
                 <li><a href="/money">Mind on my Money</a></li> 

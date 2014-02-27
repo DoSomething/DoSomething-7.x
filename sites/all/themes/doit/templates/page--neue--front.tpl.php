@@ -34,16 +34,16 @@
 
 <div class="page-width gutters">
 
-<?php if( strtotime('now') > strtotime("2014-2-15 02:00:00") ) { ?>
+<?php if( strtotime('now') > strtotime("2014-3-01 01:00:00") ) { ?>
 
   <!-- homepage after specified date -->
 
   <div class="row">
-      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/t4j-feature-2.jpg'); background-position: center center;">
-      <a class="full-link" href="/teensforjeans"><span>Do This</span></a>
-      <div class="headline big teal">
-        <h3>Collect jeans for homeless youth in your community.</h3>
-        <a href="/teensforjeans" class="btn primary large">Do This</a>
+      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/pbj-featured.jpg'); background-position: center center;">
+      <a class="full-link" href="/pbj"><span>Do This</span></a>
+      <div class="headline big red">
+        <h3>Collect peanut butter for your local food bank.</h3>
+        <a href="/pbj" class="btn primary large">Do This</a>
       </div>
     </div>
   </div>
@@ -57,11 +57,11 @@
      </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/pbj-homepage-sm.jpg'); background-position: center center;">
-      <a class="full-link" href="/pbj"><span>Do This</span></a>
-      <div class="headline red">
-        <div class="headline-row"><h4>Collect peanut butter for your local food bank.</h4></div>
-        <div class="headline-row"><p class="homepage-block-cta"><a href="/pbj" class="btn primary large">Do This</a></p></div>
+    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/pregtext.jpg'); background-position: center center;">
+      <a class="full-link" href="/baby"><span>Do This</span></a>
+      <div class="headline yellow">
+        <div class="headline-row"><h4>Impregnate your friends' phones!</h4></div>
+        <div class="headline-row"><p class="homepage-block-cta"><a href="/baby" class="btn primary large">Do This</a></p></div>
       </div>
     </div>
 
@@ -131,9 +131,10 @@
       <i title="JetBlue" class="sprite sprite-jetblue"></i>
       <i title="AARP" class="sprite sprite-aarp"></i>
       <i title="Sprint" class="sprite sprite-sprint"></i>
-      <i title="VH1" class="sprite sprite-vh1"></i>
-      <i title="Walmart" class="sprite sprite-walmart"></i>
+      <i title="H&amp;M" class="sprite sprite-hm"></i>
+      <i title="Salt" class="sprite sprite-salt"></i>
       <i title="American Express" class="sprite sprite-amex"></i>
+      <i title="Google" class="sprite sprite-google"></i>
     </p>
   </div>
 </div>
