@@ -51,6 +51,49 @@ function dosomething_session_db_query($query, array $args = array(), array $opti
 }
 
 /**
+ * Wrapper for db_merge() calls in this file. Force switch to 'beta'
+ * DB info.
+ *
+ * @see site-settings.php
+ */
+function dosomething_session_db_merge($table, array $options = array()) {
+  db_set_active('beta');
+  db_merge($table, $options);
+
+  // Restore 'default'.
+  db_set_active();
+}
+
+/**
+ * Wrapper for db_update() calls in this file. Force switch to 'beta'
+ * DB info.
+ *
+ * @see site-settings.php
+ */
+function dosomething_session_db_update($table, array $options = array()) {
+  db_set_active('beta');
+  db_update($table, $options);
+
+  // Restore 'default'.
+  db_set_active();
+}
+
+/**
+ * Wrapper for db_delete() calls in this file. Force switch to 'beta'
+ * DB info.
+ *
+ * @see site-settings.php
+ */
+function dosomething_session_db_delete($table, array $options = array()) {
+  db_set_active('beta');
+  db_delete($table, $options);
+
+  // Restore 'default'.
+  db_set_active();
+}
+
+
+/**
  * Session handler assigned by session_set_save_handler().
  *
  * This function is used to handle any initialization, such as file paths or
@@ -237,7 +280,7 @@ function _drupal_session_write($sid, $value) {
         unset($key['ssid']);
       }
 
-      db_merge('sessions')
+      dosomething_session_db_merge('sessions')
         ->key($key)
         ->fields($fields)
         ->execute();
@@ -245,7 +288,7 @@ function _drupal_session_write($sid, $value) {
 
     // Likewise, do not update access time more than once per 180 seconds.
     if ($user->uid && REQUEST_TIME - $user->access > variable_get('session_write_interval', 180)) {
-      db_update('users')
+      dosomething_session_db_update('users')
         ->fields(array(
           'access' => REQUEST_TIME
         ))
@@ -421,7 +464,7 @@ function drupal_session_regenerate() {
         $fields['sid'] = $session_id;
       }
     }
-    db_update('sessions')
+    dosomething_session_db_update('sessions')
       ->fields($fields)
       ->condition($is_https ? 'ssid' : 'sid', $old_session_id)
       ->execute();
@@ -430,7 +473,7 @@ function drupal_session_regenerate() {
     // If logging in to the secure site, and there was no active session on the
     // secure site but a session was active on the insecure site, update the
     // insecure session with the new session identifiers.
-    db_update('sessions')
+    dosomething_session_db_update('sessions')
       ->fields(array('sid' => $session_id, 'ssid' => session_id()))
       ->condition('sid', $old_insecure_session_id)
       ->execute();
@@ -463,7 +506,7 @@ function _drupal_session_destroy($sid) {
   }
 
   // Delete session data.
-  db_delete('sessions')
+  dosomething_session_db_delete('sessions')
     ->condition($is_https ? 'ssid' : 'sid', $sid)
     ->execute();
 
@@ -514,7 +557,7 @@ function drupal_session_destroy_uid($uid) {
     return;
   }
 
-  db_delete('sessions')
+  dosomething_session_db_delete('sessions')
     ->condition('uid', $uid)
     ->execute();
 }
@@ -534,7 +577,7 @@ function _drupal_session_garbage_collection($lifetime) {
   // for three weeks before deleting them, you need to set gc_maxlifetime
   // to '1814400'. At that value, only after a user doesn't log in after
   // three weeks (1814400 seconds) will his/her session be removed.
-  db_delete('sessions')
+  dosomething_session_db_delete('sessions')
     ->condition('timestamp', REQUEST_TIME - $lifetime, '<')
     ->execute();
   return TRUE;
