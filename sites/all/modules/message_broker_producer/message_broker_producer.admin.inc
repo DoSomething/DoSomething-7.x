@@ -55,11 +55,11 @@ function message_broker_producer_config_form($form, &$form_state) {
     '#required' => TRUE,
     '#default_value' => variable_get('message_broker_producer_application_id', '-1'),
   );
-  $form['configuration']['message_broker_producer_rabbitmq_transactionalExchange'] = array(
+  $form['configuration']['message_broker_producer_rabbitmq_transactional_exchange'] = array(
     '#type' => 'textfield',
     '#title' => t('Target Exchange'),
     '#required' => TRUE,
-    '#default_value' => variable_get('message_broker_producer_rabbitmq_transactionalExchange', 'transactionals-exchange'),
+    '#default_value' => variable_get('essage_broker_producer_rabbitmq_transactional_exchange', 'transactionalExchange'),
   );
 
   return system_settings_form($form);
