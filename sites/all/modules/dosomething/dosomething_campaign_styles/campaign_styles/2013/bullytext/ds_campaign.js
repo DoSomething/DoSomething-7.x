@@ -74,7 +74,7 @@
       // ------------------------
 
       if (document.location.search.slice(1,8) === 'success') {
-        var success_msg = '<div class="success_msg"><h2>Great! We sent The Bully Text to you and your friends.</h2></div>';
+        var success_msg = '<div class="success_msg"><h2>Great, you\'ve been entered to win the scholarship! The challenge begins now.</h2></div>';
         $('#sms').prepend(success_msg);
       }
 
