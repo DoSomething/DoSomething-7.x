@@ -118,6 +118,7 @@ function message_broker_producer_request($method = '', $param = array()) {
       );
       $config = array(
         'transactionalExchange' => variable_get('message_broker_producer_rabbitmq_transactional_exchange', ''),
+        'routingKey' => 'transactional',
       );
       $messageBroker = new MessageBroker($credentials, $config);
 
@@ -134,7 +135,7 @@ function message_broker_producer_request($method = '', $param = array()) {
       }
 
       $param = json_encode($param);
-      return $MessageBroker->$method($param);
+      return $messageBroker->$method($param);
 
     }
     else {
