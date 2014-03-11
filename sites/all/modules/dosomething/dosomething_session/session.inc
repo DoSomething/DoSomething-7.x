@@ -37,63 +37,6 @@
  */
 
 /**
- * Wrapper for db_query() calls in this file. Force switch to 'beta'
- * DB info.
- *
- * @see site-settings.php
- */
-function dosomething_session_db_query($query, array $args = array(), array $options = array()) {
-  db_set_active('beta');
-  db_query($query, $args, $options);
-
-  // Restore 'default'.
-  db_set_active();
-}
-
-/**
- * Wrapper for db_merge() calls in this file. Force switch to 'beta'
- * DB info.
- *
- * @see site-settings.php
- */
-function dosomething_session_db_merge($table, array $options = array()) {
-  db_set_active('beta');
-  db_merge($table, $options);
-
-  // Restore 'default'.
-  db_set_active();
-}
-
-/**
- * Wrapper for db_update() calls in this file. Force switch to 'beta'
- * DB info.
- *
- * @see site-settings.php
- */
-function dosomething_session_db_update($table, array $options = array()) {
-  db_set_active('beta');
-  db_update($table, $options);
-
-  // Restore 'default'.
-  db_set_active();
-}
-
-/**
- * Wrapper for db_delete() calls in this file. Force switch to 'beta'
- * DB info.
- *
- * @see site-settings.php
- */
-function dosomething_session_db_delete($table, array $options = array()) {
-  db_set_active('beta');
-  db_delete($table, $options);
-
-  // Restore 'default'.
-  db_set_active();
-}
-
-
-/**
  * Session handler assigned by session_set_save_handler().
  *
  * This function is used to handle any initialization, such as file paths or
@@ -147,12 +90,12 @@ function _drupal_session_close() {
 function _drupal_session_read($sid) {
   global $user, $is_https;
 
+  db_set_active('beta');
   // Write and Close handlers are called after destructing objects
   // since PHP 5.0.5.
   // Thus destructors can use sessions but session handler can't use objects.
   // So we are moving session closure before destructing objects.
   drupal_register_shutdown_function('session_write_close');
-
   // Handle the case of first time visitors and clients that don't store
   // cookies (eg. web crawlers).
   $insecure_session_name = substr(session_name(), 1);
@@ -166,17 +109,18 @@ function _drupal_session_read($sid) {
   // a HTTPS session or we are about to log in so we check the sessions table
   // for an anonymous session with the non-HTTPS-only cookie.
   if ($is_https) {
-    $user = dosomething_session_db_query("SELECT u.*, s.* FROM {users} u INNER JOIN {sessions} s ON u.uid = s.uid WHERE s.ssid = :ssid", array(':ssid' => $sid))->fetchObject();
+    $user = db_query("SELECT u.*, s.* FROM {users} u INNER JOIN {sessions} s ON u.uid = s.uid WHERE s.ssid = :ssid", array(':ssid' => $sid))->fetchObject();
+
     if (!$user) {
       if (isset($_COOKIE[$insecure_session_name])) {
-        $user = dosomething_session_db_query("SELECT u.*, s.* FROM {users} u INNER JOIN {sessions} s ON u.uid = s.uid WHERE s.sid = :sid AND s.uid = 0", array(
+        $user = db_query("SELECT u.*, s.* FROM {users} u INNER JOIN {sessions} s ON u.uid = s.uid WHERE s.sid = :sid AND s.uid = 0", array(
         ':sid' => $_COOKIE[$insecure_session_name]))
         ->fetchObject();
       }
     }
   }
   else {
-    $user = dosomething_session_db_query("SELECT u.*, s.* FROM {users} u INNER JOIN {sessions} s ON u.uid = s.uid WHERE s.sid = :sid", array(':sid' => $sid))->fetchObject();
+    $user = db_query("SELECT u.*, s.* FROM {users} u INNER JOIN {sessions} s ON u.uid = s.uid WHERE s.sid = :sid", array(':sid' => $sid))->fetchObject();
   }
 
   // We found the client's session record and they are an authenticated,
@@ -188,7 +132,7 @@ function _drupal_session_read($sid) {
     // Add roles element to $user.
     $user->roles = array();
     $user->roles[DRUPAL_AUTHENTICATED_RID] = 'authenticated user';
-    $user->roles += dosomething_session_db_query("SELECT r.rid, r.name FROM {role} r INNER JOIN {users_roles} ur ON ur.rid = r.rid WHERE ur.uid = :uid", array(':uid' => $user->uid))->fetchAllKeyed(0, 1);
+    $user->roles += db_query("SELECT r.rid, r.name FROM {role} r INNER JOIN {users_roles} ur ON ur.rid = r.rid WHERE ur.uid = :uid", array(':uid' => $user->uid))->fetchAllKeyed(0, 1);
   }
   elseif ($user) {
     // The user is anonymous or blocked. Only preserve two fields from the
@@ -211,6 +155,7 @@ function _drupal_session_read($sid) {
     'value' => $user->session,
   );
 
+  db_set_active();
   return $user->session;
 }
 
@@ -235,6 +180,7 @@ function _drupal_session_read($sid) {
 function _drupal_session_write($sid, $value) {
   global $user, $is_https;
 
+  db_set_active('beta');
   // The exception handler is not active at this point, so we need to do it
   // manually.
   try {
@@ -280,7 +226,7 @@ function _drupal_session_write($sid, $value) {
         unset($key['ssid']);
       }
 
-      dosomething_session_db_merge('sessions')
+     db_merge('sessions')
         ->key($key)
         ->fields($fields)
         ->execute();
@@ -288,14 +234,14 @@ function _drupal_session_write($sid, $value) {
 
     // Likewise, do not update access time more than once per 180 seconds.
     if ($user->uid && REQUEST_TIME - $user->access > variable_get('session_write_interval', 180)) {
-      dosomething_session_db_update('users')
+      db_update('users')
         ->fields(array(
           'access' => REQUEST_TIME
         ))
         ->condition('uid', $user->uid)
         ->execute();
     }
-
+    db_set_active();
     return TRUE;
   }
   catch (Exception $exception) {
@@ -306,8 +252,10 @@ function _drupal_session_write($sid, $value) {
       print '<h1>Uncaught exception thrown in session handler.</h1>';
       print '<p>' . _drupal_render_exception_safe($exception) . '</p><hr />';
     }
+    db_set_active();
     return FALSE;
   }
+
 }
 
 /**
@@ -318,6 +266,13 @@ function drupal_session_initialize() {
 
   session_set_save_handler('_drupal_session_open', '_drupal_session_close', '_drupal_session_read', '_drupal_session_write', '_drupal_session_destroy', '_drupal_session_garbage_collection');
 
+  // Check the keys of the cookies, is the user logged in in the old-world?
+  $keys = (array_keys($_COOKIE));
+  foreach($keys as $key) {
+    if ( strpos($key, 'SSESS') !== FALSE) {
+      $_COOKIE[session_name($key)];
+    }
+  }
   // We use !empty() in the following check to ensure that blank session IDs
   // are not valid.
   if (!empty($_COOKIE[session_name()]) || ($is_https && variable_get('https', FALSE) && !empty($_COOKIE[substr(session_name(), 1)]))) {
@@ -326,6 +281,7 @@ function drupal_session_initialize() {
     // anonymous users not use a session cookie unless something is stored in
     // $_SESSION. This allows HTTP proxies to cache anonymous pageviews.
     drupal_session_start();
+
     if (!empty($user->uid) || !empty($_SESSION)) {
       drupal_page_is_cacheable(FALSE);
     }
@@ -464,7 +420,7 @@ function drupal_session_regenerate() {
         $fields['sid'] = $session_id;
       }
     }
-    dosomething_session_db_update('sessions')
+    db_update('sessions')
       ->fields($fields)
       ->condition($is_https ? 'ssid' : 'sid', $old_session_id)
       ->execute();
@@ -473,7 +429,7 @@ function drupal_session_regenerate() {
     // If logging in to the secure site, and there was no active session on the
     // secure site but a session was active on the insecure site, update the
     // insecure session with the new session identifiers.
-    dosomething_session_db_update('sessions')
+    db_update('sessions')
       ->fields(array('sid' => $session_id, 'ssid' => session_id()))
       ->condition('sid', $old_insecure_session_id)
       ->execute();
@@ -499,6 +455,7 @@ function drupal_session_regenerate() {
  */
 function _drupal_session_destroy($sid) {
   global $user, $is_https;
+  db_set_active('beta');
 
   // Nothing to do if we are not allowed to change the session.
   if (!drupal_save_session()) {
@@ -506,7 +463,7 @@ function _drupal_session_destroy($sid) {
   }
 
   // Delete session data.
-  dosomething_session_db_delete('sessions')
+  db_delete('sessions')
     ->condition($is_https ? 'ssid' : 'sid', $sid)
     ->execute();
 
@@ -523,6 +480,7 @@ function _drupal_session_destroy($sid) {
   elseif (variable_get('https', FALSE)) {
     _drupal_session_delete_cookie('S' . session_name(), TRUE);
   }
+  db_set_active();
 }
 
 /**
@@ -556,10 +514,13 @@ function drupal_session_destroy_uid($uid) {
   if (!drupal_save_session()) {
     return;
   }
+  db_set_active('beta');
 
-  dosomething_session_db_delete('sessions')
+  db_delete('sessions')
     ->condition('uid', $uid)
     ->execute();
+
+  db_set_active();
 }
 
 /**
@@ -577,9 +538,11 @@ function _drupal_session_garbage_collection($lifetime) {
   // for three weeks before deleting them, you need to set gc_maxlifetime
   // to '1814400'. At that value, only after a user doesn't log in after
   // three weeks (1814400 seconds) will his/her session be removed.
-  dosomething_session_db_delete('sessions')
+  db_set_active('beta');
+  db_delete('sessions')
     ->condition('timestamp', REQUEST_TIME - $lifetime, '<')
     ->execute();
+  db_set_active();
   return TRUE;
 }
 
