@@ -6,5 +6,9 @@
 </ul>
 <h3>Tests</h3>
 <ul>
-  <li><?php print $test_link ?></li>
+  <li><?php print $test_links['all'] ?></li>
+  <ul>
+    <li><?php print $test_links['campaign-signup'] ?></li>
+    <li><?php print $test_links['user-register'] ?></li>
+  </ul>
 </ul>

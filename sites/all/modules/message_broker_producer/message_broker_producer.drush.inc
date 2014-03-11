@@ -8,7 +8,7 @@
  */
 function message_broker_producer_drush_command() {
   return array(
-    'message-broker-producer-test' => array(
+    'producer-tests' => array(
       'description' => 'Sends test producer test entry to RabbitMQ.',
       'aliases' => array('producer-test'),
       'drupal dependencies' => array('message_broker_producer'),
@@ -16,16 +16,15 @@ function message_broker_producer_drush_command() {
   );
 }
 
-/*
+/**
  * Drush command to trigger sending Mandrill based message based on Drupal
  * producer entry:
- *
  */
-function drush_message_broker_producer_test() {
+function drush_message_broker_producer_producer_tests($action = NULL) {
   try {
     
-    $results = message_broker_producer_test();
-    drush_print(dt('Test producer entry sent...'));
+    $results = message_broker_producer_test($action);
+    drush_print(dt('Test ' . $action . ' producer entry(ies) sent...' . $results));
 
   }
   catch (Exception $e) {

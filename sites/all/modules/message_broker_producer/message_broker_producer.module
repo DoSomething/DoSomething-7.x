@@ -15,20 +15,20 @@ function message_broker_producer_libraries_info() {
     'download url' => 'https://github.com/DoSomething/messagebroker-phplib',
     'version' => '1.0',
     'files' => array(
-      'php' => array('MessageBroker.php'),
+      'php' => array('MessageBroker-Drupal.php'),
     ),
   );
 
   return $libraries;
 }
 
-/*
+/**
  * Implements hook_theme()
  */
 function message_broker_producer_theme($existing, $type, $theme, $path) {
   return array(
     'message_broker_producer_status' => array(
-      'variables' => array('status' => array(), 'test_link' => array()),
+      'variables' => array('status' => array(), 'test_links' => array()),
       'template' => 'templates/message-broker-producer-status',
     ),
   );
@@ -61,10 +61,17 @@ function message_broker_producer_menu() {
   );
 
   // Testing - remove for release
-  $items['admin/config/services/message-broker-producer-test'] = array(
-    'title' => 'Message Broker TEST',
-    'description' => 'Message Broker Producer TEST',
+  $items['admin/config/services/message-broker-producer/test'] = array(
+    'title' => 'Message Broker Test Transaction',
+    'description' => 'Send all test transaction types',
     'page callback' => 'message_broker_producer_test_page',
+    'access arguments' => array('administer message_broker_producer'),
+  );
+  $items['admin/config/services/message-broker-producer/test/%'] = array(
+    'title' => 'Message Broker Test Transactions',
+    'description' => 'Send specific test transactions.',
+    'page callback' => 'message_broker_producer_test_page',
+    'page arguments' => array(5),
     'access arguments' => array('administer message_broker_producer'),
   );
 
@@ -109,7 +116,11 @@ function message_broker_producer_request($method = '', $param = array()) {
         'password' => variable_get('message_broker_producer_rabbitmq_password', ''),
         'vhost' => variable_get('message_broker_producer_rabbitmq_vhost', ''),
       );
-      $MessageBroker = new MessageBroker($credentials);
+      $config = array(
+        'transactionalExchange' => variable_get('message_broker_producer_rabbitmq_transactional_exchange', ''),
+        'routingKey' => 'transactional',
+      );
+      $messageBroker = new MessageBroker($credentials, $config);
 
       // Add 'activity_timestamp' and 'application_id' to $param for
       // produceTransactional method call
@@ -124,7 +135,7 @@ function message_broker_producer_request($method = '', $param = array()) {
       }
 
       $param = json_encode($param);
-      return $MessageBroker->$method($param);
+      return $messageBroker->$method($param);
 
     }
     else {
@@ -148,33 +159,53 @@ function message_broker_producer_request($method = '', $param = array()) {
  * The $payload example below is for users signing up for a campaign. The
  * merge_var values are specific to the Mandrill service used by the related
  * consumer to send email messages.
+ *
+ * @param $action
+ *   The type of test action / transaction to submit.
  */
-function message_broker_producer_test() {
+function message_broker_producer_test($action = NULL) {
 
-  $payload = array(
-    'activity' => 'campaign-signup',
-    'event_id' => 8012345,
-    'email' => 'dlee+messagebroker-test@dosomething.org',
-    'merge_vars' => array(
-      'FNAME' => 'First-Name',
-      'CAMPAIGN_TITLE' => 'Campaign Test Title',
-      'CALL_TO_ACTION' => 'Some call to action',
-      'STEP_ONE' => 'Step one from Do It',
-      'STEP_TWO' => 'Step two from Do It',
-      'STEP_THREE' => 'Step three from Do It',
-    ),
-  );
-  message_broker_producer_request('produceTransactional', $payload);
+  if (empty($action) || $action == 'campaign-signup' || $action == 1) {
+    $payload = array(
+      'activity' => 'campaign-signup',
+      'event_id' => 8012345,
+      'email' => 'dlee+messagebroker-test-campaign-signup@dosomething.org',
+      'merge_vars' => array(
+        'FNAME' => 'First-Name',
+        'CAMPAIGN_TITLE' => 'Campaign Test Title',
+        'CALL_TO_ACTION' => 'Some call to action',
+        'STEP_ONE' => 'Step one from Do It',
+        'STEP_TWO' => 'Step two from Do It',
+        'STEP_THREE' => 'Step three from Do It',
+      ),
+    );
+    message_broker_producer_request('produceTransactional', $payload);
+  }
+
+  if (empty($action) || $action == 'user-register' || $action == 2) {
+    $payload = array(
+      'activity' => 'user-register',
+      'email' => 'dlee+messagebroker-testnew-user@dosomething.org',
+      'merge_vars' => array(
+        'FNAME' => 'First-Name',
+        'UID' => 1234
+      ),
+    );
+    message_broker_producer_request('produceTransactional', $payload);
+  }
 }
 
-/*
+/**
  * Wrapper function for message_broker_producer_test() as the function can be
  * called from both the admin UI as a link and a Drush command.
+ *
+ * @param $action
+ *   The type of test action / transaction to submit.
  */
-function message_broker_producer_test_page() {
+function message_broker_producer_test_page($action = NULL) {
   
-  message_broker_producer_test();
+  message_broker_producer_test($action);
   
-  drupal_set_message('Producer test sent.', 'status');
+  drupal_set_message('Producer ' . $action . ' test sent.', 'status');
   drupal_goto('admin/config/services/message-broker-producer/status');
 }
