@@ -8,5 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'PhpAmqpLib' => array($vendorDir . '/videlalvaro/php-amqplib'),
-    'MessageBrokerObjectLibrary' => array($baseDir . '/MessageBroker'),
+    'MessageBroker' => array($baseDir . '/src'),
 );
