@@ -1,0 +1,4 @@
+name = DoSomething - Session
+description = External session persistence for Drupal
+core = "7.x"
+package = "DoSomething"
