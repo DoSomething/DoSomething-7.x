@@ -38,16 +38,6 @@ $activity->routes = array(
     'yes' => '161421',
     'no' => '161425',
   ),
-  // 50 Cans Report Back
-  '161869' => array(
-    'yes' => '161871',
-    'no' => '161873',
-  ),
-  // Grandparents Gone Wire Report Back
-  '162623' => array(
-    'yes' => '162627',
-    'no' => '162631',
-  ),
   // Love Letters 2014 Report Back
   '163693' => array(
     'yes' => '163695',
@@ -62,6 +52,11 @@ $activity->routes = array(
   '164395' => array(
     'yes' => '164399',
     'no' => '164401',
+  ),
+  // Comeback Clothes 2014 Report Back
+  '165415' => array(
+    'yes' => '165419',
+    'no' => '165417',
   ),
 );
 
