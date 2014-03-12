@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * @file Custom session-handling logic: force nonstandard DB connection
+ *       for session-related queries.
+ *
+ * Everything is in dosomething_session.inc, which is a copy of core
+ * includes/session.inc.
+ */
