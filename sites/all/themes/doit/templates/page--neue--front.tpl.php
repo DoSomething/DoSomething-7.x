@@ -39,7 +39,7 @@
   <!-- homepage after specified date -->
 
   <div class="row">
-      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/pbj-featured.jpg'); background-position: center center;">
+      <div class="column span_12 feature-block fixed" style="background-image: url('/files/u/neue-homepage/pbj-featured.jpg'); background-position: center center;">
       <a class="full-link" href="/pbj"><span>Do This</span></a>
       <div class="headline big red">
         <h3>Collect peanut butter for your local food bank.</h3>
@@ -49,7 +49,7 @@
   </div>
 
   <div class="row">
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/wyr-small.jpg'); background-position: top center;">
+    <div class="column span_4 feature-block fixed" style="background-image: url('/files/u/neue-homepage/wyr-small.jpg'); background-position: top center;">
      <a class="full-link" href="/wyr"><span>Do This</span></a>
      <div class="headline yellow">
        <div class="headline-row"><h4>Challenge your friends to a game of "Would You Rather?"</h4></div>
@@ -57,7 +57,7 @@
      </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/pregtext.jpg'); background-position: center center;">
+    <div class="column span_4 feature-block fixed" style="background-image: url('/files/u/neue-homepage/pregtext.jpg'); background-position: center center;">
       <a class="full-link" href="/baby"><span>Do This</span></a>
       <div class="headline yellow">
         <div class="headline-row"><h4>Impregnate your friends' phones!</h4></div>
@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
+    <div class="column span_4 feature-block fixed" style="background-image: url('/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
       <a class="full-link" href="/bullytext"><span>Do This</span></a>
       <div class="headline purple">
         <div class="headline-row"><h4>Everyone has the power to stop bullying. Learn how.</h4></div>
@@ -79,7 +79,7 @@
   <!-- homepage before specified date -->
 
     <div class="row">
-      <div class="column span_12 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/t4j-feature-2.jpg'); background-position: center center;">
+      <div class="column span_12 feature-block fixed" style="background-image: url('/files/u/neue-homepage/t4j-feature-2.jpg'); background-position: center center;">
       <a class="full-link" href="/teensforjeans"><span>Do This</span></a>
       <div class="headline big teal">
         <h3>Collect jeans for homeless youth in your community.</h3>
@@ -89,7 +89,7 @@
   </div>
 
   <div class="row">
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/neue-homepage/wyr-small.jpg'); background-position: top center;">
+    <div class="column span_4 feature-block fixed" style="background-image: url('/files/u/neue-homepage/wyr-small.jpg'); background-position: top center;">
      <a class="full-link" href="/wyr"><span>Do This</span></a>
      <div class="headline yellow">
        <div class="headline-row"><h4>Challenge your friends to a game of "Would You Rather?"</h4></div>
@@ -97,7 +97,7 @@
      </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('http://www.dosomething.org/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
+    <div class="column span_4 feature-block fixed" style="background-image: url('/files/u/neue-homepage/bullytext-block.jpg'); background-position: center center;">
       <a class="full-link" href="/bullytext"><span>Do This</span></a>
       <div class="headline purple">
         <div class="headline-row"><h4>Everyone has the power to stop bullying. Learn how.</h4></div>
@@ -105,7 +105,7 @@
       </div>
     </div>
 
-    <div class="column span_4 feature-block fixed" style="background-image: url('//www.dosomething.org/files/u/pbj-homepage-sm.jpg'); background-position: center center;">
+    <div class="column span_4 feature-block fixed" style="background-image: url('/files/u/pbj-homepage-sm.jpg'); background-position: center center;">
       <a class="full-link" href="/pbj"><span>Do This</span></a>
       <div class="headline red">
         <div class="headline-row"><h4>Collect peanut butter for your local food bank.</h4></div>
