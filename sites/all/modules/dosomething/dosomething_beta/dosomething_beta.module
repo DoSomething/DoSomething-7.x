@@ -1,0 +1,26 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_beta module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_beta_menu() {
+  $items = array();
+
+  $items['admin/config/dosomething/beta'] = array(
+    'title' => t('Beta connection'),
+    'description' => 'Admin form to test Beta connection',
+    'page callback' => 'dosomething_beta_status_page',
+    'access callback' => 'user_access',
+    'access arguments' => array('administer modules'),
+  );
+
+  return $items;
+}
+
+function dosomething_beta_status_page() {
+  return "Hi world";
+}
