@@ -34,6 +34,9 @@ function dosomething_beta_init() {
   // We only need redirect for the MOMM campaign.
   if ($current_path != 'node/' . DOSOMETHING_MOMM_LEGACY_NID) { return; }
 
+  // If user is an admin, allow access to legacy node regardless.
+  if (user_access('administer modules')) { return; }
+
   // Redirect to staging site for now.
   // @todo: Update with proper redirect path.
   $beta_path = 'http://stage.dosomething.org/node/' . DOSOMETHING_MOMM_BETA_NID;
