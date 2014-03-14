@@ -1,0 +1,164 @@
+<?php
+/**
+ * @file
+ * Code for the dosomething_beta module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function dosomething_beta_menu() {
+  $items = array();
+
+  $items['admin/config/dosomething/beta'] = array(
+    'title' => t('Beta connection'),
+    'description' => 'Admin form to test Beta connection',
+    'page callback' => 'dosomething_beta_status_page',
+    'access callback' => 'user_access',
+    'access arguments' => array('administer modules'),
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for beta connection status page.
+ */
+function dosomething_beta_status_page() {
+  $output = "<h3>Status</h3>";
+  if (!db_set_active('beta')) {
+    return "Beta db configuration not found. :(";
+  }
+  db_set_active();
+  if (!dosomething_beta_signup_test_connection()) {
+    $output .= "Beta db connection not found.";
+    return $output;
+  }
+  $output .= 'Beta db connection successful.';
+  $output .= render(drupal_get_form('dosomething_beta_signup_exists_form'));
+  return $output;
+}
+
+/**
+ * Checks if a signup record exists in the beta app.
+ *
+ * @param int $nid
+ *   The beta node nid of the signup record to check.
+ * @param int $uid
+ *   Optional - the user uid of signup record to check.
+ *   If not given, uses global $user->uid.
+ *
+ * @return mixed
+ *   The sid of signup exists, FALSE if it doesn't exist.
+ */
+function dosomething_beta_signup_exists($nid, $uid = NULL) {
+  // Initialize variable to return.
+  $exists = FALSE;
+  try {
+    // Connect to beta db.
+    db_set_active('beta');
+    if ($uid == NULL) {
+      global $user;
+      $uid = $user->uid;
+    }
+    $result = db_select('dosomething_signup', 's')
+      ->condition('uid', $uid)
+      ->condition('nid', $nid)
+      ->fields('s', array('sid'))
+      ->execute();
+    $sid = $result->fetchField(0);
+    // If a sid was found, return it.
+    if (is_numeric($sid)) {
+      $exists = $sid;
+    }
+    // Set back to legacy db.
+    db_set_active();
+  }
+  catch (Exception $e) {
+    watchdog('dosomething_beta', $e, array(), WATCHDOG_ERROR);
+  }
+  return $sid;
+}
+
+/**
+ * Form constructor to check if a signup record exists in the beta app.
+ *
+ * Primary purpose is for admin testing DB connection and data.
+ */
+function dosomething_beta_signup_exists_form($form, &$form_state) {
+  $form = array();
+  $form['query'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Query Signups',
+  );
+  $form['query']['nid'] = array(
+    '#title' => 'Beta NID',
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#size' => 6,
+    '#default_value' => $form_state['values']['nid'],
+  );
+  $form['query']['uid'] = array(
+    '#title' => 'User UID',
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#size' => 6,
+    '#default_value' => $form_state['values']['uid'],
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => $label,
+    '#attributes' => array(
+      'class' => array('btn'),
+    ),
+  );
+  return $form;
+}
+
+/**
+ * Form submission handler for dosomething_beta_signup_exists_form().
+ *
+ * @see dosomething_beta_signup_exists_form()
+ */
+function dosomething_beta_signup_exists_form_submit(&$form, &$form_state) {
+  $nid = $form_state['values']['nid'];
+  $uid = $form_state['values']['uid'];
+  // Check for signup.
+  $sid = dosomething_beta_signup_exists($nid, $uid);
+  if ($sid) {
+    $message = t("Signup sid %sid exists for uid %uid and nid %nid", array(
+      '%sid' => $sid,
+      '%uid' => $uid,
+      '%nid' => $nid,
+    ));
+    drupal_set_message($message);
+    return;
+  }
+  $message = t("No signup found for uid %uid and nid %nid", array(
+    '%uid' => $uid,
+    '%nid' => $nid,
+  ));
+  drupal_set_message($message);
+}
+
+/**
+ * Runs a test in beta db to make sure we're connected.
+ *
+ * @return bool
+ *   TRUE if connected to beta app, FALSE if not (table wasn't found).
+ */
+function dosomething_beta_signup_test_connection() {
+  $exists = FALSE;
+  // Connect to beta db.
+  try {
+    db_set_active('beta');
+    // Look for a table that only exists in beta app.
+    $exists = db_table_exists('dosomething_reportback_log');
+    // Set back to legacy db.
+  }
+  catch (Exception $e) {
+    watchdog('dosomething_beta', $e, array(), WATCHDOG_ERROR);
+  }
+  db_set_active();
+  return $exists;
+}

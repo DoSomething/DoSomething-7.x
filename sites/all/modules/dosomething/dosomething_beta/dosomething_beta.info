@@ -1,0 +1,4 @@
+name = 'DoSomething Beta'
+description = 'Access data from the DoSomething Beta site.'
+core = 7.x
+package = DoSomething
