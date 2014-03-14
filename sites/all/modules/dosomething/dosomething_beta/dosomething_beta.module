@@ -3,6 +3,8 @@
  * @file
  * Code for the dosomething_beta module.
  */
+define('DOSOMETHING_MOMM_LEGACY_NID', 731098);
+define('DOSOMETHING_MOMM_BETA_NID', 850);
 
 /**
  * Implements hook_menu().
@@ -19,6 +21,27 @@ function dosomething_beta_menu() {
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_init().
+ *
+ * Handles redirects from legacy campaigns to corresponding beta campaigns.
+ */
+function dosomething_beta_init() {
+  $current_path = current_path();
+
+  // We only need redirect for the MOMM campaign.
+  if ($current_path != 'node/' . DOSOMETHING_MOMM_LEGACY_NID) { return; }
+
+  // Redirect to staging site for now.
+  // @todo: Update with proper redirect path.
+  $beta_path = 'http://stage.dosomething.org/node/' . DOSOMETHING_MOMM_BETA_NID;
+  // If anonymous user, or user is not signed up:
+  if ( !user_is_logged_in() || !dosomething_beta_signup_exists(DOSOMETHING_MOMM_LEGACY_NID) ) {
+    // Redirect to beta node.
+    drupal_goto($beta_path);
+  }
 }
 
 /**

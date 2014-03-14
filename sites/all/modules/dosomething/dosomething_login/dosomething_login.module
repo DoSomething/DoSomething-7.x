@@ -2194,6 +2194,12 @@ function dosomething_login_fboauth_user_save($account, $fbuser) {
  * Implements hook_init().
  */
 function dosomething_login_init() {
+  // If dosomething_beta is enabled, it will handle campaign redirects.
+  if (module_exists('dosomething_beta')) {
+    // So don't do any crazy gate redirecting things and exit this hook.
+    return;
+  }
+
   // If we are viewing a node:
   if (arg(0) == 'node' && is_numeric(arg(1)) && arg(2) == FALSE) {
     // Check if current path is a gated node:

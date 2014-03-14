@@ -9,12 +9,12 @@ signups in the beta app, and no longer in this legacy app.
 
 ## Usage
 
-This module is only used for node 731115, Mind on my Money.
+This module is only used for node 731098, Mind on my Money.
 
 When this module is enabled, the legacy gate system which redirects a user to
-user/login?destination=731115 will no longer in place.
+user/login?destination=731098 will no longer in place.
 
-When navigating to node 731115, the beta app is queried to see if the current
+When navigating to node 731098, the beta app is queried to see if the current
 user has exists up for 850 (the corresponding beta nid).
 
 * If the user is anonymous, redirect to the beta node (displays a login pitch).
