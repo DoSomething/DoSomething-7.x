@@ -30,7 +30,11 @@ function dosomething_beta_status_page() {
     return "Beta db configuration not found. :(";
   }
   db_set_active();
-  $output .= "Beta db configuration found.";
+  if (!dosomething_beta_signup_test_connection()) {
+    $output .= "Beta db connection not found.";
+    return $output;
+  }
+  $output .= 'Beta db connection successful.';
   $output .= render(drupal_get_form('dosomething_beta_signup_exists_form'));
   return $output;
 }
@@ -135,4 +139,20 @@ function dosomething_beta_signup_exists_form_submit(&$form, &$form_state) {
     '%nid' => $nid,
   ));
   drupal_set_message($message);
+}
+
+/**
+ * Runs a test in beta db to make sure we're connected.
+ *
+ * @return bool
+ *   TRUE if connected to beta app, FALSE if not (table wasn't found).
+ */
+function dosomething_beta_signup_test_connection() {
+  // Connect to beta db.
+  db_set_active('beta');
+  // Look for a table that only exists in beta app.
+  $exists = db_table_exists('dosomething_reportback_log');
+  // Set back to legacy db.
+  db_set_active();
+  return $exists;
 }
