@@ -148,11 +148,17 @@ function dosomething_beta_signup_exists_form_submit(&$form, &$form_state) {
  *   TRUE if connected to beta app, FALSE if not (table wasn't found).
  */
 function dosomething_beta_signup_test_connection() {
+  $exists = FALSE;
   // Connect to beta db.
-  db_set_active('beta');
-  // Look for a table that only exists in beta app.
-  $exists = db_table_exists('dosomething_reportback_log');
-  // Set back to legacy db.
+  try {
+    db_set_active('beta');
+    // Look for a table that only exists in beta app.
+    $exists = db_table_exists('dosomething_reportback_log');
+    // Set back to legacy db.
+  }
+  catch (Exception $e) {
+    watchdog('dosomething_beta', $e, array(), WATCHDOG_ERROR);
+  }
   db_set_active();
   return $exists;
 }
