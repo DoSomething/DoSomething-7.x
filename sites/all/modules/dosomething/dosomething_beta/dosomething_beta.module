@@ -31,7 +31,7 @@ function dosomething_beta_menu() {
 function dosomething_beta_init() {
   $current_path = current_path();
 
-  // We only need redirect for the MOMM campaign.
+  // We only need redirect for legacy MOMM campaign, so if this isn't it, exit.
   if ($current_path != 'node/' . DOSOMETHING_MOMM_LEGACY_NID) { return; }
 
   // If user is an admin, allow access to legacy node regardless.
@@ -41,7 +41,7 @@ function dosomething_beta_init() {
   // @todo: Update with proper redirect path.
   $beta_path = 'http://stage.dosomething.org/node/' . DOSOMETHING_MOMM_BETA_NID;
   // If anonymous user, or user is not signed up:
-  if ( !user_is_logged_in() || !dosomething_beta_signup_exists(DOSOMETHING_MOMM_LEGACY_NID) ) {
+  if ( !user_is_logged_in() || !dosomething_beta_signup_exists(DOSOMETHING_MOMM_BETA_NID) ) {
     // Redirect to beta node.
     drupal_goto($beta_path);
   }
