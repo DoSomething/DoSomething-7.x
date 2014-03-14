@@ -188,3 +188,39 @@ function dosomething_beta_signup_test_connection() {
   db_set_active();
   return $exists;
 }
+
+/**
+ * Returns data array if MOMM signup data exists for given $uid.
+ */
+function dosomething_beta_get_signup_data($uid) {
+  $result = db_select('dosomething_signup', 'n')
+    ->fields('n')
+    ->condition('uid', $uid)
+    ->condition('nid', DOSOMETHING_MOMM_BETA_NID)
+    ->execute()
+    ->fetchAssoc();
+  if ($result && $result['data']) {
+    return unserialize($result['data']);
+  }
+  return FALSE;
+}
+
+/**
+ * Updates the MOMM signup data for given user UID in beta signups table.
+ *
+ * @param int $uid
+ *  User uid of signup record.
+ * @param array $data
+ *  Data to store for this signup.
+ */
+function dosomething_beta_update_signup_data($uid, $data) {
+  $data = serialize($data);
+  // Update the data field:
+  $update = db_update('dosomething_signup')
+  ->fields(array(
+    'data' => $data,
+    ))
+  ->condition('uid', $uid)
+  ->condition('nid', DOSOMETHING_MOMM_BETA_NID)  
+  ->execute();
+}
