@@ -92,7 +92,7 @@ function dosomething_signups_get_signup_data($uid, $nid) {
  */
 function dosomething_signups_update_signup_data($uid, $nid, $data) {
   if (module_exists('dosomething_beta')) {
-    return dosomething_beta_update_signup_data($uid, serialize($data));
+    return dosomething_beta_update_signup_data($uid, $data);
   }
   // Sanity check to avoid errors if signup record doesn't exist:
   if (dosomething_signups_is_user_signed_up($uid, $nid)) {
