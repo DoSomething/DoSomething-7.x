@@ -5,6 +5,7 @@
  */
 define('DOSOMETHING_MOMM_LEGACY_NID', 731098);
 define('DOSOMETHING_MOMM_BETA_NID', 850);
+define('DOSOMETHING_MOMM_BETA_PATH', 'campaigns/mind-my-money');
 
 /**
  * Implements hook_menu().
@@ -37,13 +38,10 @@ function dosomething_beta_init() {
   // If user is an admin, allow access to legacy node regardless.
   if (user_access('administer modules')) { return; }
 
-  // Redirect to staging site for now.
-  // @todo: Update with proper redirect path.
-  $beta_path = 'http://stage.dosomething.org/node/' . DOSOMETHING_MOMM_BETA_NID;
   // If anonymous user, or user is not signed up:
   if ( !user_is_logged_in() || !dosomething_beta_signup_exists(DOSOMETHING_MOMM_BETA_NID) ) {
-    // Redirect to beta node.
-    drupal_goto($beta_path);
+    // Redirect to beta node (needs to be a relative path).
+    drupal_goto(DOSOMETHING_MOMM_BETA_PATH);
   }
 }
 
@@ -193,16 +191,24 @@ function dosomething_beta_signup_test_connection() {
  * Returns data array if MOMM signup data exists for given $uid.
  */
 function dosomething_beta_get_signup_data($uid) {
-  $result = db_select('dosomething_signup', 'n')
-    ->fields('n')
-    ->condition('uid', $uid)
-    ->condition('nid', DOSOMETHING_MOMM_BETA_NID)
-    ->execute()
-    ->fetchAssoc();
-  if ($result && $result['data']) {
-    return unserialize($result['data']);
+  $data = FALSE;
+  try {
+    db_set_active('beta');
+    $result = db_select('dosomething_signup', 'n')
+      ->fields('n')
+      ->condition('uid', $uid)
+      ->condition('nid', DOSOMETHING_MOMM_BETA_NID)
+      ->execute()
+      ->fetchAssoc();
+    if ($result && $result['data']) {
+      $data = unserialize($result['data']);
+    }
   }
-  return FALSE;
+  catch (Exception $e) {
+    watchdog('dosomething_beta', $e, array(), WATCHDOG_ERROR);
+  }
+  db_set_active();
+  return $data;
 }
 
 /**
@@ -215,12 +221,19 @@ function dosomething_beta_get_signup_data($uid) {
  */
 function dosomething_beta_update_signup_data($uid, $data) {
   $data = serialize($data);
-  // Update the data field:
-  $update = db_update('dosomething_signup')
-  ->fields(array(
-    'data' => $data,
-    ))
-  ->condition('uid', $uid)
-  ->condition('nid', DOSOMETHING_MOMM_BETA_NID)  
-  ->execute();
+  try {
+    db_set_active('beta');
+    // Update the data field:
+    $update = db_update('dosomething_signup')
+    ->fields(array(
+      'data' => $data,
+      ))
+    ->condition('uid', $uid)
+    ->condition('nid', DOSOMETHING_MOMM_BETA_NID)  
+    ->execute();
+  }
+  catch (Exception $e) {
+    watchdog('dosomething_beta', $e, array(), WATCHDOG_ERROR);
+  }
+  db_set_active();
 }
