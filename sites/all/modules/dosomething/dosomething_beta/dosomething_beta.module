@@ -113,21 +113,20 @@ function dosomething_beta_signup_exists_form($form, &$form_state) {
   $form = array();
   $form['query'] = array(
     '#type' => 'fieldset',
-    '#title' => 'Query Signups',
+    '#title' => 'Query Beta Signups',
   );
   $form['query']['nid'] = array(
     '#title' => 'Beta NID',
     '#type' => 'textfield',
     '#required' => TRUE,
     '#size' => 6,
-    '#default_value' => $form_state['values']['nid'],
+    '#default_value' => DOSOMETHING_MOMM_BETA_NID,
   );
   $form['query']['uid'] = array(
     '#title' => 'User UID',
     '#type' => 'textfield',
     '#required' => TRUE,
     '#size' => 6,
-    '#default_value' => $form_state['values']['uid'],
   );
   $form['submit'] = array(
     '#type' => 'submit',
