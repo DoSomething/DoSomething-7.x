@@ -131,9 +131,7 @@ function dosomething_campaign_momm_signup_data_form_submit(&$form, &$form_state)
     $signup_data['no_school'] = 'not affiliated';
   }
   // Else if a school has been found:
-  elseif (isset($form_state['values']['school_id'])) {
-    // Save school id to user profile.
-    dosomething_user_update_school($user, $form_state['values']['school_id']);  
+  elseif (isset($form_state['values']['school_id'])) { 
     // Write gsid to signups table:
     $signup_data['gsid'] = $form_state['values']['gsid'];
   }

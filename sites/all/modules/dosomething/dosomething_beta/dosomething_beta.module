@@ -3,6 +3,9 @@
  * @file
  * Code for the dosomething_beta module.
  */
+define('DOSOMETHING_MOMM_LEGACY_NID', 731098);
+define('DOSOMETHING_MOMM_BETA_NID', 850);
+define('DOSOMETHING_MOMM_BETA_PATH', 'campaigns/mind-my-money');
 
 /**
  * Implements hook_menu().
@@ -19,6 +22,27 @@ function dosomething_beta_menu() {
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_init().
+ *
+ * Handles redirects from legacy campaigns to corresponding beta campaigns.
+ */
+function dosomething_beta_init() {
+  $current_path = current_path();
+
+  // We only need redirect for legacy MOMM campaign, so if this isn't it, exit.
+  if ($current_path != 'node/' . DOSOMETHING_MOMM_LEGACY_NID) { return; }
+
+  // If user is an admin, allow access to legacy node regardless.
+  if (user_access('administer modules')) { return; }
+
+  // If anonymous user, or user is not signed up:
+  if ( !user_is_logged_in() || !dosomething_beta_signup_exists(DOSOMETHING_MOMM_BETA_NID) ) {
+    // Redirect to beta node (needs to be a relative path).
+    drupal_goto(DOSOMETHING_MOMM_BETA_PATH);
+  }
 }
 
 /**
@@ -89,21 +113,20 @@ function dosomething_beta_signup_exists_form($form, &$form_state) {
   $form = array();
   $form['query'] = array(
     '#type' => 'fieldset',
-    '#title' => 'Query Signups',
+    '#title' => 'Query Beta Signups',
   );
   $form['query']['nid'] = array(
     '#title' => 'Beta NID',
     '#type' => 'textfield',
     '#required' => TRUE,
     '#size' => 6,
-    '#default_value' => $form_state['values']['nid'],
+    '#default_value' => DOSOMETHING_MOMM_BETA_NID,
   );
   $form['query']['uid'] = array(
     '#title' => 'User UID',
     '#type' => 'textfield',
     '#required' => TRUE,
     '#size' => 6,
-    '#default_value' => $form_state['values']['uid'],
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -161,4 +184,55 @@ function dosomething_beta_signup_test_connection() {
   }
   db_set_active();
   return $exists;
+}
+
+/**
+ * Returns data array if MOMM signup data exists for given $uid.
+ */
+function dosomething_beta_get_signup_data($uid) {
+  $data = FALSE;
+  try {
+    db_set_active('beta');
+    $result = db_select('dosomething_signup', 'n')
+      ->fields('n')
+      ->condition('uid', $uid)
+      ->condition('nid', DOSOMETHING_MOMM_BETA_NID)
+      ->execute()
+      ->fetchAssoc();
+    if ($result && $result['data']) {
+      $data = unserialize($result['data']);
+    }
+  }
+  catch (Exception $e) {
+    watchdog('dosomething_beta', $e, array(), WATCHDOG_ERROR);
+  }
+  db_set_active();
+  return $data;
+}
+
+/**
+ * Updates the MOMM signup data for given user UID in beta signups table.
+ *
+ * @param int $uid
+ *  User uid of signup record.
+ * @param array $data
+ *  Data to store for this signup.
+ */
+function dosomething_beta_update_signup_data($uid, $data) {
+  $data = serialize($data);
+  try {
+    db_set_active('beta');
+    // Update the data field:
+    $update = db_update('dosomething_signup')
+    ->fields(array(
+      'data' => $data,
+      ))
+    ->condition('uid', $uid)
+    ->condition('nid', DOSOMETHING_MOMM_BETA_NID)  
+    ->execute();
+  }
+  catch (Exception $e) {
+    watchdog('dosomething_beta', $e, array(), WATCHDOG_ERROR);
+  }
+  db_set_active();
 }
