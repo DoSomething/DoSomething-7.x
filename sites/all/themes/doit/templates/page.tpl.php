@@ -35,7 +35,11 @@
               <input type="search" name="s" id="search" value="" />
             </form>
           </li>
-          <li><a class="secondary-nav-item js-modal-link" data-cached-modal="#modal--auth-login" href="/user/login">Log In</a></li>
+          <?php if(!$logged_in): ?>
+          <li><a href="<?php print $front_page; ?>user/login" class="secondary-nav-item js-modal-link" data-cached-modal="#modal--login">Log In</a></li>
+          <?php else: ?>
+          <li><a href="<?php print $front_page; ?>user/logout" class="secondary-nav-item">Log Out</a></li>
+          <?php endif; ?>
         </ul>
       </div>
     </div>
