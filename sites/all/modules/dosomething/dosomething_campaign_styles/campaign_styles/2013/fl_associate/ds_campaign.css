@@ -28,7 +28,7 @@ body {
   background-repeat: no-repeat;
   background-position: center top; }
 
-body.node-type-campaign {
+body.node-type-campaign, body.node-type-campaign-content-page {
   background-image: url("//www.dosomething.org/files/campaigns/footlocker/fl-bg.jpg") !important; }
 
 img.center {
