@@ -114,7 +114,6 @@
         <ul>
           <li><a href="/about/any-cause-anytime-anywhere">What is Do Something?</a></li>
           <li><a href="/about/our-team">Our Team</a></li>
-          <li><a href="#">Scholarships</a></li>
           <li><a href="/about/were-hiring">Jobs</a></li>
           <li><a href="/about/internships">Internships</a></li>
           <li><a href="/about/old-people">Old People</a></li>

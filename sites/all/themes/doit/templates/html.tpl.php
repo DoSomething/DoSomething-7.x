@@ -64,22 +64,21 @@
 
   <!-- ds-neue style overrides for header and footer -->
   <style type="text/css">
-  /* @todo change ds-neue-v3.0.23 to final location */
   @font-face {
     font-family: "Proxima Nova";
     font-weight: 400;
-    src: url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/proxima-nova/ProximaNova-Regular.eot');
-    src: url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/proxima-nova/ProximaNova-Regular.eot?') format('eot'),
-      url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/proxima-nova/ProximaNova-Regular.woff') format('woff');
+    src: url('sites/all/libraries/ds-neue/assets/fonts/proxima-nova/ProximaNova-Regular.eot');
+    src: url('sites/all/libraries/ds-neue/assets/fonts/proxima-nova/ProximaNova-Regular.eot?') format('eot'),
+      url('sites/all/libraries/ds-neue/assets/fonts/proxima-nova/ProximaNova-Regular.woff') format('woff');
   }
 
   @font-face {
     font-family: 'icomoon';
-    src: url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/icomoon/icomoon.eot?#{1}');
-    src: url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/icomoon/icomoon.eot?#{1}#iefix') format('embedded-opentype'),
-      url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/icomoon/icomoon.ttf?#{1}') format('truetype'),
-      url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/icomoon/icomoon.woff?#{1}') format('woff'),
-      url('sites/all/libraries/ds-neue-v3.0.23/assets/fonts/icomoon/icomoon.svg?#{1}#icomoon') format('svg');
+    src: url('sites/all/libraries/ds-neue/assets/fonts/icomoon/icomoon.eot?#{1}');
+    src: url('sites/all/libraries/ds-neue/assets/fonts/icomoon/icomoon.eot?#{1}#iefix') format('embedded-opentype'),
+      url('sites/all/libraries/ds-neue/assets/fonts/icomoon/icomoon.ttf?#{1}') format('truetype'),
+      url('sites/all/libraries/ds-neue/assets/fonts/icomoon/icomoon.woff?#{1}') format('woff'),
+      url('sites/all/libraries/ds-neue/assets/fonts/icomoon/icomoon.svg?#{1}#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
   }
