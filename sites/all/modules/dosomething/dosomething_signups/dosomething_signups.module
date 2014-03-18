@@ -60,6 +60,9 @@ function dosomething_signups_delete_signup($uid, $nid) {
  * Returns data array if signup data exists for given $uid and $nid.
  */
 function dosomething_signups_get_signup_data($uid, $nid) {
+  if (module_exists('dosomething_beta')) {
+    return dosomething_beta_get_signup_data($uid);
+  }
   $result = db_select('dosomething_campaign_signups', 'n')
     ->fields('n')
     ->condition('uid', $uid)
@@ -88,6 +91,9 @@ function dosomething_signups_get_signup_data($uid, $nid) {
  *  Data to store for this signup.
  */
 function dosomething_signups_update_signup_data($uid, $nid, $data) {
+  if (module_exists('dosomething_beta')) {
+    return dosomething_beta_update_signup_data($uid, $data);
+  }
   // Sanity check to avoid errors if signup record doesn't exist:
   if (dosomething_signups_is_user_signed_up($uid, $nid)) {
     // If not TFJ, serialize:
