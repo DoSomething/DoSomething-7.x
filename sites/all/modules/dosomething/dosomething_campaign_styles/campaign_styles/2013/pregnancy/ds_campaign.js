@@ -71,11 +71,13 @@
     // Mobile Commons success message
     if (document.location.search.slice(1,8) === 'success') {
       var success_msg = '<div id="success-message"><p>Thanks for signing up! Stay tuned for a text from us.</p></div>';
+      var success_msg2 = '<div id="success-message2"><p>Thanks for signing up! Stay tuned for a text from us.</p></div>';
       $('#signup-email').prepend(success_msg);
+      $('#game').prepend(success_msg2);
     }
 
     // #header section Facebook fun
-    var fb_share_img = 'http://www.dosomething.org/files/campaigns/pregnancy/logo.png';
+    var fb_share_img = 'http://www.dosomething.org/files/campaigns/preg14/preg-fb.jpg';
     var fb_title = 'Pregnancy Text';
     var fb_header_caption = '';
 
@@ -83,7 +85,7 @@
       'feed_picture': fb_share_img,
       'feed_title': fb_title,
       'feed_caption': fb_header_caption,
-      'feed_description': 'Guys sort of play a big role in getting pregnant, so we think it’s time for them to learn a bit about it too. Put a baby in your friends\' phones for a day with @Do Something\'s Pregnancy Text and get them talking about how life would change if they were a parent: http://www.dosomething.org/baby',
+      'feed_description': '1 in 3 girls will get pregnant at least once by the time they\'re 20. Make your friends experience phone parenthood by texting BABY to 38383.',
       'feed_selector': '.header-facebook-share',
     }, function(response){
       window.location.href = '/baby#header';
