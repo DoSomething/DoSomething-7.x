@@ -519,7 +519,7 @@ $activity = $workflow->newActivity('out_of_flow_responder');
 $activity->name = 'out_of_flow_responder';
 $activity->inputs = array('start');
 $activity->outputs = array('end');
-$activity->no_match_responses = array(155123, 155133, 155143, 155153);
+$activity->no_match_responses = array(165647, 165649, 165651, 165653);
 $activity->mms_match_responses = array(
   "Now that's a good looking picture",
 );
@@ -530,7 +530,7 @@ $activity->response_sets = array(
     'response' => array("That's no way to talk to a baby. If you really really want me to go away, text AWAY and I'll be gone."),
   ),
   array(
-    'phrase_match' => array('i love you'),
+    'phrase_match' => array('i love you', 'mommy loves you', 'daddy loves you'),
     'AND_match' => array(array('love', 'you')),
     'response' => array("I love you too!"),
   ),
@@ -556,22 +556,31 @@ $activity->response_sets = array(
     'response' => array("But I'm hungry!"),
   ),
   array(
-    'phrase_match' => array('Feeds baby', 'heres breakfast', 'Im making breakfast'),
-    'word_match' => array('Eggs', 'pancakes', 'waffles', 'bagles', 'milk', 'cereal', 'applesauce', 'bottle', 'feed'),
-    'response' => array("Yum! I'll totally get you when I learn how to walk", "Nom nom nom"),
-  ),
-  array(
-    'AND_match' => array(array('orange', 'juice')),
-    'response' => array("Yum! I'll totally get you when I learn how to walk", "Nom nom nom"),
+    'phrase_match' => array('Feeds baby', 'feed bottle', ' heres breakfast', 'Im making breakfast', 'orange juice', 'is served'),
+    'word_match' => array('Eggs', 'pancakes', 'waffles', 'bagles', 'milk', 'cereal', 'applesauce', 'bottle', 'feed', 'breakfast', 'formula', 'breast milk', 'orange', 'juice', 'food', 'bacon'),
+    'response' => array("Yum! I'll totally get you breakfast when I learn how to walk", "Nom nom nom", "Nomzzz", "That's what I'm talkin about"),
   ),
   array(
     'phrase_match' => array('good morning'),
-    'word_match' => array('Goodmorning', ' morning'),
+    'word_match' => array('Goodmorning', 'morning'),
     'response' => array("Good morning!", "It IS a good morning!"),
+  ),
+  array(
+    'phrase_match' => array('burping you', 'burp baby', 'burbs baby', 'burping baby'),
+    'word_match' => array('burp'),
+    'response' => array("Ahhh! Much better."),
   ),
   array(
     'exact_match' => array('youre welcome'),
     'response' => array("Now I know where I get my good manners. Such a good example!", "Such good manners"),
+  ),
+  array(
+    'phrase_match' => array('What do you want', 'What kind of food do you want', 'What do you want to eat', 'What kind of breakfast would you like How?'),
+    'response' => array("I don't know, you figure it out! I'm the baby.", "Didn't you read any books before I came along? You should know these things!"),
+  ),
+  array(
+    'word_match' => array('hugs', 'hug', 'cuddles', 'rock', 'sway', 'swaddle', 'comfort', 'kiss'),
+    'response' => array("Aww thanks", "Nothing like the love of a parent", ":)"),
   ),
   array(
     'phrase_match' => array('Youre cute', 'youre adorable'),
@@ -601,8 +610,8 @@ $activity->response_sets = array(
     'response' => array("There's no real right answer. You sort of lose either way."),
   ),
   array(
-    'phrase_match' => array('Its okay', 'thats okay'),
-    'response' => array("Thanks for understanding", "You're so understanding"),
+    'phrase_match' => array('Its okay', 'thats okay', 'ok'),
+    'response' => array("Thanks for understanding", "You're so understanding", "You're the best!", "Thanks!"),
   ),
   array(
     'phrase_match' => array('Ill change my shirt', 'clean shirt'),
@@ -669,7 +678,7 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('Are you hungry', 'Do you need food', 'Do you need a bottle', 'Something to eat'),
-    'response' => array("Yes please, I'm always hungry", "I could always eat", "A little snack sounds good"),
+    'response' => array("Yes please, I'm always hungry", "I could always eat", "A little snack sounds good", " The answer is almost always yes to food."),
   ),
   array(
     'phrase_match' => array('Do you need to be changed', 'Diaper change', 'Check diaper', ' change diaper'),
@@ -772,7 +781,7 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('Whats your name?'),
-    'response' => array("That's your job! Just don't go all celeb on me and name me Flamingo or something."),
+    'response' => array("That's your job! Just don't go all celeb on me and name me Coconut or something."),
   ),
   array(
     'phrase_match' => array('Dont go', 'Dont go away', 'Dont leave', 'No dont leave baby'),
@@ -805,12 +814,64 @@ $activity->response_sets = array(
     'response' => array("I really am trying. Things will be so much easier when I learn how to talk out loud. "),
   ),
   array(
-    'word_match' => array('/\bha[ha]*\b/', 'LOL', 'LMAO'),
+    'word_match' => array('/\bhah[ha]*\b/', 'LOL', 'LMAO'),
     'response' => array("Glad you find me funny :)", "I'm just a regular comedian. ", "I'm glad you think I'm as funny as I do!"),
   ),
   array(
     'word_match' => array('tickle', 'tickling'),
     'response' => array("Hehehe I'm ticklish!", "Heheh!", "Ahh I'm ticklish! I can't breathe I'm laughing so hard!"),
+  ),
+  array(
+    'phrase_match' => array('you cant talk yet', 'babies dont talk'),
+    'response' => array("Maybe that means you're fluent in baby...?"),
+  ),
+  array(
+    'phrase_match' => array('Im going to school'),
+    'response' => array("Me too!", "I'm coming with!"),
+  ),
+  array(
+    'phrase_match' => array('Im gonna buy you something', 'buy you things', 'buy you something', 'buy you present', 'buy you toy'),
+    'response' => array("Ooh! I love presents.", "Thanks!"),
+  ),
+  array(
+    'phrase_match' => array('Who are you talking to'),
+    'response' => array("Uhh...you, duh!"),
+  ),
+  array(
+    'phrase_match' => array('Im sorry'),
+    'response' => array("It's okay", "We all make mistakes.", "I can't stay mad at that face!"),
+  ),
+  array(
+    'word_match' => array('Hello'),
+    'response' => array("HI! "),
+  ),
+  array(
+    'phrase_match' => array('Are you there'),
+    'response' => array("Here I am! I was playing hide and seek...you never came to find me."),
+  ),
+  array(
+    'phrase_match' => array('How was that', 'Hows that?', 'How is that'),
+    'response' => array("Perfect!", "That was perfect. You're good at this parenting thing."),
+  ),
+  array(
+    'AND_match' => array(array('grow', 'up')),
+    'response' => array("I am growing up! Just really really slowly..."),
+  ),
+  array(
+    'word_match' => array('Goodnight'),
+    'response' => array("Goodnight!", "Sleep tight, don't let the bed bugs bite."),
+  ),
+  array(
+    'phrase_match' => array('cuts off head'),
+    'word_match' => array('stab', ' punch', ' hit', ' kick', ' poison', ' shoot'),
+    'response' => array("Violence is never the answer", "You really think it's cool to threaten a baby?", "I'm pretty sure that's illegal."),
+  ),
+  array(
+    'phrase_match' => array('Are you alive'),
+  ),
+  array(
+    'phrase_match' => array('Where did you go', 'Whered you go?'),
+    'response' => array("Here I am!", "I'm right here!"),
   ),
 );
 
