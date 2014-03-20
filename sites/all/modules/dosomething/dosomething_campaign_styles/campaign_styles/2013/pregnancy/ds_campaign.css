@@ -22,7 +22,7 @@ img.logo {
   padding-bottom: 0; }
 
 body {
-  background: white; }
+  background: black; }
 
 @media only screen and (max-width: 550px) {
   body {
@@ -92,7 +92,7 @@ body {
       width: 100%; } }
 
 #cmp {
-  border: 1px solid #cccccc;
+  background: white;
   border-top: none; }
   #cmp img {
     -moz-box-shadow: none !important;
@@ -191,7 +191,7 @@ body {
     color: black; }
     #block-dosomething-campaign-styles-campaign-nav a:hover {
       text-decoration: none;
-      color: #f80071; }
+      color: #ffe000; }
   #block-dosomething-campaign-styles-campaign-nav .campaign-menu-prefix {
     color: #cccccc;
     text-transform: uppercase;
@@ -225,12 +225,12 @@ body {
       color: #cccccc;
       text-decoration: underline; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix a:hover {
-        color: #f80071; }
+        color: #ffe000; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix hr {
       border-top: none;
       border-bottom: 1px solid #cccccc; }
     #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count {
-      background: #f80071;
+      background: #ffe000;
       padding: 0.5em 0 0.3em;
       margin: 1em 0; }
       #block-dosomething-campaign-styles-campaign-nav .campaign-menu-suffix .nav-count p {
@@ -487,7 +487,7 @@ body {
     font-weight: 500;
     font-family: din-web-reg, "Trebuchet MS", sans-serif;
     color: black; }
-  #cmp h1, #cmp h3, #cmp .divider {
+  #cmp h1, #cmp h3 {
     text-transform: uppercase; }
   #cmp h1 {
     font-size: 2.5em;
@@ -551,21 +551,17 @@ body {
   #cmp .divider, #cmp .divider-mobile {
     text-align: center;
     border-top: 2px solid #cccccc;
-    margin: 0 0 3% 0;
+    margin: 0 0 2.4em 0;
     padding: 0.5em 0 0 0; }
     #cmp .divider span, #cmp .divider-mobile span {
-      background: #241f20;
-      padding: 0.5em 1em 0.35em;
+      padding: 0.5em 0em 0.2em;
       position: relative;
-      font-weight: 400;
+      font-weight: 600;
       letter-spacing: 0.1em;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      -ms-border-radius: 2px;
-      -o-border-radius: 2px;
-      border-radius: 2px;
-      color: white;
-      text-transform: uppercase; }
+      color: #1e1d1c;
+      font-size: 2em;
+      border-bottom: 8px solid #3fbaff;
+      display: inline-block; }
   #cmp .go-button, #cmp #edit-submit {
     font-family: din-web;
     background: #ffcb15;
@@ -582,8 +578,61 @@ body {
     -o-border-radius: 5px;
     border-radius: 5px;
     text-decoration: none; }
+  #cmp .form-submit, #cmp .btn {
+    background: #ffcb15;
+    margin: 0 auto;
+    padding: 0.6em 0;
+    clear: both;
+    position: static;
+    height: 2em;
+    display: block;
+    border: 1px solid #feb800;
+    cursor: pointer;
+    color: #1e1d1c !important;
+    font-family: din-web-reg;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    -webkit-appearance: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px; }
+    #cmp .form-submit:hover, #cmp .btn:hover {
+      background: #feb800;
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffcb15), color-stop(100%, #feb800));
+      background-image: -webkit-linear-gradient(#ffcb15, #feb800);
+      background-image: -moz-linear-gradient(#ffcb15, #feb800);
+      background-image: -o-linear-gradient(#ffcb15, #feb800);
+      background-image: linear-gradient(#ffcb15, #feb800);
+      -webkit-box-shadow: 0 10px 10px -10px #bbbbbb;
+      -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
+      box-shadow: 0 10px 10px -10px #bbbbbb; }
+    #cmp .form-submit:active, #cmp .btn:active {
+      color: #383735 !important;
+      padding: 0.35em 0 0.15em !important;
+      background: #ffcb15;
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #feb800), color-stop(100%, #ffcb15));
+      background-image: -webkit-linear-gradient(#feb800, #ffcb15);
+      background-image: -moz-linear-gradient(#feb800, #ffcb15);
+      background-image: -o-linear-gradient(#feb800, #ffcb15);
+      background-image: linear-gradient(#feb800, #ffcb15);
+      -webkit-box-shadow: 0 10px 10px -10px #bbbbbb;
+      -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
+      box-shadow: 0 10px 10px -10px #bbbbbb; }
+    #cmp .form-submit:link, #cmp .form-submit:active, #cmp .form-submit:hover, #cmp .btn:link, #cmp .btn:active, #cmp .btn:hover {
+      color: #1e1d1c;
+      text-decoration: none !important; }
+  #cmp .btn-cta-small {
+    font-size: 0.875em; }
+  #cmp .btn-cta-medium {
+    font-size: 1.125em; }
+  #cmp .btn-cta-large {
+    font-size: 1.5em; }
   #cmp .section#header {
-    background: url("http://www.dosomething.org/files/campaigns/pregnancy/header-baby.jpg") top center no-repeat;
+    background: url("https://www.dosomething.org/files/campaigns/preg14/header-new.jpg") top center no-repeat;
     margin-bottom: 0;
     height: 330px; }
   #cmp #header {
@@ -600,7 +649,7 @@ body {
       margin: 0 auto; }
     #cmp #header h1 {
       margin: 1.5%;
-      background: #f80071;
+      background: #ffe000;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -620,13 +669,13 @@ body {
       margin: 0 auto;
       line-height: 1.2em; }
       #cmp #header h2 span {
-        color: #f80071;
+        color: #ffe000;
         font-weight: 700;
         padding: 0; }
     #cmp #header .subhead {
       text-transform: uppercase;
       color: white;
-      background: #f80071;
+      background: #ffe000;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -637,7 +686,7 @@ body {
     #cmp #header .subhead2 {
       max-width: 375px;
       color: white;
-      background: #2792c9;
+      background: #3fbaff;
       zoom: 1;
       filter: alpha(opacity=85);
       opacity: 0.85;
@@ -658,6 +707,18 @@ body {
       font-size: 1.2em;
       padding: 1% 1.5%;
       text-transform: uppercase; }
+    #cmp #header .header-date {
+      text-align: center;
+      text-transform: uppercase;
+      position: absolute;
+      bottom: 2px;
+      right: 16px; }
+      #cmp #header .header-date p {
+        color: #1e1d1c;
+        font-size: 1.2em;
+        font-weight: 500;
+        display: inline-block;
+        padding: 0; }
     #cmp #header .pane-campaign-signed h2 {
       text-align: center;
       text-transform: uppercase;
@@ -682,25 +743,52 @@ body {
     #cmp #header .header-facebook-share, #cmp #header .header-twitter-share {
       display: inline-block;
       margin: 0 2px; }
+    #cmp #header .header-facebook-share img {
+      border: 1px solid #cccccc;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px; }
     #cmp #header .ctia_bottom, #cmp #header .ctia_top {
       font-weight: 400;
       text-transform: none; }
+    #cmp #header .logo {
+      margin: 1.75em 0 0 12em; }
+      @media only screen and (max-width: 600px) {
+        #cmp #header .logo {
+          margin: 1.75em auto 0;
+          display: block; } }
   #cmp #game {
     color: white;
-    background: #2792c9; }
+    background: #3fbaff; }
     #cmp #game h2, #cmp #game h3 {
-      max-width: 600px;
-      margin: 0 auto; }
+      max-width: 700px;
+      margin: 0 auto 0.5em;
+      text-transform: uppercase;
+      padding: 0.6em 1em 0.3em; }
     #cmp #game h2 {
-      color: #ffdf00;
-      line-height: 1.1em; }
+      color: #1e1d1c;
+      background: #ffe000;
+      line-height: 1.1em;
+      display: inline-block;
+      letter-spacing: 2px;
+      font-size: 2.2em; }
+      @media only screen and (max-width: 600px) {
+        #cmp #game h2 {
+          font-size: 1.4em; } }
     #cmp #game h3 {
-      color: white;
-      font-weight: 400;
-      text-transform: none;
-      font-size: 1.5em; }
+      color: #1e1d1c;
+      background: #ffe000;
+      font-size: 1.2em;
+      letter-spacing: 1px; }
+      @media only screen and (max-width: 600px) {
+        #cmp #game h3 {
+          font-size: 1em; } }
     #cmp #game label {
-      color: white; }
+      color: black;
+      text-align: left;
+      margin: 2% 1% 0; }
     #cmp #game form {
       max-width: 600px;
       margin: 0 auto; }
@@ -720,31 +808,31 @@ body {
       #cmp #game .scholar-input input {
         width: 96%;
         margin: 2% 1% 4%; }
-    #cmp #game .scholar-foot {
-      float: left;
-      width: 50%; }
-      #cmp #game .scholar-foot input[type="submit"] {
-        background: #ffdf00;
-        color: #f80071;
-        float: right;
-        margin: 0 2% 4%;
-        font-size: 2.5em;
-        font-family: din-web-reg; }
-        #cmp #game .scholar-foot input[type="submit"]:hover {
-          opacity: 0.95; }
-      #cmp #game .scholar-foot .msg-data {
-        margin-left: 2%;
-        text-align: left;
-        font-size: 0.55em;
-        line-height: 1.2em;
-        font-weight: 300; }
-      #cmp #game .scholar-foot .rule-regs {
-        margin-left: 2%;
-        font-size: 0.8em;
-        text-align: left; }
-        #cmp #game .scholar-foot .rule-regs a {
-          color: white;
-          font-weight: 400; }
+    #cmp #game input[type="submit"] {
+      background: #ffe000;
+      color: #1e1d1c;
+      margin: 2% 2% 4%;
+      font-size: 2em;
+      font-family: din-web-reg;
+      height: 1.6em;
+      padding: 0.4em 1em 0.2em; }
+      #cmp #game input[type="submit"]:hover {
+        opacity: 0.95; }
+    #cmp #game .msg-data {
+      margin-left: 2%;
+      text-align: center;
+      font-size: 0.55em;
+      line-height: 1.2em;
+      font-weight: 500;
+      color: black; }
+    #cmp #game .rule-regs {
+      margin-left: 2%;
+      font-size: 0.8em;
+      text-align: center;
+      margin-bottom: 1em; }
+      #cmp #game .rule-regs a {
+        color: black;
+        font-weight: 600; }
     #cmp #game .success_msg p {
       color: white;
       margin-bottom: 1.5em;
@@ -752,32 +840,146 @@ body {
       padding: 2%;
       display: inline-block; }
   #cmp #action {
-    padding: 3% 0 2%; }
-  #cmp #how .exp {
-    max-width: 267px;
-    float: left; }
-  #cmp #how .go-button {
-    background: #ffdf00;
-    color: #f80071;
-    margin: 2% auto;
-    font-size: 2em;
-    font-family: din-web-reg; }
-    #cmp #how .go-button:hover {
-      opacity: 0.85; }
-  #cmp #how .clear {
-    clear: both; }
-  #cmp .section#info {
-    padding: 2% 0; }
+    padding-bottom: 2em; }
+    #cmp #action h3 {
+      margin: 0.5em;
+      font-weight: 500;
+      text-transform: none; }
+    #cmp #action .divider {
+      border-top: none; }
+  #cmp #how {
+    border-top: 1px solid #cccccc;
+    padding-bottom: 3em; }
+    #cmp #how img.expect {
+      display: block;
+      margin: 1em auto 2em; }
+    #cmp #how .btn {
+      max-width: 230px;
+      padding: 0.65em 0; }
+    #cmp #how .go-button {
+      background: #ffe000;
+      color: #1e1d1c;
+      margin: 0 auto 2em;
+      font-size: 1.6em;
+      font-family: din-web-reg;
+      padding: 0.7em 0.75em 0.35em;
+      height: 2.1em; }
+      #cmp #how .go-button:hover {
+        opacity: 0.85; }
+    #cmp #how .col33 {
+      margin-bottom: 2em; }
+    @media only screen and (max-width: 600px) {
+      #cmp #how .col33 {
+        width: 100%;
+        margin-bottom: 0em; }
+        #cmp #how .col33 p {
+          padding: inherit 1em;
+          max-width: 400px;
+          margin: 0 auto 2em; }
+      #cmp #how .mid img {
+        display: none; } }
+  #cmp .sms-game-example {
+    padding-bottom: 3em;
+    border-top: 1px solid #cccccc; }
+    #cmp .sms-game-example .divider {
+      border-top: none; }
+      @media only screen and (max-width: 600px) {
+        #cmp .sms-game-example .divider span {
+          font-size: 1.6em; } }
+    #cmp .sms-game-example .sms-game-container {
+      width: 100%;
+      max-width: 30em;
+      margin: 0 auto 1em;
+      overflow: hidden;
+      clear: both; }
+    #cmp .sms-game-example .game-conversation {
+      margin: 1em auto 2em;
+      padding: 1em 2em;
+      background: #c93a28;
+      position: relative;
+      clear: both;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px; }
+      @media only screen and (max-width: 600px) {
+        #cmp .sms-game-example .game-conversation {
+          padding: 0.7em 1em; } }
+      #cmp .sms-game-example .game-conversation:after {
+        content: "";
+        display: block;
+        position: absolute;
+        border-style: solid;
+        border-width: 15px; }
+      #cmp .sms-game-example .game-conversation p {
+        line-height: 1.6em;
+        font-size: 1.3em;
+        font-weight: 400; }
+        @media only screen and (max-width: 600px) {
+          #cmp .sms-game-example .game-conversation p {
+            font-size: 1.1em; } }
+    #cmp .sms-game-example .cta-header {
+      clear: both;
+      text-align: left;
+      margin: 0 0 2em 0;
+      position: relative;
+      font-size: 1.3em;
+      top: 1.5em; }
+    #cmp .sms-game-example .game-ds {
+      float: left; }
+      #cmp .sms-game-example .game-ds:after {
+        bottom: -30px;
+        left: 20px;
+        border-color: #89281b #89281b white white; }
+      #cmp .sms-game-example .game-ds p {
+        text-align: left;
+        color: white; }
+    #cmp .sms-game-example .game-user {
+      float: right;
+      background-color: #3fbaff; }
+      @media only screen and (max-width: 600px) {
+        #cmp .sms-game-example .game-user {
+          margin: 0em auto 2em; } }
+      #cmp .sms-game-example .game-user:after {
+        bottom: -29px;
+        right: 20px;
+        border-color: #009bf2 white white #009bf2; }
+      #cmp .sms-game-example .game-user p {
+        text-align: right;
+        color: white;
+        min-width: 60px; }
+    #cmp .sms-game-example .btn {
+      width: 230px; }
+  #cmp #scholarship {
+    border-top: 1px solid #cccccc;
+    padding-bottom: 1em; }
+    #cmp #scholarship .divider {
+      border-top: none; }
+    #cmp #scholarship .btn {
+      max-width: 230px;
+      margin: 1em auto;
+      padding: 0.65em 0; }
+    #cmp #scholarship p {
+      max-width: 400px;
+      margin: 0 auto 1em; }
+    #cmp #scholarship .rule-regs a {
+      color: black; }
   #cmp #info {
-    text-align: left; }
+    text-align: left;
+    border-top: 1px solid #cccccc; }
+    #cmp #info .divider {
+      border-top: none; }
+      @media only screen and (max-width: 600px) {
+        #cmp #info .divider span {
+          line-height: 1.2em; } }
     #cmp #info p {
-      margin-bottom: 1em;
-      padding: 0 4%; }
+      margin-bottom: 1em; }
     #cmp #info .gray {
       color: #999999;
       font-style: italic; }
     #cmp #info h2 {
-      background: #2792c9;
+      background: #c93a28;
       color: white;
       display: inline-block;
       padding: 0.2em 2% 0;
@@ -785,76 +987,91 @@ body {
       text-transform: uppercase;
       font-size: 1.4em;
       font-weight: 500; }
-    #cmp #info .divider {
-      margin: 0 2% 3%; }
-  @media only screen and (max-width: 550px) {
-    #cmp #info .divider {
-      font-size: 0.7em;
-      padding-top: 0.1em; } }
-  #cmp #faq div {
-    padding: 0 1.2em 1.2em 1.2em; }
-  #cmp #faq div.divider {
-    padding: 0.5em 0 0; }
-  #cmp #faq h4, #cmp #faq li, #cmp #faq p {
-    text-align: left; }
-  #cmp #faq ul {
-    list-style: disc;
-    margin: 0 0 0 2em;
-    line-height: 1.4em; }
-  #cmp #faq li {
-    margin: 0;
-    color: #f80071; }
-    #cmp #faq li span {
-      color: black; }
-  #cmp #faq h1 {
-    font-size: 2em;
-    font-family: din-web;
-    text-transform: uppercase;
-    background: url("assets/faq3.png");
-    background-repeat: no-repeat;
-    background-position: 50% 1.2em;
-    padding: 0 0 1em 0;
-    margin: 0 0 -1em 0; }
-  #cmp #faq h4 {
-    color: #1e1d1c;
-    cursor: pointer;
-    background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
-    background-repeat: no-repeat;
-    background-position-y: 0.4em;
-    padding: 0.3em 1.2em; }
-  #cmp #faq h4.activeFAQ {
-    background-position-y: -1.4em; }
-  #cmp #faq .go-button {
-    background: #ffdf00;
-    color: #f80071;
-    margin: 2% auto;
-    font-size: 2em;
-    font-family: din-web-reg; }
-    #cmp #faq .go-button:hover {
-      opacity: 0.85; }
-  #cmp #faq .back-to-top {
-    text-align: right;
-    padding: 1em 0 1em; }
-  #cmp #faq .top-btn {
-    font-weight: 400;
-    color: #c6c7c8;
-    padding: 0px 0px 0px 15px;
-    text-decoration: none;
-    background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
-    background-repeat: no-repeat;
-    background-position-y: 0.5em; }
-  #cmp #faq .action-copy {
-    text-transform: uppercase; }
-  #cmp #faq .action-box {
-    position: relative;
-    display: inline-block; }
-  #cmp #faq .action-arrow-left, #cmp #faq .action-arrow-right {
-    position: absolute;
-    bottom: 0.5em; }
-  #cmp #faq .action-arrow-right {
-    right: -70px; }
-  #cmp #faq .action-arrow-left {
-    left: -70px; }
+    #cmp #info .content {
+      width: 90%;
+      max-width: 45em;
+      margin: 0 auto; }
+    #cmp #info a {
+      color: #3fbaff; }
+  #cmp #faq {
+    border-top: 1px solid #cccccc; }
+    #cmp #faq div {
+      padding: 0 1.2em 1.2em 1.2em; }
+    #cmp #faq div.divider {
+      padding: 0.5em 0 0;
+      border-top: none; }
+      @media only screen and (max-width: 600px) {
+        #cmp #faq div.divider span {
+          line-height: 1.2em; } }
+    #cmp #faq h4, #cmp #faq li, #cmp #faq p {
+      text-align: left; }
+    #cmp #faq ul {
+      list-style: disc;
+      margin: 0 0 0 2em;
+      line-height: 1.4em; }
+    #cmp #faq li {
+      margin: 0;
+      color: #ffe000; }
+      #cmp #faq li span {
+        color: black; }
+    #cmp #faq h1 {
+      font-size: 2em;
+      font-family: din-web;
+      text-transform: uppercase;
+      background: url("assets/faq3.png");
+      background-repeat: no-repeat;
+      background-position: 50% 1.2em;
+      padding: 0 0 1em 0;
+      margin: 0 0 -1em 0; }
+    #cmp #faq h4 {
+      color: #1e1d1c;
+      cursor: pointer;
+      background: url("//files.dosomething.org/files/campaigns/prep/arrows.png");
+      background-repeat: no-repeat;
+      background-position-y: 0.4em;
+      padding: 0.3em 1.2em; }
+    #cmp #faq h4.activeFAQ {
+      background-position-y: -1.4em; }
+    #cmp #faq .go-button {
+      background: #c93a28;
+      color: #ffe000;
+      margin: 2% auto;
+      font-size: 2em;
+      font-family: din-web-reg; }
+      #cmp #faq .go-button:hover {
+        opacity: 0.85; }
+    #cmp #faq .back-to-top {
+      text-align: right;
+      padding: 1em 0 1em; }
+    #cmp #faq .top-btn {
+      font-weight: 400;
+      color: #c6c7c8;
+      padding: 0px 0px 0px 15px;
+      text-decoration: none;
+      background-image: url("http://files.dosomething.org/files/campaigns/alcoa/arrow-up.png");
+      background-repeat: no-repeat;
+      background-position-y: 0.5em; }
+    #cmp #faq .action-copy {
+      text-transform: uppercase; }
+    #cmp #faq .action-box {
+      position: relative;
+      display: inline-block; }
+    #cmp #faq .action-arrow-left, #cmp #faq .action-arrow-right {
+      position: absolute;
+      bottom: 0.5em; }
+    #cmp #faq .action-arrow-right {
+      right: -70px; }
+    #cmp #faq .action-arrow-left {
+      left: -70px; }
+    #cmp #faq .content {
+      width: 90%;
+      max-width: 45em;
+      margin: 0 auto; }
+      @media only screen and (max-width: 600px) {
+        #cmp #faq .content {
+          width: 100%; } }
+    #cmp #faq a {
+      color: #3fbaff; }
   #cmp #signup-logo, #cmp #signup-email {
     width: 50%;
     float: left; }
@@ -918,15 +1135,20 @@ body {
         -webkit-box-shadow: 0 10px 10px -10px #bbbbbb;
         -moz-box-shadow: 0 10px 10px -10px #bbbbbb;
         box-shadow: 0 10px 10px -10px #bbbbbb; }
-  #cmp #success-message {
+  #cmp #success-message, #cmp #success-message2 {
     float: left;
     width: 100%;
     margin: 0 0 4%;
     border: 1px solid #47bdfc;
     padding: 1.4em 1em 0;
     text-align: center; }
-    #cmp #success-message p {
+    #cmp #success-message p, #cmp #success-message2 p {
       color: #47bdfc; }
+  #cmp #success-message2 p {
+    color: white;
+    border: 1px dotted white;
+    display: inline-block;
+    padding: 1em; }
   @media only screen and (max-width: 775px) {
     #cmp #signup-logo, #cmp #signup-email {
       float: none;
@@ -974,7 +1196,7 @@ body {
     -o-border-radius: 6px;
     border-radius: 6px; }
     #cmp #contact-form h3, #cmp #contact-form2 h3, #cmp #contact-form3 h3 {
-      color: #f80071;
+      color: #ffe000;
       font-size: 1.45em;
       line-height: 1.2em;
       font-weight: 400;
@@ -1000,7 +1222,7 @@ body {
       color: white;
       text-transform: uppercase; }
       #cmp #contact-form .form-actions a:hover, #cmp #contact-form2 .form-actions a:hover, #cmp #contact-form3 .form-actions a:hover {
-        color: #f80071;
+        color: #ffe000;
         text-decoration: underline; }
   #cmp .focusOutline {
     box-shadow: 0px 0px 10px 4px #fff742; }
@@ -1028,7 +1250,7 @@ body {
     height: 2em;
     margin: 1.1em auto 0;
     padding: 0.75em 0.7em 1.45em;
-    background: #f80071;
+    background: #ffe000;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
@@ -1037,7 +1259,7 @@ body {
       color: #f1f1f1; }
   #cmp .pane-campaign-signed .go-button {
     margin: 1em 0;
-    background: #f80071;
+    background: #ffe000;
     color: white;
     font-weight: 400;
     font-family: din-web-reg;
