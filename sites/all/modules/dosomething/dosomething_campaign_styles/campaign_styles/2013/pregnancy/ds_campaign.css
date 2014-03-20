@@ -92,6 +92,7 @@ body {
       width: 100%; } }
 
 #cmp {
+  background: white;
   border-top: none; }
   #cmp img {
     -moz-box-shadow: none !important;
