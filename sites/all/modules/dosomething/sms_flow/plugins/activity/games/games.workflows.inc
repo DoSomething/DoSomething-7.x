@@ -863,7 +863,7 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('cuts off head'),
-    'word_match' => array('stab', ' punch', ' hit', ' kick', ' poison', ' shoot'),
+    'word_match' => array('stab', 'punch', 'hit', 'kick', 'poison', 'shoot'),
     'response' => array("Violence is never the answer", "You really think it's cool to threaten a baby?", "I'm pretty sure that's illegal."),
   ),
   array(
