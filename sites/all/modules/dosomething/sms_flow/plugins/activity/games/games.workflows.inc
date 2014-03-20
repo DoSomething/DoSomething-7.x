@@ -557,7 +557,7 @@ $activity->response_sets = array(
   ),
   array(
     'phrase_match' => array('Feeds baby', 'feed bottle', ' heres breakfast', 'Im making breakfast', 'orange juice', 'is served'),
-    'word_match' => array('Eggs', 'pancakes', 'waffles', 'bagles', 'milk', 'cereal', 'applesauce', 'bottle', 'feed', 'breakfast', 'formula', 'breast milk', 'orange', 'juice', 'food', 'bacon'),
+    'word_match' => array('Eggs', 'pancakes', 'waffles', 'bagels', 'milk', 'cereal', 'applesauce', 'bottle', 'feed', 'breakfast', 'formula', 'breast milk', 'orange', 'juice', 'food', 'bacon'),
     'response' => array("Yum! I'll totally get you breakfast when I learn how to walk", "Nom nom nom", "Nomzzz", "That's what I'm talkin about"),
   ),
   array(
@@ -575,7 +575,7 @@ $activity->response_sets = array(
     'response' => array("Now I know where I get my good manners. Such a good example!", "Such good manners"),
   ),
   array(
-    'phrase_match' => array('What do you want', 'What kind of food do you want', 'What do you want to eat', 'What kind of breakfast would you like How?'),
+    'phrase_match' => array('What do you want', 'What kind of food do you want', 'What do you want to eat', 'What kind of breakfast would you like'),
     'response' => array("I don't know, you figure it out! I'm the baby.", "Didn't you read any books before I came along? You should know these things!"),
   ),
   array(
