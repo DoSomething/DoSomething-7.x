@@ -1,10 +1,10 @@
-// PANES 
+success-message// PANES 
 
 ///      //
 //  #header     - sign up -
 //      //
 .section#header
-  background: url('http://www.dosomething.org/files/campaigns/pregnancy/header-baby.jpg') top center no-repeat
+  background: url('https://www.dosomething.org/files/campaigns/preg14/header-new.jpg') top center no-repeat
   margin-bottom: 0
   height: 330px
 #header
@@ -21,7 +21,7 @@
     margin: 0 auto
   h1
     margin: 1.5%
-    background: $secondaryColor
+    background: $second-color
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
@@ -41,13 +41,13 @@
     margin: 0 auto
     line-height: 1.2em
     span
-      color: $secondaryColor
+      color: $second-color
       font-weight: 700
       padding: 0
   .subhead
     text-transform: uppercase
     color: white
-    background: $secondaryColor
+    background: $second-color
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
@@ -58,7 +58,7 @@
   .subhead2
     max-width: 375px
     color: white
-    background: $blueColor
+    background: $first-color
     zoom: 1
     filter: alpha(opacity=85)
     opacity: 0.85
@@ -79,6 +79,22 @@
     font-size: 1.2em
     padding: 1% 1.5%
     text-transform: uppercase
+
+  .header-date
+    //width: 53%
+    text-align: center
+    text-transform: uppercase
+    position: absolute
+    bottom: 2px
+    right: 16px
+    p
+      color: $offBlack
+      font-size: 1.2em
+      font-weight: 500
+      display: inline-block
+      padding: 0
+    @media only screen and (max-width: 600px)
+
   .pane-campaign-signed
     h2
       text-align: center
@@ -105,10 +121,19 @@
     display: inline-block
     margin: 0 2px
 
+  .header-facebook-share img
+    border: 1px solid #ccc
+    +border-radius(4px)
+
   .ctia_bottom, .ctia_top
     font-weight: 400
     text-transform: none
 
+  .logo
+    margin: 1.75em 0 0 12em
+    @media only screen and (max-width: 600px)
+      margin: 1.75em auto 0
+      display: block
 
 
 //      //
@@ -116,20 +141,32 @@
 //      //
 #game
   color: white
-  background: $blueColor
+  background: $first-color
   h2, h3
-    max-width: 600px
-    margin: 0 auto
+    max-width: 700px
+    margin: 0 auto 0.5em
+    text-transform: uppercase
+    padding: 0.6em 1em 0.3em
   h2
-    color: $thirdColor
+    color: $offBlack
+    background: $second-color
     line-height: 1.1em
+    display: inline-block
+    letter-spacing: 2px
+    font-size: 2.2em
+    @media only screen and (max-width: 600px)
+      font-size: 1.4em
   h3
-    color: white
-    font-weight: 400
-    text-transform: none
-    font-size: 1.5em
+    color: $offBlack
+    background: $second-color
+    font-size: 1.2em
+    letter-spacing: 1px
+    @media only screen and (max-width: 600px)
+      font-size: 1em
   label
-    color: white
+    color: black
+    text-align: left
+    margin: 2% 1% 0
   form
     max-width: 600px
     margin: 0 auto
@@ -149,31 +186,32 @@
     input
       width: 96%
       margin: 2% 1% 4%
-  .scholar-foot
-    float: left
-    width: 50%
-    input[type="submit"]
-      background: $thirdColor
-      color: $secondaryColor
-      float: right
-      margin: 0 2% 4%
-      font-size: 2.5em
-      font-family: din-web-reg
-      &:hover
-        opacity: 0.95
-    .msg-data
-      margin-left: 2%
-      text-align: left
-      font-size: 0.55em
-      line-height: 1.2em
-      font-weight: 300
-    .rule-regs
-      margin-left: 2%
-      font-size: 0.8em
-      text-align: left
-      a
-        color: white
-        font-weight: 400
+
+  input[type="submit"]
+    background: $second-color
+    color: $offBlack
+    margin: 2% 2% 4%
+    font-size: 2em
+    font-family: din-web-reg
+    height: 1.6em
+    padding: 0.4em 1em 0.2em
+    &:hover
+      opacity: 0.95
+  .msg-data
+    margin-left: 2%
+    text-align: center
+    font-size: 0.55em
+    line-height: 1.2em
+    font-weight: 500
+    color: black
+  .rule-regs
+    margin-left: 2%
+    font-size: 0.8em
+    text-align: center
+    margin-bottom: 1em
+    a
+      color: black
+      font-weight: 600
   .success_msg p
     color: white
     margin-bottom: 1.5em
@@ -186,41 +224,168 @@
 //	#action
 //			//
 #action
-  padding: 3% 0 2%
+  padding-bottom: 2em
+  h3
+    margin: 0.5em
+    font-weight: 500
+    text-transform: none
+  .divider
+    border-top: none
+
 
 //      //
 //  #how
 //      //
 #how
-  .exp
-    max-width: 267px
-    float: left
+  border-top: 1px solid #ccc
+  padding-bottom: 3em
+  img.expect
+    display: block
+    margin: 1em auto 2em
+  .btn
+    max-width: 230px
+    padding: 0.65em 0
   .go-button
-    background: $thirdColor
-    color: $secondaryColor
-    margin: 2% auto
-    font-size: 2em
+    background: $second-color
+    color: $offBlack
+    margin: 0 auto 2em 
+    font-size: 1.6em
     font-family: din-web-reg
+    padding: 0.7em 0.75em 0.35em
+    height: 2.1em
     &:hover
       opacity: 0.85
-  .clear
+  .col33
+    margin-bottom: 2em
+  @media only screen and (max-width: 600px)
+    .col33
+      width: 100%
+      margin-bottom: 0em
+      p
+        padding: inherit 1em
+        max-width: 400px
+        margin: 0 auto 2em
+    .mid img
+      display: none
+
+
+//      //
+//  #example
+//      //
+.sms-game-example
+  padding-bottom: 3em
+  border-top: 1px solid #ccc
+
+  .divider
+    border-top: none
+    @media only screen and (max-width: 600px)
+      span
+        font-size: 1.6em
+
+
+  .sms-game-container
+    width: 100%
+    max-width: 30em
+    margin: 0 auto 1em
+    overflow: hidden
     clear: both
+
+  .game-conversation
+    margin: 1em auto 2em
+    padding: 1em 2em
+    background: $third-color
+    position: relative
+    clear: both
+    +border-radius(4px)
+    @media only screen and (max-width: 600px)
+      padding: 0.7em 1em
+    &:after
+      content: ""
+      display: block
+      position: absolute
+      border-style: solid
+      border-width: 15px
+    p
+      line-height: 1.6em
+      font-size: 1.3em
+      font-weight: 400
+      @media only screen and (max-width: 600px)
+        font-size: 1.1em
+
+  .cta-header
+    clear: both
+    text-align: left
+    margin: 0 0 2em 0
+    position: relative
+    font-size: 1.3em
+    top: 1.5em
+
+  .game-ds
+    float: left
+    &:after
+      bottom: -30px
+      left: 20px
+      border-color: darken($third-color, 15) darken($third-color, 15) white white
+    p
+      text-align: left
+      color: white
+
+  .game-user
+    float: right
+    background-color: $first-color
+    @media only screen and (max-width: 600px)
+      margin: 0em auto 2em
+    &:after
+      bottom: -29px
+      right: 20px
+      border-color: darken($first-color, 15) white white darken($first-color, 15)
+    p
+      text-align: right
+      color: #fff
+      min-width: 60px
+
+  .btn
+    width: 230px
+
+//      //
+//  #scholarship
+//      //
+#scholarship
+  border-top: 1px solid #ccc
+  padding-bottom: 1em
+  .divider
+    border-top: none
+  .btn
+    max-width: 230px
+    margin: 1em auto
+    padding: 0.65em 0
+  p
+    max-width: 400px
+    margin: 0 auto 1em
+  .rule-regs
+    a
+      color: black
+
+
 
 //      //
 //  #info
 //      //
-.section#info
-  padding: 2% 0
 #info
   text-align: left
+  border-top: 1px solid #ccc
+  .divider
+    border-top: none
+    @media only screen and (max-width: 600px)
+      span
+        line-height: 1.2em
   p
     margin-bottom: 1em
-    padding: 0 4%
   .gray
     color: #999
     font-style: italic
   h2
-    background: $blueColor
+    background: $third-color
     color: white
     display: inline-block
     padding: 0.2em 2% 0
@@ -228,23 +393,27 @@
     text-transform: uppercase
     font-size: 1.4em
     font-weight: 500
-  .divider
-    margin: 0 2% 3%
-@media only screen and (max-width: 550px)
-  #info
-    .divider
-      font-size: 0.7em
-      padding-top: 0.1em
+  .content
+    width: 90%
+    max-width: 45em
+    margin: 0 auto
+  a
+    color: $first-color
 
 
 //      //
 //  #faq
 //      //
-#faq 
+#faq
+  border-top: 1px solid #ccc 
   div
     padding: 0 1.2em 1.2em 1.2em
   div.divider
-    padding: 0.5em 0 0  
+    padding: 0.5em 0 0
+    border-top: none
+    @media only screen and (max-width: 600px)
+      span
+        line-height: 1.2em  
   h4, li, p
     text-align: left
   ul
@@ -253,7 +422,7 @@
     line-height: 1.4em
   li
     margin: 0
-    color: $secondaryColor
+    color: $second-color
     span
       color: black 
   h1
@@ -275,8 +444,8 @@
   h4.activeFAQ
     background-position-y: -1.4em
   .go-button
-    background: $thirdColor
-    color: $secondaryColor
+    background: $third-color
+    color: $second-color
     margin: 2% auto
     font-size: 2em
     font-family: din-web-reg
@@ -305,6 +474,15 @@
     right: -70px
   .action-arrow-left
     left: -70px 
+
+  .content
+    width: 90%
+    max-width: 45em
+    margin: 0 auto
+    @media only screen and (max-width: 600px)
+      width: 100%
+  a
+    color: $first-color
 
 //      //
 //  #signup
@@ -377,7 +555,7 @@
       -moz-box-shadow: 0 10px 10px -10px #bbb
       box-shadow: 0 10px 10px -10px #bbb
 
-#success-message
+#success-message, #success-message2
   float: left
   width: 100%
   margin: 0 0 4%
@@ -386,6 +564,12 @@
   text-align: center
   p
     color: #47BDFC
+#success-message2
+  p
+    color: white
+    border: 1px dotted white
+    display: inline-block
+    padding: 1em
 
 @media only screen and (max-width: 775px)
   #signup-logo, #signup-email

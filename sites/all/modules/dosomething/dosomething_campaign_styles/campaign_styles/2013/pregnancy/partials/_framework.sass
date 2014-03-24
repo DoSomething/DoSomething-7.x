@@ -32,17 +32,17 @@
 .divider, .divider-mobile
   text-align: center
   border-top: 2px solid #ccc
-  margin: 0 0 3% 0
+  margin: 0 0 2.4em 0
   padding: 0.5em 0 0 0
   span
-    background: $dividerBG
-    padding: 0.5em 1em 0.35em
+    padding: 0.5em 0em 0.2em
     position: relative
-    font-weight: 400
+    font-weight: 600
     letter-spacing: 0.1em
-    +border-radius(2px)
-    color: white
-    text-transform: uppercase
+    color: $offBlack
+    font-size: 2em
+    border-bottom: 8px solid $first-color
+    display: inline-block
 
 .go-button, #edit-submit
   font-family: din-web
@@ -56,3 +56,46 @@
   color: $offBlack
   +border-radius(5px)
   text-decoration: none
+
+// BUTTON STYLES
+// -------------
+.form-submit, .btn
+  background: $btn-color
+  margin: 0 auto
+  padding: 0.6em 0
+  clear: both
+  position: static
+  height: 2em
+  display: block
+  border: 1px solid $btn-border
+  cursor: pointer
+  color: $offBlack !important
+  font-family: din-web-reg
+  font-weight: 600
+  text-align: center
+  text-decoration: none !important
+  text-transform: uppercase
+  -webkit-appearance: none
+  +border-radius(5px)
+  &:hover /* While mouse hovers */
+    background: $btn-hover
+    +background-image(linear-gradient($btn-color, $btn-hover))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:active /* While mouse clicks */
+    color: lighten($offBlack, 10) !important
+    padding: 0.35em 0 0.15em !important
+    background: $btn-color
+    +background-image(linear-gradient($btn-hover, $btn-color))
+    +box-shadow(0 10px 10px -10px #bbb)
+  &:link, &:active, &:hover
+    color: $offBlack
+    text-decoration: none !important
+
+.btn-cta-small
+  font-size: em-calc(14)
+
+.btn-cta-medium
+  font-size: em-calc(18)
+
+.btn-cta-large
+  font-size: em-calc(24)

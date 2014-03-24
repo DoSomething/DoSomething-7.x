@@ -22,7 +22,7 @@ $accent: din-web,"Trebuchet MS",sans-serif
 $body: "Trebuchet MS",sans-serif
 
 // page background
-$imageBackground: url('http://files.dosomething.org/files/campaigns/footlocker/fl-bg.jpg')
+$imageBackground: url('//www.dosomething.org/files/campaigns/footlocker/fl-bg.jpg')
 $bgFallback: #000000
 $bgGray: #C8C8C8
 
@@ -81,6 +81,8 @@ body
   background-image: $imageBackground
   background-repeat: no-repeat
   background-position: center top
+body.node-type-campaign, body.node-type-campaign-content-page
+  background-image: $imageBackground !important
 
 img.center
   margin: 0 auto
@@ -452,7 +454,7 @@ div[role="main"]
 #campaign-opt-in
   font-size: 11px
   a
-  padding-top: 3px !important
+    padding-top: 3px !important
     //vertical-align: super
     font-weight: bold
   a:hover
