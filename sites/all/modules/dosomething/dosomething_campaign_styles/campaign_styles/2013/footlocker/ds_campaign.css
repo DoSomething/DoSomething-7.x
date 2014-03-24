@@ -24,9 +24,12 @@ hr {
 
 body {
   background-color: black;
-  background-image: url("http://files.dosomething.org/files/campaigns/footlocker/fl-bg.jpg");
+  background-image: url("//www.dosomething.org/files/campaigns/footlocker/fl-bg.jpg");
   background-repeat: no-repeat;
   background-position: center top; }
+
+body.node-type-campaign, body.node-type-campaign-content-page {
+  background-image: url("//www.dosomething.org/files/campaigns/footlocker/fl-bg.jpg") !important; }
 
 img.center {
   margin: 0 auto;
@@ -397,9 +400,10 @@ div[role="main"] {
   right: -425px; }
 
 #campaign-opt-in {
-  font-size: 11px;
-  padding-top: 3px !important;
-    padding-top-font-weight: bold; }
+  font-size: 11px; }
+  #campaign-opt-in a {
+    padding-top: 3px !important;
+    font-weight: bold; }
   #campaign-opt-in a:hover {
     color: black;
     text-decoration: none; }
@@ -591,7 +595,7 @@ form.webform-client-form #edit-actions, form.webform-client-form #edit-actions--
       text-shadow: -1px -1px 3px white; }
 
 hr.gray {
-  border-top: 1px solid lightgray;
+  border-top: 1px solid lightgrey;
   border-bottom: none;
   clear: both; }
 
@@ -638,8 +642,8 @@ hr.gray {
 
 .application-box {
   width: 248px;
-  border-right: 1px solid lightgray;
-  border-left: 1px solid lightgray; }
+  border-right: 1px solid lightgrey;
+  border-left: 1px solid lightgrey; }
 
 .date-box {
   float: left;
