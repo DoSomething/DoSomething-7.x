@@ -534,10 +534,74 @@ a
     max-width: 800px
     margin: 1em auto
     padding: 0 1em
-@media only screen and (max-width: 600px)
-  .school
+  .winner-title
+    color: $bg-alt
+    text-transform: uppercase
+    font-size: 4em
+    margin: 0.25em auto
+    font-weight: 600
+    line-height: 1.4em
+  .school-title
+    font-weight: 600
+    font-size: 2em
+    text-transform: uppercase
+  p
+    font-size: 1.8em
+    span
+      color: $bg-alt
+      font-size: 0.8em
+      font-weight: 600
+      text-transform: uppercase
+  img, .winner-wrap
+    float: left
+    width: 50%
+  img
+    margin-bottom: 4%
+  .winner-wrap
+    p
+      text-align: left
+      padding-left: 1em
+  @media only screen and (max-width: 900px)
+    .winner-title
+      font-size: 3em
+    .school-title
+      font-size: 1.7em
+    p
+      font-size: 1.5em
+  @media only screen and (max-width: 600px)
     h2
       font-size: 1.4em
+    img, .winner-wrap
+      float: none
+      width: 96%
+    img
+      display: block
+      margin: 0 auto
+    .winner-wrap
+      margin-bottom: 4%
+      p
+        text-align: center
+        padding-left: 0
+
+#scholarship-winner
+  img
+    display: block
+    margin: 0 auto 2%
+  .winner-title
+    text-transform: uppercase
+    color: $bg-alt
+    font-size: 2em
+    font-weight: 600
+  p
+    max-width: 600px
+    text-align: center
+    margin: 0 auto
+  @media only screen and (max-width: 600px)
+    img
+      margin: 0 2% 4%
+      width: 96%
+
+
 
 .signup-future
   padding-top: 0
