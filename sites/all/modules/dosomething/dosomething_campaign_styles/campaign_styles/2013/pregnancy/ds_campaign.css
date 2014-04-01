@@ -811,7 +811,8 @@ body {
     #cmp #game input[type="submit"] {
       background: #ffe000;
       color: #1e1d1c;
-      margin: 2% 2% 4%;
+      display: block;
+      margin: 0.5em auto;
       font-size: 2em;
       font-family: din-web-reg;
       height: 1.6em;
