@@ -20,10 +20,13 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
   else {
     $filter['uid'] = $user->uid;
   }
-  $subs = webform_get_submissions($filter);
+  // Can't use webform_get_submissions because it joins on the Users table.
+  // New users won't have a legacy users record, only a record in beta.
+  // $subs = webform_get_submissions($filter);
+  $subs = dosomething_scholarship_rec_get_webform_submission($filter);
   $apps = $sids = array_keys($subs);
 
-  $complete_link = l('Complete it now', 'node/'.$conf['app_nid']);
+  $complete_link = l('Complete it now', 'node/' . $conf['app_nid']);
 
   $block = new StdClass();
 
@@ -214,4 +217,38 @@ function dosomething_scholarship_rec_scholarship_status_load($type, $field, $par
   }
 
   return reset($q->execute());
+}
+
+/**
+ * Queries webform_submissions db table with given filters.
+ *
+ * To be used instead of webform_get_submissions.  New users in beta will
+ * not have corresponding user records in legacy, which will result in 
+ * empty result sets when using webform_get_submissions, since it joins the 
+ * users table.
+ *
+ * @param $filters
+ *   An array of filters to apply to this query.
+ *
+ * @return array
+ *    Array of webform submission objects.
+ */
+function dosomething_scholarship_rec_get_webform_submission($filter) {
+  $query = db_select('webform_submissions', 's');
+  $query->fields('s');
+  $query->condition('nid', $filter['nid']);
+  if (isset($filter['sid'])) {
+    $query->condition('sid', $filter['sid']);
+  }
+  elseif (isset($filter['uid'])) {
+    $query->condition('uid', $filter['uid']);
+  }
+  $result = $query->execute();
+  foreach ($result as $row) {
+    $submissions[$row->sid] = new stdClass();
+    $submissions[$row->sid]->sid = $row->sid;
+    $submissions[$row->sid]->nid = $row->nid;
+    $submissions[$row->sid]->is_draft = $row->is_draft;
+  }
+  return $submissions;
 }
