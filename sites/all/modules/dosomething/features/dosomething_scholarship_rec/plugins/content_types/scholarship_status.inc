@@ -59,7 +59,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
       '#type' => 'container',
       '#attributes' => array('class' => array($class)),
       'text' => array(
-        '#markup' => '<span>Application status: </span>' . $status,
+        '#markup' => print_r($subs, TRUE) . '<span>Application status: </span>' . $status,
         '#prefix' => '<h3>',
         '#suffix' => '</h3>',
       ),
@@ -247,7 +247,7 @@ function dosomething_scholarship_rec_get_webform_submission($filter) {
   foreach ($result as $row) {
     $submissions[$row->sid] = new stdClass();
     $submissions[$row->sid]->sid = $row->sid;
-    $submissions[$row->nid]->nid = $row->nid;
+    $submissions[$row->sid]->nid = $row->nid;
     $submissions[$row->sid]->is_draft = $row->is_draft;
   }
   return $submissions;
