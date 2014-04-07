@@ -247,7 +247,7 @@ function dosomething_scholarship_rec_get_webform_submission($filter) {
   foreach ($result as $row) {
     $submissions[$row->sid] = new stdClass();
     $submissions[$row->sid]->sid = $row->sid;
-    $submissions[$row->nid]->nid = $row->nid;
+    $submissions[$row->sid]->nid = $row->nid;
     $submissions[$row->sid]->is_draft = $row->is_draft;
   }
   return $submissions;
