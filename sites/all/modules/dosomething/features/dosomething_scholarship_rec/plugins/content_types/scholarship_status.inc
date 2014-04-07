@@ -59,7 +59,7 @@ function dosomething_scholarship_rec_scholarship_status_content_type_render($sub
       '#type' => 'container',
       '#attributes' => array('class' => array($class)),
       'text' => array(
-        '#markup' => print_r($subs, TRUE) . '<span>Application status: </span>' . $status,
+        '#markup' => '<span>Application status: </span>' . $status,
         '#prefix' => '<h3>',
         '#suffix' => '</h3>',
       ),
